@@ -1,5 +1,5 @@
 
-math: geo $(bin_path)math
+math: geo $(bin_path)math$(nm_binext)
 
 
 
@@ -7,7 +7,7 @@ math_cflags := $(CFLAGS) -std=c99 $(NM_INCS)
 math_ldflags := $(NM_LDS)
 
 
-$(tmp_path)math$(nm_objsext): $(src_path)math1.c
+$(tmp_path)math$(nm_objext): $(src_path)math1.c
 	$(CC) $(math_cflags) -c $^ $(nm_objout)$@
 
 
