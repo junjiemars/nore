@@ -1,0 +1,14 @@
+
+# summary
+
+echo
+echo "Configuration summary"
+
+cat << END
+  c_lessons path prefix: "$NM_PREFIX"
+  c_lessons binary file: "$NM_BIN_PATH"
+  c_lessons modules path: "$NM_LIB_PATH"
+  c_lessons configuration prefix: "$NM_CONF_PREFIX"
+  c_lessons configuration file: "$NM_CONF_PATH"
+  c_lessons pid file: "$NM_PID_PATH"
+END

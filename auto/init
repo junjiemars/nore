@@ -1,0 +1,44 @@
+
+
+NM_MAKEFILE=$NM_OBJS/Makefile
+
+NM_AUTO_HEADERS_H=$NM_OBJS/nm_auto_headers.h
+NM_AUTO_CONFIG_H=$NM_OBJS/nm_auto_config.h
+
+NM_AUTOTEST=$NM_OBJS/autotest
+NM_AUTOCONF_ERR=$NM_OBJS/autoconf.err
+
+# STUBs
+NM_ERR=$NM_OBJS/autoconf.err
+MAKEFILE=$NM_OBJS/Makefile
+
+
+# check the echo's "-n" option and "\c" capability
+
+if echo "test\c" | grep c >/dev/null; then
+
+  if echo -n test | grep n >/dev/null; then
+    nm_n=
+    nm_c=
+
+  else
+    nm_n=-n
+    nm_c=
+  fi
+
+else
+  nm_n=
+  nm_c='\c'
+fi
+
+
+# creating Makefile
+
+cat << END > Makefile
+
+default: build
+
+clean:
+	rm -rf Makefile $NM_OBJS
+END
+

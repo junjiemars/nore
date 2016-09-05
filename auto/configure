@@ -1,0 +1,70 @@
+#!/bin/bash
+
+LC_ALL=C
+export LC_ALL
+
+. auto/options
+. auto/init
+. auto/sources
+
+
+test -d "$NM_OBJS" || mkdir -p $NM_OBJS
+
+echo > $NM_AUTO_HEADERS_H
+echo > $NM_AUTOCONF_ERR
+
+
+echo "#define NM_CONFIGURE \"$NM_CONFIGURE\"" > $NM_AUTO_CONFIG_H
+
+if test -z "$NM_PLATFORM"; then
+  echo "checking for OS"
+  
+  NM_SYSTEM=`uname -s 2>/dev/null`
+  NM_RELEASE=`uname -r 2>/dev/null`
+  NM_MACHINE=`uname -m 2>/dev/null`
+  
+  echo " + $NM_SYSTEM $NM_RELEASE $NM_MACHINE"
+  
+	case $NM_SYSTEM in
+		MSYS_NT-*)
+			NM_RELEASE=${NM_SYSTEM:8}
+			NM_SYSTEM=${NM_SYSTEM:0:7}
+		;;
+	esac
+		
+  NM_PLATFORM="$NM_SYSTEM:$NM_RELEASE:$NM_MACHINE";
+  
+else
+  echo "building for $NM_PLATFORM"
+  NM_SYSTEM=$NM_PLATFORM
+fi
+
+
+
+. auto/cc/conf
+
+. auto/os/conf
+
+
+case ".$NM_PREFIX" in
+	.)
+    NM_PREFIX=${NM_PREFIX:-/opt/run}
+    have=NM_PREFIX value="\"$NM_PREFIX/\"" . auto/define
+	;;
+
+	.!)
+    NM_PREFIX=
+	;;
+
+	*)
+    have=NM_PREFIX value="\"$NM_PREFIX/\"" . auto/define
+	;;
+esac
+
+
+. auto/make
+
+. auto/install
+
+
+. auto/summary

@@ -1,0 +1,149 @@
+
+LINK="\$(CC)"
+
+LDFLAGS="-shared"
+
+
+NM_PIC_OPT="-fPIC"
+
+nm_include_opt="-I "
+nm_compile_opt="-c"
+nm_objout="-o "
+nm_binout="-o "
+nm_objext=".o"
+nm_binext=
+nm_modext=".so"
+
+nm_regex_dirsep="\/"
+nm_dirsep='/'
+
+. auto/cc/name
+
+if test -n "$CFLAGS"; then
+
+	CC_TEST_FLAGS="$CFLAGS $NM_CC_OPT"
+
+else
+
+  case $NM_CC_NAME in
+    gcc)
+      . auto/cc/gcc
+    ;;
+
+    clang)
+      . auto/cc/clang
+    ;;
+
+    msvc*)
+      . auto/cc/msvc
+  ;;
+  esac
+
+	CC_TEST_FLAGS="$CC_TEST_FLAGS $NM_CC_OPT"
+
+fi
+
+
+CFLAGS="$CFLAGS $NM_CC_OPT"
+NM_TEST_LD_OPT="$NM_LD_OPT"
+
+
+case $NM_PLATFORM in 
+
+	MSYS_NT:*)
+	;;
+
+
+	*)
+  	if test -n "$NM_LD_OPT"; then
+  	  nm_feature=--with-ld-opt=\"$NM_LD_OPT\"
+  	  nm_feature_name=
+  	  nm_feature_run=no
+  	  nm_feature_incs=
+  	  nm_feature_path=
+  	  nm_feature_libs=
+  	  nm_feature_test=
+  	  . auto/feature
+
+  	  if [ $nm_found = no ]; then
+  	    echo $0: error: the invalid value in --with-ld-opt=\"$NM_LD_OPT\"
+  	    echo
+  	    exit 1
+  	  fi
+  	fi
+
+
+  	nm_feature="-Wl,-E switch"
+  	nm_feature_name=
+  	nm_feature_run=no
+  	nm_feature_incs=
+  	nm_feature_path=
+  	nm_feature_libs=-Wl,-E
+  	nm_feature_test=
+  	. auto/feature
+
+  	if [ $nm_found = yes ]; then
+  	  LDFLAGS=${LDFLAGS:+$LDFLAGS }"-Wl,-E"
+  	fi
+
+
+  	nm_feature="gcc builtin atomic operations"
+  	nm_feature_name=NM_HAVE_GCC_ATOMIC
+  	nm_feature_run=yes
+  	nm_feature_incs=
+  	nm_feature_path=
+  	nm_feature_libs=
+  	nm_feature_test="long  n = 0;
+  	                 if (!__sync_bool_compare_and_swap(&n, 0, 1))
+  	                   return 1;
+  	                 if (__sync_fetch_and_add(&n, 1) != 1)
+  	                   return 1;
+  	                 if (n != 2)
+  	                   return 1;
+  	                 __sync_synchronize();"
+  	. auto/feature
+
+
+  	if [ "$NM_CC_NAME" = "ccc" ]; then
+  	  echo "checking for C99 variadic macros ... disabled"
+  	else
+  	  nm_feature="C99 variadic macros"
+  	  nm_feature_name="NM_HAVE_C99_VARIADIC_MACROS"
+  	  nm_feature_run=yes
+  	  nm_feature_incs="#include <stdio.h>
+#define var(dummy, ...)  sprintf(__VA_ARGS__)"
+   	 nm_feature_path=
+   	 nm_feature_libs=
+   	 nm_feature_test="char  buf[30]; buf[0] = '0';
+   	                  var(0, buf, \"%d\", 1);
+   	                  if (buf[0] != '1') return 1"
+   	 . auto/feature
+   	fi
+
+
+  	nm_feature="gcc variadic macros"
+  	nm_feature_name="NM_HAVE_GCC_VARIADIC_MACROS"
+  	nm_feature_run=yes
+  	nm_feature_incs="#include <stdio.h>
+#define var(dummy, args...)  sprintf(args)"
+  	nm_feature_path=
+  	nm_feature_libs=
+  	nm_feature_test="char  buf[30]; buf[0] = '0';
+  	                 var(0, buf, \"%d\", 1);
+  	          			 if (buf[0] != '1') return 1"
+  	. auto/feature
+
+
+  	nm_feature="gcc builtin 64 bit byteswap"
+  	nm_feature_name="NM_HAVE_GCC_BSWAP64"
+  	nm_feature_run=no
+  	nm_feature_incs=
+  	nm_feature_path=
+  	nm_feature_libs=
+  	nm_feature_test="if (__builtin_bswap64(0)) return 1"
+  	. auto/feature
+
+	;;
+
+esac
+

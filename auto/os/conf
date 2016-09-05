@@ -1,0 +1,20 @@
+
+echo "checking for $NM_SYSTEM specific features"
+
+case "$NM_PLATFORM" in
+
+	Linux:*)
+		. auto/os/linux
+	;;
+	
+	Darwin:*)
+		. auto/os/darwin
+	;;
+	
+	MSYS_NT:*)
+		. auto/os/win32
+	;;
+
+esac
+
+

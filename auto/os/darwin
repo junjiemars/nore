@@ -1,0 +1,5 @@
+
+
+have=NM_DARWIN . auto/have_headers
+
+NM_INCS="$UNIX_INCS"

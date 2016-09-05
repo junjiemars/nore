@@ -1,0 +1,124 @@
+
+help=no
+
+NM_PREFIX=
+
+NM_BIN_PATH=
+NM_LIB_PATH=
+NM_CONF_PATH=
+NM_INC_PATH=
+NM_LOG_PATH=
+NM_PID_PATH=
+
+CC=${CC:-cc}
+CPP=
+NM_OBJS=objs
+NM_SRC=src
+
+NM_DEBUG=NO
+NM_VERBOSE=
+
+NM_CC_OPT=
+NM_LD_OPT=
+CPU=NO
+
+NM_RPATH=NO
+
+NM_PLATFORM=
+
+NM_LIBATOMIC=NO
+
+NM_CPU_CACHE_LINE=
+
+NM_HAS_STICKS=()
+
+opt=
+
+for option
+do
+  opt="$opt `echo $option | sed -e \"s/\(--[^=]*=\)\(.* .*\)/\1'\2'/\"`"
+  
+  case "$option" in
+    -*=*) value=`echo "$option" | sed -e 's/[-_a-zA-Z0-9]*=//'` ;;
+    *) value="" ;;
+  esac
+  
+  case "$option" in
+    --help)                          help=yes                   ;;
+    
+    --prefix=)                       NM_PREFIX="!"              ;;
+    --prefix=*)                      NM_PREFIX="$value"         ;;
+    --bin-path=*)                    NM_BIN_PATH="$value"       ;;
+    --modules-path=*)                NM_LIB_PATH="$value"  		  ;;
+    --conf-path=*)                   NM_CONF_PATH="$value"      ;;
+    --include-path=*)                NM_INC_PATH="$value"       ;;
+    --pid-path=*)                    NM_PID_PATH="$value"       ;;
+    --log-path=*)                    NM_LOG_PATH="$value"       ;;
+    --user=*)                        NM_USER="$value"           ;;
+    --group=*)                       NM_GROUP="$value"          ;;
+    
+    --crossbuild=*)                  NM_PLATFORM="$value"       ;;
+    --build=*)                       NM_BUILD="$value"          ;;
+    --builddir=*)                    NM_OBJS="$value"           ;;
+    
+		--with-debug)                    NM_DEBUG=yes               ;;
+		--with-verbose)                  NM_VERBOSE=-v              ;;
+
+		--has-*)                         NM_HAS_STICKS+=($option)   ;;
+    
+    *)
+      echo "$0: error: invalid option \"$option\""
+      exit 1
+    ;;
+  esac
+done
+
+
+NM_CONFIGURE="$opt"
+
+
+if [ $help = yes ]; then
+
+
+cat << END
+
+  --help                             print this message
+
+  --prefix=PATH                      set installation prefix
+  --bin-path=PATH                    set binaries directory
+  --modules-path=PATH                set modules path
+  --conf-path=PATH                   set conf pathname
+  --inc-path=PATH                    set inc pathname
+  --pid-path=PATH                    set pid pathname
+  --log-path=PATH                    set log pathname
+
+  --crossbuild                       set cross build
+  --build=NAME                       set build name
+  --builddir=DIR                     set build directory
+
+  --with-debug                       enable debug logging
+  --with-verbose 										 enable verbose building
+
+  --has-hi                           enable hi stick
+  --has-bits                         enable bits stick 
+  --has-endian                       enable endian stick
+  --has-env                          enable env stick
+  --has-fibo                         enable fibo stick
+  --has-math                         enable math stick
+
+END
+
+  exit 1
+
+fi
+
+
+
+NM_BIN_PATH=${NM_BIN_PATH:-bin}
+NM_LIB_PATH=${NM_LIB_PATH:-lib}
+NM_CONF_PATH=${NM_CONF_PATH:-conf}
+NM_CONF_PREFIX=`dirname $NM_CONF_PATH`
+NM_INC_PATH=${NM_INC_PATH:-inc}
+NM_PID_PATH=${NM_PID_PATH:-log}
+NM_LOG_PATH=${NM_LOG_PATH:-log}
+

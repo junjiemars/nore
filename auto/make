@@ -1,0 +1,99 @@
+
+echo "creating $NM_MAKEFILE"
+
+mkdir -p $NM_OBJS/bin \
+         $NM_OBJS/lib \
+				 $NM_OBJS/inc \
+				 $NM_OBJS/log \
+				 $NM_OBJS/pid \
+				 $NM_OBJS/tmp \
+				 $NM_OBJS/conf
+
+cat << END > $NM_MAKEFILE
+
+CC = $CC
+CPP = $CPP
+LINK = $LINK
+CFLAGS = ${NM_VERBOSE:+$NM_VERBOSE }$CFLAGS
+LDFLAGS= ${NM_VERBOSE:+$NM_VERBOSE }$LDFLAGS
+
+
+NM_PIC_OPT = $NM_PIC_OPT
+
+NM_INCS = -I$NM_OBJS -I$NM_OBJS/inc 
+NM_LDS = -L$NM_OBJS/lib
+
+nm_objout = $nm_objout
+nm_binout = $nm_binout
+nm_objext = $nm_objext
+nm_modext = $nm_modext
+nm_binext = $nm_binext
+
+
+defualt: build
+
+
+END
+
+
+nm_sticks=()
+
+
+for opt in "${NM_HAS_STICKS[@]}"; do
+
+	stick=`echo $opt \
+				 | sed -e 's/\ *--has-\([a-zA-Z][a-zA-Z]*\)/\1/' \
+				 | tr ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz`
+
+	if [ -d $NM_SRC/$stick ]; then
+		nm_sticks+=($stick)
+	else
+		echo "checking for $NM_SRC/$stick ... no found"
+		cat << END >> $NM_AUTOCONF_ERR
+---------------------------------------
+checking for $NM_SRC/$stick ... no found
+
+END
+
+  fi
+
+done
+
+
+
+
+if [ -n "$nm_sticks" ]; then
+
+	cat << END >> $NM_MAKEFILE
+	
+
+build: ${nm_sticks[@]}
+
+
+END
+	
+	for stick in ${nm_sticks[@]}; do
+
+		stick_src=$NM_SRC/$stick
+
+		[ -f $stick_src/configure ] && . $stick_src/configure
+
+		src_path=$stick_src/
+		inc_path=$NM_OBJS/inc/
+		tmp_path=$NM_OBJS/tmp/
+		lib_path=$NM_OBJS/lib/
+		bin_path=$NM_OBJS/bin/
+
+		echo "#---------------------------------------" >> $NM_MAKEFILE
+		echo $nm_n "`cat $stick_src/Makefile`" \
+			| sed -e "s@\$(src_path)@$src_path@g" \
+					  -e "s@\$(inc_path)@$inc_path@g" \
+						-e "s@\$(tmp_path)@$tmp_path@g" \
+						-e "s@\$(lib_path)@$lib_path@g" \
+						-e "s@\$(bin_path)@$bin_path@g" \
+		>> $NM_MAKEFILE 
+		echo >> $NM_MAKEFILE
+
+	done
+
+fi
