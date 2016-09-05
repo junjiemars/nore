@@ -4,10 +4,12 @@ LINK="\$(CC)"
 LDFLAGS="-shared"
 
 
-NM_PIC_OPT="-fPIC"
+nm_pic_opt="-fPIC"
+nm_std_opt="-std=c99"
 
 nm_include_opt="-I "
 nm_compile_opt="-c"
+
 nm_objout="-o "
 nm_binout="-o "
 nm_objext=".o"

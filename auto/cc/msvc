@@ -101,14 +101,6 @@ CORE_LIBS="$CORE_LIBS kernel32.lib user32.lib"
 # Win32 GUI mode application
 #CORE_LINK="$CORE_LINK -subsystem:windows -entry:mainCRTStartup"
 
-# debug
-# msvc under Wine issues
-# C1902: Program database manager mismatch; please check your installation
-if [ -z "$NM_WINE" ]; then
-	CFLAGS="$CFLAGS -Zi"
-	CORE_LINK="$CORE_LINK -debug"
-fi
-
 
 # MSVC 2005 supports C99 variadic macros
 if [ "$nm_msvc_ver" -ge 14 ]; then
@@ -126,7 +118,7 @@ NM_USE_PCH="-Yunm_config.h -Fp$NM_OBJS/nm_config.pch"
 
 # the resource file
 NM_RES="$NM_OBJS/nginx.res"
-NM_RCC="rc -fo$NM_RES \$(CORE_INCS) $NM_WIN32_RC"
+NM_RCC="rc -fo$NM_RES \$(CORE_INCS) $NM_NT_RC"
 CORE_LINK="$NM_RES $CORE_LINK"
 
 
@@ -135,7 +127,8 @@ CORE_LINK="$NM_RES $CORE_LINK"
 #MODULE_LINK="-LD $NM_OBJS/nginx.lib"
 
 
-NM_PIC_OPT=
+nm_pic_opt=
+nm_std_opt=
 
 nm_objout="-Fo"
 nm_binout="-Fe"
@@ -150,6 +143,3 @@ nm_long_regex_cont=' \
 nm_long_cont='
 	'
 
-# MSVC understand / in path
-#nm_regex_dirsep='\\'
-#nm_dirsep="\\"

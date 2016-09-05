@@ -2,4 +2,3 @@
 
 have=NM_LINUX . auto/have_headers
 
-NM_INCS="$UNIX_INCS"
