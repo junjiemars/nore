@@ -20,9 +20,11 @@ double GEO_API area_of_rect(double, double);
 
 #else
 
+#define GEO_API
+
 double area_of_rect(double, double);
 
-#endif
+#endif // MSYS_NT
 
 
 

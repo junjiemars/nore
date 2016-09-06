@@ -3,8 +3,8 @@ math: geo $(bin_path)math$(nm_binext)
 
 
 
-math_cflags := $(CFLAGS) $(NM_INCS)
-math_ldflags := $(NM_LDS)
+math_cflags = $(CFLAGS) $(NM_INCS) -std=c99
+math_ldflags += $(NM_LDS)
 
 
 $(tmp_path)math$(nm_objext): $(src_path)math1.c
