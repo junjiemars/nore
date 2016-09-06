@@ -36,7 +36,7 @@ END
 
 
 nm_test="$CC $CC_TEST_FLAGS $CC_AUX_FLAGS $nm_feature_inc_path \
-          -o $NM_AUTOTEST $NM_AUTOTEST.c $NM_TEST_LD_OPT $nm_feature_libs"
+          $nm_binout$NM_AUTOTEST $NM_AUTOTEST.c $NM_TEST_LD_OPT $nm_feature_libs"
 
 nm_feature_inc_path=
 

@@ -68,6 +68,19 @@ case $NM_PLATFORM in
   	nm_feature_test="long double x=cbrt(3.1415L);double y=cbrt(2.718);"
 		. auto/feature
 
+  	nm_feature="variadic macros"
+  	nm_feature_name="NM_HAVE_GCC_VARIADIC_MACROS"
+  	nm_feature_run=yes
+  	nm_feature_incs="#include <stdio.h>
+#define var(dummy, args...)  sprintf(args)"
+  	nm_feature_path=
+  	nm_feature_libs=
+  	nm_feature_test="char  buf[30]; buf[0] = '0';
+                   	 var(0, buf, \"%d\", 1);
+            			   if (buf[0] != '1') return 1"
+  	. auto/feature
+
+
   	if test -n "$NM_LD_OPT"; then
   	  nm_feature=--with-ld-opt=\"$NM_LD_OPT\"
   	  nm_feature_name=
@@ -114,18 +127,6 @@ case $NM_PLATFORM in
   		                 if (n != 2)
   		                   return 1;
   		                 __sync_synchronize();"
-  		. auto/feature
-
-  		nm_feature="gcc variadic macros"
-  		nm_feature_name="NM_HAVE_GCC_VARIADIC_MACROS"
-  		nm_feature_run=yes
-  		nm_feature_incs="#include <stdio.h>
-#define var(dummy, args...)  sprintf(args)"
-  		nm_feature_path=
-  		nm_feature_libs=
-  		nm_feature_test="char  buf[30]; buf[0] = '0';
-  	                 	 var(0, buf, \"%d\", 1);
-  	          			   if (buf[0] != '1') return 1"
   		. auto/feature
 
   		nm_feature="gcc builtin 64 bit byteswap"
