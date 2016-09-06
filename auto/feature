@@ -17,8 +17,8 @@ if test -n "$nm_feature_name"; then
 fi
 
 if test -n "$nm_feature_path"; then
-  for nm_temp in $nm_feature_path; do
-		nm_feature_inc_path="$nm_feature_inc_path -I $nm_temp"
+  for nm_tmp in $nm_feature_path; do
+		nm_feature_inc_path="$nm_feature_inc_path -I $nm_tmp"
   done
 fi
 
