@@ -5,7 +5,7 @@
 #include <nm_auto_config.h>
 #include <nm_auto_headers.h>
 
-#if NM_NT
+#if (NM_NT)
 #define _CRT_SECURE_NO_WARNING
 #define _CRT_SECURE_NO_DEPRECATE
 #endif

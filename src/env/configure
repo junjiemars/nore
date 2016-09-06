@@ -1,0 +1,11 @@
+
+case $NM_PLATFORM in
+
+	MSYS_NT:*)
+	;;
+
+	*)
+		flag=env_cflags value=-std=c99 . auto/cflags
+	;;
+
+esac

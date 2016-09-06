@@ -1,0 +1,6 @@
+
+cat << END >> $NM_MAKEFILE
+
+$flag = $value
+
+END
