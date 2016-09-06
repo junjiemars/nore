@@ -1,5 +1,18 @@
 
 
+LDFLAGS="-LD"
+
+nm_compile_opt=
+nm_pic_opt=
+
+nm_objout="-Fo"
+nm_binout="-Fe"
+nm_objext=".obj"
+nm_modext=".dll"
+nm_binext=".exe"
+
+
+
 # MSVC 6.0 SP2                            cl 12.00
 # MSVC Toolkit 2003 (7.1)                 cl 13.10
 # MSVC 2005 Express Edition SP1 (8.0)     cl 14.00
@@ -123,17 +136,8 @@ CORE_LINK="$NM_RES $CORE_LINK"
 
 
 # dynamic modules
-#MAIN_LINK="-link -def:$NM_OBJS/nginx.def"
-#MODULE_LINK="-LD $NM_OBJS/nginx.lib"
-
-
-nm_pic_opt=
-nm_std_opt=
-
-nm_objout="-Fo"
-nm_binout="-Fe"
-nm_objext=".obj"
-nm_binext=".exe"
+#MAIN_LINK="-link -def:$NM_OBJS/nm.def"
+#MODULE_LINK="-LD $NM_OBJS/nm.lib"
 
 nm_long_start='@<<
 	'

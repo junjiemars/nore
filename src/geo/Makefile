@@ -4,7 +4,8 @@ geo: $(lib_path)libgeo$(nm_modext)
 
 
 geo_cflags := $(CFLAGS) $(NM_PIC_OPT) $(NM_INCS) -I$(src_path)
-geo_ldflags := $(LDFLAGS)
+geo_ldflags := $(LDFLAGS) 
+
 
 $(tmp_path)geo$(nm_objext): $(src_path)geo.c 
 	$(CC) $(geo_cflags) -c $^ $(nm_objout)$@

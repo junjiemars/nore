@@ -1,12 +1,12 @@
-#ifndef _GEO_H_
-#define _GEO_H_
+
+#ifndef _MATH_H_
 
 #include <nm_auto_config.h>
 #include <nm_auto_headers.h>
 
 #if (MSYS_NT)
 
-#define GEO_API __declspec(dllexport) __stdcall
+#define GEO_API __declspec(dllimport) __stdcall
 
 #ifdef __cplusplus
 extern "C" {
@@ -22,8 +22,7 @@ double GEO_API area_of_rect(double, double);
 
 double area_of_rect(double, double);
 
-#endif
+#endif // MSYS_NT
 
 
-
-#endif // _GEO_H_
+#endif // _MATH_H_

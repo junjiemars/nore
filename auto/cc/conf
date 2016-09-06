@@ -3,9 +3,7 @@ LINK="\$(CC)"
 
 LDFLAGS="-shared"
 
-
 nm_pic_opt="-fPIC"
-nm_std_opt="-std=c99"
 
 nm_include_opt="-I "
 nm_compile_opt="-c"

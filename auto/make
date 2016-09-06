@@ -19,7 +19,9 @@ LDFLAGS= ${NM_VERBOSE:+$NM_VERBOSE }$LDFLAGS
 
 
 nm_pic_opt = $nm_pic_opt
-nm_std_opt = $nm_std_opt
+
+nm_compile_opt = $nm_compile_opt
+nm_include_opt = $nm_include_opt
 
 NM_INCS = -I$NM_OBJS -I$NM_OBJS/inc 
 NM_LDS = -L$NM_OBJS/lib
@@ -84,9 +86,14 @@ END
 		tmp_path=$NM_OBJS/tmp/
 		lib_path=$NM_OBJS/lib/
 		bin_path=$NM_OBJS/bin/
+		
+		stick_makefile=$stick_src/Makefile
+		if [ -f $stick_makefile.nt ]; then 
+			stick_makefile=$stick_src/Makefile.nt
+		fi
 
 		echo "#---------------------------------------" >> $NM_MAKEFILE
-		echo $nm_n "`cat $stick_src/Makefile`" \
+		echo $nm_n "`cat $stick_makefile`" \
 			| sed -e "s@\$(src_path)@$src_path@g" \
 					  -e "s@\$(inc_path)@$inc_path@g" \
 						-e "s@\$(tmp_path)@$tmp_path@g" \

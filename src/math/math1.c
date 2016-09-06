@@ -1,19 +1,19 @@
-#include <stdio.h>
 #include <math.h>
 
 #include <geo.h>
+#include <stdio.h>
 
 
 double ref;
 
-double set_na(){
-	if (!ref) {
-		ref = 0/0.;
-		char *cr = (char *)(&ref);
-		cr[2]='a';
-	}
-	return ref;
-}
+//double set_na(){
+//	if (!ref) {
+//		ref = 0./0.;
+//		char *cr = (char *)(&ref);
+//		cr[2]='a';
+//	}
+//	return ref;
+//}
 
 int is_na(double in){
 	if (!ref) return 0;  //set_na was never called==>no NAs yet.
@@ -29,10 +29,10 @@ int is_na(double in){
 
 int main(){
 
-	double x = set_na();
+	double x = 1.0;//set_na();
 
 	printf("8 is not a number = %i\n", is_na(8));
-	printf("0/0. is not a number = %i\n", isnan(0/0.));
+	//printf("0/0. is not a number = %i\n", isnan(0/0.));
 
 	unsigned long lu = *(unsigned long*)&x;
 
@@ -44,7 +44,7 @@ int main(){
 		lu, isnan(x));
 
 	printf("area of rectangle(%f, %f) = %f\n", 
-		4., 5., area_of_rectangle(4., 5.));
+		4., 5., area_of_rect(4., 5.));
 
 
 	return 0;
