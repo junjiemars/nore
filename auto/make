@@ -69,6 +69,7 @@ if [ -n "$nm_sticks" ]; then
 
 	cat << END >> $NM_MAKEFILE
 	
+.PHONY: ${nm_sticks[@]}
 
 build: ${nm_sticks[@]}
 
