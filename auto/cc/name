@@ -28,17 +28,22 @@ case $NM_PLATFORM in
 esac
 
 
-if [ "$CC" = cl ]; then
-  NM_CC_NAME=msvc
-  echo " + using Microsoft Visual C++ compiler"
 
-elif `$CC -v 2>&1 | grep 'gcc version' >/dev/null 2>&1`; then
+if `$CC -v 2>&1 | grep 'gcc version' >/dev/null 2>&1`; then
   NM_CC_NAME=gcc
   echo " + using GNU C compiler"
 
 elif `$CC -v 2>&1 | grep '\(clang\|LLVM\) version' >/dev/null 2>&1`; then
   NM_CC_NAME=clang
   echo " + using Clang C compiler"
+
+elif `$CC -v 2>&1 | grep 'Visual C\+\+ complier' >/dev/null 2>&1`; then
+	NM_CC_NAME=cl
+  echo " + using Microsoft Visual C++ compiler"
+
+elif [ "$CC" = cl ]; then
+  NM_CC_NAME=msvc
+  echo " + using Microsoft Visual C++ compiler"
 
 else
   NM_CC_NAME=unknown

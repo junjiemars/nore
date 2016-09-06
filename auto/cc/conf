@@ -36,7 +36,7 @@ else
 
     msvc*)
       . auto/cc/msvc
-  ;;
+		;;
   esac
 
 	CC_TEST_FLAGS="$CC_TEST_FLAGS $NM_CC_OPT"
@@ -72,76 +72,59 @@ case $NM_PLATFORM in
   	  fi
   	fi
 
+		if [ "$NM_CC_NAME" = "gcc" ]; then
 
-  	nm_feature="-Wl,-E switch"
-  	nm_feature_name=
-  	nm_feature_run=no
-  	nm_feature_incs=
-  	nm_feature_path=
-  	nm_feature_libs=-Wl,-E
-  	nm_feature_test=
-  	. auto/feature
+  		nm_feature="-Wl,-E switch"
+  		nm_feature_name=
+  		nm_feature_run=no
+  		nm_feature_incs=
+  		nm_feature_path=
+  		nm_feature_libs=-Wl,-E
+  		nm_feature_test=
+  		. auto/feature
 
-  	if [ $nm_found = yes ]; then
-  	  LDFLAGS=${LDFLAGS:+$LDFLAGS }"-Wl,-E"
-  	fi
+  		if [ $nm_found = yes ]; then
+  		  LDFLAGS=${LDFLAGS:+$LDFLAGS }"-Wl,-E"
+  		fi
 
+  		nm_feature="gcc builtin atomic operations"
+  		nm_feature_name=NM_HAVE_GCC_ATOMIC
+  		nm_feature_run=yes
+  		nm_feature_incs=
+  		nm_feature_path=
+  		nm_feature_libs=
+  		nm_feature_test="long  n = 0;
+  		                 if (!__sync_bool_compare_and_swap(&n, 0, 1))
+  		                   return 1;
+  		                 if (__sync_fetch_and_add(&n, 1) != 1)
+  		                   return 1;
+  		                 if (n != 2)
+  		                   return 1;
+  		                 __sync_synchronize();"
+  		. auto/feature
 
-  	nm_feature="gcc builtin atomic operations"
-  	nm_feature_name=NM_HAVE_GCC_ATOMIC
-  	nm_feature_run=yes
-  	nm_feature_incs=
-  	nm_feature_path=
-  	nm_feature_libs=
-  	nm_feature_test="long  n = 0;
-  	                 if (!__sync_bool_compare_and_swap(&n, 0, 1))
-  	                   return 1;
-  	                 if (__sync_fetch_and_add(&n, 1) != 1)
-  	                   return 1;
-  	                 if (n != 2)
-  	                   return 1;
-  	                 __sync_synchronize();"
-  	. auto/feature
-
-
-  	if [ "$NM_CC_NAME" = "ccc" ]; then
-  	  echo "checking for C99 variadic macros ... disabled"
-  	else
-  	  nm_feature="C99 variadic macros"
-  	  nm_feature_name="NM_HAVE_C99_VARIADIC_MACROS"
-  	  nm_feature_run=yes
-  	  nm_feature_incs="#include <stdio.h>
-#define var(dummy, ...)  sprintf(__VA_ARGS__)"
-   	 nm_feature_path=
-   	 nm_feature_libs=
-   	 nm_feature_test="char  buf[30]; buf[0] = '0';
-   	                  var(0, buf, \"%d\", 1);
-   	                  if (buf[0] != '1') return 1"
-   	 . auto/feature
-   	fi
-
-
-  	nm_feature="gcc variadic macros"
-  	nm_feature_name="NM_HAVE_GCC_VARIADIC_MACROS"
-  	nm_feature_run=yes
-  	nm_feature_incs="#include <stdio.h>
+  		nm_feature="gcc variadic macros"
+  		nm_feature_name="NM_HAVE_GCC_VARIADIC_MACROS"
+  		nm_feature_run=yes
+  		nm_feature_incs="#include <stdio.h>
 #define var(dummy, args...)  sprintf(args)"
-  	nm_feature_path=
-  	nm_feature_libs=
-  	nm_feature_test="char  buf[30]; buf[0] = '0';
-  	                 var(0, buf, \"%d\", 1);
-  	          			 if (buf[0] != '1') return 1"
-  	. auto/feature
+  		nm_feature_path=
+  		nm_feature_libs=
+  		nm_feature_test="char  buf[30]; buf[0] = '0';
+  	                 	 var(0, buf, \"%d\", 1);
+  	          			   if (buf[0] != '1') return 1"
+  		. auto/feature
 
+  		nm_feature="gcc builtin 64 bit byteswap"
+  		nm_feature_name="NM_HAVE_GCC_BSWAP64"
+  		nm_feature_run=no
+  		nm_feature_incs=
+  		nm_feature_path=
+  		nm_feature_libs=
+  		nm_feature_test="if (__builtin_bswap64(0)) return 1"
+  		. auto/feature
 
-  	nm_feature="gcc builtin 64 bit byteswap"
-  	nm_feature_name="NM_HAVE_GCC_BSWAP64"
-  	nm_feature_run=no
-  	nm_feature_incs=
-  	nm_feature_path=
-  	nm_feature_libs=
-  	nm_feature_test="if (__builtin_bswap64(0)) return 1"
-  	. auto/feature
+		fi
 
 	;;
 
