@@ -11,9 +11,11 @@ GITHUB_H=${GITHUB_C:-"https://github.com/junjiemars"}
 
 BEGIN=`date +%s`
 echo "configure Nore on $PLATFORM ..."
+echo
 
 if [ ! -f $HOME/.bash_paths -o ! -f $HOME/.bash_vars ]; then
-	bash <(curl ${GITHUB_R}/kit/master/ul/setup-bash.sh)
+	curl -sqLo /tmp/setup-bash.sh ${GITHUB_R}/kit/master/ul/setup-bash.sh && \
+		. /tmp/setup-bash.sh
 	. $HOME/.bashrc
 fi
 
