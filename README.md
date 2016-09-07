@@ -73,11 +73,7 @@ $ make install
 ### On Windows
 * Configure
 ```sh
-# setup bash environment
-$ bash <(curl https://raw.github.com/junjiemars/kit/master/ul/setup-bash.sh)
-
-# install gnu make
-$ curl https://raw.github.com/junjiemars/kit/master/win/install-win-kits.sh | HAS_GMAKE=1 bash
+$ bash <(curl https://raw.github.com/junjiemars/nore/bootstrap.sh)
 ```
 * Play
 ```sh
@@ -86,7 +82,7 @@ CMD> %VS140COMNTOOLS%\vsvars32.bat
 CMD> bash
 
 # play with Nore
-$ auto/configure --has-hi --has-env --has-geo --has-math
+$ nore/auto/configure --has-hi --has-env --has-geo --has-math
 $ make
 $ make install
 ```
