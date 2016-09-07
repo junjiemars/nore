@@ -43,12 +43,6 @@ fi
 echo -n "checking Nore ... "
 if [ -x configure ]; then
 	echo "found"
-	if [ -f `sed -n '2p' configure 2>/dev/null` ]; then
-		echo -n "refreshing Nore ... "
-		cd $(dirname `sed -n '2p' configure 2>/dev/null`)/nore && \
-			git reset --hard && git pull origin master
-		echo "done"
-	fi
 else
 	echo "no found"
 	cd ${PREFIX} && git clone --depth=1 --branch=master ${GITHUB_H}/nore.git
@@ -56,7 +50,10 @@ else
 #!/bin/bash
 ${PREFIX%/}/nore/auto/configure
 END
-	chmod u+x `dirname $0`/configure
+
+	#chmod u+x `dirname $0`/configure
+	echo "bash_source[0]=${BASH_SOURCE[0]}"
+	echo "\$0=`dirname $0`"
 
 fi
 
