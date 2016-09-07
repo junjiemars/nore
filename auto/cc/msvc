@@ -2,6 +2,9 @@
 
 LDFLAGS="-LD"
 
+
+MSVC_OPT=${MSVC_OPT:-}
+
 nm_debug_opt=${nm_debug_opt:-"-Z7"}
 nm_pic_opt=
 
@@ -134,6 +137,8 @@ NM_RES="$NM_OBJS/nginx.res"
 NM_RCC="rc -fo$NM_RES \$(CORE_INCS) $NM_NT_RC"
 CORE_LINK="$NM_RES $CORE_LINK"
 
+# msvc opt
+CFLAGS="${CFLAGS:+$CFLAGS }$MSVC_OPT"
 
 # debug
 CFLAGS="${CFLAGS:+$CFLAGS }$nm_debug_opt"
