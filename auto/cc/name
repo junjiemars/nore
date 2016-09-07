@@ -15,7 +15,7 @@ case $NM_PLATFORM in
   	nm_feature_path=
   	nm_feature_libs=
   	nm_feature_test=
-  	. auto/feature
+  	. ${NM_ROOT}auto/feature
 
   	if [ ".$nm_found" = ".no" ]; then
   	  echo

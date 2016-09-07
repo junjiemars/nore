@@ -37,7 +37,7 @@ if [ -x $NM_AUTOTEST ]; then
        | tr abcdefghijklmnopqrstuvwxyz/. ABCDEFGHIJKLMNOPQRSTUVWXYZ__`
 
 
-  have=NM_HAVE_$nm_name . auto/have_headers
+  have=NM_HAVE_$nm_name . ${NM_ROOT}auto/have_headers
 
   eval "NM_INCLUDE_$nm_name='#include <$nm_include>'"
 
