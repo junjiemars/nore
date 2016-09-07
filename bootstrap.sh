@@ -10,6 +10,7 @@ GITHUB_H=${GITHUB_C:-"https://github.com/junjiemars"}
 
 
 BEGIN=`date +%s`
+echo 
 echo "configure Nore on $PLATFORM ..."
 echo
 
