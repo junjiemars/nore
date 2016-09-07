@@ -35,12 +35,20 @@ int main(void) {
 END
 
 
+nm_test_out=$nm_binout$NM_AUTOTEST
+if [ "$CC_NAME" = "msvc" ]; then
+	nm_test_out="$nm_binout$NM_AUTOTEST$nm_binext \
+	             $nm_objout$NM_AUTOTEST$nm_objext"
+fi
+
 nm_test="$CC $CC_TEST_FLAGS $CC_AUX_FLAGS $nm_feature_inc_path \
-          $nm_binout$NM_AUTOTEST $NM_AUTOTEST.c $NM_TEST_LD_OPT $nm_feature_libs"
+					$nm_test_out $NM_AUTOTEST.c \
+					$NM_TEST_LD_OPT $nm_feature_libs"
 
 nm_feature_inc_path=
 
-eval "/bin/sh -c \"$nm_test\" >> $NM_AUTOCONF_ERR 2>&1"
+
+`$nm_test >> $NM_AUTOCONF_ERR 2>&1`
 
 
 if [ -x $NM_AUTOTEST ]; then
@@ -49,7 +57,7 @@ if [ -x $NM_AUTOTEST ]; then
 
     yes)
 
-      if /bin/sh -c $NM_AUTOTEST >> $NM_AUTOCONF_ERR 2>&1; then
+      if `$NM_AUTOTEST >> $NM_AUTOCONF_ERR 2>&1`; then
         echo " found"
         nm_found=yes
 
@@ -64,7 +72,7 @@ if [ -x $NM_AUTOTEST ]; then
 
     value)
 
-      if /bin/sh -c $NM_AUTOTEST >> $NM_AUTOCONF_ERR 2>&1; then
+      if `$NM_AUTOTEST >> $NM_AUTOCONF_ERR 2>&1`; then
         echo " found"
         nm_found=yes
 
@@ -82,7 +90,7 @@ END
 
     bug)
 
-      if /bin/sh -c $NM_AUTOTEST >> $NM_AUTOCONF_ERR 2>&1; then
+      if `$NM_AUTOTEST >> $NM_AUTOCONF_ERR 2>&1`; then
         echo " not found"
 
       else
@@ -116,4 +124,4 @@ else
   echo "----------"    >> $NM_AUTOCONF_ERR
 fi
 
-rm -rf $NM_AUTOTEST*
+#rm -rf $NM_AUTOTEST*
