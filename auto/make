@@ -31,7 +31,7 @@ nm_modext = $nm_modext
 nm_binext = $nm_binext
 
 
-defualt: build
+default: build
 
 
 END

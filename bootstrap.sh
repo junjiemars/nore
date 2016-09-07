@@ -4,6 +4,7 @@
 # author: junjiemars@gmail.com
 #------------------------------------------------
 
+PREFIX=${PREFIX:-.}
 PLATFORM=`uname -s 2>/dev/null`
 GITHUB_R=${GITHUB_R:-"https://raw.githubusercontent.com/junjiemars"}
 GITHUB_H=${GITHUB_C:-"https://github.com/junjiemars"}
@@ -40,14 +41,23 @@ else
 fi
 
 echo -n "checking Nore ... "
-if [ -x nore/auto/configure ]; then
+if [ -x configure ]; then
 	echo "found"
-	echo -n "refreshing Nore ... "
-	cd nore && git reset --hard && git pull origin master
-	echo "done"
+	if [ -f `sed -n '2p' configure 2>/dev/null` ]; then
+		echo -n "refreshing Nore ... "
+		cd $(dirname `sed -n '2p' configure 2>/dev/null`)/nore && \
+			git reset --hard && git pull origin master
+		echo "done"
+	fi
 else
 	echo "no found"
-	git clone --depth=1 --branch=master ${GITHUB_H}/nore.git
+	cd ${PREFIX} && git clone --depth=1 --branch=master ${GITHUB_H}/nore.git
+	cat << END > `dirname $0`/configure
+#!/bin/bash
+${PREFIX%/}/nore/auto/configure
+END
+	chmod u+x `dirname $0`/configure
+
 fi
 
 END=`date +%s`
