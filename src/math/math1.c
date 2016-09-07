@@ -43,8 +43,8 @@ int main(){
 	printf("0x%lx is not a number = %i, via stdc:isnan\n", 
 		lu, isnan(x));
 
-	printf("area of rectangle(%f, %f) = %f\n", 
-		4., 5., area_of_rect(4., 5.));
+	double a = area_of_rect(4., 5.);
+	printf("area of rect(%f, %f) = %f\n", 4., 5., a);
 
 
 	return 0;

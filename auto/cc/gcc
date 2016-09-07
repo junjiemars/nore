@@ -42,7 +42,7 @@ esac
 
 # optimizations
 
-GCC_OPT=${GCC_OPT:-"-O"}
+nm_cc_opt=${nm_cc_opt:-"-O"}
 
 #CFLAGS="$CFLAGS -fomit-frame-pointer"
 
@@ -131,7 +131,7 @@ fi
 # warnings
 
 # -W requires at least -O
-CFLAGS="${CFLAGS:+$CFLAGS }${GCC_OPT} -W"
+CFLAGS="${CFLAGS:+$CFLAGS }${nm_cc_opt} -W"
 
 CFLAGS="$CFLAGS -Wall -Wpointer-arith"
 #CFLAGS="$CFLAGS -Wconversion"

@@ -11,4 +11,4 @@ $(tmp_path)math$(nm_objext): $(src_path)math1.c
 
 $(bin_path)math$(nm_binext): $(tmp_path)math$(nm_objext) \
 $(lib_path)libgeo.lib
-	$(CC) $(math_ldflags) $^ $(nm_binout)$@
+	$(CC) $(CFLAGS) $(math_ldflags) $^ $(nm_binout)$@

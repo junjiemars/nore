@@ -10,11 +10,11 @@ nm_debug_opt=${nm_debug_opt:-"-g"}
 
 # optimizations
 
-CLANG_OPT="-O"
+nm_cc_opt="-O"
 
 # warnings
 
-CFLAGS="${CFLAGS:+$CFLAGS }$CLANG_OPT -Wall -Wextra -Wpointer-arith"
+CFLAGS="${CFLAGS:+$CFLAGS }$nm_cc_opt -Wall -Wextra -Wpointer-arith"
 CFLAGS="${CFLAGS:+$CFLAGS }-Wconditional-uninitialized"
 CFLAGS="${CFLAGS:+$CFLAGS }-Wno-unused-parameter"
 

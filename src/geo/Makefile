@@ -12,4 +12,4 @@ $(tmp_path)geo$(nm_objext): $(src_path)geo.c
 	cp $(src_path)geo.h $(inc_path)
 
 $(lib_path)libgeo$(nm_modext): $(tmp_path)geo$(nm_objext)
-	$(LINK) $(geo_ldflags) $^ $(nm_binout)$@
+	$(CC) $(CFLAGS) $(geo_ldflags) $^ $(nm_binout)$@
