@@ -2,6 +2,7 @@
 
 LDFLAGS="-LD"
 
+nm_debug_opt=${nm_debug_opt:-"-Z7"}
 nm_pic_opt=
 
 nm_objout="-Fo"
@@ -134,9 +135,8 @@ NM_RCC="rc -fo$NM_RES \$(CORE_INCS) $NM_NT_RC"
 CORE_LINK="$NM_RES $CORE_LINK"
 
 
-# dynamic modules
-#MAIN_LINK="-link -def:$NM_OBJS/nm.def"
-#MODULE_LINK="-LD $NM_OBJS/nm.lib"
+# debug
+CFLAGS="${CFLAGS:+$CFLAGS }$nm_debug_opt"
 
 nm_long_start='@<<
 	'

@@ -6,6 +6,8 @@ NM_CLANG_VER=`$CC -v 2>&1 | grep '\(clang\|LLVM\) version' 2>&1 \
 
 echo " + clang version: $NM_CLANG_VER"
 
+nm_debug_opt=${nm_debug_opt:-"-g"}
+
 # optimizations
 
 NM_CLANG_OPT="-O"
@@ -20,5 +22,5 @@ CFLAGS="$CFLAGS -Wno-unused-parameter"
 CFLAGS="$CFLAGS -Werror"
 
 # debug
-CFLAGS="$CFLAGS -g"
+CFLAGS="${CFLAGS:+$CFLAGS }$nm_debug_opt"
 
