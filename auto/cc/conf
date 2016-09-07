@@ -5,17 +5,12 @@ LDFLAGS="-shared"
 
 nm_pic_opt="-fPIC"
 
-nm_include_opt="-I "
-nm_compile_opt="-c"
-
 nm_objout="-o "
 nm_binout="-o "
 nm_objext=".o"
 nm_binext=
 nm_modext=".so"
 
-nm_regex_dirsep="\/"
-nm_dirsep='/'
 
 . auto/cc/name
 
@@ -25,7 +20,7 @@ if test -n "$CFLAGS"; then
 
 else
 
-  case $NM_CC_NAME in
+  case $CC_NAME in
     gcc)
       . auto/cc/gcc
     ;;
@@ -51,6 +46,18 @@ NM_TEST_LD_OPT="$NM_LD_OPT"
 case $NM_PLATFORM in 
 
 	MSYS_NT:*)
+  	nm_feature="variadic macros"
+  	nm_feature_name="nm_have_${CC_NAME}_variadic_macros"
+  	nm_feature_run=yes
+  	nm_feature_incs="#include <stdio.h>
+#define var(x, ...)  sprintf(__VA_ARGS__)"
+  	nm_feature_path=
+  	nm_feature_libs=
+  	nm_feature_test="char buf[30]; buf[0] = '0';
+                   	 var(0, buf, \"%d\", 1);
+            			   if (buf[0] != '1') return 1"
+  	. auto/feature
+
 	;;
 
 
@@ -69,7 +76,7 @@ case $NM_PLATFORM in
 		. auto/feature
 
   	nm_feature="variadic macros"
-  	nm_feature_name="NM_HAVE_GCC_VARIADIC_MACROS"
+  	nm_feature_name="nm_have_${CC_NAME}_variadic_macros"
   	nm_feature_run=yes
   	nm_feature_incs="#include <stdio.h>
 #define var(dummy, args...)  sprintf(args)"
@@ -98,7 +105,7 @@ case $NM_PLATFORM in
   	  fi
   	fi
 
-		if [ "$NM_CC_NAME" = "gcc" ]; then
+		if [ "$CC_NAME" = "gcc" ]; then
 
   		nm_feature="-Wl,-E switch"
   		nm_feature_name=

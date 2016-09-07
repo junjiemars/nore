@@ -2,7 +2,6 @@
 
 LDFLAGS="-LD"
 
-nm_compile_opt=
 nm_pic_opt=
 
 nm_objout="-Fo"

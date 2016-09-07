@@ -20,8 +20,6 @@ LDFLAGS= ${NM_VERBOSE:+$NM_VERBOSE }$LDFLAGS
 
 nm_pic_opt = $nm_pic_opt
 
-nm_compile_opt = $nm_compile_opt
-nm_include_opt = $nm_include_opt
 
 NM_INCS = -I$NM_OBJS -I$NM_OBJS/inc 
 NM_LDS = -L$NM_OBJS/lib
