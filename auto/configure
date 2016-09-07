@@ -3,8 +3,11 @@
 LC_ALL=C
 export LC_ALL
 
-. auto/options
-. auto/init
+NM_ROOT=$(dirname `dirname $0`)
+NM_ROOT="${NM_ROOT%/}/"
+
+. ${NM_ROOT}auto/options
+. ${NM_ROOT}auto/init
 
 
 test -d "$NM_OBJS" || mkdir -p $NM_OBJS
@@ -40,15 +43,15 @@ fi
 
 
 
-. auto/cc/conf
+. ${NM_ROOT}auto/cc/conf
 
-. auto/os/conf
+. ${NM_ROOT}auto/os/conf
 
 
 case ".$NM_PREFIX" in
 	.)
     NM_PREFIX=${NM_PREFIX:-/opt/run}
-    have=NM_PREFIX value="\"$NM_PREFIX/\"" . auto/define
+    have=NM_PREFIX value="\"$NM_PREFIX/\"" . ${NM_ROOT}auto/define
 	;;
 
 	.!)
@@ -56,14 +59,14 @@ case ".$NM_PREFIX" in
 	;;
 
 	*)
-    have=NM_PREFIX value="\"$NM_PREFIX/\"" . auto/define
+    have=NM_PREFIX value="\"$NM_PREFIX/\"" . ${NM_ROOT}auto/define
 	;;
 esac
 
 
-. auto/make
+. ${NM_ROOT}auto/make
 
-. auto/install
+. ${NM_ROOT}auto/install
 
 
-. auto/summary
+. ${NM_ROOT}auto/summary

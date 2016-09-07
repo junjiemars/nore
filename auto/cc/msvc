@@ -28,7 +28,7 @@ NM_MSVC_VER=`$CC 2>&1 | grep 'Compiler Version' 2>&1 \
 
 echo " + cl version: $NM_MSVC_VER"
 
-have=NM_COMPILER value="\"cl $NM_MSVC_VER\"" . auto/define
+have=NM_COMPILER value="\"cl $NM_MSVC_VER\"" . ${NM_ROOT}auto/define
 
 
 nm_msvc_ver=`echo $NM_MSVC_VER | sed -e 's/^\([0-9]*\).*/\1/'`
@@ -119,7 +119,7 @@ CORE_LIBS="$CORE_LIBS kernel32.lib user32.lib"
 
 # MSVC 2005 supports C99 variadic macros
 if [ "$nm_msvc_ver" -ge 14 ]; then
-	have=NM_HAVE_C99_VARIADIC_MACROS . auto/have
+	have=NM_HAVE_C99_VARIADIC_MACROS . ${NM_ROOT}auto/have
 fi
 
 

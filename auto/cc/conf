@@ -12,7 +12,7 @@ nm_binext=
 nm_modext=".so"
 
 
-. auto/cc/name
+. ${NM_ROOT}auto/cc/name
 
 if test -n "$CFLAGS"; then
 
@@ -22,15 +22,15 @@ else
 
   case $CC_NAME in
     gcc)
-      . auto/cc/gcc
+      . ${NM_ROOT}auto/cc/gcc
     ;;
 
     clang)
-      . auto/cc/clang
+      . ${NM_ROOT}auto/cc/clang
     ;;
 
     msvc*)
-      . auto/cc/msvc
+      . ${NM_ROOT}auto/cc/msvc
 		;;
   esac
 
@@ -56,7 +56,7 @@ case $NM_PLATFORM in
   	nm_feature_test="char buf[30]; buf[0] = '0';
                    	 var(0, buf, \"%d\", 1);
             			   if (buf[0] != '1') return 1"
-  	. auto/feature
+  	. ${NM_ROOT}auto/feature
 
 	;;
 
@@ -73,7 +73,7 @@ case $NM_PLATFORM in
   	nm_feature_path=
   	nm_feature_libs=
   	nm_feature_test="long double x=cbrt(3.1415L);double y=cbrt(2.718);"
-		. auto/feature
+		. ${NM_ROOT}auto/feature
 
   	nm_feature="variadic macros"
   	nm_feature_name="nm_have_${CC_NAME}_variadic_macros"
@@ -85,7 +85,7 @@ case $NM_PLATFORM in
   	nm_feature_test="char  buf[30]; buf[0] = '0';
                    	 var(0, buf, \"%d\", 1);
             			   if (buf[0] != '1') return 1"
-  	. auto/feature
+  	. ${NM_ROOT}auto/feature
 
 
   	if test -n "$NM_LD_OPT"; then
@@ -96,7 +96,7 @@ case $NM_PLATFORM in
   	  nm_feature_path=
   	  nm_feature_libs=
   	  nm_feature_test=
-  	  . auto/feature
+  	  . ${NM_ROOT}auto/feature
 
   	  if [ $nm_found = no ]; then
   	    echo $0: error: the invalid value in --with-ld-opt=\"$NM_LD_OPT\"
@@ -114,7 +114,7 @@ case $NM_PLATFORM in
   		nm_feature_path=
   		nm_feature_libs=-Wl,-E
   		nm_feature_test=
-  		. auto/feature
+  		. ${NM_ROOT}auto/feature
 
   		if [ $nm_found = yes ]; then
   		  LDFLAGS=${LDFLAGS:+$LDFLAGS }"-Wl,-E"
@@ -134,7 +134,7 @@ case $NM_PLATFORM in
   		                 if (n != 2)
   		                   return 1;
   		                 __sync_synchronize();"
-  		. auto/feature
+  		. ${NM_ROOT}auto/feature
 
   		nm_feature="gcc builtin 64 bit byteswap"
   		nm_feature_name="NM_HAVE_GCC_BSWAP64"
@@ -143,7 +143,7 @@ case $NM_PLATFORM in
   		nm_feature_path=
   		nm_feature_libs=
   		nm_feature_test="if (__builtin_bswap64(0)) return 1"
-  		. auto/feature
+  		. ${NM_ROOT}auto/feature
 
 		fi
 
