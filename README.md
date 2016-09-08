@@ -59,30 +59,46 @@ tools seamlessly.
 
 
 ## Hot to Play
-
-
-### On Unix-like
+Try **Nore** itself is very easy
 ```sh
 $ git clone https://github.com/junjiemars/nore.git
-
 $ auto/configure --has-hi --has-env --has-geo --has-math
 $ make
 $ make install
 ```
 
-### On Windows
-* Configure
+Another way to play is to download [C Lessons](https://github.com/junjiears/c_lessons) then do the following.
+
+
+### Working On Unix-like
 ```sh
-$ bash <(curl https://raw.github.com/junjiemars/nore/bootstrap.sh)
+# go into your working directory
+$ PREFIX=<where> bash <(curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.sh)
+
+# dir structure: src/<what>/{Makefile,sources,headers}
+# write your Makefile and then
+$ ./configure --has-<what>
+
+$ make
+$ make install
+```
+
+### Working On Windows
+* Prerequisites: [Git Bash](https://git-scm.com/downloads)
+* Configure Nore:
+```sh
+# go into your working directory
+$ PREFIX=<where> bash <(curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.sh)
 ```
 * Play
 ```sh
-# open cmd window first, configure c/c++ env via vsvars32.bat
+# open cmd window first then execute vsvars32.bat 
+# or open Developer Command Prompt for VS2015 directly
 CMD> %VS140COMNTOOLS%\vsvars32.bat
 CMD> bash
 
 # play with Nore
-$ nore/auto/configure --has-hi --has-env --has-geo --has-math
+$ configure --has-<what>
 $ make
 $ make install
 ```
