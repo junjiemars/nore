@@ -1,4 +1,4 @@
 
 
-have=NM_LINUX . ${NM_ROOT}auto/have_headers
+have=NM_LINUX . ${NM_HOME}auto/have_headers
 

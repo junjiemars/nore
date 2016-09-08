@@ -1,5 +1,5 @@
 
 
-have=NM_DARWIN . ${NM_ROOT}auto/have_headers
+have=NM_DARWIN . ${NM_HOME}auto/have_headers
 
 NM_INCS="$UNIX_INCS"

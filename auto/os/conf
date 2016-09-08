@@ -4,15 +4,15 @@ echo "checking for $NM_PLATFORM specific features"
 case "$NM_PLATFORM" in
 
 	Linux:*)
-		. ${NM_ROOT}auto/os/linux
+		. ${NM_HOME}auto/os/linux
 	;;
 	
 	Darwin:*)
-		. ${NM_ROOT}auto/os/darwin
+		. ${NM_HOME}auto/os/darwin
 	;;
 	
 	MSYS_NT:*)
-		. ${NM_ROOT}auto/os/nt
+		. ${NM_HOME}auto/os/nt
 	;;
 
 esac
@@ -21,22 +21,22 @@ esac
 case "$NM_MACHINE" in
 
   i386 | i686 | i86pc)
-    have=NM_HAVE_NONALIGNED . ${NM_ROOT}auto/have
+    have=NM_HAVE_NONALIGNED . ${NM_HOME}auto/have
     NM_MACH_CACHE_LINE=32
   ;;
 
   amd64 | x86_64)
-    have=NM_HAVE_NONALIGNED . ${NM_ROOT}auto/have
+    have=NM_HAVE_NONALIGNED . ${NM_HOME}auto/have
     NM_MACH_CACHE_LINE=64
   ;;
 
   ia64 )
-    have=NM_ALIGNMENT value=16 . ${NM_ROOT}auto/define
+    have=NM_ALIGNMENT value=16 . ${NM_HOME}auto/define
     NM_MACH_CACHE_LINE=64
   ;;
 
   *)
-    have=NM_ALIGNMENT value=16 . ${NM_ROOT}auto/define
+    have=NM_ALIGNMENT value=16 . ${NM_HOME}auto/define
     NM_MACH_CACHE_LINE=32
   ;;
 
@@ -46,4 +46,4 @@ if test -z "$NM_CPU_CACHE_LINE"; then
 	NM_CPU_CACHE_LINE=$NM_MACH_CACHE_LINE
 fi
 
-have=NM_CPU_CACHE_LINE value=$NM_CPU_CACHE_LINE . ${NM_ROOT}auto/define
+have=NM_CPU_CACHE_LINE value=$NM_CPU_CACHE_LINE . ${NM_HOME}auto/define

@@ -5,6 +5,8 @@
 #------------------------------------------------
 
 PREFIX=${PREFIX:-.}
+NM_WORK=`pwd`
+
 PLATFORM=`uname -s 2>/dev/null`
 GITHUB_R=${GITHUB_R:-"https://raw.githubusercontent.com/junjiemars"}
 GITHUB_H=${GITHUB_C:-"https://github.com/junjiemars"}
@@ -40,20 +42,21 @@ else
 	esac
 fi
 
+
+NM_CONFIGURE=${NM_WORK%/}/configure
+
 echo -n "checking Nore ... "
-if [ -x configure ]; then
+if [ -x $NM_CONFIGURE ]; then
 	echo "found"
 else
 	echo "no found"
 	cd ${PREFIX} && git clone --depth=1 --branch=master ${GITHUB_H}/nore.git
-	cat << END > `dirname $0`/configure
+	cat << END > $NM_CONFIGURE
 #!/bin/bash
-${PREFIX%/}/nore/auto/configure
+${PREFIX%/}/nore/auto/configure \$@
 END
 
-	#chmod u+x `dirname $0`/configure
-	echo "bash_source[0]=${BASH_SOURCE[0]}"
-	echo "\$0=`dirname $0`"
+	chmod u+x $NM_CONFIGURE
 
 fi
 
