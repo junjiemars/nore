@@ -1,6 +1,6 @@
 #!/bin/bash
 #------------------------------------------------
-# target: bash env setup script	
+# target: bootstrap of Nore	
 # author: junjiemars@gmail.com
 #------------------------------------------------
 
@@ -51,6 +51,7 @@ if [ -x $NM_CONFIGURE ]; then
 else
 	echo "no found"
 	cd ${PREFIX} && git clone --depth=1 --branch=master ${GITHUB_H}/nore.git
+
 	cat << END > $NM_CONFIGURE
 #!/bin/bash
 ${PREFIX%/}/nore/auto/configure \$@

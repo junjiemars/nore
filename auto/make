@@ -86,10 +86,26 @@ END
 		lib_path=$NM_OBJS/lib/
 		bin_path=$NM_OBJS/bin/
 		
-		stick_makefile=$stick_src/Makefile
-		if [ $NM_SYSTEM = MSYS_NT -a -f $stick_makefile.nt ]; then 
-			stick_makefile=$stick_src/Makefile.nt
+		if [ -f $stick_src/Makefile.$NM_SYSTEM ]; then
+			stick_makefile=$stick_src/Makefile.$NM_SYSTEM
+
+		elif [ -f $stick_src/Makefile ]; then
+			stick_makefile=$stick_src/Makefile
+
+		else
+
+			echo "checking for $stick_makefile ...no found"
+			cat << END >> $NM_AUTOCONF_ERR
+
+----------------------------------------
+checking for $stick_makefile no found
+
+END
+
+			break
+
 		fi
+		
 
 		echo "#---------------------------------------" >> $NM_MAKEFILE
 		echo $nm_n "`cat $stick_makefile`" \
