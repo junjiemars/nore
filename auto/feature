@@ -43,7 +43,7 @@ fi
 
 nm_test="$CC $CC_TEST_FLAGS $CC_AUX_FLAGS $nm_feature_inc_path \
 					$nm_test_out $NM_AUTOTEST.c \
-					$NM_TEST_LD_OPT $nm_feature_libs"
+					$CC_TEST_LD_OPT $nm_feature_libs"
 
 nm_feature_inc_path=
 

@@ -29,7 +29,8 @@ The **Nore** try to find out another way, use everything that you had learned: s
 Allways keep the following in my mind:
 * Keep classic workflow: configure, make, make install
 * Keep things simple: shell, make
-* Keep things easy to get it done 
+* Keep things easy to get it done
+
 
 **Nore** build a set of basic rules first then let the individual units (call it **stick**) 
 to build itself, it's up to bottom follow. There should be some basic rules 
@@ -58,7 +59,7 @@ POSIX Path and more: Unix utilities can be used with native toolchains and other
 tools seamlessly.
 
 
-## Hot to Play
+## How to Play
 Try **Nore** itself is very easy
 ```sh
 $ git clone https://github.com/junjiemars/nore.git

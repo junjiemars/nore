@@ -1,4 +1,5 @@
 
 
-have=NM_LINUX . ${NM_HOME}auto/have_headers
+have=$NM_SYSTEM . ${NM_HOME}auto/have_headers
 
+# os specifics for Darwin

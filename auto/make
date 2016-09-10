@@ -3,26 +3,27 @@ echo "creating $NM_MAKEFILE"
 
 mkdir -p $NM_OBJS/bin \
          $NM_OBJS/lib \
-				 $NM_OBJS/inc \
-				 $NM_OBJS/log \
-				 $NM_OBJS/pid \
-				 $NM_OBJS/tmp \
-				 $NM_OBJS/conf
+	 $NM_OBJS/inc \
+	 $NM_OBJS/log \
+	 $NM_OBJS/pid \
+	 $NM_OBJS/tmp \
+	 $NM_OBJS/conf
 
 cat << END > $NM_MAKEFILE
 
 CC = $CC
 CPP = $CPP
 LINK = $LINK
+
 CFLAGS = ${NM_VERBOSE:+$NM_VERBOSE }$CFLAGS
 LDFLAGS= ${NM_VERBOSE:+$NM_VERBOSE }$LDFLAGS
 
-
-nm_pic_opt = $nm_pic_opt
-
+CPPFLAGS = $CPPFLAGS
 
 NM_INCS = -I$NM_OBJS -I$NM_OBJS/inc 
 NM_LDS = -L$NM_OBJS/lib
+
+nm_pic_opt = $nm_pic_opt
 
 nm_objout = $nm_objout
 nm_binout = $nm_binout
@@ -66,7 +67,7 @@ done
 if [ -n "$nm_sticks" ]; then
 
 	cat << END >> $NM_MAKEFILE
-	
+
 .PHONY: ${nm_sticks[@]}
 
 build: ${nm_sticks[@]}

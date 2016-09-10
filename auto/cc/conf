@@ -1,4 +1,6 @@
 
+# cc/conf
+
 LINK="\$(CC)"
 
 LDFLAGS="-shared"
@@ -40,7 +42,7 @@ fi
 
 
 CFLAGS="$CFLAGS $NM_CC_OPT"
-NM_TEST_LD_OPT="$NM_LD_OPT"
+CC_TEST_LD_OPT="$NM_LD_OPT"
 
 
 case $NM_PLATFORM in 
@@ -105,47 +107,47 @@ case $NM_PLATFORM in
   	  fi
   	fi
 
-		if [ "$CC_NAME" = "gcc" ]; then
+	if [ "$CC_NAME" = "gcc" ]; then
 
-  		nm_feature="-Wl,-E switch"
-  		nm_feature_name=
-  		nm_feature_run=no
-  		nm_feature_incs=
-  		nm_feature_path=
-  		nm_feature_libs=-Wl,-E
-  		nm_feature_test=
-  		. ${NM_HOME}auto/feature
+	  nm_feature="-Wl,-E switch"
+	  nm_feature_name=
+	  nm_feature_run=no
+	  nm_feature_incs=
+	  nm_feature_path=
+	  nm_feature_libs=-Wl,-E
+	  nm_feature_test=
+	  . ${NM_HOME}auto/feature
 
-  		if [ $nm_found = yes ]; then
-  		  LDFLAGS=${LDFLAGS:+$LDFLAGS }"-Wl,-E"
-  		fi
+	  if [ $nm_found = yes ]; then
+	    LDFLAGS=${LDFLAGS:+$LDFLAGS }"-Wl,-E"
+	  fi
 
-  		nm_feature="gcc builtin atomic operations"
-  		nm_feature_name=NM_HAVE_GCC_ATOMIC
-  		nm_feature_run=yes
-  		nm_feature_incs=
-  		nm_feature_path=
-  		nm_feature_libs=
-  		nm_feature_test="long  n = 0;
-  		                 if (!__sync_bool_compare_and_swap(&n, 0, 1))
-  		                   return 1;
-  		                 if (__sync_fetch_and_add(&n, 1) != 1)
-  		                   return 1;
-  		                 if (n != 2)
-  		                   return 1;
-  		                 __sync_synchronize();"
-  		. ${NM_HOME}auto/feature
+	  nm_feature="gcc builtin atomic operations"
+	  nm_feature_name=NM_HAVE_GCC_ATOMIC
+	  nm_feature_run=yes
+	  nm_feature_incs=
+	  nm_feature_path=
+	  nm_feature_libs=
+	  nm_feature_test="long  n = 0;
+	                 if (!__sync_bool_compare_and_swap(&n, 0, 1))
+	                   return 1;
+	                 if (__sync_fetch_and_add(&n, 1) != 1)
+	                   return 1;
+	                 if (n != 2)
+	                   return 1;
+	                 __sync_synchronize();"
+	  . ${NM_HOME}auto/feature
 
-  		nm_feature="gcc builtin 64 bit byteswap"
-  		nm_feature_name="NM_HAVE_GCC_BSWAP64"
-  		nm_feature_run=no
-  		nm_feature_incs=
-  		nm_feature_path=
-  		nm_feature_libs=
-  		nm_feature_test="if (__builtin_bswap64(0)) return 1"
-  		. ${NM_HOME}auto/feature
+	  nm_feature="gcc builtin 64 bit byteswap"
+	  nm_feature_name="NM_HAVE_GCC_BSWAP64"
+	  nm_feature_run=no
+	  nm_feature_incs=
+	  nm_feature_path=
+	  nm_feature_libs=
+	  nm_feature_test="if (__builtin_bswap64(0)) return 1"
+	  . ${NM_HOME}auto/feature
 
-		fi
+	fi
 
 	;;
 

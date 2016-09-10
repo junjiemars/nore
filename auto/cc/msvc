@@ -1,4 +1,5 @@
 
+# msvc
 
 LDFLAGS="-LD"
 
@@ -37,29 +38,29 @@ nm_msvc_ver=`echo $NM_MSVC_VER | sed -e 's/^\([0-9]*\).*/\1/'`
 # optimizations
 
 # maximize speed, equivalent to -Og -Oi -Ot -Oy -Ob2 -Gs -GF -Gy
-CFLAGS="$CFLAGS -O2"
+CFLAGS="${CFLAGS:+$CFLAGS }-O2"
 
 # enable global optimization
-#CFLAGS="$CFLAGS -Og"
+#CFLAGS="${CFLAGS:+$CFLAGS }-Og"
 # enable intrinsic functions
-#CFLAGS="$CFLAGS -Oi"
+#CFLAGS="${CFLAGS:+$CFLAGS }-Oi"
 
 # disable inline expansion
-#CFLAGS="$CFLAGS -Ob0"
+#CFLAGS="${CFLAGS:+$CFLAGS }-Ob0"
 # explicit inline expansion
-#CFLAGS="$CFLAGS -Ob1"
+#CFLAGS="${CFLAGS:+$CFLAGS }-Ob1"
 # explicit and implicit inline expansion
-#CFLAGS="$CFLAGS -Ob2"
+#CFLAGS="${CFLAGS:+$CFLAGS }-Ob2"
 
 # enable frame pointer omission
-#CFLAGS="$CFLAGS -Oy"
+#CFLAGS="${CFLAGS:+$CFLAGS }-Oy"
 # disable stack checking calls
-#CFLAGS="$CFLAGS -Gs"
+#CFLAGS="${CFLAGS:+$CFLAGS }-Gs"
 
 # pools strings as read/write
-#CFLAGS="$CFLAGS -Gf"
+#CFLAGS="${CFLAGS:+$CFLAGS }-Gf"
 # pools strings as read-only
-#CFLAGS="$CFLAGS -GF"
+#CFLAGS="${CFLAGS:+$CFLAGS }-GF"
 
 
 case $CPU in
@@ -80,25 +81,25 @@ case $CPU in
 esac
 
 # __cdecl, default, must be used with OpenSSL, md5 asm, and sha1 asm
-#CPU_OPT="$CPU_OPT -Gd"
+#CPU_OPT="${CPU_OPT:+$CPU_OPT }-Gd"
 # __stdcall
-#CPU_OPT="$CPU_OPT -Gz"
+#CPU_OPT="${CPU_OPT:+$CPU_OPT }-Gz"
 # __fastcall
-#CPU_OPT="$CPU_OPT -Gr"
+#CPU_OPT="${CPU_OPT:+$CPU_OPT }-Gr"
 
 
-CFLAGS="$CFLAGS $CPU_OPT"
+CFLAGS="${CFLAGS:+$CFLAGS }$CPU_OPT"
 
 
 # warnings
 
-CFLAGS="$CFLAGS -W4"
+CFLAGS="${CFLAGS:+$CFLAGS }-W4"
 
 # stop on warning
-CFLAGS="$CFLAGS -WX"
+CFLAGS="${CFLAGS:+$CFLAGS }-WX"
 
 # disable logo
-CFLAGS="$CFLAGS -nologo"
+CFLAGS="${CFLAGS:+$CFLAGS }-nologo"
 
 # the link flags
 CORE_LINK="$CORE_LINK -link -verbose:lib"
@@ -109,9 +110,9 @@ LIBC="-MT"
 # however, MSVC Toolkit 2003 has no MSVCRT.LIB
 #LIBC="-MD"
 
-CFLAGS="$CFLAGS $LIBC"
+CFLAGS="${CFLAGS:+$CFLAGS }$LIBC"
 
-CORE_LIBS="$CORE_LIBS kernel32.lib user32.lib"
+CORE_LIBS="${CORE_LIBS:+$CORE_LIBS }kernel32.lib user32.lib"
 
 # Win32 GUI mode application
 #CORE_LINK="$CORE_LINK -subsystem:windows -entry:mainCRTStartup"

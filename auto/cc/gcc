@@ -115,51 +115,39 @@ esac
 
 CFLAGS="$CFLAGS $PIPE $CPU_OPT"
 
-if [ ".$PCRE_OPT" = "." ]; then
-	PCRE_OPT="-O2 -fomit-frame-pointer $PIPE $CPU_OPT"
-else
-	PCRE_OPT="$PCRE_OPT $PIPE"
-fi
-
-if [ ".$ZLIB_OPT" = "." ]; then
-	ZLIB_OPT="-O2 -fomit-frame-pointer $PIPE $CPU_OPT"
-else
-	ZLIB_OPT="$ZLIB_OPT $PIPE"
-fi
-
 
 # warnings
 
 # -W requires at least -O
 CFLAGS="${CFLAGS:+$CFLAGS }${nm_cc_opt} -W"
 
-CFLAGS="$CFLAGS -Wall -Wpointer-arith"
-#CFLAGS="$CFLAGS -Wconversion"
-#CFLAGS="$CFLAGS -Winline"
-#CFLAGS="$CFLAGS -Wmissing-prototypes"
+CFLAGS="${CFLAGS:+$CFLAGS }-Wall -Wpointer-arith"
+#CFLAGS="${CFLAGS:+$CFLAGS }-Wconversion"
+#CFLAGS="${CFLAGS:+$CFLAGS }-Winline"
+#CFLAGS="${CFLAGS:+$CFLAGS }-Wmissing-prototypes"
 
 case "$NM_GCC_VER" in
   2.*)
     # we have a lot of the unused function arguments
-    CFLAGS="$CFLAGS -Wno-unused"
+    CFLAGS="${CFLAGS:+$CFLAGS }-Wno-unused"
   ;;
 
   *)
     # we have a lot of the unused function arguments
-    CFLAGS="$CFLAGS -Wno-unused-parameter"
+    CFLAGS="${CFLAGS:+$CFLAGS }-Wno-unused-parameter"
     # 4.2.1 shows the warning in wrong places
-    #CFLAGS="$CFLAGS -Wunreachable-code"
+    #CFLAGS="${CFLAGS:+$CFLAGS }-Wunreachable-code"
 
     # deprecated system OpenSSL library on OS X
     if [ "$NM_SYSTEM" = "Darwin" ]; then
-      CFLAGS="$CFLAGS -Wno-deprecated-declarations"
+      CFLAGS="${CFLAGS:+$CFLAGS }-Wno-deprecated-declarations"
     fi
   ;;
 esac
 
 
 # stop on warning
-CFLAGS="$CFLAGS -Werror"
+CFLAGS="${CFLAGS:+$CFLAGS }-Werror"
 
 # debug
 CFLAGS="${CFLAGS:+$CFLAGS }$nm_debug_opt"
