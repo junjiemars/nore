@@ -61,7 +61,7 @@ if [ 1 -le \$# ]; then
   case ".\$1" in
     .-u|.--update)
       echo "updating Nore ..."
-      cd \${NORE_PREFIX}/nore && git pull origin master
+      git -C \${NORE_PREFIX}/nore pull origin master
       NORE_ARGS=\${@:2}
       echo 
     ;;
