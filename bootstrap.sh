@@ -54,7 +54,21 @@ else
 
 	cat << END > $NM_CONFIGURE
 #!/bin/bash
-${PREFIX%/}/nore/auto/configure \$@
+NORE_PREFIX=${PREFIX%/}
+NORE_ARGS=\$@
+
+if [ 1 -le \$# ]; then
+  case ".\$1" in
+    .-u|.--update)
+      echo "updating Nore ..."
+      \$(cd \${NORE_PREFIX}/nore && git pull origin master)
+      NORE_ARGS=\${NORE_ARGS[@]:2}
+      echo 
+    ;;
+  esac
+fi
+
+\${NORE_PREFIX}/nore/auto/configure \$NORE_ARGS
 END
 
 	chmod u+x $NM_CONFIGURE
