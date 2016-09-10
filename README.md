@@ -80,6 +80,9 @@ $ PREFIX=<where> bash <(curl https://raw.githubusercontent.com/junjiemars/nore/m
 # write your Makefile and then
 $ ./configure --has-<what>
 
+# or update Nore first then
+$ ./configure --update --has-<what>
+
 $ make
 $ make install
 ```
@@ -99,7 +102,7 @@ CMD> %VS140COMNTOOLS%\vsvars32.bat
 CMD> bash
 
 # play with Nore
-$ configure --has-<what>
+$ ./configure --has-<what>
 $ make
 $ make install
 ```
