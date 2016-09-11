@@ -3,11 +3,11 @@ echo "creating $NM_MAKEFILE"
 
 mkdir -p $NM_OBJS/bin \
          $NM_OBJS/lib \
-	 $NM_OBJS/inc \
-	 $NM_OBJS/log \
-	 $NM_OBJS/pid \
-	 $NM_OBJS/tmp \
-	 $NM_OBJS/conf
+	       $NM_OBJS/inc \
+	       $NM_OBJS/log \
+	       $NM_OBJS/pid \
+	       $NM_OBJS/tmp \
+	       $NM_OBJS/conf
 
 cat << END > $NM_MAKEFILE
 
@@ -45,7 +45,7 @@ for opt in "${NM_HAS_STICKS[@]}"; do
 
 	stick=`echo $opt \
 				 | sed -e 's/\ *--has-\([a-zA-Z][a-zA-Z]*\)/\1/' \
-				 | tr ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz`
+				 | tr [:upper:] [:lower:]`
 
 	if [ -d $NM_SRC/$stick ]; then
 		nm_sticks+=($stick)
@@ -79,6 +79,10 @@ END
 
 		stick_src=$NM_SRC/$stick
 
+    [ -f $stick_src/version ] && \
+      have=`echo $stick | tr [:lower:] [:upper:]`_VERSION \
+      value=`cat $stick_src/version` . ${NM_HOME}auto/define
+    
 		[ -f $stick_src/configure ] && . $stick_src/configure
 
 		src_path=$stick_src/
