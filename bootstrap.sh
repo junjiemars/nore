@@ -50,25 +50,34 @@ if [ -x $NM_CONFIGURE ]; then
 	echo "found"
 else
 	echo "no found"
-	cd ${PREFIX} && git clone --depth=1 --branch=master ${GITHUB_H}/nore.git
+	[ -d ${PREFIX} ] || mkdir -p ${PREFIX}	
+	git clone --depth=1 --branch=master ${GITHUB_H}/nore.git ${PREFIX}
 
 	cat << END > $NM_CONFIGURE
 #!/bin/bash
 NORE_PREFIX=${PREFIX%/}
 NORE_ARGS=\$@
+NORE_GITHUB=${GITHUB_H}/nore.git
+NORE_LOCAL=\$NORE_PREFIX/.git
 
 if [ 1 -le \$# ]; then
   case ".\$1" in
     .-u|.--update)
-      echo "updating Nore ..."
-      git -C \${NORE_PREFIX}/nore pull origin master
+			if [ -d \$NORE_LOCAL ]; then
+      	echo "updating Nore ..."
+      	git --git-dir=\$NORE_LOCAL pull origin master
+			else
+				echo "cloning Nore ..."
+				[ -d \$NORE_PREIFX ] || mkdir -p \$NORE_PREFIX
+				git clone --depth=1 --branch=master \$NORE_GITHUB \$NORE_PREFIX
+			fi
       NORE_ARGS=\${@:2}
       echo 
     ;;
   esac
 fi
 
-\${NORE_PREFIX}/nore/auto/configure \$NORE_ARGS
+\${NORE_PREFIX}/auto/configure \$NORE_ARGS
 END
 
 	chmod u+x $NM_CONFIGURE
