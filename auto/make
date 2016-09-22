@@ -24,6 +24,10 @@ NM_LDS = -L$NM_OBJS/lib
 
 nm_pic_opt = $nm_pic_opt
 
+NM_SYSTEM = $NM_SYSTEM
+NM_RELEASE = $NM_RELEASE
+NM_MACHINE = $NM_MACHINE
+
 obj_out = $obj_out
 bin_out = $bin_out
 obj_ext = $obj_ext

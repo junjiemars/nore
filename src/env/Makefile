@@ -1,7 +1,8 @@
 
 env: $(bin_path)env$(bin_ext)
 
-env_cflags += $(CFLAGS) $(NM_INCS) -I$(src_path)
+env_cflags += $(CFLAGS) $(NM_INCS) -I$(src_path) -O3
+
 
 $(tmp_path)env$(obj_ext): $(src_path)env.c
 	$(CC) -c $(env_cflags) $^ $(obj_out)$@
