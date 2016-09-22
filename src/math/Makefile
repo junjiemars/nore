@@ -9,7 +9,7 @@ math_ldflags += $(NM_LDS)
 
 ifeq ($(NM_SYSTEM),MSYS_NT)
 	math_cflags += -Og
-else
+else ifeq ($(NM_SYSTEM),Darwin)
 	math_cflags += -O3
 endif
 
