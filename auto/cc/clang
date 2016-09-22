@@ -24,3 +24,7 @@ CFLAGS="${CFLAGS:+$CFLAGS }-Werror"
 # debug
 CFLAGS="${CFLAGS:+$CFLAGS }$nm_debug_opt"
 
+# preprocess
+if [ ".$CPP" = "." ]; then
+	CPP="\$(CC) -E"
+fi

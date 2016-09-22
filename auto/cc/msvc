@@ -151,3 +151,10 @@ nm_long_regex_cont=' \
 nm_long_cont='
 	'
 
+# preprocess
+if [ ".$CPP" = "." ]; then
+  # to file
+	CPP="\$(CC) -P"
+  # to stdout
+  #CPP="\$(CC) -E"
+fi
