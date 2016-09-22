@@ -24,11 +24,11 @@ NM_LDS = -L$NM_OBJS/lib
 
 nm_pic_opt = $nm_pic_opt
 
-nm_objout = $nm_objout
-nm_binout = $nm_binout
-nm_objext = $nm_objext
-nm_modext = $nm_modext
-nm_binext = $nm_binext
+obj_out = $obj_out
+bin_out = $bin_out
+obj_ext = $obj_ext
+mod_ext = $mod_ext
+bin_ext = $bin_ext
 
 
 default: build

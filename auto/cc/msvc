@@ -8,11 +8,11 @@ nm_cc_opt=${nm_cc_opt:-}
 nm_debug_opt=${nm_debug_opt:-"-Z7"}
 nm_pic_opt=
 
-nm_objout="-Fo"
-nm_binout="-Fe"
-nm_objext=".obj"
-nm_modext=".dll"
-nm_binext=".exe"
+obj_out="-Fo"
+bin_out="-Fe"
+obj_ext=".obj"
+mod_ext=".dll"
+bin_ext=".exe"
 
 
 

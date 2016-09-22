@@ -1,15 +1,16 @@
 
+geo_objout := $(tmp_path)geo$(obj_ext)
+geo_libout := $(lib_path)libgeo$(mod_ext)
 
-geo: $(lib_path)libgeo$(nm_modext)
-
+geo: $(geo_libout)
 
 geo_cflags := $(CFLAGS) $(NM_PIC_OPT) $(NM_INCS) -I$(src_path)
 geo_ldflags := $(LDFLAGS) 
 
 
-$(tmp_path)geo$(nm_objext): $(src_path)geo.c 
-	$(CC) $(geo_cflags) -c $^ $(nm_objout)$@
+$(geo_objout): $(src_path)geo.c 
+	$(CC) $(geo_cflags) -c $^ $(obj_out)$@
 	cp $(src_path)geo.h $(inc_path)
 
-$(lib_path)libgeo$(nm_modext): $(tmp_path)geo$(nm_objext)
-	$(CC) $(CFLAGS) $(geo_ldflags) $^ $(nm_binout)$@
+$(geo_libout): $(geo_objout)
+	$(CC) $(CFLAGS) $(geo_ldflags) $^ $(bin_out)$@

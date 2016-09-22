@@ -35,10 +35,10 @@ int main(void) {
 END
 
 
-nm_test_out=$nm_binout$NM_AUTOTEST
+nm_test_out=$bin_out$NM_AUTOTEST
 if [ "$CC_NAME" = "msvc" ]; then
-	nm_test_out="$nm_binout$NM_AUTOTEST$nm_binext \
-	             $nm_objout$NM_AUTOTEST$nm_objext"
+	nm_test_out="$bin_out$NM_AUTOTEST$bin_ext \
+	             $obj_out$NM_AUTOTEST$obj_ext"
 fi
 
 nm_test="$CC $CC_TEST_FLAGS $CC_AUX_FLAGS $nm_feature_inc_path \
