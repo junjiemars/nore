@@ -7,9 +7,7 @@ math: geo $(bin_path)math$(bin_ext)
 math_cflags = $(CFLAGS) $(NM_INCS) -std=c99
 math_ldflags += $(NM_LDS)
 
-ifeq ($(NM_SYSTEM),MSYS_NT)
-	math_cflags += -Og
-else ifeq ($(NM_SYSTEM),Darwin)
+ifeq ($(NM_SYSTEM),Darwin)
 	math_cflags += -O3
 endif
 

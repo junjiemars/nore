@@ -1,17 +1,17 @@
 
-math_objout := $(tmp_path)math$(nm_objext)
-math_binout := $(bin_path)math$(nm_binext)
+math_objout := $(tmp_path)math$(obj_ext)
+math_binout := $(bin_path)math$(bin_ext)
 
-math: geo $(bin_path)math$(nm_binext)
+math: geo $(bin_path)math$(bin_ext)
 
-math_cflags := $(CFLAGS) $(NM_INCS) -Og
+math_cflags := $(CFLAGS) $(NM_INCS) -O2
 math_ldflags := 
 
 
 $(math_objout): $(src_path)math1.c
-	$(CC) $(math_cflags) -c $^ $(nm_objout)$@
+	$(CC) $(math_cflags) -c $^ $(obj_out)$@
 
 
 $(math_binout): $(math_objout) \
 $(lib_path)libgeo.lib
-	$(CC) $(CFLAGS) $(math_ldflags) $^ $(nm_binout)$@
+	$(CC) $(CFLAGS) $(math_ldflags) $^ $(bin_out)$@
