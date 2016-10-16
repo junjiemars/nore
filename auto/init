@@ -1,4 +1,5 @@
 
+# init
 
 NM_MAKEFILE=$NM_OBJS/Makefile
 
@@ -8,7 +9,7 @@ NM_AUTO_CONFIG_H=$NM_OBJS/nm_auto_config.h
 NM_AUTOTEST=$NM_OBJS/autotest
 NM_AUTOCONF_ERR=$NM_OBJS/autoconf.err
 
-# STUBs
+# stubs
 NM_ERR=$NM_OBJS/autoconf.err
 MAKEFILE=$NM_OBJS/Makefile
 
