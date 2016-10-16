@@ -78,8 +78,8 @@ if [ -x $NM_AUTOTEST ]; then
 
         cat << END >> $NM_AUTO_CONFIG_H
 
-#ifndef $nm_feature_name
-#define $nm_feature_name  `$NM_AUTOTEST`
+#ifndef $nm_have_feature
+#define $nm_have_feature  `$NM_AUTOTEST`
 #endif
 
 END

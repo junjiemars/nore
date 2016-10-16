@@ -11,7 +11,7 @@ case "$NM_PLATFORM" in
 		. ${NM_HOME}auto/os/darwin
 	;;
 	
-       MSYS_NT:*)
+  MSYS_NT:*)
 		. ${NM_HOME}auto/os/nt
 	;;
 
