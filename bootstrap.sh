@@ -4,7 +4,17 @@
 # author: junjiemars@gmail.com
 #------------------------------------------------
 
-PREFIX=${PREFIX:-.}
+bootstrap_path() {
+	local p="`dirname $0`"
+	p="`( cd \"${p}\" && pwd )`"
+	if [ -z "$p" ]; then
+		echo "."
+	else
+		echo "$p"
+	fi
+}
+
+PREFIX=${PREFIX:-"`bootstrap_path`"}
 NM_WORK=`pwd`
 
 PLATFORM=`uname -s 2>/dev/null`
@@ -45,13 +55,23 @@ fi
 
 NM_CONFIGURE=${NM_WORK%/}/configure
 
+clone_nore() {
+	local n="`( cd ${PREFIX} && git remote get-url origin 2>/dev/null)`" 
+	if [ "_$n" = "_${GITHUB_H}/nore.git" ]; then
+		git --git-dir=${PREFIX}/.git pull --depth=1 origin master 
+	else
+		git clone --depth=1 --branch=master ${GITHUB_H}/nore.git ${PREFIX}
+	fi
+}
+
 echo -n "checking Nore ... "
 if [ -x $NM_CONFIGURE ]; then
 	echo "found"
 else
 	echo "no found"
 	[ -d ${PREFIX} ] || mkdir -p ${PREFIX}	
-	git clone --depth=1 --branch=master ${GITHUB_H}/nore.git ${PREFIX}
+	echo "cloning Nore ... "
+	clone_nore
 
 	cat << END > $NM_CONFIGURE
 #!/bin/bash

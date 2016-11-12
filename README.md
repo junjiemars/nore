@@ -74,6 +74,7 @@ Another way to play is to download [C Lessons](https://github.com/junjiears/c_le
 ### Working On Unix-like
 ```sh
 # go into your working directory
+# <where> to put nore down
 $ PREFIX=<where> bash <(curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.sh)
 
 # dir structure: src/<what>/{Makefile,sources,headers}
@@ -92,6 +93,7 @@ $ make install
 * Configure Nore:
 ```sh
 # go into your working directory
+# <where> to put nore down
 $ PREFIX=<where> bash <(curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.sh)
 ```
 * Play
