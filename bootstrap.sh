@@ -94,7 +94,7 @@ pull_nore() {
 }
 
 clone_nore() {
-	cd \$PREFIX && \
+	cd \$PREFIX && \\
 		git clone --depth=1 --branch=master \$NORE_GITHUB \$NORE_PREFIX &>/dev/null
 }
 
