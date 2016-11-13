@@ -67,7 +67,7 @@ clone_nore() {
 	fi
 }
 
-echo -n " + checking Nore ... "
+echo -n " + checking nore ... "
 if [ -x $NM_CONFIGURE ]; then
 	echo "found"
 else
@@ -87,16 +87,34 @@ NORE_ARGS=\$@
 NORE_GITHUB=${GITHUB_H}/nore.git
 NORE_LOCAL=\$NORE_PREFIX/.git
 
+pull_nore() {
+	`git --git-dir=\$NORE_LOCAL checkout master &>/dev/null`
+	`git --git-dir=\$NORE_LOCAL reset --hard &>/dev/null`
+	git --git-dir=\$NORE_LOCAL pull origin master &>/dev/null
+}
+
+clone_nore() {
+	git clone --depth=1 --branch=master \$NORE_GITHUB \$NORE_PREFIX &>/dev/null
+}
+
 if [ 1 -le \$# ]; then
   case ".\$1" in
     .-u|.--update)
 			if [ -d \$NORE_LOCAL ]; then
-      	echo "updating Nore ..."
-      	git --git-dir=\$NORE_LOCAL pull origin master
+      	echo -n "updating nore ..."
+				if `pull_nore`; then
+					echo "ok"
+				else
+					echo "failed"
+				fi
 			else
-				echo "cloning Nore ..."
 				[ -d \$NORE_PREIFX ] || mkdir -p \$NORE_PREFIX
-				git clone --depth=1 --branch=master \$NORE_GITHUB \$NORE_PREFIX
+				echo -n "cloning nore ..."
+				if `clone_nore`; then
+					echo "ok"
+				else
+					echo "failed"
+				fi	
 			fi
       NORE_ARGS=\${@:2}
       echo 
