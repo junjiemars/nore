@@ -60,7 +60,7 @@ clone_nore() {
 						 		grep 'nore\.git' &>/dev/null; echo $?)`
 	if [ 0 -eq $n ]; then
 		`( cd ${PREFIX} && git reset --hard &>/dev/null )`
-			git --git-dir=${PREFIX}/.git pull --depth=1 origin master &>/dev/null
+			git --git-dir=${PREFIX}/.git pull origin master &>/dev/null
 	else
 		git clone --depth=1 --branch=master ${GITHUB_H}/nore.git ${PREFIX} &>/dev/null
 	fi
