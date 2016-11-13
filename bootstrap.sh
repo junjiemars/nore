@@ -27,7 +27,7 @@ echo
 echo "configure Nore on $PLATFORM ..."
 echo
 
-echo -n "checking bash environment ... "
+echo -n " + checking bash environment ... "
 if [ ! -f $HOME/.bash_paths -o ! -f $HOME/.bash_vars ]; then
 	echo "no found"
 	echo 
@@ -38,7 +38,7 @@ else
 	echo "found"
 fi
 
-echo -n "checking make ... "
+echo -n " + checking make ... "
 if `make -v &>/dev/null`; then
 	echo "found"
 else
@@ -56,21 +56,22 @@ fi
 NM_CONFIGURE=${NM_WORK%/}/configure
 
 clone_nore() {
-	local n="`( cd ${PREFIX} && git remote get-url origin 2>/dev/null)`" 
-	if [ "_$n" = "_${GITHUB_H}/nore.git" ]; then
+	local n=`( cd ${PREFIX} && git remote -v 2>/dev/null | \
+						 		grep 'nore\.git' &>/dev/null; echo $?)`
+	if [ 0 -eq $n ]; then
 		git --git-dir=${PREFIX}/.git pull --depth=1 origin master 
 	else
 		git clone --depth=1 --branch=master ${GITHUB_H}/nore.git ${PREFIX}
 	fi
 }
 
-echo -n "checking Nore ... "
+echo -n " + checking Nore ... "
 if [ -x $NM_CONFIGURE ]; then
 	echo "found"
 else
 	echo "no found"
 	[ -d ${PREFIX} ] || mkdir -p ${PREFIX}	
-	echo "cloning Nore ... "
+	echo " + cloning Nore ... "
 	clone_nore
 
 	cat << END > $NM_CONFIGURE
