@@ -88,8 +88,8 @@ NORE_GITHUB=${GITHUB_H}/nore.git
 NORE_LOCAL=\$NORE_PREFIX/.git
 
 pull_nore() {
-	`git --git-dir=\$NORE_LOCAL checkout master &>/dev/null`
-	`git --git-dir=\$NORE_LOCAL reset --hard &>/dev/null`
+	\`git --git-dir=\$NORE_LOCAL checkout master &>/dev/null\`
+	\`git --git-dir=\$NORE_LOCAL reset --hard &>/dev/null\`
 	git --git-dir=\$NORE_LOCAL pull origin master &>/dev/null
 }
 
