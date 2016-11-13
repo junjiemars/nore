@@ -102,7 +102,7 @@ if [ 1 -le \$# ]; then
     .-u|.--update)
 			if [ -d \$NORE_LOCAL ]; then
       	echo -n "updating nore ..."
-				if `pull_nore`; then
+				if \`pull_nore\`; then
 					echo "ok"
 				else
 					echo "failed"
@@ -110,7 +110,7 @@ if [ 1 -le \$# ]; then
 			else
 				[ -d \$NORE_PREIFX ] || mkdir -p \$NORE_PREFIX
 				echo -n "cloning nore ..."
-				if `clone_nore`; then
+				if \`clone_nore\`; then
 					echo "ok"
 				else
 					echo "failed"
