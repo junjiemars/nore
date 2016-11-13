@@ -59,9 +59,11 @@ clone_nore() {
 	local n=`( cd ${PREFIX} && git remote -v 2>/dev/null | \
 						 		grep 'nore\.git' &>/dev/null; echo $?)`
 	if [ 0 -eq $n ]; then
-		git --git-dir=${PREFIX}/.git pull --depth=1 origin master 
+		`( cd ${REPFIX} && git checkout master &>/dev/null )`
+		`( cd ${PREFIX} && git reset --hard &>/dev/null )`
+			git --git-dir=${PREFIX}/.git pull --depth=1 origin master &>/dev/null
 	else
-		git clone --depth=1 --branch=master ${GITHUB_H}/nore.git ${PREFIX}
+		git clone --depth=1 --branch=master ${GITHUB_H}/nore.git ${PREFIX} &>/dev/null
 	fi
 }
 
@@ -72,7 +74,11 @@ else
 	echo "no found"
 	[ -d ${PREFIX} ] || mkdir -p ${PREFIX}	
 	echo " + cloning Nore ... "
-	clone_nore
+	if `clone_nore`; then
+		echo "successed"
+	else
+		echo "failed"
+	fi
 
 	cat << END > $NM_CONFIGURE
 #!/bin/bash
