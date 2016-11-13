@@ -59,7 +59,6 @@ clone_nore() {
 	local n=`( cd ${PREFIX} && git remote -v 2>/dev/null | \
 						 		grep 'nore\.git' &>/dev/null; echo $?)`
 	if [ 0 -eq $n ]; then
-		`( cd ${REPFIX} && git checkout master &>/dev/null )`
 		`( cd ${PREFIX} && git reset --hard &>/dev/null )`
 			git --git-dir=${PREFIX}/.git pull --depth=1 origin master &>/dev/null
 	else
