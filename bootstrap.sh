@@ -73,7 +73,7 @@ if [ -x $NM_CONFIGURE ]; then
 else
 	echo "no found"
 	[ -d ${PREFIX} ] || mkdir -p ${PREFIX}	
-	echo -n " + cloning Nore ... "
+	echo -n " + cloning nore ... "
 	if `clone_nore`; then
 		echo "ok"
 	else
