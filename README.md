@@ -68,14 +68,24 @@ $ make
 $ make install
 ```
 
+If you already C project in <your-working-directory>
+```sh
+# go into your working directory
+# <where> to put nore down, PREFIX is optional
+$ [PREFIX=<where>] bash <(curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.sh)
+$ ./configure --has-<what>
+$ make
+
+```
+
 Another way to play is to download [C Lessons](https://github.com/junjiears/c_lessons) then do the following.
 
 
 ### Working On Unix-like
 ```sh
 # go into your working directory
-# <where> to put nore down
-$ PREFIX=<where> bash <(curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.sh)
+# <where> to put nore down, PREFIX is optional
+$ [PREFIX=<where>] bash <(curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.sh)
 
 # dir structure: src/<what>/{Makefile,sources,headers}
 # write your Makefile and then
@@ -92,9 +102,12 @@ $ make install
 * Prerequisites: [Git Bash](https://git-scm.com/downloads)
 * Configure Nore:
 ```sh
+# configurate bash environment
+$ bash <(curl https://raw.githubusercontent.com/junjiemars/kit/master/ul/setup-bash.sh)
+
 # go into your working directory
-# <where> to put nore down
-$ PREFIX=<where> bash <(curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.sh)
+# <where> to put nore down, PREFIX is optional
+$ [PREFIX=<where>] bash <(curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.sh)
 ```
 * Play
 ```sh
