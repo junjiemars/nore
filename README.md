@@ -23,7 +23,7 @@ The [CMake](https://cmake.org/) is great but not for how it do it's job.
 CMake introduce a lot of things you need to learn it's can not be accepted by old dog sometimes, 
 and CMake is not debug friendly and poor documented.
 
-The **Nore** try to find out another way, use everything that you had learned: shell, shell script,
+**Nore** try to find out another way, use everything that you had learned before: shell, shell script,
  make, makefile to make a build system for variant platforms.
 
 Allways keep the following in mind:
@@ -37,24 +37,24 @@ to build itself, it's up to bottom follow. There should be some basic rules
 which face to variant build environments. And there must be individual units which 
 decide how to build itself base on or not the baisc rules.
 
-What about **Shell** and **Make**: Make run in shell and Make controls building rules.
+What about **Shell** and **Make**: Make drived by shell and Make controls building rules.
 So the natrual way: shell controls the basic rules which use to build the basic Makefiles 
 then let make play with **sticks**' Makefiles. 
 
 On Unix-like environment you need install or configure nothing. 
 On Windows, you just need [Git Bash](https://git-scm.com/downloads), 
 [GNU Make for Windows](http://gnuwin32.sourceforge.net/packages/make.htm), 
-and both things can be done just by one bash script.
+and both things can be done just by the call of one line bash code.
 
 **Why use GNU Make**
 Darwin and Linux has [GNU Make](https://www.gnu.org/software/make/) build-in, 
-on Windows we use [GNU Make for Window]().
+on Windows **Nore** use [GNU Make for Window](http://gnuwin32.sourceforge.net/packages/make.htm).
 Paul Smith in [Rules of Makefile](#http://make.mad-scientist.net/papers/rules-of-makefiles/)
 said:
 > Don’t hassle with writing portable makefiles, use a portable make instead!
 
 **Why use Git-Bash on Windows**
-The most import reason is Git-Bash provides the automatic translation between Windows Path and 
+The foremost reason is Git-Bash provides the automatic translation between Windows Path and 
 POSIX Path and more: Unix utilities can be used with native toolchains and other native Windows
 tools seamlessly.
 
@@ -68,7 +68,7 @@ $ make
 $ make install
 ```
 
-If you'd already C project in your working directory
+If you'd a C project in your working directory already
 ```sh
 # go into your working directory
 # <where> to put nore down, PREFIX is optional
@@ -91,7 +91,7 @@ $ [PREFIX=<where>] bash <(curl https://raw.githubusercontent.com/junjiemars/nore
 # write your Makefile and then
 $ ./configure --has-<what>
 
-# or update Nore first then
+# or update Nore to date first, and then
 $ ./configure --update --has-<what>
 
 $ make
