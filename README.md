@@ -105,13 +105,16 @@ $ make install
 # configurate bash environment
 $ bash <(curl https://raw.githubusercontent.com/junjiemars/kit/master/ul/setup-bash.sh)
 
+# renew bash environemnt
+$ . ~/.bashrc
+
 # go into your working directory
 # <where> to put nore down, PREFIX is optional
 $ [PREFIX=<where>] bash <(curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.sh)
 ```
 * Play
 ```sh
-# open cmd window first then execute vsvars32.bat 
+# open cmd window first, and then execute vsvars32.bat 
 # or open Developer Command Prompt for VS2015 directly
 CMD> %VS140COMNTOOLS%\vsvars32.bat
 CMD> bash
