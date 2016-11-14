@@ -12,9 +12,7 @@ nm_feature_test=
 . ${NM_HOME}auto/feature
 
 if [ ".$nm_found" = ".no" ]; then
-  #echo
   echo " + $0: error: C compiler $CC is not found"
-  #echo
   exit 1
 fi
 
