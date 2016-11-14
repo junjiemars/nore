@@ -50,7 +50,11 @@ fi
 
 case ".$NM_PREFIX" in
 	.)
-    NM_PREFIX=${NM_PREFIX:-/opt/run}
+		if [ -z "$OPT_RUN" ]; then
+			NM_PREFIX="$OPT_RUN"
+		else
+			NM+PREFIX=/opt/run
+		fi
     have=NM_PREFIX value="\"$NM_PREFIX/\"" . ${NM_HOME}auto/define
 	;;
 
