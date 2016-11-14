@@ -24,9 +24,9 @@ CMake introduce a lot of things you need to learn it's can not be accepted by ol
 and CMake is not debug friendly and poor documented.
 
 The **Nore** try to find out another way, use everything that you had learned: shell, shell script,
- make, makefile to make a build system for variant platform.
+ make, makefile to make a build system for variant platforms.
 
-Allways keep the following in my mind:
+Allways keep the following in mind:
 * Keep classic workflow: configure, make, make install
 * Keep things simple: shell, make
 * Keep things easy to get it done
@@ -68,7 +68,7 @@ $ make
 $ make install
 ```
 
-If you already C project in <your-working-directory>
+If you'd already C project in your working directory
 ```sh
 # go into your working directory
 # <where> to put nore down, PREFIX is optional
