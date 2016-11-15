@@ -12,7 +12,6 @@ mkdir -p $NM_OBJS/bin \
 cat << END > $NM_MAKEFILE
 
 CC = $CC
-CC_NAME = $CC_NAME
 CPP = $CPP
 LINK = $LINK
 
