@@ -27,9 +27,17 @@ nm_pic_opt = $nm_pic_opt
 NM_SYSTEM = $NM_SYSTEM
 NM_RELEASE = $NM_RELEASE
 NM_MACHINE = $NM_MACHINE
+CC_NAME = $CC_NAME
 
+# output option
+cpp_out = $cpp_out
+asm_out = $asm_out
 obj_out = $obj_out
 bin_out = $bin_out
+
+# output extension
+cpp_ext = $cpp_ext
+asm_ext = $asm_ext
 obj_ext = $obj_ext
 mod_ext = $mod_ext
 bin_ext = $bin_ext
