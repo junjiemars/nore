@@ -80,6 +80,7 @@ NORE_ARGS=\$@
 NORE_GITHUB=${GITHUB_H}/nore.git
 NORE_L_BOOT=\$NORE_PREFIX/bootstrap.sh
 NORE_R_BOOT=${GITHUB_R}/nore/master/bootstrap.sh
+NORE_L_CONF=\${NORE_PREFIX}/auto/configure
 
 
 if [ 1 -le \$# ]; then
@@ -94,7 +95,11 @@ if [ 1 -le \$# ]; then
 	    #NORE_ARGS=\${@:2}
 	  	;;
 		.*)
-			\${NORE_PREFIX}/auto/configure \$NORE_ARGS
+			if [ -f \$NORE_L_CONF ]; then
+				\$NORE_L_CONF \$NORE_ARGS
+			else
+				echo "!nore << no found, try >: configure --update to fix"
+			fi
 			;;
 	esac
 fi
