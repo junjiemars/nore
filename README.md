@@ -125,3 +125,5 @@ $ [CC=cl] ./configure --has-<what>
 $ make
 $ make install
 ```
+* Debug
+Open Visual Studio, File>Open Project/Solution, select EXE project files
