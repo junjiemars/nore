@@ -83,6 +83,7 @@ NORE_R_BOOT=${GITHUB_R}/nore/master/bootstrap.sh
 NORE_L_CONF=\${NORE_PREFIX}/auto/configure
 
 
+cd "\`dirname \${BASH_SOURCE}\`" && \\
 if [ 1 -le \$# ]; then
 	case ".\$1" in
 	  .-u*|.--update*)
