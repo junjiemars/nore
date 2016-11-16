@@ -66,25 +66,15 @@ clone_nore() {
 	fi
 }
 
-echo -n " + checking nore ... "
-if [ -x $NM_CONFIGURE ]; then
-	echo "found"
-else
-	echo "no found"
-	[ -d ${PREFIX} ] || mkdir -p ${PREFIX}	
-	echo -n " + cloning nore ... "
-	if `clone_nore`; then
-		echo "ok"
-	else
-		echo "failed"
-	fi
-
+cat_configure() {
 	cat << END > $NM_CONFIGURE
 #!/bin/bash
 NORE_PREFIX=${PREFIX%/}
 NORE_ARGS=\$@
 NORE_GITHUB=${GITHUB_H}/nore.git
-NORE_LOCAL=\$NORE_PREFIX/.git
+NORE_L_BOOT=\$NORE_PREFIX/bootstrap.sh
+NORE_R_BOOT=${GITHUB_R}/nore/master/bootstrap.sh
+
 
 pull_nore() {
 	\`( cd \$NORE_PREFIX && git reset --hard &>/dev/null )\`
@@ -99,22 +89,12 @@ clone_nore() {
 if [ 1 -le \$# ]; then
   case ".\$1" in
     .-u|.--update)
-			if [ -d \$NORE_LOCAL ]; then
-      	echo -n "updating nore ..."
-				if \`pull_nore\`; then
-					echo "ok"
-				else
-					echo "failed"
-				fi
+			if [ -f \$NORE_L_BOOT]; then
+				\$NORE_L_BOOT -u
 			else
-				[ -d \$NORE_PREIFX ] || mkdir -p \$NORE_PREFIX
-				echo -n "cloning nore ..."
-				if \`clone_nore\`; then
-					echo "ok"
-				else
-					echo "failed"
-				fi	
+				PREFIX=\$NORE_PREFIX `curl $NORE_R_BOOT -u`
 			fi
+
       NORE_ARGS=\${@:2}
       echo 
     ;;
@@ -125,7 +105,39 @@ fi
 END
 
 	chmod u+x $NM_CONFIGURE
+}
 
+case ".$1" in
+	.-u|.--update)
+		NORE_UPDATE=0
+		;;
+	*)
+		NORE_UPDATE=1
+		;;
+esac
+
+echo -n " + checking nore ... "
+if [ -x $NM_CONFIGURE ]; then
+	echo "found"
+	if [ 0 -eq $NORE_UPDATE ]; then
+		echo -n " + updating nore ... "
+		if `clone_nore`; then
+			echo "ok"
+		else
+			echo "failed"
+		fi
+		cat_configure
+	fi
+else
+	echo "no found"
+	[ -d ${PREFIX} ] || mkdir -p ${PREFIX}	
+	echo -n " + cloning nore ... "
+	if `clone_nore`; then
+		echo "ok"
+	else
+		echo "failed"
+	fi
+	cat_configure
 fi
 
 END=`date +%s`
