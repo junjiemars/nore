@@ -73,7 +73,9 @@ clone_nore() {
 }
 
 cat_configure() {
-	cat << END > $NM_CONFIGURE
+	local conf="${NM_CONFIGURE}.n"
+
+	cat << END > $conf
 #!/bin/bash
 NORE_PREFIX=${PREFIX%/}
 NORE_ARGS=\$@
@@ -108,7 +110,8 @@ fi
 
 END
 
-	chmod u+x $NM_CONFIGURE
+	chmod u+x $conf
+	mv $conf $NM_CONFIGURE
 }
 
 case ".$1" in
