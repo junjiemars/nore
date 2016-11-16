@@ -113,6 +113,8 @@ case ".$1" in
 		;;
 esac
 
+
+[ -d ${PREFIX} ] || mkdir -p ${PREFIX}	
 echo -n " + checking nore ... "
 if [ -x $NM_CONFIGURE ]; then
 	echo "found"
@@ -127,7 +129,6 @@ if [ -x $NM_CONFIGURE ]; then
 	fi
 else
 	echo "no found"
-	[ -d ${PREFIX} ] || mkdir -p ${PREFIX}	
 	echo -n " + cloning nore ... "
 	if `clone_nore`; then
 		echo "ok"
