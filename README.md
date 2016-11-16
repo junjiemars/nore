@@ -120,7 +120,8 @@ CMD> %VS140COMNTOOLS%\vsvars32.bat
 CMD> bash
 
 # play with Nore
-$ ./configure --has-<what>
+# CC=cl, if you use Microsoft C compiler
+$ [CC=cl] ./configure --has-<what>
 $ make
 $ make install
 ```
