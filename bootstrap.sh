@@ -92,7 +92,7 @@ if [ 1 -le \$# ]; then
 			if [ -f \$NORE_L_BOOT]; then
 				\$NORE_L_BOOT -u
 			else
-				PREFIX=\$NORE_PREFIX `curl $NORE_R_BOOT` -u
+				PREFIX=\$NORE_PREFIX \`curl $NORE_R_BOOT\` -u
 			fi
 
       NORE_ARGS=\${@:2}
