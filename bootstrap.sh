@@ -76,32 +76,25 @@ NORE_L_BOOT=\$NORE_PREFIX/bootstrap.sh
 NORE_R_BOOT=${GITHUB_R}/nore/master/bootstrap.sh
 
 
-pull_nore() {
-	\`( cd \$NORE_PREFIX && git reset --hard &>/dev/null )\`
-	cd \$NORE_PREFIX && git pull origin master &>/dev/null
-}
-
-clone_nore() {
-	cd \$PREFIX && \\
-		git clone --depth=1 --branch=master \$NORE_GITHUB \$NORE_PREFIX &>/dev/null
-}
-
 if [ 1 -le \$# ]; then
   case ".\$1" in
     .-u|.--update)
-			if [ -f \$NORE_L_BOOT]; then
+			if [ -f \$NORE_L_BOOT ]; then
 				\$NORE_L_BOOT -u
 			else
 				PREFIX=\$NORE_PREFIX \`bash <(curl "\${NORE_R_BOOT} -u")\`
 			fi
 
       NORE_ARGS=\${@:2}
+			\$( \${NORE_PREFIX}/auto/configure \$NORE_ARGS )
       echo 
-    ;;
+    	;;
+		*)
+			\${NORE_PREFIX}/auto/configure \$NORE_ARGS
+			;;
   esac
 fi
 
-\${NORE_PREFIX}/auto/configure \$NORE_ARGS
 END
 
 	chmod u+x $NM_CONFIGURE
