@@ -98,7 +98,8 @@ if [ 1 -le \$# ]; then
 			if [ -f \$NORE_L_CONF ]; then
 				\$NORE_L_CONF \$NORE_ARGS
 			else
-				echo "!nore << no found, try >: configure --update to fix"
+				echo "!nore << no found, to fix >: configure --update"
+				echo 
 			fi
 			;;
 	esac
