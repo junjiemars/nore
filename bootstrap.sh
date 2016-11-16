@@ -82,7 +82,7 @@ if [ 1 -le \$# ]; then
 			if [ -f \$NORE_L_BOOT ]; then
 				\$NORE_L_BOOT -u
 			else
-				curl \${NORE_R_BOOT} | PREFIX=\$NORE_PREFIX bash -s "-u"
+				curl \${NORE_R_BOOT} | PREFIX=\$NORE_PREFIX bash -s -- -u
 			fi
 	
 	    #NORE_ARGS=\${@:2}
