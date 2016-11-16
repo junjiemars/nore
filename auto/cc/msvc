@@ -10,6 +10,7 @@ nm_pic_opt=
 
 obj_out="-Fo"
 bin_out="-Fe"
+cpp_ext=".c"
 obj_ext=".obj"
 mod_ext=".dll"
 bin_ext=".exe"
@@ -154,7 +155,7 @@ nm_long_cont='
 # preprocess
 if [ ".$CPP" = "." ]; then
   # to file
-	CPP="\$(CC) -P"
+	#CPP="\$(CC) -P"
   # to stdout
-  #CPP="\$(CC) -E"
+  CPP="\$(CC) -E"
 fi
