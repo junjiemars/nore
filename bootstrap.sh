@@ -76,24 +76,20 @@ NORE_L_BOOT=\$NORE_PREFIX/bootstrap.sh
 NORE_R_BOOT=${GITHUB_R}/nore/master/bootstrap.sh
 
 
-if [ 1 -le \$# ]; then
-  case ".\$1" in
-    .-u|.--update)
-			if [ -f \$NORE_L_BOOT ]; then
-				\$NORE_L_BOOT -u
-			else
-				PREFIX=\$NORE_PREFIX \`bash <(curl "\${NORE_R_BOOT} -u")\`
-			fi
+case ".\$NORE_ARGS" in
+  .-u*|.--update*)
+		if [ -f \$NORE_L_BOOT ]; then
+			\$NORE_L_BOOT -u
+		else
+			PREFIX=\$NORE_PREFIX \`bash <(curl "\${NORE_R_BOOT} -u")\`
+		fi
 
-      NORE_ARGS=\${@:2}
-			\$( \${NORE_PREFIX}/auto/configure \$NORE_ARGS )
-      echo 
-    	;;
-		*)
-			\${NORE_PREFIX}/auto/configure \$NORE_ARGS
-			;;
-  esac
-fi
+    #NORE_ARGS=\${@:2}
+  	;;
+	*)
+		\${NORE_PREFIX}/auto/configure \$NORE_ARGS
+		;;
+esac
 
 END
 
