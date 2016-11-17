@@ -61,7 +61,7 @@ do
     --build=*)                       NM_BUILD="$value"          ;;
     --builddir=*)                    NM_OBJS="$value"           ;;
     
-		--with-debug)                    NM_DEBUG=yes               ;;
+		--with-debug)                    NM_DEBUG=YES               ;;
 		--with-verbose)                  NM_VERBOSE=-v              ;;
 
 		--has-*)                         NM_HAS_STICKS+=($option)   ;;
@@ -96,14 +96,12 @@ cat << END
   --build=NAME                       set build name
   --builddir=DIR                     set build directory
 
-  --with-debug                       enable debug logging
+  --with-debug                       enable CC debug option 
   --with-verbose 										 enable verbose building
 
   --has-hi                           enable hi stick
-  --has-bits                         enable bits stick 
-  --has-endian                       enable endian stick
   --has-env                          enable env stick
-  --has-fibo                         enable fibo stick
+  --has-geo                          enable geo stick
   --has-math                         enable math stick
 
 END

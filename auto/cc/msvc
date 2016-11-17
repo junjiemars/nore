@@ -141,9 +141,6 @@ CORE_LINK="$NM_RES $CORE_LINK"
 # msvc opt
 CFLAGS="${CFLAGS:+$CFLAGS }$nm_cc_opt"
 
-# debug
-CFLAGS="${CFLAGS:+$CFLAGS }$nm_debug_opt"
-
 nm_long_start='@<<
 	'
 nm_long_end='<<'
