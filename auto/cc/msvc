@@ -2,6 +2,17 @@
 # msvc
 
 
+NM_MSVC_VER=`$CC 2>&1 | grep 'Compiler Version' 2>&1 \
+                                 | sed -e 's/^.* Version \(.*\)/\1/'`
+
+echo " + msvc version: $NM_MSVC_VER"
+
+have=NM_COMPILER value="\"msvc $NM_MSVC_VER\"" . ${NM_HOME}auto/define
+
+nm_msvc_ver=`echo $NM_MSVC_VER | sed -e 's/^\([0-9]*\).*/\1/'`
+
+
+
 LDFLAGS=${LDFLAGS:-"-LD"}
 
 
@@ -26,7 +37,6 @@ mod_ext=".dll"
 bin_ext=".exe"
 
 
-
 # MSVC 6.0 SP2                            cl 12.00
 # MSVC Toolkit 2003 (7.1)                 cl 13.10
 # MSVC 2005 Express Edition SP1 (8.0)     cl 14.00
@@ -35,15 +45,7 @@ bin_ext=".exe"
 # MSVC 2015 (14.0)                        cl 19.00
 
 
-NM_MSVC_VER=`$CC 2>&1 | grep 'Compiler Version' 2>&1 \
-                                 | sed -e 's/^.* Version \(.*\)/\1/'`
 
-echo " + cl version: $NM_MSVC_VER"
-
-have=NM_COMPILER value="\"cl $NM_MSVC_VER\"" . ${NM_HOME}auto/define
-
-
-nm_msvc_ver=`echo $NM_MSVC_VER | sed -e 's/^\([0-9]*\).*/\1/'`
 
 
 # optimizations
