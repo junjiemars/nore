@@ -21,6 +21,9 @@ nm_debug_opt=${nm_debug_opt:-"-g"}
 # warnings
 nm_warn_opt=${nm_warn_opt:-"-W -Wall -Wpointer-arith"}
 
+# pic
+nm_pic_opt=${nm_pic_opt:-"-fPIC"}
+
 
 CC_TEST_FLAGS="-pipe"
 

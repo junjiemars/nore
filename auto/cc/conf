@@ -7,7 +7,7 @@ CFLAGS=
 LFLAGS=
 LDFLAGS=
 
-nm_pic_opt="-fPIC"
+nm_pic_opt=
 nm_debug_opt=
 nm_optimize_opt=
 nm_warn_opt=
@@ -71,6 +71,7 @@ fi
 
 CFLAGS=${CFLAGS:+$CFLAGS }$NM_CC_OPT
 LFLAGS=${LFLAGS:+$LFLAGS }$NM_CC_OPT
+LDFLAGS=${LDFLAGS:+$LDFLAGS }$nm_pic_opt
 
 # independent
 
