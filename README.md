@@ -87,6 +87,9 @@ Another way to play is to download [C Lessons](https://github.com/junjiears/c_le
 # <where> to put nore down, PREFIX is optional
 $ [PREFIX=<where>] bash <(curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.sh)
 
+# help
+$ ./configure --help
+
 # dir structure: src/<what>/{Makefile,sources,headers}
 # write your Makefile and then
 $ ./configure --has-<what>
