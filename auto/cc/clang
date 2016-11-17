@@ -6,6 +6,9 @@ NM_CLANG_VER=`$CC -v 2>&1 | grep '\(clang\|LLVM\) version' 2>&1 \
 
 echo " + clang version: $NM_CLANG_VER"
 
+have=NM_COMPILER value="\"clang $NM_CLANG_VER\"" . ${NM_HOME}auto/define
+
+
 # link
 LDFLAGS="-shared"
 
