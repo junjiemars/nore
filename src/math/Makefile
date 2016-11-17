@@ -5,7 +5,7 @@ math_binout := $(bin_path)math$(bin_ext)
 math: geo $(bin_path)math$(bin_ext)
 
 math_cflags = $(CFLAGS) $(NM_INCS) -std=c99
-math_ldflags += $(NM_LDS)
+math_lflags += $(LFLAGS) $(NM_LDS)
 
 ifeq ($(NM_SYSTEM),Darwin)
 	math_cflags += -O3
@@ -16,4 +16,4 @@ $(math_objout): $(src_path)math1.c
 
 
 $(math_binout): $(math_objout)
-	$(LINK) $(math_ldflags) $^ -lgeo $(bin_out)$@
+	$(LINK) $(math_lflags) $^ -lgeo $(bin_out)$@
