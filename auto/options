@@ -15,7 +15,7 @@ CPP=
 NM_OBJS=objs
 NM_SRC=src
 
-NM_DEBUG=NO
+NM_DEBUG=YES
 NM_WARN=YES
 NM_VERBOSE=
 
@@ -62,7 +62,7 @@ do
     --build=*)                       NM_BUILD="$value"          ;;
     --builddir=*)                    NM_OBJS="$value"           ;;
     
-		--with-debug)                    NM_DEBUG=YES               ;;
+		--without-debug)                 NM_DEBUG=NO                ;;
 		--without-warn)                  NM_WARN=NO                 ;;
 		--with-verbose)                  NM_VERBOSE=-v              ;;
 
@@ -98,8 +98,8 @@ cat << END
   --build=NAME                       set build name
   --builddir=DIR                     set build directory
 
-  --with-debug                       enable CC debug option 
-  --with-warn                        enable CC warn option 
+  --without-debug                    disable CC debug option 
+  --without-warn                     disable CC warn option 
   --with-verbos                      eenable verbose building
 
   --has-hi                           enable hi stick
