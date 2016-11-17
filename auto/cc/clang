@@ -6,6 +6,8 @@ NM_CLANG_VER=`$CC -v 2>&1 | grep '\(clang\|LLVM\) version' 2>&1 \
 
 echo " + clang version: $NM_CLANG_VER"
 
+# link
+LDFLAGS="-shared"
 
 # optimizations
 nm_optimize_opt=${nm_optimize_opt:-"-O"}

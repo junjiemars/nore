@@ -3,7 +3,9 @@
 
 LINK="\$(CC)"
 
-LDFLAGS="-shared"
+CFLAGS=
+LFLAGS=
+LDFLAGS=
 
 nm_pic_opt="-fPIC"
 nm_debug_opt=
@@ -65,6 +67,7 @@ if [ "$NM_WARN" = "YES" ]; then
 fi
 
 CFLAGS=${CFLAGS:+$CFLAGS }$NM_CC_OPT
+LFLAGS=${LFLAGS:+$LFLAGS }$NM_CC_OPT
 
 # independent
 

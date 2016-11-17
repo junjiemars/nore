@@ -1,7 +1,8 @@
 
 # msvc
 
-LDFLAGS="-LD"
+
+LDFLAGS=${LDFLAGS:-"-LD"}
 
 
 # optimize: -Og -Oi -Ot -Oy -Ob2 -Gs -GF -Gy
@@ -49,26 +50,26 @@ nm_msvc_ver=`echo $NM_MSVC_VER | sed -e 's/^\([0-9]*\).*/\1/'`
 
 
 # enable global optimization
-#CFLAGS="${CFLAGS:+$CFLAGS }-Og"
+#NM_CC_OPT="${NM_CC_OPT:+$NM_CC_OPT }-Og"
 # enable intrinsic functions
-#CFLAGS="${CFLAGS:+$CFLAGS }-Oi"
+#NM_CC_OPT="${NM_CC_OPT:+$NM_CC_OPT }-Oi"
 
 # disable inline expansion
-#CFLAGS="${CFLAGS:+$CFLAGS }-Ob0"
+#NM_CC_OPT="${NM_CC_OPT:+$NM_CC_OPT }-Ob0"
 # explicit inline expansion
-#CFLAGS="${CFLAGS:+$CFLAGS }-Ob1"
+#NM_CC_OPT="${NM_CC_OPT:+$NM_CC_OPT }-Ob1"
 # explicit and implicit inline expansion
-#CFLAGS="${CFLAGS:+$CFLAGS }-Ob2"
+#NM_CC_OPT="${NM_CC_OPT:+$NM_CC_OPT }-Ob2"
 
 # enable frame pointer omission
-#CFLAGS="${CFLAGS:+$CFLAGS }-Oy"
+#NM_CC_OPT="${NM_CC_OPT:+$NM_CC_OPT }-Oy"
 # disable stack checking calls
-#CFLAGS="${CFLAGS:+$CFLAGS }-Gs"
+#NM_CC_OPT="${NM_CC_OPT:+$NM_CC_OPT }-Gs"
 
 # pools strings as read/write
-#CFLAGS="${CFLAGS:+$CFLAGS }-Gf"
+#NM_CC_OPT="${NM_CC_OPT:+$NM_CC_OPT }-Gf"
 # pools strings as read-only
-#CFLAGS="${CFLAGS:+$CFLAGS }-GF"
+#NM_CC_OPT="${NM_CC_OPT:+$NM_CC_OPT }-GF"
 
 
 case $CPU in
@@ -96,7 +97,7 @@ esac
 #CPU_OPT="${CPU_OPT:+$CPU_OPT }-Gr"
 
 
-CFLAGS="${CFLAGS:+$CFLAGS }$CPU_OPT"
+NM_CC_OPT="${NM_CC_OPT:+$NM_CC_OPT }$CPU_OPT"
 
 
 # the link flags
@@ -108,7 +109,7 @@ LIBC="-MT"
 # however, MSVC Toolkit 2003 has no MSVCRT.LIB
 #LIBC="-MD"
 
-CFLAGS="${CFLAGS:+$CFLAGS }$LIBC"
+NM_CC_OPT="${NM_CC_OPT:+$NM_CC_OPT }$LIBC"
 
 CORE_LIBS="${CORE_LIBS:+$CORE_LIBS }kernel32.lib user32.lib"
 
@@ -131,7 +132,7 @@ NM_USE_PCH="-Yunm_config.h -Fp$NM_OBJS/nm_config.pch"
 
 
 # the resource file
-NM_RES="$NM_OBJS/nginx.res"
+NM_RES="$NM_OBJS/nm.res"
 NM_RCC="rc -fo$NM_RES \$(CORE_INCS) $NM_NT_RC"
 CORE_LINK="$NM_RES $CORE_LINK"
 
@@ -149,6 +150,7 @@ nm_long_cont='
 if [ ".$CPP" = "." ]; then
   # to file
 	#CPP="\$(CC) -P"
+
   # to stdout
   CPP="\$(CC) -E"
 fi

@@ -11,5 +11,5 @@ $(hi_objout): $(src_path)hi.c
 	$(CC) $(CFLAGS) $(NM_INCS) -c $^ $(obj_out)$@
 
 $(hi_binout): $(hi_objout)
-	$(LINK) $^ $(bin_out)$@
+	$(LINK) $(LFLAGS) $^ $(bin_out)$@
 
