@@ -58,7 +58,11 @@ if [ "$NM_DEBUG" = "YES" ]; then
 else
 	NM_CC_OPT=${NM_CC_OPT:+$NM_CC_OPT }$nm_optimize_opt
 fi
-NM_CC_OPT=${NM_CC_OPT:+$NM_CC_OPT }$nm_warn_opt
+
+# warn option
+if [ "$NM_WARN" = "YES" ]; then
+	NM_CC_OPT=${NM_CC_OPT:+$NM_CC_OPT }$nm_warn_opt
+fi
 
 CFLAGS=${CFLAGS:+$CFLAGS }$NM_CC_OPT
 

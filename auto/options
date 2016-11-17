@@ -16,6 +16,7 @@ NM_OBJS=objs
 NM_SRC=src
 
 NM_DEBUG=NO
+NM_WARN=YES
 NM_VERBOSE=
 
 NM_CC_OPT=
@@ -62,6 +63,7 @@ do
     --builddir=*)                    NM_OBJS="$value"           ;;
     
 		--with-debug)                    NM_DEBUG=YES               ;;
+		--without-warn)                  NM_WARN=NO                 ;;
 		--with-verbose)                  NM_VERBOSE=-v              ;;
 
 		--has-*)                         NM_HAS_STICKS+=($option)   ;;
@@ -97,7 +99,8 @@ cat << END
   --builddir=DIR                     set build directory
 
   --with-debug                       enable CC debug option 
-  --with-verbose 										 enable verbose building
+  --with-warn                        enable CC warn option 
+  --with-verbos                      eenable verbose building
 
   --has-hi                           enable hi stick
   --has-env                          enable env stick
