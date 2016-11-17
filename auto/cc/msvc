@@ -4,8 +4,13 @@
 LDFLAGS="-LD"
 
 
-nm_cc_opt=${nm_cc_opt:-}
+# maximize speed, equivalent to -Og -Oi -Ot -Oy -Ob2 -Gs -GF -Gy
+nm_optimize_opt=${nm_optimize_opt:-"-O2"}
+
+# debug
 nm_debug_opt=${nm_debug_opt:-"-Z7"}
+
+# pic
 nm_pic_opt=
 
 obj_out="-Fo"
@@ -38,8 +43,6 @@ nm_msvc_ver=`echo $NM_MSVC_VER | sed -e 's/^\([0-9]*\).*/\1/'`
 
 # optimizations
 
-# maximize speed, equivalent to -Og -Oi -Ot -Oy -Ob2 -Gs -GF -Gy
-CFLAGS="${CFLAGS:+$CFLAGS }-O2"
 
 # enable global optimization
 #CFLAGS="${CFLAGS:+$CFLAGS }-Og"

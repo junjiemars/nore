@@ -6,10 +6,17 @@ NM_GCC_VER=`$CC -v 2>&1 | grep 'gcc version' 2>&1 \
 
 echo " + gcc version: $NM_GCC_VER"
 
+have=NM_COMPILER value="\"gcc $NM_GCC_VER\"" . ${NM_HOME}auto/define
+
+
+# optimizations
+
+nm_optimize_opt=${nm_optimize_opt:-"-O"}
+
+# debug
 
 nm_debug_opt=${nm_debug_opt:-"-g"}
 
-have=NM_COMPILER value="\"gcc $NM_GCC_VER\"" . ${NM_HOME}auto/define
 
 
 CC_TEST_FLAGS="-pipe"
@@ -40,9 +47,6 @@ case "$NM_MACHINE" in
 esac
 
 
-# optimizations
-
-nm_cc_opt=${nm_cc_opt:-"-O"}
 
 #CFLAGS="$CFLAGS -fomit-frame-pointer"
 

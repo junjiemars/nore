@@ -6,11 +6,14 @@ NM_CLANG_VER=`$CC -v 2>&1 | grep '\(clang\|LLVM\) version' 2>&1 \
 
 echo " + clang version: $NM_CLANG_VER"
 
-nm_debug_opt=${nm_debug_opt:-"-g"}
 
 # optimizations
 
-nm_cc_opt="-O"
+nm_optimize_opt=${nm_optimize_opt:-"-O"}
+
+# debug
+
+nm_debug_opt=${nm_debug_opt:-"-g"}
 
 # warnings
 
