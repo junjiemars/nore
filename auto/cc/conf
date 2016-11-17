@@ -8,6 +8,7 @@ LDFLAGS="-shared"
 nm_pic_opt="-fPIC"
 nm_debug_opt=
 nm_optimize_opt=
+nm_warn_opt=
 
 obj_out="-o "
 bin_out="-o "
@@ -57,8 +58,9 @@ if [ "$NM_DEBUG" = "YES" ]; then
 else
 	NM_CC_OPT=${NM_CC_OPT:+$NM_CC_OPT }$nm_optimize_opt
 fi
+NM_CC_OPT=${NM_CC_OPT:+$NM_CC_OPT }$nm_warn_opt
 
-CFLAGS="$CFLAGS $NM_CC_OPT"
+CFLAGS=${CFLAGS:+$CFLAGS }$NM_CC_OPT
 
 # independent
 

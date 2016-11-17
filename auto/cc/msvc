@@ -4,11 +4,15 @@
 LDFLAGS="-LD"
 
 
-# maximize speed, equivalent to -Og -Oi -Ot -Oy -Ob2 -Gs -GF -Gy
+# optimize: -Og -Oi -Ot -Oy -Ob2 -Gs -GF -Gy
 nm_optimize_opt=${nm_optimize_opt:-"-O2"}
 
 # debug
 nm_debug_opt=${nm_debug_opt:-"-Z7"}
+
+# warnings
+nm_warn_opt=${nm_warn_opt:-"-W4 -WX -nologo"}
+
 
 # pic
 nm_pic_opt=
@@ -95,16 +99,6 @@ esac
 CFLAGS="${CFLAGS:+$CFLAGS }$CPU_OPT"
 
 
-# warnings
-
-CFLAGS="${CFLAGS:+$CFLAGS }-W4"
-
-# stop on warning
-CFLAGS="${CFLAGS:+$CFLAGS }-WX"
-
-# disable logo
-CFLAGS="${CFLAGS:+$CFLAGS }-nologo"
-
 # the link flags
 CORE_LINK="$CORE_LINK -link -verbose:lib"
 
@@ -142,7 +136,6 @@ NM_RCC="rc -fo$NM_RES \$(CORE_INCS) $NM_NT_RC"
 CORE_LINK="$NM_RES $CORE_LINK"
 
 # msvc opt
-CFLAGS="${CFLAGS:+$CFLAGS }$nm_cc_opt"
 
 nm_long_start='@<<
 	'

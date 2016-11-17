@@ -10,12 +10,13 @@ have=NM_COMPILER value="\"gcc $NM_GCC_VER\"" . ${NM_HOME}auto/define
 
 
 # optimizations
-
 nm_optimize_opt=${nm_optimize_opt:-"-O"}
 
 # debug
-
 nm_debug_opt=${nm_debug_opt:-"-g"}
+
+# warnings
+nm_warn_opt=${nm_warn_opt:-"-W -Wall -Wpointer-arith"}
 
 
 
@@ -122,10 +123,6 @@ CFLAGS="$CFLAGS $PIPE $CPU_OPT"
 
 # warnings
 
-# -W requires at least -O
-CFLAGS="${CFLAGS:+$CFLAGS }${nm_cc_opt} -W"
-
-CFLAGS="${CFLAGS:+$CFLAGS }-Wall -Wpointer-arith"
 #CFLAGS="${CFLAGS:+$CFLAGS }-Wconversion"
 #CFLAGS="${CFLAGS:+$CFLAGS }-Winline"
 #CFLAGS="${CFLAGS:+$CFLAGS }-Wmissing-prototypes"

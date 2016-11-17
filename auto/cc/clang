@@ -8,21 +8,13 @@ echo " + clang version: $NM_CLANG_VER"
 
 
 # optimizations
-
 nm_optimize_opt=${nm_optimize_opt:-"-O"}
 
 # debug
-
 nm_debug_opt=${nm_debug_opt:-"-g"}
 
 # warnings
-
-CFLAGS="${CFLAGS:+$CFLAGS }$nm_cc_opt -Wall -Wextra -Wpointer-arith"
-CFLAGS="${CFLAGS:+$CFLAGS }-Wconditional-uninitialized"
-CFLAGS="${CFLAGS:+$CFLAGS }-Wno-unused-parameter"
-
-# stop on warning
-CFLAGS="${CFLAGS:+$CFLAGS }-Werror"
+nm_warn_opt=${nm_warn_opt:-"-Wall -Werror -Wextra -Wpointer-arith -Wconditional-uninitialized -Wno-unused-parameter"}
 
 # preprocess
 if [ ".$CPP" = "." ]; then
