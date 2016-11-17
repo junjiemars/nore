@@ -16,6 +16,7 @@ NM_OBJS=objs
 NM_SRC=src
 
 NM_DEBUG=YES
+NM_OPTIMIZE=YES
 NM_WARN=YES
 NM_VERBOSE=
 
@@ -64,6 +65,7 @@ do
     
 		--without-debug)                 NM_DEBUG=NO                ;;
 		--without-warn)                  NM_WARN=NO                 ;;
+		--without-optimize)              NM_OPTIMIZE=NO             ;;
 		--with-verbose)                  NM_VERBOSE=-v              ;;
 
 		--has-*)                         NM_HAS_STICKS+=($option)   ;;
@@ -100,6 +102,7 @@ cat << END
 
   --without-debug                    disable CC debug option 
   --without-warn                     disable CC warn option 
+  --without-optimize                 disable CC optimize option 
   --with-verbos                      eenable verbose building
 
   --has-hi                           enable hi stick

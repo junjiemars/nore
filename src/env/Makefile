@@ -9,4 +9,4 @@ $(tmp_path)env$(obj_ext): $(src_path)env.c
 
 
 $(bin_path)env$(bin_ext): $(tmp_path)env$(obj_ext)
-	$(LINK) $^ $(bin_out)$@ 
+	$(LINK) $(LFLAGS) $^ $(bin_out)$@ 

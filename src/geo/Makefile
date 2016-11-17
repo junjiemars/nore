@@ -13,4 +13,4 @@ $(geo_objout): $(src_path)geo.c
 	cp $(src_path)geo.h $(inc_path)
 
 $(geo_libout): $(geo_objout)
-	$(CC) $(CFLAGS) $(geo_ldflags) $^ $(bin_out)$@
+	$(CC) $(LFLAGS) $(geo_ldflags) $^ $(bin_out)$@

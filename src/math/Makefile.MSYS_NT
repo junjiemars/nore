@@ -4,14 +4,12 @@ math_binout := $(bin_path)math$(bin_ext)
 
 math: geo $(bin_path)math$(bin_ext)
 
-math_cflags := $(CFLAGS) $(NM_INCS) -O2
-math_ldflags := 
+math_cflags := $(CFLAGS) $(NM_INCS)
 
 
 $(math_objout): $(src_path)math1.c
 	$(CC) $(math_cflags) -c $^ $(obj_out)$@
 
 
-$(math_binout): $(math_objout) \
-$(lib_path)libgeo.lib
-	$(CC) $(CFLAGS) $(math_ldflags) $^ $(bin_out)$@
+$(math_binout): $(math_objout) $(lib_path)libgeo.lib
+	$(CC) $(LFLAGS) $^ $(bin_out)$@

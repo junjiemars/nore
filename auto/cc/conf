@@ -54,10 +54,13 @@ fi
 
 CC_TEST_LD_OPT="$NM_LD_OPT"
 
-# debug/optimize option
+# debug option
 if [ "$NM_DEBUG" = "YES" ]; then
 	NM_CC_OPT=${NM_CC_OPT:+$NM_CC_OPT }$nm_debug_opt
-else
+fi
+
+# optimize option
+if [ "$NM_OPTIMIZE" = "YES" ]; then
 	NM_CC_OPT=${NM_CC_OPT:+$NM_CC_OPT }$nm_optimize_opt
 fi
 
