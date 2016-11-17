@@ -68,7 +68,7 @@ $ make
 $ make install
 ```
 
-If you'd a C project in your working directory already
+If you had a C project in your working directory already
 ```sh
 # go into your working directory
 # <where> to put nore down, PREFIX is optional
@@ -82,10 +82,16 @@ Another way to play is to download [C Lessons](https://github.com/junjiears/c_le
 
 
 ### Working On Unix-like
+* Prerequisites: None
+* Configure Nore and Play
 ```sh
 # go into your working directory
+
 # <where> to put nore down, PREFIX is optional
 $ [PREFIX=<where>] bash <(curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.sh)
+
+# renew bash environemnt
+$ . ~/.bashrc
 
 # help
 $ ./configure --help
@@ -100,25 +106,34 @@ $ ./configure --update --has-<what>
 $ make
 $ make install
 ```
+* Debug
+The compiled program can be debugged by **GDB** or **LLDB**, and **Xcode**'s debugger too if on MacOS.
+  1. Open Xcode
+  2. **Create a new Xcode project** and then choose **Empty** project
+  4. **Product** > **Scheme** > **New Scheme**, set **Info>Executable**, 
+  set **Arguments>Environement Variables** : DYLD_LIBRARY_PATH=<where-lib>
+  7. **Debug** > **Breakpoints** > **Create Symbolic Breakpoints**
+
 
 ### Working On Windows
 * Prerequisites: [Git Bash](https://git-scm.com/downloads)
 * Configure Nore:
 ```sh
+# go into your working directory
+
 # configurate bash environment
 $ bash <(curl https://raw.githubusercontent.com/junjiemars/kit/master/ul/setup-bash.sh)
 
 # renew bash environemnt
 $ . ~/.bashrc
 
-# go into your working directory
 # <where> to put nore down, PREFIX is optional
 $ [PREFIX=<where>] bash <(curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.sh)
 ```
 * Play
 ```sh
 # open cmd window first, and then execute vsvars32.bat 
-# or open Developer Command Prompt for VS2015 directly
+# or open Developer Command Prompt of VS2015 directly
 CMD> %VS140COMNTOOLS%\vsvars32.bat
 CMD> bash
 
@@ -129,4 +144,6 @@ $ make
 $ make install
 ```
 * Debug
-Open Visual Studio, File>Open Project/Solution, select EXE project files
+  1. Open **Visual Studio**
+  2. **File** > Open **Project/Solution** and then select **EXE project files**
+  3. Select your **exe** file 
