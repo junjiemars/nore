@@ -3,7 +3,7 @@
 
 
 NM_MSVC_VER=`$CC 2>&1 | grep 'Compiler Version' 2>&1 \
-                                 | sed -e 's/^.* Version \(.*\)/\1/'`
+                      | sed -e 's/^.* Version \(.*\)/\1/'`
 
 echo " + msvc version: $NM_MSVC_VER"
 
