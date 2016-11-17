@@ -103,7 +103,7 @@ cat << END
   --without-debug                    disable CC debug option 
   --without-warn                     disable CC warn option 
   --without-optimize                 disable CC optimize option 
-  --with-verbos                      eenable verbose building
+  --with-verbose                     enable verbose building
 
   --has-hi                           enable hi stick
   --has-env                          enable env stick
