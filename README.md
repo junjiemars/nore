@@ -38,13 +38,13 @@ which face to variant build environments. And there must be individual units whi
 decide how to build itself base on or not the baisc rules.
 
 What about **Shell** and **Make**: Make drived by shell and Make controls building rules.
-So the natrual way: shell controls the basic rules which use to build the basic Makefiles 
+So the natural way: shell controls the basic rules which use to build the basic Makefiles 
 then let make play with **sticks**' Makefiles. 
 
 On Unix-like environment you need install or configure nothing. 
 On Windows, you just need [Git Bash](https://git-scm.com/downloads), 
 [GNU Make for Windows](http://gnuwin32.sourceforge.net/packages/make.htm), 
-and both things can be done just by the call of one line bash code.
+and those things can be done by Nore itself.
 
 **Why use GNU Make**
 Darwin and Linux has [GNU Make](https://www.gnu.org/software/make/) build-in, 
