@@ -9,7 +9,7 @@ ifeq ($(CC_NAME),gcc)
 	math_cflags += -std=c99
 endif
 
-math_lflags += $(LFLAGS) $(NM_LDS)
+math_lflags += $(LFLAGS) $(LDLIBS)
 
 $(math_objout): $(src_path)math1.c
 	$(CC) $(math_cflags) -c $^ $(obj_out)$@
