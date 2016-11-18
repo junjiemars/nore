@@ -2,7 +2,7 @@
 
 #include <geo.h>
 #include <stdio.h>
-
+#include <math.h>
 
 double ref;
 

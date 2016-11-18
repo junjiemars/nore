@@ -4,12 +4,12 @@ math_binout := $(bin_path)math$(bin_ext)
 
 math: geo $(bin_path)math$(bin_ext)
 
-math_cflags = $(CFLAGS) $(NM_INCS) -std=c99
-math_lflags += $(LFLAGS) $(NM_LDS)
-
-ifeq ($(NM_SYSTEM),Darwin)
-	math_cflags += -O3
+math_cflags = $(CFLAGS) $(NM_INCS)
+ifeq ($(CC_NAME),gcc)
+	math_cflags += -std=c99
 endif
+
+math_lflags += $(LFLAGS) $(NM_LDS)
 
 $(math_objout): $(src_path)math1.c
 	$(CC) $(math_cflags) -c $^ $(obj_out)$@
