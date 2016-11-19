@@ -43,7 +43,7 @@ clean:
 	\$(MAKE) -f $NM_OBJS/Makefile clean
 
 cleanAll:
-	\$(RM) -rf Makefile $NM_OBJS
+	\$(RM) -r Makefile $NM_OBJS
 
 END
 
