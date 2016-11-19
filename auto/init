@@ -37,7 +37,7 @@ fi
 
 cat << END > Makefile
 
-.PHONY: build reset
+.PHONY: build reset run
 
 default: build
 
@@ -46,6 +46,9 @@ clean:
 
 reset:
 	\$(RM) -r Makefile $NM_OBJS
+
+run:
+	\$(MAKE) -f $NM_OBJS/Makefile run
 
 END
 
