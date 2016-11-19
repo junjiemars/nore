@@ -40,6 +40,6 @@ cat << END > Makefile
 default: build
 
 clean:
-	rm -rf Makefile $NM_OBJS
+	\$(RM) -rf Makefile $NM_OBJS
 END
 

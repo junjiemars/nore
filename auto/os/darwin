@@ -4,28 +4,29 @@ have=`echo $NM_SYSTEM | tr [:lower:] [:upper:]` . ${NM_HOME}auto/have_headers
 
 # os specifics for Darwin
 
-nm_feature="Darwin 64-bit kqueue millisecond timeout bug"
-nm_feature_name=NM_DARWIN_KEVENT_BUG
-nm_feature_run=bug
-nm_feature_incs="#include <sys/event.h>
-                  #include <sys/time.h>"
-nm_feature_path=
-nm_feature_libs=
-nm_feature_test="int  kq;
-                  struct kevent    kev;
-                  struct timespec  ts;
-                  struct timeval   tv, tv0;
-
-                  kq = kqueue();
-
-                  ts.tv_sec = 0;
-                  ts.tv_nsec = 999000000;
-
-                  gettimeofday(&tv, 0);
-                  kevent(kq, NULL, 0, &kev, 1, &ts);
-                  gettimeofday(&tv0, 0);
-                  timersub(&tv0, &tv, &tv);
-
-                  if (tv.tv_sec * 1000000 + tv.tv_usec < 900000) return 1;"
-
-. ${NM_HOME}auto/feature
+# kqueue
+#nm_feature="Darwin 64-bit kqueue millisecond timeout bug"
+#nm_feature_name=NM_DARWIN_KEVENT_BUG
+#nm_feature_run=bug
+#nm_feature_incs="#include <sys/event.h>
+#                  #include <sys/time.h>"
+#nm_feature_path=
+#nm_feature_libs=
+#nm_feature_test="int  kq;
+#                  struct kevent    kev;
+#                  struct timespec  ts;
+#                  struct timeval   tv, tv0;
+#
+#                  kq = kqueue();
+#
+#                  ts.tv_sec = 0;
+#                  ts.tv_nsec = 999000000;
+#
+#                  gettimeofday(&tv, 0);
+#                  kevent(kq, NULL, 0, &kev, 1, &ts);
+#                  gettimeofday(&tv0, 0);
+#                  timersub(&tv0, &tv, &tv);
+#
+#                  if (tv.tv_sec * 1000000 + tv.tv_usec < 900000) return 1;"
+#
+#. ${NM_HOME}auto/feature
