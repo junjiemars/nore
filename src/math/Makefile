@@ -4,7 +4,7 @@ math_binout := $(bin_path)math$(bin_ext)
 
 math: geo $(bin_path)math$(bin_ext)
 
-math_cflags = $(CFLAGS) $(NM_INCS)
+math_cflags = $(CFLAGS) $(INC)
 ifeq ($(CC_NAME),gcc)
 	math_cflags += -std=c99
 endif

@@ -4,7 +4,7 @@ geo_libout := $(lib_path)libgeo$(mod_ext)
 
 geo: $(geo_libout)
 
-geo_cflags := $(CFLAGS) $(NM_PIC_OPT) $(NM_INCS) -I$(src_path)
+geo_cflags := $(CFLAGS) $(NM_PIC_OPT) $(INC) -I$(src_path)
 geo_ldflags := $(LDFLAGS) 
 
 

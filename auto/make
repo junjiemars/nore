@@ -22,7 +22,7 @@ LDFLAGS= ${NM_VERBOSE:+$NM_VERBOSE }$LDFLAGS
 
 LDLIBS = -L$NM_OBJS/lib
 
-NM_INCS = -I$NM_OBJS -I$NM_OBJS/inc 
+INC = -I$NM_OBJS -I$NM_OBJS/inc 
 
 nm_pic_opt = $nm_pic_opt
 
