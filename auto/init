@@ -37,7 +37,7 @@ fi
 
 cat << END > Makefile
 
-.PHONY: reset
+.PHONY: build reset
 
 default: build
 
