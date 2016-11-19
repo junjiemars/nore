@@ -47,6 +47,15 @@ bin_ext = $bin_ext
 
 default: build
 
+clean:
+	\$(RM) -rf $NM_OBJS/bin/*
+	\$(RM) -rf $NM_OBJS/lib/*
+	\$(RM) -rf $NM_OBJS/inc/*
+	\$(RM) -rf $NM_OBJS/log/*
+	\$(RM) -rf $NM_OBJS/pid/*
+	\$(RM) -rf $NM_OBJS/tmp/*
+	\$(RM) -rf $NM_OBJS/conf/*
+
 
 END
 
