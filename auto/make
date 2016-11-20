@@ -1,4 +1,5 @@
 
+echo
 echo "creating $NM_MAKEFILE"
 
 mkdir -p $NM_OBJS/bin \
@@ -70,11 +71,13 @@ for opt in "${NM_HAS_STICKS[@]}"; do
 				 | sed -e 's/\ *--has-\([a-zA-Z][a-zA-Z]*\)/\1/' \
 				 | tr [:upper:] [:lower:]`
 
+	echo $nm_n " + checking for $NM_SRC/$stick ... "
 	if [ -d $NM_SRC/$stick ]; then
+		echo "found" 
 		nm_sticks+=($stick)
 		nm_sticks_test+=(${stick}_test)
 	else
-		echo "checking for $NM_SRC/$stick ... no found"
+		echo "no found" 
 		cat << END >> $NM_AUTOCONF_ERR
 ---------------------------------------
 checking for $NM_SRC/$stick ... no found
