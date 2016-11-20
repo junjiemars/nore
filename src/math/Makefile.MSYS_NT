@@ -13,3 +13,6 @@ $(math_objout): $(src_path)math1.c
 
 $(math_binout): $(math_objout) $(lib_path)libgeo.lib
 	$(CC) $(LFLAGS) $^ $(bin_out)$@
+
+math_test: math
+	PATH=$(lib_path):$PATH $(math_binout)
