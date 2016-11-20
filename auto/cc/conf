@@ -22,6 +22,7 @@ cpp_ext=".i"
 asm_ext=".s"
 mod_ext=".so"
 
+nm_path_sep=":"
 
 . ${NM_HOME}auto/cc/name
 

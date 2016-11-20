@@ -2,4 +2,6 @@
 
 have=`echo $NM_SYSTEM | tr [:lower:] [:upper:]` . ${NM_HOME}auto/have_headers
 
+nm_path_sep="\;"
+
 # os specifics for Windows
