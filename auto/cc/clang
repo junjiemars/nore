@@ -9,8 +9,8 @@ echo " + clang version: $NM_CLANG_VER"
 have=NM_COMPILER value="\"clang $NM_CLANG_VER\"" . ${NM_HOME}auto/define
 
 
-# link
-LDFLAGS="-shared"
+# link :deferred to auto/os
+#LDFLAGS="-shared"
 
 # optimizations
 nm_optimize_opt=${nm_optimize_opt:-"-O"}
