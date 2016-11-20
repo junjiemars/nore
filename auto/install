@@ -15,22 +15,22 @@ cat << END >> $NM_MAKEFILE
 
 
 install: build $NM_BIN_PATH $NM_LIB_PATH $NM_CONF_PATH $NM_INC_PATH
-	\$(call if-cp, $NM_OBJS/bin, $NM_BIN_PATH/)
-	\$(call if-cp, $NM_OBJS/lib, $NM_LIB_PATH/)
-	\$(call if-cp, $NM_OBJS/conf, $NM_CONF_PATH/)
-	\$(call if-cp, $NM_OBJS/inc, $NM_INC_PATH/)
+	\$(call cp-if, $NM_OBJS/bin, $NM_BIN_PATH/)
+	\$(call cp-if, $NM_OBJS/lib, $NM_LIB_PATH/)
+	\$(call cp-if, $NM_OBJS/conf, $NM_CONF_PATH/)
+	\$(call cp-if, $NM_OBJS/inc, $NM_INC_PATH/)
 
 
 $NM_BIN_PATH $NM_LIB_PATH $NM_CONF_PATH $NM_INC_PATH:
-	\$(call if-mkdir, $NM_BIN_PATH)
-	\$(call if-mkdir, $NM_LIB_PATH)
-	\$(call if-mkdir, $NM_CONF_PATH)
-	\$(call if-mkdir, $NM_INC_PATH)
-	\$(call if-mkdir, $NM_LOG_PATH)
+	\$(call mkdir-if, $NM_BIN_PATH)
+	\$(call mkdir-if, $NM_LIB_PATH)
+	\$(call mkdir-if, $NM_CONF_PATH)
+	\$(call mkdir-if, $NM_INC_PATH)
+	\$(call mkdir-if, $NM_LOG_PATH)
 
 
-if-mkdir = \$(if \$(wildcard \$1),,mkdir -p \$1)
-if-cp = \$(foreach f,\$(wildcard \$1/*),\$(shell cp \$(f) \$2))
+mkdir-if = \$(if \$(wildcard \$1),,mkdir -p \$1)
+cp-if = \$(foreach f,\$(wildcard \$1/*),\$(shell cp \$(f) \$2))
 
 
 

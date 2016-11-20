@@ -61,6 +61,7 @@ END
 
 
 nm_sticks=()
+nm_sticks_test=()
 
 
 for opt in "${NM_HAS_STICKS[@]}"; do
@@ -71,6 +72,7 @@ for opt in "${NM_HAS_STICKS[@]}"; do
 
 	if [ -d $NM_SRC/$stick ]; then
 		nm_sticks+=($stick)
+		nm_sticks_test+=(${stick}_test)
 	else
 		echo "checking for $NM_SRC/$stick ... no found"
 		cat << END >> $NM_AUTOCONF_ERR
@@ -90,9 +92,11 @@ if [ -n "$nm_sticks" ]; then
 
 	cat << END >> $NM_MAKEFILE
 
-.PHONY: ${nm_sticks[@]}
+.PHONY: ${nm_sticks[@]} ${nm_sticks_test[@]}
 
 build: ${nm_sticks[@]}
+
+test: ${nm_sticks_test[@]}
 
 
 END

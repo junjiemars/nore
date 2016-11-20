@@ -10,3 +10,6 @@ $(tmp_path)env$(obj_ext): $(src_path)env.c
 
 $(bin_path)env$(bin_ext): $(tmp_path)env$(obj_ext)
 	$(LINK) $(LFLAGS) $^ $(bin_out)$@ 
+
+env_test: env
+	$(bin_path)env$(bin_ext)
