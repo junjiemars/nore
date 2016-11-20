@@ -17,3 +17,6 @@ $(math_objout): $(src_path)math1.c
 
 $(math_binout): $(math_objout)
 	$(LINK) $(math_lflags) $^ -lgeo $(bin_out)$@
+
+math_test: math
+	LD_LIBRARY_PATH=$(lib_path) $(math_binout)
