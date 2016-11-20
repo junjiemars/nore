@@ -12,7 +12,7 @@ nm_debug_opt=
 nm_optimize_opt=
 nm_warn_opt=
 
-nm_path_sep=":"
+nm_p=":"
 
 obj_out="-o "
 bin_out="-o "

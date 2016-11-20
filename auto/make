@@ -27,8 +27,10 @@ INC = -I$NM_OBJS -I$NM_OBJS/inc
 
 nm_pic_opt = $nm_pic_opt
 
-nm_path_sep = $nm_path_sep
+# path sep
+nm_p = $nm_p
 
+# platform
 NM_SYSTEM = $NM_SYSTEM
 NM_RELEASE = $NM_RELEASE
 NM_MACHINE = $NM_MACHINE
