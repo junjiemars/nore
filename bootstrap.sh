@@ -45,10 +45,7 @@ echo
 
 setup_bash() {
 	local setup="$HOME/.setup-bash.sh"
-	if `curl -sqLo $setup ${GITHUB_R}/kit/master/ul/setup-bash.sh`; then
-		chmod u+x $setup
-		`. $setup`
-	fi
+	curl -sqL $setup ${GITHUB_R}/kit/master/ul/setup-bash.sh | bash
 }
 
 echo -n " + checking bash environment ... "
