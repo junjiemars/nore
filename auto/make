@@ -75,13 +75,11 @@ for opt in "${NM_HAS_STICKS[@]}"; do
 				 | sed -e 's/\ *--has-\([a-zA-Z][a-zA-Z]*\)/\1/' \
 				 | tr [:upper:] [:lower:]`
 
-	echo $nm_n " + checking for $NM_SRC/$stick ... "
 	if [ -d $NM_SRC/$stick ]; then
-		echo "found" 
 		nm_sticks+=($stick)
 		nm_sticks_test+=(${stick}_test)
 	else
-		echo "no found" 
+		echo " + checking for $NM_SRC/$stick ... no found"
 		cat << END >> $NM_AUTOCONF_ERR
 ---------------------------------------
 checking for $NM_SRC/$stick ... no found
@@ -112,11 +110,20 @@ END
 
 		stick_src=$NM_SRC/$stick
 
-    [ -f $stick_src/version ] && \
+    if [ -f $stick_src/version ]; then
+			echo " + checking for $stick_src/version ... found"
       have=`echo $stick | tr [:lower:] [:upper:]`_VERSION \
       value=`cat $stick_src/version` . ${NM_HOME}auto/define
+		fi
     
-		[ -f $stick_src/configure ] && . $stick_src/configure
+		if [ -f $stick_src/configure ]; then
+			echo $nm_n " + checking for $stick_src/configure ... "
+			if `. $stick_src/configure`; then
+				echo "found"
+			else
+				echo "failed"
+			fi
+		fi
 
 		src_path=$stick_src/
 		inc_path=$NM_OBJS/inc/
@@ -132,7 +139,7 @@ END
 
 		else
 
-			echo "checking for $stick_makefile ...no found"
+			echo " + checking for $stick_makefile ... no found"
 			cat << END >> $NM_AUTOCONF_ERR
 
 ----------------------------------------
