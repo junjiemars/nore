@@ -47,14 +47,14 @@ case "$NM_MACHINE" in
 
   sun4u | sun4v | sparc | sparc64 )
     # "-mcpu=v9" enables the "casa" assembler instruction
-    CFLAGS="$CFLAGS -mcpu=v9"
+    NM_CC_OPT="$NM_CC_OPT -mcpu=v9"
   ;;
 
 esac
 
 
 
-#CFLAGS="$CFLAGS -fomit-frame-pointer"
+#NM_CC_OPT="$NM_CC_OPT -fomit-frame-pointer"
 
 case $CPU in
   pentium)
@@ -123,37 +123,37 @@ case "$NM_GCC_VER" in
 esac
 
 
-CFLAGS="$CFLAGS $PIPE $CPU_OPT"
+NM_CC_OPT="${NM_CC_OPT:+$NM_CC_OPT }${PIPE:+$PIPE }$CPU_OPT"
 
 
 # warnings
 
-#CFLAGS="${CFLAGS:+$CFLAGS }-Wconversion"
-#CFLAGS="${CFLAGS:+$CFLAGS }-Winline"
-#CFLAGS="${CFLAGS:+$CFLAGS }-Wmissing-prototypes"
+#NM_CC_OPT="${NM_CC_OPT:+$NM_CC_OPT }-Wconversion"
+#NM_CC_OPT="${NM_CC_OPT:+$NM_CC_OPT }-Winline"
+#NM_CC_OPT="${NM_CC_OPT:+$NM_CC_OPT }-Wmissing-prototypes"
 
 case "$NM_GCC_VER" in
   2.*)
     # we have a lot of the unused function arguments
-    CFLAGS="${CFLAGS:+$CFLAGS }-Wno-unused"
+    NM_CC_OPT="${NM_CC_OPT:+$NM_CC_OPT }-Wno-unused"
   ;;
 
   *)
     # we have a lot of the unused function arguments
-    CFLAGS="${CFLAGS:+$CFLAGS }-Wno-unused-parameter"
+    NM_CC_OPT="${NM_CC_OPT:+$NM_CC_OPT }-Wno-unused-parameter"
     # 4.2.1 shows the warning in wrong places
-    #CFLAGS="${CFLAGS:+$CFLAGS }-Wunreachable-code"
+    #NM_CC_OPT="${NM_CC_OPT:+$NM_CC_OPT }-Wunreachable-code"
 
     # deprecated system OpenSSL library on OS X
     if [ "$NM_SYSTEM" = "Darwin" ]; then
-      CFLAGS="${CFLAGS:+$CFLAGS }-Wno-deprecated-declarations"
+      NM_CC_OPT="${NM_CC_OPT:+$NM_CC_OPT }-Wno-deprecated-declarations"
     fi
   ;;
 esac
 
 
 # stop on warning
-CFLAGS="${CFLAGS:+$CFLAGS }-Werror"
+NM_CC_OPT="${NM_CC_OPT:+$NM_CC_OPT }-Werror"
 
 # preprocess
 if [ ".$CPP" = "." ]; then
