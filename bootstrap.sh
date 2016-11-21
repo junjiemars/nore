@@ -44,7 +44,7 @@ echo "configure Nore on $PLATFORM ..."
 echo
 
 setup_bash() {
-	local setup="$1"
+	local setup="$HOME/.setup-bash.sh"
 	if `curl -sqLo $setup ${GITHUB_R}/kit/master/ul/setup-bash.sh`; then
 		chmod u+x $setup
 		$setup
@@ -55,10 +55,10 @@ echo -n " + checking bash environment ... "
 if [ ! -f $HOME/.setup-bash.sh ]; then
 	echo "no found"
 	echo 
-	`setup_bash $HOME/.setup-bash.sh`
+	`setup_bash`
 else
 	echo "found"
-	[ 0 -eq $NORE_UPDATE ] && `setup_bash $HOME/.setup-bash.sh`
+	[ 0 -eq $NORE_UPDATE ] && `setup_bash`
 fi
 . $HOME/.bashrc
 
