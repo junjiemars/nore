@@ -44,7 +44,7 @@ echo "configure Nore on $PLATFORM ..."
 echo
 
 echo -n " + checking bash environment ... "
-if [ ! -f $HOME/.setup-bash.sh ]; then
+if [ ! -f "$HOME/.bash_paths" -o ! -f "$HOME/.bash_vars" ]; then
 	echo "no found"
 	echo 
 	`curl -sqL $GITHUB_BASH_ENV | bash`
