@@ -8,15 +8,12 @@ bootstrap_path() {
 	local p="`dirname $0`"
 	local n="./.nore"
 
-	if [ -d \"${p}\" ]; then
-		p="`( cd \"${p}\" && pwd )`"
-		if [ -z "$p" -o "/dev/fd" = "$p" ]; then
-			echo "$n"
-		else
-			echo "$p"
-		fi
-	else
+	[ -d \"${p}\" ] || echo "$n"
+	p="`( cd \"${p}\" && pwd )`"
+	if [ -z "$p" -o "/dev/fd" = "$p" ]; then
 		echo "$n"
+	else
+		echo "$p"
 	fi
 }
 
@@ -28,21 +25,36 @@ GITHUB_R=${GITHUB_R:-"https://raw.githubusercontent.com/junjiemars"}
 GITHUB_H=${GITHUB_C:-"https://github.com/junjiemars"}
 
 
+case ".$1" in
+	.-u|.--update)
+		NORE_UPDATE=0
+		;;
+	*)
+		NORE_UPDATE=1
+		;;
+esac
+
+
 BEGIN=`date +%s`
 echo 
 echo "configure Nore on $PLATFORM ..."
 echo
 
+setup_bash() {
+	local setup="$1"
+	curl -sqLo $setup ${GITHUB_R}/kit/master/ul/setup-bash.sh && $setup
+}
+
 echo -n " + checking bash environment ... "
 if [ ! -f $HOME/.bash_paths -o ! -f $HOME/.bash_vars ]; then
 	echo "no found"
 	echo 
-	curl -sqLo /tmp/setup-bash.sh ${GITHUB_R}/kit/master/ul/setup-bash.sh && \
-		. /tmp/setup-bash.sh
-	. $HOME/.bashrc
+	`setup_bash /tmp/setup-bash.sh`
 else
 	echo "found"
+	[ 0 -eq $NORE_UPDATE ] && `setup-bash /tmp/setup-bash.sh`
 fi
+. $HOME/.bashrc
 
 echo -n " + checking make ... "
 if `make -v &>/dev/null`; then
@@ -114,15 +126,6 @@ END
 	chmod u+x $conf
 	mv $conf $NM_CONFIGURE
 }
-
-case ".$1" in
-	.-u|.--update)
-		NORE_UPDATE=0
-		;;
-	*)
-		NORE_UPDATE=1
-		;;
-esac
 
 
 [ -d ${PREFIX} ] || mkdir -p ${PREFIX}	
