@@ -45,17 +45,20 @@ echo
 
 setup_bash() {
 	local setup="$1"
-	curl -sqLo $setup ${GITHUB_R}/kit/master/ul/setup-bash.sh && $setup
+	if `curl -sqLo $setup ${GITHUB_R}/kit/master/ul/setup-bash.sh`; then
+		chmod u+x $setup
+		$setup
+	fi
 }
 
 echo -n " + checking bash environment ... "
-if [ ! -f $HOME/.bash_paths -o ! -f $HOME/.bash_vars ]; then
+if [ ! -f $HOME/.setup-bash.sh ]; then
 	echo "no found"
 	echo 
-	`setup_bash /tmp/setup-bash.sh`
+	`setup_bash $HOME/.setup-bash.sh`
 else
 	echo "found"
-	[ 0 -eq $NORE_UPDATE ] && `setup_bash /tmp/setup-bash.sh`
+	[ 0 -eq $NORE_UPDATE ] && `setup_bash $HOME/.setup-bash.sh`
 fi
 . $HOME/.bashrc
 
