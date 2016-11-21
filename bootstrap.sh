@@ -26,7 +26,7 @@ NM_WORK=`pwd`
 PLATFORM=`uname -s 2>/dev/null`
 GITHUB_R=${GITHUB_R:-"https://raw.githubusercontent.com/junjiemars"}
 GITHUB_H=${GITHUB_C:-"https://github.com/junjiemars"}
-
+GITHUB_BASH_ENV="${GITHUB_R}/kit/master/ul/setup-bash.sh"
 
 case ".$1" in
 	.-u|.--update)
@@ -44,17 +44,17 @@ echo "configure Nore on $PLATFORM ..."
 echo
 
 setup_bash_env() {
-	curl -sqL ${GITHUB_R}/kit/master/ul/setup-bash.sh | bash
+	
 }
 
 echo -n " + checking bash environment ... "
 if [ ! -f $HOME/.setup-bash.sh ]; then
 	echo "no found"
 	echo 
-	`setup_bash`
+	`curl -sqL $GITHUB_BASH_ENV | bash`
 else
 	echo "found"
-	[ 0 -eq $NORE_UPDATE ] && `setup_bash_env`
+	[ 0 -eq $NORE_UPDATE ] && `curl -sqL $GITHUB_BASH_ENV | bash`
 fi
 . $HOME/.bashrc
 
