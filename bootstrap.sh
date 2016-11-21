@@ -55,7 +55,7 @@ if [ ! -f $HOME/.bash_paths -o ! -f $HOME/.bash_vars ]; then
 	`setup_bash /tmp/setup-bash.sh`
 else
 	echo "found"
-	[ 0 -eq $NORE_UPDATE ] && `setup-bash /tmp/setup-bash.sh`
+	[ 0 -eq $NORE_UPDATE ] && `setup_bash /tmp/setup-bash.sh`
 fi
 . $HOME/.bashrc
 
