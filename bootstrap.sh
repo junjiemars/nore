@@ -44,8 +44,7 @@ echo "configure Nore on $PLATFORM ..."
 echo
 
 setup_bash() {
-	local setup="$HOME/.setup-bash.sh"
-	curl -sqL $setup ${GITHUB_R}/kit/master/ul/setup-bash.sh | bash
+	curl -sqL ${GITHUB_R}/kit/master/ul/setup-bash.sh | bash
 }
 
 echo -n " + checking bash environment ... "
