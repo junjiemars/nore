@@ -47,10 +47,10 @@ echo -n " + checking bash environment ... "
 if [ ! -f "$HOME/.bash_paths" -o ! -f "$HOME/.bash_vars" ]; then
 	echo "no found"
 	echo 
-	$(curl -sqL $GITHUB_BASH_ENV | bash)
+	$(curl -sqL $GITHUB_BASH_ENV | bash &>/dev/null)
 else
 	echo "found"
-	[ 0 -eq $NORE_UPDATE ] && $(curl -sqL $GITHUB_BASH_ENV | bash)
+	[ 0 -eq $NORE_UPDATE ] && $(curl -sqL $GITHUB_BASH_ENV | bash &>/dev/null)
 fi
 . $HOME/.bashrc
 
