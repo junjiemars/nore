@@ -43,10 +43,6 @@ echo
 echo "configure Nore on $PLATFORM ..."
 echo
 
-setup_bash_env() {
-	
-}
-
 echo -n " + checking bash environment ... "
 if [ ! -f $HOME/.setup-bash.sh ]; then
 	echo "no found"
