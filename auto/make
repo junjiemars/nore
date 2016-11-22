@@ -139,7 +139,7 @@ END
 
 		else
 
-			echo " + checking for $stick_makefile ... no found"
+			echo " + checking for $stick_src/Makefile ... no found"
 			cat << END >> $NM_AUTOCONF_ERR
 
 ----------------------------------------
