@@ -50,6 +50,7 @@ do
     
     --prefix=)                       NM_PREFIX="!"              ;;
     --prefix=*)                      NM_PREFIX="$value"         ;;
+		--verbose)                       NM_VERBOSE=-v              ;;
     --bin-path=*)                    NM_BIN_PATH="$value"       ;;
     --modules-path=*)                NM_LIB_PATH="$value"  		  ;;
     --conf-path=*)                   NM_CONF_PATH="$value"      ;;
@@ -66,7 +67,6 @@ do
 		--without-debug)                 NM_DEBUG=NO                ;;
 		--without-warn)                  NM_WARN=NO                 ;;
 		--without-optimize)              NM_OPTIMIZE=NO             ;;
-		--with-verbose)                  NM_VERBOSE=-v              ;;
 
 		--has-*)                         NM_HAS_STICKS+=($option)   ;;
     
@@ -89,6 +89,7 @@ cat << END
   --help                             print this message
 
   --prefix=PATH                      set installation prefix
+  --verbose                          enable verbose building
   --bin-path=PATH                    set binaries directory
   --modules-path=PATH                set modules path
   --conf-path=PATH                   set conf pathname
@@ -103,7 +104,6 @@ cat << END
   --without-debug                    disable CC debug option 
   --without-warn                     disable CC warn option 
   --without-optimize                 disable CC optimize option 
-  --with-verbose                     enable verbose building
 
   --has-hi                           enable hi stick
   --has-env                          enable env stick
