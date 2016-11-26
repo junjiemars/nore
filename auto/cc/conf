@@ -6,6 +6,8 @@ LINK="\$(CC)"
 CFLAGS=
 LFLAGS=
 LDFLAGS=
+INC=
+LDLIBS=
 
 nm_pic_opt=
 nm_debug_opt=
