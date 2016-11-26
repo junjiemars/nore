@@ -117,12 +117,8 @@ END
 		fi
     
 		if [ -f $stick_src/configure ]; then
-			echo $nm_n " + checking for $stick_src/configure ... "
-			if `. $stick_src/configure`; then
-				echo "found"
-			else
-				echo "failed"
-			fi
+			echo " + checking for $stick_src/configure ... found"
+			. $stick_src/configure
 		fi
 
 		src_path=$stick_src/
