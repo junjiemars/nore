@@ -23,13 +23,15 @@ The [CMake](https://cmake.org/) is great but not for how it do it's job.
 CMake introduce a lot of things you need to learn it's can not be accepted by old dog sometimes, 
 and CMake is not debug friendly and poor documented.
 
+The older [Autotools](https://www.gnu.org/software/automake/manual/html_node/Autotools-Introduction.html) has the same problems as CMake and less a installer like CMake already had to solve portable issues.
+
 **Nore** try to find out another way, use everything that you had learned before: shell, shell script,
  make, makefile to make a build system for variant platforms.
 
 Allways keep the following in mind:
 * Keep classic workflow: configure, make, make install
-* Keep things simple: shell, make
-* Keep things easy to get it done
+* Keep things simple: just shell and make, easy to get job done
+* Keep the controls on everythings: everythings can be hacked by your needs
 
 
 **Nore** build a set of basic rules first then let the individual units (call it **stick**) 
@@ -75,25 +77,23 @@ If you had a C project in your working directory already
 $ [PREFIX=<where>] bash <(curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.sh)
 $ ./configure --has-<what>
 $ make
-
 ```
 
-Another way to play is to download [C Lessons](https://github.com/junjiears/c_lessons) then do the following.
+On Windows, needs to setup bash environment first:
+download [Git Bash](https://git-scm.com/downloads), select 'unix compatible tools' when installing.
+ 
 
+Another way to try and play is to clone [Nore Lessons](https://github.com/junjiears/nore_lessons) then go.
 
-### Working On Unix-like
-* Prerequisites: None
-* Configure Nore and Play
+### Workflow
+Write your makefile first, and configure or version files if neccessery.
 ```sh
 # go into your working directory
 
 # <where> to put nore down, PREFIX is optional
 $ [PREFIX=<where>] bash <(curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.sh)
 
-# renew bash environemnt
-$ . ~/.bashrc
-
-# help
+# nore's help
 $ ./configure --help
 
 # dir structure: src/<what>/{Makefile,sources,headers}
@@ -105,45 +105,41 @@ $ ./configure --update --has-<what>
 
 $ make
 $ make install
+
+# build without **warnings** info
+$ ./configure --without-warn
+
+# build without **optimized**
+$ ./configure --without-optimize
+
+# build without **debugging** info
+$ ./configure --without-debug
+
+# build with **verbose** 
+$ ./configure --with-verbose
 ```
-* Debug
+
+### Nore on Windows
+1. open **CMD** prompt, then run **.vs-inc.bat** in HOME directory.
+2. run **bash** in **CMD** prompt
+3. go into your C project, play as you go
+```cmd
+CMD> %USERPROFILE%\.vs-inc.bat
+CMD> bash
+
+$ cd /d/nore_lessons
+$ ./configure --has-step1
+```
+
+### IDE debugger
+* Xcode
 The compiled program can be debugged by **GDB** or **LLDB**, and **Xcode**'s debugger too if on MacOS.
   1. Open Xcode
   2. **Create a new Xcode project** and then choose **Empty** project
   4. **Product** > **Scheme** > **New Scheme**, set **Info>Executable**, 
   set **Arguments>Environement Variables** : DYLD_LIBRARY_PATH=<where-lib>
   7. **Debug** > **Breakpoints** > **Create Symbolic Breakpoints**
-
-
-### Working On Windows
-* Prerequisites: [Git Bash](https://git-scm.com/downloads)
-* Configure Nore:
-```sh
-# go into your working directory
-
-# configurate bash environment
-$ bash <(curl https://raw.githubusercontent.com/junjiemars/kit/master/ul/setup-bash.sh)
-
-# renew bash environemnt
-$ . ~/.bashrc
-
-# <where> to put nore down, PREFIX is optional
-$ [PREFIX=<where>] bash <(curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.sh)
-```
-* Play
-```sh
-# open cmd window first, and then execute vsvars32.bat 
-# or open Developer Command Prompt of VS2015 directly
-CMD> %VS140COMNTOOLS%\vsvars32.bat
-CMD> bash
-
-# play with Nore
-# CC=cl, if you use Microsoft C compiler
-$ [CC=cl] ./configure --has-<what>
-$ make
-$ make install
-```
-* Debug
+* Visual Studio
   1. Open **Visual Studio**
   2. **File** > Open **Project/Solution** and then select **EXE project files**
   3. Select your **exe** file 
