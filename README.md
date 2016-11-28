@@ -127,7 +127,7 @@ $ ./configure --with-verbose
 CMD> %USERPROFILE%\.vs-inc.bat
 CMD> bash
 
-$ cd /d/nore_lessons
+$ cd -d /d/nore_lessons
 $ ./configure --has-step1
 ```
 
