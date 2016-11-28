@@ -20,13 +20,13 @@ The older [Autotools](https://www.gnu.org/software/automake/manual/html_node/Aut
 
 **Nore** try to find out another way, use everything that you had learned before: shell, shell script, make and makefile to build C code on varied platforms.
 
-Always keep the following rules in mind:
+Always keep the following three rules in mind:
 * Keep classic workflow: configure, make, make install.
 * Keep things simple: only shell and make.
 * Keep controls on everything and everything can be hacked if neccessary.
 
 
-**Nore** build a set of basic rules first then let the individual units (call it **stick**) to build itself, it is a up to bottom and then bottom to up style. There should be some basic rules which face to varied building environments. And there must be allowed that individual units which can decide how to build itself base on the former basic rule or not.
+**Nore** build a set of basic rules first then let the individual units (call it **stick**) to build itself, it is a up-bottom and then bottom-up style. There should be some basic rules which face to varied building environments. And there must be allowed that individual units which can decide how to build itself base on the former basic rule or not.
 
 What about **Shell** and **Make**: Make drived by shell, Make controls building rules. So the natural way is: shell controls the basic rules which use to build the basic Makefiles. Then, let **Make** play with **sticks**'s Makefiles, let **stick**'s **configure** play in bottom to up style.
 
