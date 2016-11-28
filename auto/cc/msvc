@@ -149,10 +149,15 @@ nm_long_cont='
 	'
 
 # preprocess
-if [ ".$CPP" = "." ]; then
+if [ "." = ".$CPP" ]; then
   # to file
 	#CPP="\$(CC) -P"
 
   # to stdout
   CPP="\$(CC) -E"
+fi
+
+# cl has no verbose option
+if [ ".-v" = ".$NM_VERBOSE" ]; then
+	NM_VERBOSE=
 fi
