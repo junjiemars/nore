@@ -162,10 +162,11 @@ if [ "." = ".$CPP" ]; then
   CPP="\$(CC) -E"
 fi
 
+# assembly
+[ "." = ".$CAS" ] && CAS="\$(CC)"
+
 # assembler
-if [ "." = ".$AS" ]; then
-	AS="ml"
-fi
+[ "." = ".$AS" ] && AS="ml"
 
 # cl has no verbose option
 if [ ".-v" = ".$NM_VERBOSE" ]; then

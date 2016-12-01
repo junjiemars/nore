@@ -1,8 +1,8 @@
 
 # cc/conf
 
-CPP="\$(CC) -E"
-CAS="\$(CC) -S"
+CPP=
+CAS=
 
 AS="\$(CC)"
 LINK="\$(CC)"
