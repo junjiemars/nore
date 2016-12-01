@@ -162,6 +162,11 @@ if [ "." = ".$CPP" ]; then
   CPP="\$(CC) -E"
 fi
 
+# assembler
+if [ ".$ASM" = "." ]; then
+	ASM="\$(CC)"
+fi
+
 # cl has no verbose option
 if [ ".-v" = ".$NM_VERBOSE" ]; then
 	NM_VERBOSE=
