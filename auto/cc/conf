@@ -4,7 +4,7 @@
 CPP=
 CAS=
 
-AS="\$(CC)"
+AS=
 LINK="\$(CC)"
 
 CFLAGS=
