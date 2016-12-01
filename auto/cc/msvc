@@ -163,8 +163,8 @@ if [ "." = ".$CPP" ]; then
 fi
 
 # assembler
-if [ ".$ASM" = "." ]; then
-	ASM="\$(CC)"
+if [ "." = ".$AS" ]; then
+	AS="ml"
 fi
 
 # cl has no verbose option

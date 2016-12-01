@@ -21,13 +21,3 @@ nm_debug_opt=${nm_debug_opt:-"-g"}
 # warnings
 nm_warn_opt=${nm_warn_opt:-"-Wall -Werror -Wextra -Wpointer-arith -Wconditional-uninitialized -Wno-unused-parameter"}
 
-# preprocess
-if [ ".$CPP" = "." ]; then
-	CPP="\$(CC) -E"
-fi
-
-# assembler
-if [ ".$ASM" = "." ]; then
-  ASM="\$(CC) -S"
-fi
-

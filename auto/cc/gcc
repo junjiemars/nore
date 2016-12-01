@@ -155,13 +155,3 @@ esac
 # stop on warning
 NM_CC_OPT="${NM_CC_OPT:+$NM_CC_OPT }-Werror"
 
-# preprocess
-if [ ".$CPP" = "." ]; then
-	CPP="\$(CC) -E"
-fi
-
-# assembler
-if [ ".$ASM" = "." ]; then
-  ASM="\$(CC) -S"
-fi
-

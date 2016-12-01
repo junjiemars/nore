@@ -12,7 +12,10 @@ NM_PID_PATH=
 
 CC=${CC:-cc}
 CPP=
-ASM=
+CAS=
+AS=
+LINK=
+
 NM_OBJS=objs
 NM_SRC=src
 

@@ -1,11 +1,17 @@
 
 # cc/conf
 
+CPP="\$(CC) -E"
+CAS="\$(CC) -S"
+
+AS="\$(CC)"
 LINK="\$(CC)"
 
 CFLAGS=
 LFLAGS=
 LDFLAGS=
+ASFLAGS=
+
 INC=
 LDLIBS=
 
