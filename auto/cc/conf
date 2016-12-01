@@ -20,6 +20,7 @@ obj_out="-o "
 bin_out="-o "
 cpp_out="-o "
 asm_out="-o "
+
 obj_ext=".o"
 bin_ext=
 cpp_ext=".i"

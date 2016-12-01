@@ -29,9 +29,14 @@ nm_warn_opt=${nm_warn_opt:-"-W4 -WX -nologo"}
 # pic
 nm_pic_opt=
 
+# output options
 obj_out="-Fo"
 bin_out="-Fe"
+asm_out="-FA"
+
+# extensions
 cpp_ext=".c"
+asm_ext=".asm"
 obj_ext=".obj"
 mod_ext=".dll"
 bin_ext=".exe"
@@ -161,3 +166,4 @@ fi
 if [ ".-v" = ".$NM_VERBOSE" ]; then
 	NM_VERBOSE=
 fi
+
