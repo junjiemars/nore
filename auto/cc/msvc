@@ -32,7 +32,7 @@ nm_pic_opt=
 # output options
 obj_out="-Fo"
 bin_out="-Fe"
-asm_out="-FA"
+asm_out="-Fa"
 
 # extensions
 cpp_ext=".c"
