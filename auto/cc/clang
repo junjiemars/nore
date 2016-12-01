@@ -24,4 +24,8 @@ nm_warn_opt=${nm_warn_opt:-"-Wall -Werror -Wextra -Wpointer-arith -Wconditional-
 # preprocess
 if [ ".$CPP" = "." ]; then
 	CPP="\$(CC) -E"
+f
+# assembler
+if [ ".$ASM" = "." ]; then
+  ASM="\$(CC) -S"
 fi

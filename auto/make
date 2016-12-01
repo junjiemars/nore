@@ -14,6 +14,7 @@ cat << END > $NM_MAKEFILE
 
 CC = $CC
 CPP = $CPP
+ASM = $ASM
 LINK = $LINK
 
 CPPFLAGS = $CPPFLAGS
