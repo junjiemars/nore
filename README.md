@@ -112,8 +112,11 @@ $ ./configure --with-verbose
 CMD> %USERPROFILE%\.vs-inc.bat
 CMD> bash
 
-$ cd -d /d/nore_lessons
-$ ./configure --has-step1
+$ cd /d/nore_lessons
+# update nore?
+$ ./configure --update
+
+$ ./configure --has-<what>
 ```
 
 ### IDE debugger
