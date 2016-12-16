@@ -19,19 +19,31 @@ AS = $AS
 LINK = $LINK
 
 CPPFLAGS = $CPPFLAGS
-CFLAGS = ${NM_VERBOSE:+$NM_VERBOSE }$CFLAGS
-LFLAGS = ${NM_VERBOSE:+$NM_VERBOSE }$LFLAGS
-LDFLAGS = ${NM_VERBOSE:+$NM_VERBOSE }$LDFLAGS
-ASFLAGS = ${NM_VERBOSE:+$NM_VERBOSE }$ASFLAGS
+CFLAGS = $CFLAGS
+LFLAGS = $LFLAGS
+LDFLAGS = $LDFLAGS
+ASFLAGS = $ASFLAGS
 
 LDLIBS = ${LDLIBS:+$LDLIBS }-L$NM_OBJS/lib
 
 INC = ${INC:+$INC }-I$NM_OBJS -I$NM_OBJS/inc 
 
+nm_debug_opt = $nm_debug_opt
+nm_optimize_opt = $nm_optimize_opt
+nm_warn_opt = $nm_warn_opt
+nm_verbose_opt = $nm_verbose_opt
+
 nm_pic_opt = $nm_pic_opt
+nm_cpu_opt = $nm_cpu_opt
 
 # path sep
 nm_p = $nm_p
+
+# nore options
+NM_DEBUG = $NM_DEBUG
+NM_OPTIMIZE = $NM_OPTIMIZE
+NM_WARN = $NM_WARN
+NM_VERBOSE = $NM_VERBOSE
 
 # platform
 NM_SYSTEM = $NM_SYSTEM

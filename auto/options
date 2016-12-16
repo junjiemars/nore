@@ -10,11 +10,13 @@ NM_INC_PATH=
 NM_LOG_PATH=
 NM_PID_PATH=
 
-CC=${CC:-cc}
+CC=${CC:-"cc"}
 CPP=
 CAS=
 AS=
 LINK=
+
+CC_TEST_FLAGS=
 
 NM_OBJS=objs
 NM_SRC=src
@@ -26,7 +28,7 @@ NM_VERBOSE=
 
 NM_CC_OPT=
 NM_LD_OPT=
-CPU=NO
+CPU=${CPU}
 
 NM_RPATH=NO
 
@@ -70,7 +72,7 @@ do
 		--without-debug)                 NM_DEBUG=NO                ;;
 		--without-warn)                  NM_WARN=NO                 ;;
 		--without-optimize)              NM_OPTIMIZE=NO             ;;
-		--with-verbose)                  NM_VERBOSE=-v              ;;
+		--with-verbose)                  NM_VERBOSE=YES             ;;
 		--has-*)                         NM_HAS_STICKS+=($option)   ;;
     
     *)

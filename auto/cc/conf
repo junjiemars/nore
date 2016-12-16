@@ -16,9 +16,12 @@ INC=
 LDLIBS=
 
 nm_pic_opt=
+nm_cpu_opt=
+
 nm_debug_opt=
 nm_optimize_opt=
 nm_warn_opt=
+nm_verbose_opt=
 
 nm_p=":"
 
@@ -39,50 +42,47 @@ mod_ext=".so"
 have=`echo CC_$CC_NAME | tr [:lower:] [:upper:]` . ${NM_HOME}auto/have_headers
 
 
-if test -n "$CFLAGS"; then
+case $CC_NAME in
+  gcc)
+    . ${NM_HOME}auto/cc/gcc
+  ;;
 
-	CC_TEST_FLAGS="$CFLAGS $NM_CC_OPT"
+  clang)
+    . ${NM_HOME}auto/cc/clang
+  ;;
 
-else
+  msvc*)
+    . ${NM_HOME}auto/cc/msvc
+	;;
+esac
 
-  case $CC_NAME in
-    gcc)
-      . ${NM_HOME}auto/cc/gcc
-    ;;
-
-    clang)
-      . ${NM_HOME}auto/cc/clang
-    ;;
-
-    msvc*)
-      . ${NM_HOME}auto/cc/msvc
-		;;
-  esac
-
-	CC_TEST_FLAGS="$CC_TEST_FLAGS $NM_CC_OPT"
-
-fi
 
 CC_TEST_LD_OPT="$NM_LD_OPT"
 
 # debug option
 if [ "$NM_DEBUG" = "YES" ]; then
-	NM_CC_OPT=${NM_CC_OPT:+$NM_CC_OPT }$nm_debug_opt
+	CFLAGS=${CFLAGS:+$CFLAGS }$nm_debug_opt
 fi
 
 # optimize option
 if [ "$NM_OPTIMIZE" = "YES" ]; then
-	NM_CC_OPT=${NM_CC_OPT:+$NM_CC_OPT }$nm_optimize_opt
+	CFLAGS=${CFLAGS:+$CFLAGS }$nm_optimize_opt
 fi
 
 # warn option
 if [ "$NM_WARN" = "YES" ]; then
-	NM_CC_OPT=${NM_CC_OPT:+$NM_CC_OPT }$nm_warn_opt
+	CFLAGS=${CFLAGS:+$CFLAGS }$nm_warn_opt
 fi
 
-CFLAGS=${CFLAGS:+$CFLAGS }$NM_CC_OPT
-LFLAGS=${LFLAGS:+$LFLAGS }$NM_CC_OPT
+# verbose option
+if [ "$NM_VERBOSE" = "YES" ]; then
+	CFLAGS=${CFLAGS:+$CFLAGS }$nm_verbose_opt
+fi
+
+CFLAGS=${CFLAGS:+$CFLAGS }$nm_cpu_opt
+LFLAGS=${CFLAGS}
 LDFLAGS=${LDFLAGS:+$LDFLAGS }$nm_pic_opt
+
 
 # independent
 

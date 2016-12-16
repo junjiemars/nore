@@ -5,8 +5,8 @@ math_binout := $(bin_path)math$(bin_ext)
 math: geo $(bin_path)math$(bin_ext)
 
 math_cflags = $(CFLAGS) $(INC)
-ifeq ($(CC_NAME),gcc)
-	math_cflags += -std=c99
+ifeq ($(CC_NAME), gcc)
+	math_cflags += -std=c99 -Wno-error=strict-aliasing
 endif
 
 math_lflags += $(LFLAGS) $(LDLIBS)

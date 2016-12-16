@@ -18,7 +18,7 @@ fi
 
 if test -n "$nm_feature_path"; then
   for nm_tmp in $nm_feature_path; do
-		nm_feature_inc_path="$nm_feature_inc_path -I $nm_tmp"
+		nm_feature_inc_path="${nm_feature_inc_path:+$nm_feature_inc_path }-I $nm_tmp"
   done
 fi
 
@@ -41,7 +41,7 @@ if [ "$CC_NAME" = "msvc" ]; then
 	             $obj_out$NM_AUTOTEST$obj_ext"
 fi
 
-nm_test="$CC $CC_TEST_FLAGS $CC_AUX_FLAGS $nm_feature_inc_path \
+nm_test="$CC $CC_TEST_FLAGS $nm_feature_inc_path \
 					$nm_test_out $NM_AUTOTEST.c \
 					$CC_TEST_LD_OPT $nm_feature_libs"
 

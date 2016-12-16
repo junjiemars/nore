@@ -18,23 +18,24 @@ have=NM_COMPILER value="\"gcc $NM_GCC_VER\"" . ${NM_HOME}auto/define
 [ "." = ".$AS" ] && AS="\$(CC)"
 
 
-# linker :deferred to auto/os
-#LDFLAGS="-shared"
-
-# optimizations
-nm_optimize_opt=${nm_optimize_opt:-"-O"}
+# optimization
+nm_optimize_opt=${nm_optimize_opt:-"-O2"}
 
 # debug
 nm_debug_opt=${nm_debug_opt:-"-g"}
 
-# warnings
+# warning
 nm_warn_opt=${nm_warn_opt:-"-W -Wall -Wpointer-arith"}
+
+# verbose
+nm_verbose_opt=${nm_verbose_opt:-"-v"}
 
 # pic
 nm_pic_opt=${nm_pic_opt:-"-fPIC"}
 
+# cpu/arch
+nm_cpu_opt=
 
-CC_TEST_FLAGS="-pipe"
 
 nm_feature="gcc -pipe switch"
 nm_feature_name=
@@ -48,7 +49,7 @@ nm_feature_test=
 CC_TEST_FLAGS=
 
 if [ $nm_found = yes ]; then
-	PIPE="-pipe"
+	CC_TEST_FLAGS="-pipe"
 fi
 
 
@@ -56,65 +57,62 @@ case "$NM_MACHINE" in
 
   sun4u | sun4v | sparc | sparc64 )
     # "-mcpu=v9" enables the "casa" assembler instruction
-    NM_CC_OPT="$NM_CC_OPT -mcpu=v9"
+		nm_cpu_opt="${nm_cpu_opt:+$nm_cpu_opt }-mcpu=v9"
   ;;
 
 esac
 
 
-
-#NM_CC_OPT="$NM_CC_OPT -fomit-frame-pointer"
-
 case $CPU in
   pentium)
     # optimize for Pentium and Athlon
-    CPU_OPT="-march=pentium"
+		nm_cpu_opt="${nm_cpu_opt:+$nm_cpu_opt }-march=pentium"
     NM_CPU_CACHE_LINE=32
   ;;
 
   pentiumpro | pentium3)
     # optimize for Pentium Pro, Pentium II and Pentium III
-    CPU_OPT="-march=pentiumpro"
+		nm_cpu_opt="${nm_cpu_opt:+$nm_cpu_opt }-march=pentiumpro"
     NM_CPU_CACHE_LINE=32
   ;;
 
   pentium4)
     # optimize for Pentium 4, gcc 3.x
-    CPU_OPT="-march=pentium4"
+		nm_cpu_opt="${nm_cpu_opt:+$nm_cpu_opt }-march=pentium4"
     NM_CPU_CACHE_LINE=128
   ;;
 
   athlon)
     # optimize for Athlon, gcc 3.x
-    CPU_OPT="-march=athlon"
+		nm_cpu_opt="${nm_cpu_opt:+$nm_cpu_opt }-march=athlon"
     NM_CPU_CACHE_LINE=64
   ;;
 
   opteron)
     # optimize for Opteron, gcc 3.x
-    CPU_OPT="-march=opteron"
+		nm_cpu_opt="${nm_cpu_opt:+$nm_cpu_opt }-march=opteron"
     NM_CPU_CACHE_LINE=64
   ;;
 
   sparc32)
     # build 32-bit UltraSparc binary
-    CPU_OPT="-m32"
+		nm_cpu_opt="${nm_cpu_opt:+$nm_cpu_opt }-m32"
     CORE_LINK="$CORE_LINK -m32"
     NM_CPU_CACHE_LINE=64
   ;;
 
   sparc64)
     # build 64-bit UltraSparc binary
-    CPU_OPT="-m64"
+		nm_cpu_opt="${nm_cpu_opt:+$nm_cpu_opt }-m64"
     CORE_LINK="$CORE_LINK -m64"
     NM_CPU_CACHE_LINE=64
   ;;
 
    ppc64)
     # build 64-bit PowerPC binary
-    CPU_OPT="-m64"
-    CPU_OPT="$CPU_OPT -falign-functions=32 -falign-labels=32"
-    CPU_OPT="$CPU_OPT -falign-loops=32 -falign-jumps=32"
+		nm_cpu_opt="${nm_cpu_opt:+$nm_cpu_opt }-m64"
+		nm_cpu_opt="${nm_cpu_opt:+$nm_cpu_opt }-falign-functions=32 -falign-labels=32"
+		nm_cpu_opt="${nm_cpu_opt:+$nm_cpu_opt }-falign-loops=32 -falign-jumps=32"
     CORE_LINK="$CORE_LINK -m64"
     NM_CPU_CACHE_LINE=128
   ;;
@@ -122,45 +120,39 @@ case $CPU in
 esac
 
 
-CC_AUX_FLAGS="$CC_AUX_FLAGS $CPU_OPT"
-
 case "$NM_GCC_VER" in
   2.7*)
     # batch build
-    CPU_OPT=
+		nm_cpu_opt=
   ;;
 esac
 
 
-NM_CC_OPT="${NM_CC_OPT:+$NM_CC_OPT }${PIPE:+$PIPE }$CPU_OPT"
+CC_TEST_FLAGS="${CC_TEST_FLAGS:+$CC_TEST_FLAGS }$nm_cpu_opt"
 
 
 # warnings
 
-#NM_CC_OPT="${NM_CC_OPT:+$NM_CC_OPT }-Wconversion"
-#NM_CC_OPT="${NM_CC_OPT:+$NM_CC_OPT }-Winline"
-#NM_CC_OPT="${NM_CC_OPT:+$NM_CC_OPT }-Wmissing-prototypes"
-
 case "$NM_GCC_VER" in
   2.*)
     # we have a lot of the unused function arguments
-    NM_CC_OPT="${NM_CC_OPT:+$NM_CC_OPT }-Wno-unused"
+    nm_warn_opt="${nm_warn_opt:+$nm_warn_opt }-Wno-unused"
   ;;
 
   *)
     # we have a lot of the unused function arguments
-    NM_CC_OPT="${NM_CC_OPT:+$NM_CC_OPT }-Wno-unused-parameter"
+    nm_warn_opt="${nm_warn_opt:+$nm_warn_opt }-Wno-unused-parameter"
     # 4.2.1 shows the warning in wrong places
-    #NM_CC_OPT="${NM_CC_OPT:+$NM_CC_OPT }-Wunreachable-code"
+    #nm_warn_opt="${nm_warn_opt:+$nm_warn_opt }-Wunreachable-code"
 
     # deprecated system OpenSSL library on OS X
     if [ "$NM_SYSTEM" = "Darwin" ]; then
-      NM_CC_OPT="${NM_CC_OPT:+$NM_CC_OPT }-Wno-deprecated-declarations"
+      nm_warn_opt="${nm_warn_opt:+$nm_warn_opt }-Wno-deprecated-declarations"
     fi
   ;;
 esac
 
 
 # stop on warning
-NM_CC_OPT="${NM_CC_OPT:+$NM_CC_OPT }-Werror"
+nm_warn_opt="${nm_warn_opt:+$nm_warn_opt }-Werror"
 
