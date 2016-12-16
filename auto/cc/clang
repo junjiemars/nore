@@ -17,11 +17,9 @@ have=NM_COMPILER value="\"clang $NM_CLANG_VER\"" . ${NM_HOME}auto/define
 # assembler
 [ "." = ".$AS" ] && AS="\$(CC)"
 
-# link :deferred to auto/os
-#LDFLAGS="-shared"
 
 # optimizations
-nm_optimize_opt=${nm_optimize_opt:-"-O"}
+nm_optimize_opt=${nm_optimize_opt:-"-O2"}
 
 # debug
 nm_debug_opt=${nm_debug_opt:-"-g"}
@@ -29,3 +27,4 @@ nm_debug_opt=${nm_debug_opt:-"-g"}
 # warnings
 nm_warn_opt=${nm_warn_opt:-"-Wall -Werror -Wextra -Wpointer-arith -Wconditional-uninitialized -Wno-unused-parameter"}
 
+nm_verbose_opt=${nm_verbose_opt:-"-v"}
