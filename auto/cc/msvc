@@ -13,6 +13,22 @@ nm_msvc_ver=`echo $NM_MSVC_VER | sed -e 's/^\([0-9]*\).*/\1/'`
 
 
 
+# preprocess
+if [ "." = ".$CPP" ]; then
+  # to file
+	#CPP="\$(CC) -P"
+
+  # to stdout
+  CPP="\$(CC) -E"
+fi
+
+# assembly
+[ "." = ".$CAS" ] && CAS="\$(CC)"
+
+# assembler
+[ "." = ".$AS" ] && AS="ml"
+
+
 LDFLAGS=${LDFLAGS:-"-LD"}
 
 
@@ -24,6 +40,9 @@ nm_debug_opt=${nm_debug_opt:-"-Z7"}
 
 # warnings
 nm_warn_opt=${nm_warn_opt:-"-W4 -WX -nologo"}
+
+# cl has no verbose option
+nm_verbose_opt=${nm_verbose_opt:-""}
 
 
 # pic
@@ -50,61 +69,62 @@ bin_ext=".exe"
 # MSVC 2015 (14.0)                        cl 19.00
 
 
-
-
-
 # optimizations
 
 
 # enable global optimization
-#NM_CC_OPT="${NM_CC_OPT:+$NM_CC_OPT }-Og"
+#nm_optimize_opt="${nm_optimize_opt:+$nm_optimize_opt }-Og"
+
 # enable intrinsic functions
-#NM_CC_OPT="${NM_CC_OPT:+$NM_CC_OPT }-Oi"
+#nm_optimize_opt="${nm_optimize_opt:+$nm_optimize_opt }-Oi"
 
 # disable inline expansion
-#NM_CC_OPT="${NM_CC_OPT:+$NM_CC_OPT }-Ob0"
+#nm_optimize_opt="${nm_optimize_opt:+$nm_optimize_opt }-Ob0"
+
 # explicit inline expansion
-#NM_CC_OPT="${NM_CC_OPT:+$NM_CC_OPT }-Ob1"
+#nm_optimize_opt="${nm_optimize_opt:+$nm_optimize_opt }-Ob1"
+
 # explicit and implicit inline expansion
-#NM_CC_OPT="${NM_CC_OPT:+$NM_CC_OPT }-Ob2"
+#nm_optimize_opt="${nm_optimize_opt:+$nm_optimize_opt }-Ob2"
 
 # enable frame pointer omission
-#NM_CC_OPT="${NM_CC_OPT:+$NM_CC_OPT }-Oy"
+#nm_optimize_opt="${nm_optimize_opt:+$nm_optimize_opt }-Oy"
+
 # disable stack checking calls
-#NM_CC_OPT="${NM_CC_OPT:+$NM_CC_OPT }-Gs"
+#nm_optimize_opt="${nm_optimize_opt:+$nm_optimize_opt }-Gs"
 
 # pools strings as read/write
-#NM_CC_OPT="${NM_CC_OPT:+$NM_CC_OPT }-Gf"
+#nm_optimize_opt="${nm_optimize_opt:+$nm_optimize_opt }-Gf"
+
 # pools strings as read-only
-#NM_CC_OPT="${NM_CC_OPT:+$NM_CC_OPT }-GF"
+#nm_optimize_opt="${nm_optimize_opt:+$nm_optimize_opt }-GF"
 
 
 case $CPU in
     pentium)
         # optimize for Pentium and Athlon
-        CPU_OPT="-G5"
+        nm_cpu_opt="-G5"
     ;;
 
     pentiumpro)
         # optimize for Pentium Pro, Pentium II and Pentium III
-        CPU_OPT="-G6"
+        nm_cpu_opt="-G6"
     ;;
 
     pentium4)
         # optimize for Pentium 4, MSVC 7
-        CPU_OPT="-G7"
+        nm_cpu_opt="-G7"
     ;;
 esac
 
+
 # __cdecl, default, must be used with OpenSSL, md5 asm, and sha1 asm
-#CPU_OPT="${CPU_OPT:+$CPU_OPT }-Gd"
+#nm_cpu_opt="${nm_cpu_opt:+$nm_cpu_opt }-Gd"
 # __stdcall
-#CPU_OPT="${CPU_OPT:+$CPU_OPT }-Gz"
+#nm_cpu_opt="${nm_cpu_opt:+$nm_cpu_opt }-Gz"
 # __fastcall
-#CPU_OPT="${CPU_OPT:+$CPU_OPT }-Gr"
+#nm_cpu_opt="${nm_cpu_opt:+$nm_cpu_opt }-Gr"
 
-
-NM_CC_OPT="${NM_CC_OPT:+$NM_CC_OPT }$CPU_OPT"
 
 
 # the link flags
@@ -152,24 +172,4 @@ nm_long_regex_cont=' \
 	'
 nm_long_cont='
 	'
-
-# preprocess
-if [ "." = ".$CPP" ]; then
-  # to file
-	#CPP="\$(CC) -P"
-
-  # to stdout
-  CPP="\$(CC) -E"
-fi
-
-# assembly
-[ "." = ".$CAS" ] && CAS="\$(CC)"
-
-# assembler
-[ "." = ".$AS" ] && AS="ml"
-
-# cl has no verbose option
-if [ ".-v" = ".$NM_VERBOSE" ]; then
-	NM_VERBOSE=
-fi
 
