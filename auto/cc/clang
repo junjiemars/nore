@@ -25,6 +25,6 @@ nm_optimize_opt=${nm_optimize_opt:-"-O2"}
 nm_debug_opt=${nm_debug_opt:-"-g"}
 
 # warnings
-nm_warn_opt=${nm_warn_opt:-"-Wall -Werror -Wextra -Wpointer-arith -Wconditional-uninitialized -Wno-unused-parameter"}
+nm_warn_opt=${nm_warn_opt:-"-Wall -Werror -Wextra -Wpointer-arith -Wconditional-uninitialized -Wunused-parameter"}
 
 nm_verbose_opt=${nm_verbose_opt:-"-v"}
