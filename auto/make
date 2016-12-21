@@ -28,9 +28,10 @@ LDLIBS = ${LDLIBS:+$LDLIBS }-L$NM_OBJS/lib
 
 INC = ${INC:+$INC }-I$NM_OBJS -I$NM_OBJS/inc 
 
-nm_debug_opt = $nm_debug_opt
+nm_symbol_opt = $nm_symbol_opt
 nm_optimize_opt = $nm_optimize_opt
 nm_warn_opt = $nm_warn_opt
+nm_debug_opt = $nm_debug_opt
 nm_verbose_opt = $nm_verbose_opt
 
 nm_pic_opt = $nm_pic_opt
@@ -40,9 +41,10 @@ nm_cpu_opt = $nm_cpu_opt
 nm_p = $nm_p
 
 # nore options
-NM_DEBUG = $NM_DEBUG
+NM_SYMBOL = $NM_SYMBOL
 NM_OPTIMIZE = $NM_OPTIMIZE
 NM_WARN = $NM_WARN
+NM_DEBUG = $NM_DEBUG
 NM_VERBOSE = $NM_VERBOSE
 
 # platform

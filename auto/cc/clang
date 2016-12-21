@@ -21,8 +21,8 @@ have=NM_COMPILER value="\"clang $NM_CLANG_VER\"" . ${NM_HOME}auto/define
 # optimizations
 nm_optimize_opt=${nm_optimize_opt:-"-O2"}
 
-# debug
-nm_debug_opt=${nm_debug_opt:-"-g"}
+# symbol 
+nm_symbol_opt=${nm_symbol_opt:-"-g"}
 
 # warnings
 nm_warn_opt=${nm_warn_opt:-"-Wall -Werror -Wextra -Wpointer-arith -Wconditional-uninitialized -Wunused-parameter"}

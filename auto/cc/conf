@@ -18,10 +18,11 @@ LDLIBS=
 nm_pic_opt=
 nm_cpu_opt=
 
-nm_debug_opt=
+nm_symbol_opt=
 nm_optimize_opt=
 nm_warn_opt=
 nm_verbose_opt=
+nm_debug_opt=
 
 nm_p=":"
 
@@ -59,9 +60,9 @@ esac
 
 CC_TEST_LD_OPT="$NM_LD_OPT"
 
-# debug option
-if [ "$NM_DEBUG" = "YES" ]; then
-	CFLAGS=${CFLAGS:+$CFLAGS }$nm_debug_opt
+# symbol option
+if [ "$NM_SYMBOL" = "YES" ]; then
+	CFLAGS=${CFLAGS:+$CFLAGS }$nm_symbol_opt
 fi
 
 # optimize option
@@ -72,6 +73,12 @@ fi
 # warn option
 if [ "$NM_WARN" = "YES" ]; then
 	CFLAGS=${CFLAGS:+$CFLAGS }$nm_warn_opt
+fi
+
+# debug option
+if [ "$NM_DEBUG" = "NO" ]; then
+	nm_debug_opt='-DNDEBUG=1'
+	CFLAGS=${CFLAGS:+$CFLAGS }$nm_debug_opt
 fi
 
 # verbose option
