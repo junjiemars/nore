@@ -40,6 +40,8 @@ nm_cpu_opt = $nm_cpu_opt
 # path sep
 nm_p = $nm_p
 
+src_root = ${NM_SRC%/}/
+
 # nore options
 NM_SYMBOL = $NM_SYMBOL
 NM_OPTIMIZE = $NM_OPTIMIZE
