@@ -41,7 +41,7 @@ if [ "$CC_NAME" = "msvc" ]; then
 	             $obj_out$NM_AUTOTEST$obj_ext"
 fi
 
-nm_test="$CC $nm_feature_cflags $CC_TEST_FLAGS $nm_feature_inc_path \
+nm_test="$CC $nm_feature_flags $CC_TEST_FLAGS $nm_feature_inc_path \
 					$nm_test_out $NM_AUTOTEST.c \
 					$CC_TEST_LD_OPT $nm_feature_libs"
 
