@@ -107,7 +107,7 @@ nm_feature_test='int i=0x11223344;
 . ${NM_HOME}auto/feature
 
 
-nm_feature="C11 type-generic expression"
+nm_feature="c11 type-generic expression"
 nm_feature_name="nm_have_generic_keyword"
 nm_feature_run=no
 nm_feature_incs="#include <math.h>
@@ -119,7 +119,7 @@ nm_feature_libs=
 nm_feature_test="long double x=cbrt(3.1415L);double y=cbrt(2.718);"
 . ${NM_HOME}auto/feature
 
-nm_feature="C99 variadic macros"
+nm_feature="c99 variadic macros"
 nm_feature_name="nm_have_variadic_macros"
 nm_feature_run=yes
 nm_feature_incs="#include <stdio.h>
@@ -132,7 +132,7 @@ nm_feature_test="char  buf[30]; buf[0] = '0';
 . ${NM_HOME}auto/feature
 
 
-nm_feature="C99 stdint.h header file"
+nm_feature="c99 stdint.h header file"
 nm_feature_name="nm_have_stdint_h"
 nm_feature_run=no
 nm_feature_incs="#include <stdint.h>"
