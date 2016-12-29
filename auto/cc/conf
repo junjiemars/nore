@@ -120,7 +120,7 @@ nm_feature_test="long double x=cbrt(3.1415L);double y=cbrt(2.718);"
 . ${NM_HOME}auto/feature
 
 nm_feature="c99 variadic macro"
-nm_feature_name="nm_have_variadic_macros"
+nm_feature_name="nm_have_variadic_macro"
 nm_feature_run=yes
 nm_feature_incs="#include <stdio.h>
 #define var(dummy, ...)  sprintf(__VA_ARGS__)"
