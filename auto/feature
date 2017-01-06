@@ -36,10 +36,6 @@ END
 
 
 nm_test_out=$bin_out$NM_AUTOTEST
-if [ "$CC_NAME" = "msvc" ]; then
-	nm_test_out="$bin_out$NM_AUTOTEST$bin_ext \
-	             $obj_out$NM_AUTOTEST$obj_ext"
-fi
 
 nm_test="$CC $nm_feature_flags $CC_TEST_FLAGS $nm_feature_inc_path \
 					$nm_test_out $NM_AUTOTEST.c \
@@ -125,3 +121,4 @@ else
 fi
 
 rm -rf $NM_AUTOTEST*
+[ -f "autotest.obj" ] && rm "autotest.obj"

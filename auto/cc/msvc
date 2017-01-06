@@ -50,7 +50,7 @@ nm_pic_opt=
 
 # output options
 obj_out="-Fo"
-bin_out="-Fe"
+bin_out="-Fo$NM_OBJS/tmp/ -Fe"
 asm_out="-Fa"
 
 # extensions
