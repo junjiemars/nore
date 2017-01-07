@@ -45,13 +45,16 @@ nm_warn_opt=${nm_warn_opt:-"-W4 -WX -nologo"}
 nm_verbose_opt=${nm_verbose_opt:-""}
 
 
-# pic
+# pic option
 nm_pic_opt=
 
 # output options
 obj_out="-Fo"
-bin_out="-Fo$NM_OBJS/tmp/ -Fe"
+bin_out="-Fe"
 asm_out="-Fa"
+
+# auto object output option
+auto_out=$obj_out
 
 # extensions
 cpp_ext=".c"
