@@ -93,7 +93,7 @@ NORE_GITHUB=${GITHUB_H}/nore.git
 NORE_L_BOOT=\$NORE_PREFIX/bootstrap.sh
 NORE_R_BOOT=${GITHUB_R}/nore/master/bootstrap.sh
 NORE_L_CONF=\${NORE_PREFIX}/auto/configure
-CTAGS=\"\${CTAGS:-ctags}\"
+CTAGS="\${CTAGS:-ctags}"
 
 
 cd "\`dirname \${BASH_SOURCE}\`" && \\
@@ -109,7 +109,7 @@ if [ 1 -le \$# ]; then
 	    #NORE_ARGS=\${@:2}
 	  	;;
 		.-t*|.--tags*)
-			\${CTAGS} --language-force=C --C-kinds=+px --extra=+fq -R \"\${@:2}\"
+			\${CTAGS} --language-force=C --C-kinds=+px --extra=+fq -R "\${@:2}"
 			;;
 		.*)
 			if [ -f \$NORE_L_CONF ]; then
