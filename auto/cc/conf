@@ -65,10 +65,19 @@ if [ "$NM_SYMBOL" = "YES" ]; then
 	CFLAGS=${CFLAGS:+$CFLAGS }$nm_symbol_opt
 fi
 
+
 # optimize option
-if [ "$NM_OPTIMIZE" = "YES" ]; then
-	CFLAGS=${CFLAGS:+$CFLAGS }$nm_optimize_opt
-fi
+case "$NM_OPTIMIZE" in
+	-O*)
+		CFLAGS=${CFLAGS:+$CFLAGS }$NM_OPTIMIZE
+		;;
+	NO)
+		;;
+	YES|*)
+		CFLAGS=${CFLAGS:+$CFLAGS }$nm_optimize_opt
+		;;
+esac
+
 
 # warn option
 if [ "$NM_WARN" = "YES" ]; then

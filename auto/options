@@ -53,30 +53,30 @@ do
   esac
   
   case "$option" in
-    --help)                          help=yes                   ;;
+    --help)                          help=yes                   	;;
     
-    --prefix=)                       NM_PREFIX="!"              ;;
-    --prefix=*)                      NM_PREFIX="$value"         ;;
-    --bin-path=*)                    NM_BIN_PATH="$value"       ;;
-    --modules-path=*)                NM_LIB_PATH="$value"  		  ;;
-    --conf-path=*)                   NM_CONF_PATH="$value"      ;;
-    --include-path=*)                NM_INC_PATH="$value"       ;;
-    --pid-path=*)                    NM_PID_PATH="$value"       ;;
-    --log-path=*)                    NM_LOG_PATH="$value"       ;;
-    --user=*)                        NM_USER="$value"           ;;
-    --group=*)                       NM_GROUP="$value"          ;;
+    --prefix=)                       NM_PREFIX="!"              	;;
+    --prefix=*)                      NM_PREFIX="$value"         	;;
+    --bin-path=*)                    NM_BIN_PATH="$value"       	;;
+    --modules-path=*)                NM_LIB_PATH="$value"  		  	;;
+    --conf-path=*)                   NM_CONF_PATH="$value"      	;;
+    --include-path=*)                NM_INC_PATH="$value"       	;;
+    --pid-path=*)                    NM_PID_PATH="$value"       	;;
+    --log-path=*)                    NM_LOG_PATH="$value"       	;;
+    --user=*)                        NM_USER="$value"           	;;
+    --group=*)                       NM_GROUP="$value"          	;;
     
-    --crossbuild=*)                  NM_PLATFORM="$value"       ;;
-    --build=*)                       NM_BUILD="$value"          ;;
-    --builddir=*)                    NM_OBJS="$value"           ;;
-    
-		--without-symbol)                NM_SYMBOL=NO               ;;
-		--without-warn)                  NM_WARN=NO                 ;;
-		--without-optimize)              NM_OPTIMIZE=NO             ;;
-		--without-debug)                 NM_DEBUG=NO               ;;
-		--with-verbose)                  NM_VERBOSE=YES             ;;
+    --crossbuild=*)                  NM_PLATFORM="$value"       	;;
+    --build=*)                       NM_BUILD="$value"          	;;
+    --builddir=*)                    NM_OBJS="$value"           	;;
 
-		--has-*)                         NM_HAS_STICKS+=($option)   ;;
+		--without-symbol)                NM_SYMBOL=NO               	;;
+		--without-warn)                  NM_WARN=NO                 	;;
+		--without-debug)                 NM_DEBUG=NO                	;;
+		--with-optimize=*)               NM_OPTIMIZE="$value"        	;;
+		--with-verbose)                  NM_VERBOSE=YES             	;;
+
+		--has-*)                         NM_HAS_STICKS+=($option)   	;;
     
     *)
       echo "$0: error: invalid option \"$option\""
@@ -110,8 +110,8 @@ cat << END
 
   --without-symbol                   disable CC generate debug symbols option
   --without-warn                     disable CC warn option 
-  --without-optimize                 disable CC optimize option 
   --without-debug                    enable release build option
+  --with-optimize=LEVEL              set CC optimize level option 
   --with-verbose                     enable verbose build option
 
   --has-*                            has [*] to do
