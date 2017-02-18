@@ -67,6 +67,7 @@ do
     --group=*)                       NM_GROUP="$value"          	;;
     
     --crossbuild=*)                  NM_PLATFORM="$value"       	;;
+    --srcdir=*)                      NM_SRC="$value"            	;;
     --build=*)                       NM_BUILD="$value"          	;;
     --builddir=*)                    NM_OBJS="$value"           	;;
 
@@ -105,6 +106,7 @@ cat << END
   --log-path=PATH                    set log pathname
 
   --crossbuild                       set cross build
+  --srcdir=DIR                       set source directory
   --build=NAME                       set build name
   --builddir=DIR                     set build directory
 
