@@ -8,7 +8,7 @@ bootstrap_path() {
 	local p="`dirname $0`"
 	local n="./.nore"
 
-	if [ -d \"${p}\" ]; then
+	if [ -d "${p}" ]; then
 		p="`( cd \"${p}\" && pwd )`"
 		if [ -z "$p" -o "/dev/fd" = "$p" ]; then
 			echo "$n"
