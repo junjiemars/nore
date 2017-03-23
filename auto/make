@@ -68,7 +68,7 @@ bin_out = $bin_out
 cpp_ext = $cpp_ext
 asm_ext = $asm_ext
 obj_ext = $obj_ext
-mod_ext = $mod_ext
+lib_ext = $lib_ext
 bin_ext = $bin_ext
 
 

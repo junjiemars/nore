@@ -1,6 +1,6 @@
 
 geo_objout := $(tmp_path)geo$(obj_ext)
-geo_libout := $(lib_path)libgeo$(mod_ext)
+geo_libout := $(lib_path)libgeo$(lib_ext)
 
 geo: $(geo_libout)
 
