@@ -13,10 +13,14 @@ mkdir -p $NM_OBJS/bin \
 asm_out=${auto_out:+"$auto_out$NM_OBJS/tmp/ "}$asm_out
 bin_out=${auto_out:+"$auto_out$NM_OBJS/tmp/ "}$bin_out
 
-NM_SRC=${NM_SRC%/}
-if [ ! -d "$NM_SRC" -a "." != "$NM_SRC" ]; then
-  NM_SRC="."
-fi
+
+for d in ${NM_SRC[@]}; do
+  if [ -d $d ]; then
+    NM_SRC=${d%/}
+    break
+  fi
+done
+
 
 cat << END > $NM_MAKEFILE
 
