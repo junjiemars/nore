@@ -40,7 +40,7 @@ lib_ext=".so"
 
 . ${NM_HOME}auto/cc/name
 
-have=`echo CC_$CC_NAME | tr [:lower:] [:upper:]` . ${NM_HOME}auto/have_headers
+have=`echo CC_$CC_NAME | tr '[:lower:]' '[:upper:]'` . ${NM_HOME}auto/have_headers
 
 
 case $CC_NAME in

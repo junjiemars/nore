@@ -33,7 +33,7 @@ if [ -x $NM_AUTOTEST ]; then
 
   echo " found"
 
-  nm_name=`echo $nm_include | tr [:lower:]/. [:upper:]__`
+  nm_name=`echo $nm_include | tr '[:lower:]/.' '[:upper:]__'`
 
   have=NM_HAVE_$nm_name . ${NM_HOME}auto/have_headers
 

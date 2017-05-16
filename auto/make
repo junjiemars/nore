@@ -95,7 +95,7 @@ for opt in "${NM_HAS_STICKS[@]}"; do
 
 	stick=`echo $opt \
 				 | sed -e 's/\ *--has-\([a-zA-Z][a-zA-Z]*\)/\1/' \
-				 | tr [:upper:] [:lower:]`
+				 | tr '[:upper:]' '[:lower:]'`
 
 	if [ -d $NM_SRC/$stick ]; then
 		nm_sticks+=($stick)
@@ -134,7 +134,7 @@ END
 
     if [ -f $stick_src/version ]; then
 			echo " + checking for $stick_src/version ... found"
-      have=`echo $stick | tr [:lower:] [:upper:]`_VERSION \
+      have=`echo $stick | tr '[:lower:]' '[:upper:]'`_VERSION \
       value=`cat $stick_src/version` . ${NM_HOME}auto/define
 		fi
     

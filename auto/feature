@@ -13,7 +13,7 @@ END
 nm_found=no
 
 if test -n "$nm_feature_name"; then
-	nm_have_feature=`echo $nm_feature_name | tr [:lower:] [:upper:]`
+	nm_have_feature=`echo $nm_feature_name | tr '[:lower:]' '[:upper:]'`
 fi
 
 if test -n "$nm_feature_path"; then
