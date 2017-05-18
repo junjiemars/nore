@@ -9,10 +9,6 @@ NM_AUTO_CONFIG_H=$NM_OBJS/nm_auto_config.h
 NM_AUTOTEST=$NM_OBJS/autotest
 NM_AUTOCONF_ERR=$NM_OBJS/autoconf.err
 
-# stubs
-NM_ERR=$NM_OBJS/autoconf.err
-MAKEFILE=$NM_OBJS/Makefile
-
 
 # check the echo's "-n" option and "\c" capability
 
