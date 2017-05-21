@@ -71,10 +71,10 @@ case "$NM_OPTIMIZE" in
 	-O*)
 		CFLAGS=${CFLAGS:+$CFLAGS }$NM_OPTIMIZE
 		;;
-	NO)
-		;;
-	YES|*)
+	YES)
 		CFLAGS=${CFLAGS:+$CFLAGS }$nm_optimize_opt
+		;;
+	NO|*)
 		;;
 esac
 
