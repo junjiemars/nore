@@ -31,7 +31,7 @@ $NM_BIN_PATH $NM_LIB_PATH $NM_CONF_PATH $NM_INC_PATH:
 
 
 mkdir-if = \$(if \$(wildcard \$1),,mkdir -p \$1)
-cp-if = \$(foreach f,\$(wildcard \$1/*),\$(shell cp \$(f) \$2))
+cp-if = \$(foreach f,\$(wildcard \$1/*),\$(shell cp -r \$(f) \$2))
 
 
 
