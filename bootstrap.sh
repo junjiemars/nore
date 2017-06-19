@@ -20,12 +20,12 @@ bootstrap_path() {
 	fi
 }
 
-PREFIX=${PREFIX:-"`bootstrap_path`"}
-NM_WORK=`pwd`
+PREFIX="${PREFIX:-`bootstrap_path`}"
+NM_WORK="`pwd`"
 
-PLATFORM=`uname -s 2>/dev/null`
-GITHUB_R=${GITHUB_R:-"https://raw.githubusercontent.com/junjiemars"}
-GITHUB_H=${GITHUB_C:-"https://github.com/junjiemars"}
+PLATFORM="`uname -s 2>/dev/null`"
+GITHUB_R="${GITHUB_R:-https://raw.githubusercontent.com/junjiemars}"
+GITHUB_H="${GITHUB_C:-https://github.com/junjiemars}"
 GITHUB_BASH_ENV="${GITHUB_R}/kit/master/ul/setup-bash.sh"
 
 case ".$1" in
@@ -69,11 +69,11 @@ else
 fi
 
 
-NM_CONFIGURE=${NM_WORK%/}/configure
+NM_CONFIGURE="${NM_WORK%/}/configure"
 
 clone_nore() {
-	local n=`( cd ${PREFIX} && git remote -v 2>/dev/null | \
-						 		grep 'nore\.git' &>/dev/null; echo $?)`
+	local n="`( cd ${PREFIX} && git remote -v 2>/dev/null | \
+						 		grep 'nore\.git' &>/dev/null; echo $? )`"
 	if [ 0 -eq $n ]; then
 		`( cd ${PREFIX} && git reset --hard &>/dev/null )`
 		cd ${PREFIX} && git pull origin master &>/dev/null
@@ -85,7 +85,7 @@ clone_nore() {
 cat_configure() {
 	local conf="${NM_CONFIGURE}.n"
 
-	cat << END > $conf
+	cat << END > "$conf"
 #!/bin/bash
 NORE_PREFIX=${PREFIX%/}
 NORE_ARGS=\$@
@@ -125,16 +125,16 @@ fi
 
 END
 
-	chmod u+x $conf
-	mv $conf $NM_CONFIGURE
+	chmod u+x "$conf"
+	mv "$conf" "$NM_CONFIGURE"
 }
 
 
-[ -d ${PREFIX} ] || mkdir -p ${PREFIX}	
+[ -d "${PREFIX}" ] || mkdir -p "${PREFIX}"	
 echo -n " + checking nore ... "
-if [ -x $NM_CONFIGURE ]; then
+if [ -x "$NM_CONFIGURE" ]; then
 	echo "found"
-	if [ 0 -eq $NORE_UPDATE ]; then
+	if [ 0 -eq "$NORE_UPDATE" ]; then
 		echo -n " + updating nore ... "
 		if `clone_nore`; then
 			echo "ok"
@@ -154,7 +154,7 @@ else
 	cat_configure
 fi
 
-END=`date +%s`
+END="`date +%s`"
 echo 
 echo "... elpased $(( ${END}-${BEGIN} )) seconds, successed."
 
