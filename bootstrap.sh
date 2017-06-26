@@ -60,7 +60,7 @@ if `make -v &>/dev/null`; then
 else
 	echo "no found"
 	case ${PLATFORM} in
-	  MSYS_NT*)
+	  MSYS_NT*|MINGW*)
 			HAS_GMAKE=1 bash <(curl ${GITHUB_R}/kit/master/win/install-win-kits.sh)
 			;;
 	  *)
