@@ -106,7 +106,6 @@ if [ 1 -le \$# ]; then
 				curl -sqL \${NORE_R_BOOT} | PREFIX=\$NORE_PREFIX bash -s -- -u
 			fi
 	
-	    #NORE_ARGS=\${@:2}
 	  	;;
 		.-t*|.--tags*)
 			\${CTAGS} --language-force=C --C-kinds=+px --extra=+fq -R "\${@:2}"
