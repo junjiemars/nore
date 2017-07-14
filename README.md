@@ -1,7 +1,7 @@
 # Nore
 Why we need another C build system?
 
-## A Story
+## Story
 I'd programming in C language long time ago, sometimes I want to try some code snappets, but I cannot find it in hand, or can not run the code which had been wrote on another machine. 
 
 Those are all sadly cases, old dog always build somethings new else.
@@ -47,12 +47,19 @@ The foremost reason is Git-Bash provides the automatic translation between Windo
 
 
 ## How to Play
-Try **Nore** itself is very easy
+Try **Nore** itself is very easy, clone [Nore Lessons](https://github.com/junjiears/c) then go:
 ```sh
-$ git clone https://github.com/junjiemars/nore.git
-$ auto/configure --has-hi --has-env --has-geo --has-math
+# clone Nore Lessons code from github
+$ git clone --depth=1 https://githbu.com/junjiemars/c.git nore_lessons
+
+# change current directory to nore_lessons/
+$ cd nore_lessons/
+
+# run bootstrap from github, it will generate a configure file in current directory
+$ bash <(curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.sh)
+
+$ ./configure --has-hi
 $ make
-$ make install
 ```
 
 If you had a C project in your working directory already
@@ -68,7 +75,6 @@ On Windows, needs to setup bash environment first:
 download [Git Bash](https://git-scm.com/downloads), select 'unix compatible tools' when installing.
  
 
-Another way to try and play is to clone [Nore Lessons](https://github.com/junjiears/nore_lessons) then go.
 
 ### Workflow
 Write your makefile first, and configure or version files if neccessery.
@@ -89,16 +95,20 @@ $ ./configure --has-<what>
 $ ./configure --update --has-<what>
 
 $ make
+$ make test
 $ make install
 
 # build without **warnings** info
 $ ./configure --without-warn
 
-# build without **optimized**
-$ ./configure --without-optimize
-
 # build without **debugging** info
 $ ./configure --without-debug
+
+# build without **symbol** info
+$ ./configure --without-symbol
+
+# build with **optimized**
+$ ./configure --with-optimize=O3
 
 # build with **verbose** 
 $ ./configure --with-verbose
