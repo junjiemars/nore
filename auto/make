@@ -49,7 +49,7 @@ nm_verbose_opt = $nm_verbose_opt
 nm_pic_opt = $nm_pic_opt
 nm_cpu_opt = $nm_cpu_opt
 
-# path sep
+# path separator
 nm_p = $nm_p
 
 src_root = ${NM_SRC%/}/
@@ -71,6 +71,7 @@ CC_NAME = $CC_NAME
 cpp_out = $cpp_out
 asm_out = $asm_out
 obj_out = $obj_out
+lib_out = $bin_out
 bin_out = $bin_out
 
 # output extension
