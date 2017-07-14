@@ -4,10 +4,10 @@ Why we need another C build system?
 ## Story
 I'd programming in C language long time ago, sometimes I want to try some code snappets, but I cannot find it in hand, or can not run the code which had been wrote on another machine. 
 
-Those are all sadly cases, old dog always build somethings new else.
+Those are all sadly cases, but old dog always build some new things:
 * Run the build system from anywhere.
 * Run and write code on anywhere: in Linux, Darwin, Windows or Docker.
-* Easy to try some idea but have no more than necessary.
+* Easy to try some new ideas but have no more than necessary.
 
 
 ## Philosophy 
