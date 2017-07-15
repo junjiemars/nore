@@ -156,3 +156,8 @@ esac
 # stop on warning
 nm_warn_opt="${nm_warn_opt:+$nm_warn_opt }-Werror"
 
+# stage
+nm_stage_pre="-E"
+nm_stage_chk=
+nm_stage_asm="-S"
+nm_stage_c="-c"
