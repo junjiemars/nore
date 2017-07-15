@@ -25,6 +25,11 @@ nm_warn_opt=
 nm_verbose_opt=
 nm_debug_opt=
 
+nm_stage_pre=
+nm_stage_chk=
+nm_stage_asm=
+nm_stage_c=
+
 nm_p=":"
 
 obj_out="-o "
@@ -188,7 +193,7 @@ if [ "$CC_NAME" = "gcc" ]; then
 		CFLAGS=${CFLAGS:+$CFLAGS }"$nm_feature_flags"
   fi
 
-  nm_feature="-Wl,-E switch"
+  nm_feature="-Wl,-E|--export-dynamic"
   nm_feature_name=
   nm_feature_run=no
   nm_feature_incs=

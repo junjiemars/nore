@@ -9,10 +9,10 @@ echo " + clang version: $NM_CLANG_VER"
 have=NM_COMPILER value="\"clang $NM_CLANG_VER\"" . ${NM_HOME}auto/define
 
 # preprocess
-[ "." = ".$CPP" ] && CPP="\$(CC) -E"
+[ "." = ".$CPP" ] && CPP="\$(CC)"
 
 # assembly
-[ "." = ".$CAS" ] && CAS="\$(CC) -S"
+[ "." = ".$CAS" ] && CAS="\$(CC)"
 
 # assembler
 [ "." = ".$AS" ] && AS="\$(CC)"
@@ -30,3 +30,9 @@ nm_warn_opt=${nm_warn_opt:-"-Wall -Werror -Wextra -Wpointer-arith -Wconditional-
 
 # verbose
 nm_verbose_opt=${nm_verbose_opt:-"-v"}
+
+# stage
+nm_stage_pre="-E"
+nm_stage_chk="-fsyntax-only"
+nm_stage_asm="-S"
+nm_stage_c="-c"

@@ -50,6 +50,11 @@ nm_verbose_opt = $nm_verbose_opt
 nm_pic_opt = $nm_pic_opt
 nm_cpu_opt = $nm_cpu_opt
 
+nm_stage_pre = $nm_stage_pre
+nm_stage_chk = $nm_stage_chk
+nm_stage_asm = $nm_stage_asm
+nm_stage_c = $nm_stage_c
+
 # path separator
 nm_p = $nm_p
 
