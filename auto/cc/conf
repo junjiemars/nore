@@ -8,9 +8,10 @@ AS=
 LINK="\$(CC)"
 
 CFLAGS=
-LFLAGS=
-LDFLAGS=
 ASFLAGS=
+LDFLAGS=
+LFLAGS=
+YFLAGS=
 
 INC=
 LDLIBS=
@@ -96,7 +97,6 @@ if [ "$NM_VERBOSE" = "YES" ]; then
 fi
 
 CFLAGS=${CFLAGS:+$CFLAGS }$nm_cpu_opt
-LFLAGS=${CFLAGS}
 LDFLAGS=${LDFLAGS:+$LDFLAGS }$nm_pic_opt
 
 
