@@ -1,5 +1,5 @@
 
-cat << END >> $NM_AUTO_HEADERS_H
+cat << END >> $NM_AUTO_HEADER_H
 
 #ifndef $have
 #define $have  1

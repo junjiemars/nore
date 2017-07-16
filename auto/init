@@ -3,7 +3,7 @@
 
 NM_MAKEFILE=$NM_OBJS/Makefile
 
-NM_AUTO_HEADERS_H=$NM_OBJS/nm_auto_headers.h
+NM_AUTO_HEADER_H=$NM_OBJS/nm_auto_header.h
 NM_AUTO_CONFIG_H=$NM_OBJS/nm_auto_config.h
 
 NM_AUTOTEST=$NM_OBJS/autotest

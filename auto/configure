@@ -12,7 +12,7 @@ NM_HOME="${NM_HOME%/}/"
 
 test -d "$NM_OBJS" || mkdir -p $NM_OBJS
 
-echo > $NM_AUTO_HEADERS_H
+echo > $NM_AUTO_HEADER_H
 echo > $NM_AUTOCONF_ERR
 
 
