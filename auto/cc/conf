@@ -24,6 +24,7 @@ nm_optimize_opt=
 nm_warn_opt=
 nm_verbose_opt=
 nm_debug_opt=
+nm_shared_opt=
 
 nm_stage_pre=
 nm_stage_chk=
@@ -102,7 +103,9 @@ if [ "$NM_VERBOSE" = "YES" ]; then
 fi
 
 CFLAGS=${CFLAGS:+$CFLAGS }$nm_cpu_opt
-LDFLAGS=${LDFLAGS:+$LDFLAGS }$nm_pic_opt
+LDFLAGS=${LDFLAGS}
+
+nm_shared_opt=${nm_shared_opt:+$nm_shared_opt }$nm_pic_opt
 
 
 # independent features checking

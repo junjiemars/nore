@@ -1,6 +1,8 @@
 
 
-LDFLAGS=${LDFLAGS:+$LDFLAGS }-dynamiclib
+LDFLAGS=${LDFLAGS}
+nm_shared_opt="-dynamiclib"
+
 
 lib_ext=".dylib"
 
