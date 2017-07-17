@@ -14,13 +14,7 @@ nm_msvc_ver=`echo $NM_MSVC_VER | sed -e 's/^\([0-9]*\).*/\1/'`
 
 
 # preprocess
-if [ "." = ".$CPP" ]; then
-  # to file
-	#CPP="\$(CC) -P"
-
-  # to stdout
-  CPP="\$(CC) -E"
-fi
+[ "." = ".$CPP" ] && CPP="\$(CC)"
 
 # assembly
 [ "." = ".$CAS" ] && CAS="\$(CC)"
@@ -49,6 +43,7 @@ nm_verbose_opt=${nm_verbose_opt:-""}
 nm_pic_opt=
 
 # output options
+cpp_out=">"
 obj_out="-Fo"
 bin_out="-Fe"
 asm_out="-Fa"
@@ -176,3 +171,5 @@ nm_long_regex_cont=' \
 nm_long_cont='
 	'
 
+# stage
+nm_stage_pre="-E"
