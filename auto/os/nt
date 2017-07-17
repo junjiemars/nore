@@ -1,4 +1,6 @@
 
+LDFLAGS=${LDFLAGS}
+nm_shared_opt="-LD"
 
 have=`echo $NM_SYSTEM | tr '[:lower:]' '[:upper:]'` . ${NM_HOME}auto/have_headers
 
