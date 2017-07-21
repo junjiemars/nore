@@ -111,7 +111,7 @@ if [ 1 -le \$# ]; then
 			;;
 		.*)
 			if [ -f \$NORE_L_CONF ]; then
-				\$NORE_L_CONF "\$NORE_ARGS"
+				\$NORE_L_CONF \$NORE_ARGS
 			else
 				echo
 				echo "!nore << no found, to fix >: configure --update"
