@@ -71,8 +71,8 @@ do
     --build-dir=*)                   NM_OBJS="$value"           	;;
 
 		--without-symbol)                NM_SYMBOL=NO               	;;
-		--without-warn)                  NM_WARN=NO                 	;;
 		--without-debug)                 NM_DEBUG=NO                	;;
+		--with-warn=*)                   NM_WARN="$value"            	;;
 		--with-optimize=*)               NM_OPTIMIZE="$value"        	;;
 		--with-verbose)                  NM_VERBOSE=YES             	;;
 
@@ -110,8 +110,8 @@ cat << END
   --build-dir=DIR                    set build directory
 
   --without-symbol                   disable CC generate debug symbols option
-  --without-warn                     disable CC warn option 
   --without-debug                    enable release build option
+  --with-warn=LEVEL                  set CC warn level option 
   --with-optimize=LEVEL              set CC optimize level option 
   --with-verbose                     enable verbose build option
 
@@ -121,6 +121,16 @@ END
 
   exit 1
 
+fi
+
+
+
+if [ -z "$NM_OPTIMIZE" ]; then
+	NM_OPTIMIZE=YES
+fi
+
+if [ -z "$NM_WARN" ]; then
+	NM_WARN=YES
 fi
 
 
