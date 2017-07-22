@@ -41,7 +41,6 @@ NM_CPU_CACHE_LINE=
 
 NM_HAS_STICKS=()
 
-opt=
 
 for option
 do

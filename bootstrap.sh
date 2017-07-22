@@ -88,7 +88,6 @@ cat_configure() {
 	cat << END > "$conf"
 #!/bin/bash
 NORE_PREFIX=${PREFIX%/}
-NORE_ARGS=\$@
 NORE_GITHUB=${GITHUB_H}/nore.git
 NORE_L_BOOT=\$NORE_PREFIX/bootstrap.sh
 NORE_R_BOOT=${GITHUB_R}/nore/master/bootstrap.sh
@@ -111,7 +110,7 @@ if [ 1 -le \$# ]; then
 			;;
 		.*)
 			if [ -f \$NORE_L_CONF ]; then
-				\$NORE_L_CONF \$NORE_ARGS
+				\$NORE_L_CONF "\$@"
 			else
 				echo
 				echo "!nore << no found, to fix >: configure --update"
