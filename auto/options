@@ -54,7 +54,6 @@ do
   case "$option" in
     --help)                          help=yes                   	;;
     
-    --prefix=)                       NM_PREFIX="!"              	;;
     --prefix=*)                      NM_PREFIX="$value"         	;;
     --bin-path=*)                    NM_BIN_PATH="$value"       	;;
     --lib-path=*)                    NM_LIB_PATH="$value"  		  	;;

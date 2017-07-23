@@ -58,11 +58,7 @@ case ".$NM_PREFIX" in
     have=NM_PREFIX value="\"$NM_PREFIX/\"" . ${NM_HOME}auto/define
 	;;
 
-	.!)
-    NM_PREFIX=
-	;;
-
-	*)
+	.*)
     have=NM_PREFIX value="\"$NM_PREFIX/\"" . ${NM_HOME}auto/define
 	;;
 esac
