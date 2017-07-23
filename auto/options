@@ -24,6 +24,7 @@ NM_SRC=("src" ".")
 NM_SYMBOL=YES
 NM_OPTIMIZE=NO
 NM_WARN=YES
+NM_ERROR=YES
 NM_DEBUG=YES
 
 NM_VERBOSE=NO
@@ -71,6 +72,7 @@ do
 
 		--without-symbol)                NM_SYMBOL=NO               	;;
 		--without-debug)                 NM_DEBUG=NO                	;;
+		--without-error)                 NM_ERROR=NO         	        ;;
 		--with-warn=*)                   NM_WARN="$value"            	;;
 		--with-optimize=*)               NM_OPTIMIZE="$value"        	;;
 		--with-verbose)                  NM_VERBOSE=YES             	;;
@@ -110,6 +112,7 @@ cat << END
 
   --without-symbol                   disable CC generate debug symbols option
   --without-debug                    enable release build option
+  --without-error                    disable warn as error
   --with-warn=LEVEL                  set CC warn level option 
   --with-optimize=LEVEL              set CC optimize level option 
   --with-verbose                     enable verbose build option

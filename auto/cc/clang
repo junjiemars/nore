@@ -24,8 +24,11 @@ nm_optimize_opt=${nm_optimize_opt:-"-O2"}
 # symbol 
 nm_symbol_opt=${nm_symbol_opt:-"-g"}
 
+# error
+nm_error_opt="-Werror"
+
 # warnings
-nm_warn_opt=${nm_warn_opt:-"-Wall -Werror -Wextra -Wpointer-arith -Wconditional-uninitialized -Wunused-variable -Wunused-parameter -Wno-error=unused-command-line-argument"}
+nm_warn_opt=${nm_warn_opt:-"-Wall -Wextra -Wpointer-arith -Wconditional-uninitialized -Wunused-variable -Wunused-parameter -Wno-error=unused-command-line-argument"}
 
 
 # verbose

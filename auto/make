@@ -44,6 +44,7 @@ INC = ${INC:+$INC }-I$NM_OBJS -I$NM_OBJS/inc
 nm_symbol_opt = $nm_symbol_opt
 nm_optimize_opt = $nm_optimize_opt
 nm_warn_opt = $nm_warn_opt
+nm_error_opt = $nm_error_opt
 nm_debug_opt = $nm_debug_opt
 nm_verbose_opt = $nm_verbose_opt
 
