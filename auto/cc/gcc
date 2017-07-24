@@ -25,7 +25,10 @@ nm_optimize_opt=${nm_optimize_opt:-"-O2"}
 nm_symbol_opt=${nm_symbol_opt:-"-g"}
 
 # warning
-nm_warn_opt=${nm_warn_opt:-"-W -Wall -Wpointer-arith"}
+nm_warn_opt=${nm_warn_opt:-"-Wall -Wpointer-arith -Wconditional-uninitialized -Wunused-variable"}
+
+# error
+nm_error_opt="-Werror"
 
 # verbose
 nm_verbose_opt=${nm_verbose_opt:-"-v"}
@@ -134,22 +137,9 @@ CC_TEST_FLAGS="${CC_TEST_FLAGS:+$CC_TEST_FLAGS }$nm_cpu_opt"
 # warnings
 
 case "$NM_GCC_VER" in
-  2.*)
-    # we have a lot of the unused function arguments
-    nm_warn_opt="${nm_warn_opt:+$nm_warn_opt }-Wno-unused"
-  ;;
-
   *)
-    # we have a lot of the unused function arguments
-    nm_warn_opt="${nm_warn_opt:+$nm_warn_opt }-Wno-unused-parameter"
-    # 4.2.1 shows the warning in wrong places
-    #nm_warn_opt="${nm_warn_opt:+$nm_warn_opt }-Wunreachable-code"
-
-    # deprecated system OpenSSL library on OS X
-    if [ "$NM_SYSTEM" = "Darwin" ]; then
-      nm_warn_opt="${nm_warn_opt:+$nm_warn_opt }-Wno-deprecated-declarations"
-    fi
-  ;;
+    nm_warn_opt="${nm_warn_opt:+$nm_warn_opt }-Wunused-parameter"
+    ;;
 esac
 
 
