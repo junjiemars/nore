@@ -172,24 +172,6 @@ nm_feature_test="int8_t c='X';"
 . ${NM_HOME}auto/feature
 
 
-if test -n "$NM_LD_OPT"; then
-  nm_feature=--with-ld-opt=\"$NM_LD_OPT\"
-  nm_feature_name=
-  nm_feature_run=no
-  nm_feature_incs=
-  nm_feature_path=
-  nm_feature_libs=
-  nm_feature_test=
-  . ${NM_HOME}auto/feature
-
-  if [ $nm_found = no ]; then
-    echo $0: error: the invalid value in --with-ld-opt=\"$NM_LD_OPT\"
-    echo
-    exit 1
-  fi
-fi
-
-
 # gcc features checking
 
 
