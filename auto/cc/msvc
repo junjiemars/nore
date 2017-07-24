@@ -30,7 +30,10 @@ nm_optimize_opt=${nm_optimize_opt:-"-O2"}
 nm_symbol_opt=${nm_symbol_opt:-"-Z7"}
 
 # warnings
-nm_warn_opt=${nm_warn_opt:-"-W4 -WX -nologo"}
+nm_warn_opt=${nm_warn_opt:-"-W4 -nologo"}
+
+# error
+nm_error_opt="-WX"
 
 # cl has no verbose option
 nm_verbose_opt=${nm_verbose_opt:-""}
