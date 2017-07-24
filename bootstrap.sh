@@ -1,6 +1,7 @@
 #!/bin/bash
 #------------------------------------------------
 # target: bootstrap of Nore	
+# url: https://github.com/junjiemars/nore.git
 # author: junjiemars@gmail.com
 #------------------------------------------------
 
