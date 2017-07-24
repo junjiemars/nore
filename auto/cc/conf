@@ -70,19 +70,19 @@ CC_TEST_LD_OPT="$NM_LD_OPT"
 
 # symbol option
 if [ "$NM_SYMBOL" = "YES" ]; then
-	CFLAGS=${CFLAGS:+$CFLAGS }$nm_symbol_opt
+	CFLAGS=${CFLAGS:+$CFLAGS}${nm_symbol_opt:+ $nm_symbol_opt}
 fi
 
 
 # optimize option
 case "$NM_OPTIMIZE" in
 	YES)
-		CFLAGS=${CFLAGS:+$CFLAGS }$nm_optimize_opt
+		CFLAGS=${CFLAGS:+$CFLAGS}${nm_optimize_opt:+ $nm_optimize_opt}
 		;;
 	NO)
 		;;
 	*)
-		CFLAGS=${CFLAGS:+$CFLAGS }$NM_OPTIMIZE
+		CFLAGS=${CFLAGS:+$CFLAGS}${NM_OPTIMIZE:+ $NM_OPTIMIZE}
 		;;
 esac
 
@@ -90,35 +90,35 @@ esac
 # warn option
 case "$NM_WARN" in
 	YES)
-		CFLAGS=${CFLAGS:+$CFLAGS }$nm_warn_opt
+		CFLAGS=${CFLAGS:+$CFLAGS}${nm_warn_opt:+ $nm_warn_opt}
 		;;
 	NO)
 		;;
 	*)
-		CFLAGS=${CFLAGS:+$CFLAGS }$NM_WARN
+		CFLAGS=${CFLAGS:+$CFLAGS}${NM_WARN:+ $NM_WARN}
 		;;
 esac
 
-# error option: stop on warnings
+# error option
 if [ "$NM_ERROR" = "YES" ]; then
-	CFLAGS=${CFLAGS:+$CFLAGS }$nm_error_opt
+	CFLAGS=${CFLAGS:+$CFLAGS}${nm_error_opt:+ $nm_error_opt}
 fi
 
 # debug option
 if [ "$NM_DEBUG" = "NO" ]; then
 	nm_debug_opt='-DNDEBUG=1'
-	CFLAGS=${CFLAGS:+$CFLAGS }$nm_debug_opt
+	CFLAGS=${CFLAGS:+$CFLAGS}${nm_debug_opt:+ $nm_debug_opt}
 fi
 
 # verbose option
 if [ "$NM_VERBOSE" = "YES" ]; then
-	CFLAGS=${CFLAGS:+$CFLAGS }$nm_verbose_opt
+	CFLAGS=${CFLAGS:+$CFLAGS}${nm_verbose_opt:+ $nm_verbose_opt}
 fi
 
-CFLAGS=${CFLAGS:+$CFLAGS }$nm_cpu_opt
+CFLAGS=${CFLAGS:+$CFLAGS}${nm_cpu_opt:+ $nm_cpu_opt}
 LDFLAGS=${LDFLAGS}
 
-nm_shared_opt=${nm_shared_opt:+$nm_shared_opt }$nm_pic_opt
+nm_shared_opt=${nm_shared_opt:+$nm_shared_opt}${nm_pic_opt:+ $nm_pic_opt}
 
 
 # independent features checking
@@ -206,7 +206,7 @@ if [ "$CC_NAME" = "gcc" ]; then
   . ${NM_HOME}auto/feature
 
   if [ $nm_found = yes ]; then
-		CFLAGS=${CFLAGS:+$CFLAGS }"$nm_feature_flags"
+		CFLAGS=${CFLAGS:+$CFLAGS}${nm_feature_flags:+ $nm_feature_flags}
   fi
 
   nm_feature="-Wl,-E|--export-dynamic"
@@ -219,7 +219,7 @@ if [ "$CC_NAME" = "gcc" ]; then
   . ${NM_HOME}auto/feature
 
   if [ $nm_found = yes ]; then
-    LDFLAGS=${LDFLAGS:+$LDFLAGS }"-Wl,-E"
+    LDFLAGS=${LDFLAGS:+$LDFLAGS}${nm_feature_libs:+ $nm_feature_libs}
   fi
 
   nm_feature="gcc builtin atomic operations"
