@@ -143,9 +143,6 @@ case "$NM_GCC_VER" in
 esac
 
 
-# stop on warning
-nm_warn_opt="${nm_warn_opt:+$nm_warn_opt }-Werror"
-
 # stage
 nm_stage_pre="-E"
 nm_stage_chk=
