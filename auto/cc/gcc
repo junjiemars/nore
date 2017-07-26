@@ -8,6 +8,9 @@ echo " + gcc version: $NM_GCC_VER"
 
 have=NM_COMPILER value="\"gcc $NM_GCC_VER\"" . ${NM_HOME}auto/define
 
+# std
+#nm_std_c99_ver="`gcc -std=c99 -dM -E - </dev/null | grep '__STDC_VERSION__' 2>&1 | cut -d' ' -f3`"
+
 # preprocess
 [ "." = ".$CPP" ] && CPP="\$(CC)"
 
