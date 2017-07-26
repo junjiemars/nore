@@ -10,8 +10,8 @@ mkdir -p $NM_OBJS/bin \
 	       $NM_OBJS/tmp \
 	       $NM_OBJS/conf
 
-asm_out=${auto_out:+"$auto_out$NM_OBJS/tmp/ "}$asm_out
-bin_out=${auto_out:+"$auto_out$NM_OBJS/tmp/ "}$bin_out
+asm_out="${auto_out:+$auto_out$NM_OBJS/tmp/ }$asm_out"
+bin_out="${auto_out:+$auto_out$NM_OBJS/tmp/ }$bin_out"
 
 
 for d in ${NM_SRC[@]}; do
