@@ -44,7 +44,7 @@ nm_stage_c="-c"
 case "$NM_STD" in
 	YES)
 		nm_feature_flags="-std=c99"
-		nm_feature="$CC_NAME $nm_feature_flags swith"
+		nm_feature="$CC_NAME $nm_feature_flags switch"
 		nm_feature_name=nm_have_${CC_NAME}_std_c99
 		nm_std_opt_name="_STD_C99"
 		;;
