@@ -67,7 +67,6 @@ do
     
     --crossbuild=*)                  NM_PLATFORM="$value"       	;;
     --src-dir=*)                     NM_SRC="$value"            	;;
-    --build=*)                       NM_BUILD="$value"          	;;
     --build-dir=*)                   NM_OBJS="$value"           	;;
 
 		--without-symbol)                NM_SYMBOL=NO               	;;
@@ -108,11 +107,10 @@ cat << END
 
   --crossbuild=                      set cross build
   --src-dir=DIR                      set source directory
-  --build=NAME                       set build name
   --build-dir=DIR                    set build directory
 
   --without-symbol                   disable CC generate debug symbols option
-  --without-debug                    enable release build option
+  --without-debug                    enable build for release option
   --without-error                    disable warn as error
   --with-warn=LEVEL                  set CC warn level option 
   --with-optimize=LEVEL              set CC optimize level option 
