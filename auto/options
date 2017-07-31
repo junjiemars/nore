@@ -26,8 +26,8 @@ NM_OPTIMIZE=NO
 NM_WARN=YES
 NM_ERROR=YES
 NM_DEBUG=YES
-
 NM_VERBOSE=NO
+NM_STD=YES
 
 NM_LD_OPT=
 CPU=${CPU}
@@ -75,6 +75,7 @@ do
 		--without-error)                 NM_ERROR=NO         	        ;;
 		--with-warn=*)                   NM_WARN="$value"            	;;
 		--with-optimize=*)               NM_OPTIMIZE="$value"        	;;
+		--with-std=*)                    NM_STD="$value"            	;;
 		--with-verbose)                  NM_VERBOSE=YES             	;;
 
 		--has-*)                         NM_HAS_STICKS+=($option)   	;;
@@ -115,6 +116,7 @@ cat << END
   --without-error                    disable warn as error
   --with-warn=LEVEL                  set CC warn level option 
   --with-optimize=LEVEL              set CC optimize level option 
+  --with-std=C[nn]                   set CC std option 
   --with-verbose                     enable verbose build option
 
   --has-*                            has [*] to do
@@ -126,13 +128,18 @@ END
 fi
 
 
+if [ -z "$NM_WARN" ]; then
+	NM_WARN=YES
+fi
+
 
 if [ -z "$NM_OPTIMIZE" ]; then
 	NM_OPTIMIZE=YES
 fi
 
-if [ -z "$NM_WARN" ]; then
-	NM_WARN=YES
+
+if [ -z "$NM_STD" ]; then
+	NM_STD=YES
 fi
 
 

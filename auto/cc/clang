@@ -30,7 +30,6 @@ nm_error_opt="-Werror"
 # warnings
 nm_warn_opt=${nm_warn_opt:-"-Wall -Wextra -Wpointer-arith -Wconditional-uninitialized -Wunused-variable -Wunused-parameter -Wno-error=unused-command-line-argument"}
 
-
 # verbose
 nm_verbose_opt=${nm_verbose_opt:-"-v"}
 
@@ -39,3 +38,37 @@ nm_stage_pre="-E"
 nm_stage_chk="-fsyntax-only"
 nm_stage_asm="-S"
 nm_stage_c="-c"
+
+
+# std 
+case "$NM_STD" in
+	YES)
+		nm_feature="std c99 option"
+		nm_feature_name=nm_have_${CC_NAME}_std_c99
+		nm_feature_flags="-std=c99"
+		nm_std_opt_name="_STD_C99"
+		;;
+	NO)
+		;;
+	*)
+		nm_feature="std option: $NM_STD"
+		nm_std_opt_name="`echo $NM_STD | tr '[-: =]' '_' | tr [:lower:] [:upper:]`"
+		nm_feature_name=nm_have_${CC_NAME}${nm_std_opt_name}
+		nm_feature_flags=$NM_STD
+		;;
+esac
+
+if [ "$NM_STD" != "NO" ]; then
+	nm_feature_run=no
+	nm_feature_incs=
+	nm_feature_path=
+	nm_feature_libs=
+	nm_feature_test="for (int i=0; i<3; i++) {}"
+	. ${NM_HOME}auto/feature
+	
+	if [ $nm_found = yes ]; then
+		nm_std_opt=$nm_feature_flags
+		CFLAGS=${CFLAGS:+$CFLAGS}${nm_std_opt:+ $nm_std_opt}
+		have=`echo CC$nm_std_opt_name` . ${NM_HOME}auto/have_headers
+	fi
+fi

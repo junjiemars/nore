@@ -33,6 +33,9 @@ nm_warn_opt=${nm_warn_opt:-"-Wall -Wpointer-arith -Wunused-variable"}
 # error
 nm_error_opt="-Werror"
 
+# std
+nm_std_opt="-std=c99"
+
 # verbose
 nm_verbose_opt=${nm_verbose_opt:-"-v"}
 

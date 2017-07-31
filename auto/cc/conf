@@ -20,11 +20,12 @@ nm_pic_opt=
 nm_cpu_opt=
 
 nm_symbol_opt=
-nm_optimize_opt=
+nm_debug_opt=
 nm_warn_opt=
 nm_error_opt=
+nm_optimize_opt=
 nm_verbose_opt=
-nm_debug_opt=
+nm_std_opt=
 nm_shared_opt=
 
 nm_stage_pre=
@@ -172,11 +173,12 @@ nm_feature_test="int8_t c='X';"
 . ${NM_HOME}auto/feature
 
 
+
 # gcc feature checking
 
 if [ "$CC_NAME" = "gcc" ]; then
 
-	nm_feature="-std=c99 switch"
+	nm_feature="-std=c99 option"
 	nm_feature_name=nm_have_${CC_NAME}_std_c99
 	nm_feature_run=no
 	nm_feature_incs=
@@ -189,5 +191,4 @@ if [ "$CC_NAME" = "gcc" ]; then
 	if [ $nm_found = yes ]; then
 		CFLAGS=${CFLAGS:+$CFLAGS}${nm_feature_flags:+ $nm_feature_flags}
 	fi
-
 fi

@@ -47,6 +47,7 @@ nm_warn_opt = $nm_warn_opt
 nm_error_opt = $nm_error_opt
 nm_debug_opt = $nm_debug_opt
 nm_verbose_opt = $nm_verbose_opt
+nm_std_opt = $nm_std_opt
 
 nm_pic_opt = $nm_pic_opt
 nm_cpu_opt = $nm_cpu_opt
@@ -69,6 +70,7 @@ NM_WARN = $NM_WARN
 NM_ERROR = $NM_ERROR
 NM_DEBUG = $NM_DEBUG
 NM_VERBOSE = $NM_VERBOSE
+NM_STD = $NM_STD
 
 # platform
 NM_SYSTEM = $NM_SYSTEM
