@@ -124,45 +124,45 @@ esac
 #nm_cpu_opt="${nm_cpu_opt:+$nm_cpu_opt }-Gr"
 
 
+##<COMMENT: useless now>
+## the link flags
+#CORE_LINK="$CORE_LINK -link -verbose:lib"
+#
+## link with libcmt.lib, multithreaded
+#LIBC="-MT"
+## link with msvcrt.dll
+## however, MSVC Toolkit 2003 has no MSVCRT.LIB
+##LIBC="-MD"
+#
+#NM_CC_OPT="${NM_CC_OPT:+$NM_CC_OPT }$LIBC"
+#
+#CORE_LIBS="${CORE_LIBS:+$CORE_LIBS }kernel32.lib user32.lib"
+#
+## Win32 GUI mode application
+##CORE_LINK="$CORE_LINK -subsystem:windows -entry:mainCRTStartup"
+#
+#
+## MSVC 2005 supports C99 variadic macros
+#if [ "$nm_msvc_ver" -ge 14 ]; then
+#	have=NM_HAVE_C99_VARIADIC_MACROS . ${NM_HOME}auto/have
+#fi
+#
+#
+## precompiled headers
+#CORE_DEPS="$CORE_DEPS $NM_OBJS/nm_config.pch"
+#CORE_LINK="$CORE_LINK $NM_OBJS/nm_pch.obj"
+#NM_PCH="$NM_OBJS/nm_config.pch"
+#NM_BUILD_PCH="-Ycnm_config.h -Fp$NM_OBJS/nm_config.pch"
+#NM_USE_PCH="-Yunm_config.h -Fp$NM_OBJS/nm_config.pch"
+#
+#
+## the resource file
+#NM_RES="$NM_OBJS/nm.res"
+#NM_RCC="rc -fo$NM_RES \$(CORE_INCS) $NM_NT_RC"
+#CORE_LINK="$NM_RES $CORE_LINK"
 
-# the link flags
-CORE_LINK="$CORE_LINK -link -verbose:lib"
-
-# link with libcmt.lib, multithreaded
-LIBC="-MT"
-# link with msvcrt.dll
-# however, MSVC Toolkit 2003 has no MSVCRT.LIB
-#LIBC="-MD"
-
-NM_CC_OPT="${NM_CC_OPT:+$NM_CC_OPT }$LIBC"
-
-CORE_LIBS="${CORE_LIBS:+$CORE_LIBS }kernel32.lib user32.lib"
-
-# Win32 GUI mode application
-#CORE_LINK="$CORE_LINK -subsystem:windows -entry:mainCRTStartup"
-
-
-# MSVC 2005 supports C99 variadic macros
-if [ "$nm_msvc_ver" -ge 14 ]; then
-	have=NM_HAVE_C99_VARIADIC_MACROS . ${NM_HOME}auto/have
-fi
-
-
-# precompiled headers
-CORE_DEPS="$CORE_DEPS $NM_OBJS/nm_config.pch"
-CORE_LINK="$CORE_LINK $NM_OBJS/nm_pch.obj"
-NM_PCH="$NM_OBJS/nm_config.pch"
-NM_BUILD_PCH="-Ycnm_config.h -Fp$NM_OBJS/nm_config.pch"
-NM_USE_PCH="-Yunm_config.h -Fp$NM_OBJS/nm_config.pch"
-
-
-# the resource file
-NM_RES="$NM_OBJS/nm.res"
-NM_RCC="rc -fo$NM_RES \$(CORE_INCS) $NM_NT_RC"
-CORE_LINK="$NM_RES $CORE_LINK"
 
 # msvc opt
-
 nm_long_start='@<<
 	'
 nm_long_end='<<'
