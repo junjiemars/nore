@@ -154,3 +154,36 @@ nm_stage_pre="-E"
 nm_stage_chk=
 nm_stage_asm="-S"
 nm_stage_c="-c"
+
+# std 
+case "$NM_STD" in
+	YES)
+		nm_feature_flags="-std=c99"
+		nm_feature="$CC_NAME $nm_feature_flags switch"
+		nm_feature_name=nm_have_${CC_NAME}_std_c99
+		nm_std_opt_name="_STD_C99"
+		;;
+	NO)
+		;;
+	*)
+		nm_feature_flags=$NM_STD
+		nm_feature="$CC_NAME $nm_feature_flags switch"
+		nm_std_opt_name="`echo $NM_STD | tr '[\-: =]' '_' | tr [:lower:] [:upper:]`"
+		nm_feature_name=nm_have_${CC_NAME}${nm_std_opt_name}
+		;;
+esac
+
+if [ "$NM_STD" != "NO" ]; then
+	nm_feature_run=no
+	nm_feature_incs=
+	nm_feature_path=
+	nm_feature_libs=
+	nm_feature_test="for (int i=0; i<3; i++) {}"
+	. ${NM_HOME}auto/feature
+	
+	if [ $nm_found = yes ]; then
+		nm_std_opt=$nm_feature_flags
+		CFLAGS=${CFLAGS:+$CFLAGS}${nm_std_opt:+ $nm_std_opt}
+		have=`echo CC$nm_std_opt_name` . ${NM_HOME}auto/have_headers
+	fi
+fi

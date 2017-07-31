@@ -43,18 +43,18 @@ nm_stage_c="-c"
 # std 
 case "$NM_STD" in
 	YES)
-		nm_feature="std c99 option"
-		nm_feature_name=nm_have_${CC_NAME}_std_c99
 		nm_feature_flags="-std=c99"
+		nm_feature="$CC_NAME $nm_feature_flags swith"
+		nm_feature_name=nm_have_${CC_NAME}_std_c99
 		nm_std_opt_name="_STD_C99"
 		;;
 	NO)
 		;;
 	*)
-		nm_feature="std option: $NM_STD"
+		nm_feature_flags=$NM_STD
+		nm_feature="$CC_NAME $nm_feature_flags switch"
 		nm_std_opt_name="`echo $NM_STD | tr '[-: =]' '_' | tr [:lower:] [:upper:]`"
 		nm_feature_name=nm_have_${CC_NAME}${nm_std_opt_name}
-		nm_feature_flags=$NM_STD
 		;;
 esac
 

@@ -174,21 +174,4 @@ nm_feature_test="int8_t c='X';"
 
 
 
-# gcc feature checking
 
-if [ "$CC_NAME" = "gcc" ]; then
-
-	nm_feature="-std=c99 option"
-	nm_feature_name=nm_have_${CC_NAME}_std_c99
-	nm_feature_run=no
-	nm_feature_incs=
-	nm_feature_path=
-	nm_feature_flags=-std=c99
-	nm_feature_libs=
-	nm_feature_test="for (int i=0; i<3; i++) {}"
-	. ${NM_HOME}auto/feature
-
-	if [ $nm_found = yes ]; then
-		CFLAGS=${CFLAGS:+$CFLAGS}${nm_feature_flags:+ $nm_feature_flags}
-	fi
-fi
