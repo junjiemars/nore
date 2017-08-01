@@ -16,7 +16,6 @@ CAS=
 AS=
 LINK=
 
-CC_TEST_FLAGS=
 
 NM_OBJS=objs
 NM_SRC=("src" ".")

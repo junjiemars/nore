@@ -52,6 +52,8 @@ lib_ext=".so"
 have=`echo CC_$CC_NAME | tr '[:lower:]' '[:upper:]'` . ${NM_HOME}auto/have_headers
 
 
+nm_test_cflags=
+
 case $CC_NAME in
   gcc)
     . ${NM_HOME}auto/cc/gcc

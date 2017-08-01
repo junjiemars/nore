@@ -37,7 +37,7 @@ END
 
 nm_test_out="${auto_out:+$auto_out`dirname $NM_AUTOTEST`/ }$bin_out$NM_AUTOTEST"
 
-nm_test="$CC $nm_feature_flags $CC_TEST_FLAGS $nm_feature_inc_path \
+nm_test="$CC $nm_feature_flags $nm_test_cflags $nm_feature_inc_path \
 					$nm_test_out $NM_AUTOTEST.c \
 					$CC_TEST_LD_OPT $nm_feature_libs"
 

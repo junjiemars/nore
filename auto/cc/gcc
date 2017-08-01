@@ -55,10 +55,9 @@ nm_feature_libs=
 nm_feature_test=
 . ${NM_HOME}auto/feature
 
-CC_TEST_FLAGS=
 
 if [ $nm_found = yes ]; then
-	CC_TEST_FLAGS="-pipe"
+	nm_test_cflags="-pipe"
 fi
 
 
@@ -137,7 +136,7 @@ case "$NM_GCC_VER" in
 esac
 
 
-CC_TEST_FLAGS="${CC_TEST_FLAGS:+$CC_TEST_FLAGS }$nm_cpu_opt"
+nm_test_cflags="${nm_test_cflags:+$nm_test_cflags}${nm_cpu_opt:+ $nm_cpu_opt}"
 
 
 # warnings
