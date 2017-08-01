@@ -21,6 +21,9 @@ CC_TEST_FLAGS=
 NM_OBJS=objs
 NM_SRC=("src" ".")
 
+NM_CROSS_BUILD=NO
+NM_MACHINE_SPEC=
+
 NM_SYMBOL=YES
 NM_OPTIMIZE=NO
 NM_WARN=YES
@@ -65,9 +68,11 @@ do
     --user=*)                        NM_USER="$value"           	;;
     --group=*)                       NM_GROUP="$value"          	;;
     
-    --crossbuild=*)                  NM_PLATFORM="$value"       	;;
     --src-dir=*)                     NM_SRC="$value"            	;;
     --build-dir=*)                   NM_OBJS="$value"           	;;
+
+    --cross-build=*)                 NM_CROSS_BUILD="$value"     	;;
+    --machine-spec=*)                NM_MACHINE_SPEC="$value"     ;;
 
 		--without-symbol)                NM_SYMBOL=NO               	;;
 		--without-debug)                 NM_DEBUG=NO                	;;
@@ -105,16 +110,18 @@ cat << END
   --pid-path=PATH                    set pid pathname
   --log-path=PATH                    set log pathname
 
-  --crossbuild=                      set cross build
   --src-dir=DIR                      set source directory
   --build-dir=DIR                    set build directory
+
+  --cross-build=[YES|NO|]            set cross build option
+  --machine-spec=SPEC                set machine spec
 
   --without-symbol                   disable CC generate debug symbols option
   --without-debug                    enable build for release option
   --without-error                    disable warn as error
-  --with-warn=LEVEL                  set CC warn level option 
-  --with-optimize=LEVEL              set CC optimize level option 
-  --with-std=C[nn]                   set CC std option 
+  --with-warn=[YES|NO|*]             set CC warn level option 
+  --with-optimize=[YES|NO|*]         set CC optimize level option 
+  --with-std=[YES|NO|*]              set CC std option 
   --with-verbose                     enable verbose build option
 
   --has-*                            has [*] to do
