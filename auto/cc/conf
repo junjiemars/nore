@@ -53,6 +53,8 @@ have=`echo CC_$CC_NAME | tr '[:lower:]' '[:upper:]'` . ${NM_HOME}auto/have_heade
 
 
 nm_test_cflags=
+nm_test_ldflags=
+
 
 case $CC_NAME in
   gcc)
@@ -68,8 +70,6 @@ case $CC_NAME in
 	;;
 esac
 
-
-CC_TEST_LD_OPT="$NM_LD_OPT"
 
 # symbol option
 if [ "$NM_SYMBOL" = "YES" ]; then
