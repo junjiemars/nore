@@ -51,6 +51,11 @@ case "$NM_STD" in
 	NO)
 		;;
 	*)
+		case "$NM_STD" in
+			[cC]89|[cC]90|[cC]99|[cC]11)
+				NM_STD="-std=`echo $NM_STD | tr [:upper:] [:lower:]`"
+				;;
+		esac
 		nm_feature_flags=$NM_STD
 		nm_feature="$CC_NAME $nm_feature_flags switch"
 		nm_std_opt_name="`echo $NM_STD | tr '[-: =]' '_' | tr [:lower:] [:upper:]`"
