@@ -149,7 +149,7 @@ nm_feature_path=
 nm_feature_libs=
 nm_feature_test="char  buf[30]; buf[0] = '0';
                	 var(0, buf, \"%d\", 1);
-        			   if (buf[0] != '1') return 1"
+        			   if (buf[0] != '1') return 1;"
 . ${NM_HOME}auto/feature
 
 
