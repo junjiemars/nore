@@ -182,12 +182,11 @@ if [ "$NM_STD" != "NO" ]; then
 	nm_feature_incs=
 	nm_feature_path=
 	nm_feature_libs=
-	nm_feature_test="for (int i=0; i<3; i++) {}"
+	nm_feature_test=
 	. ${NM_HOME}auto/feature
 	
 	if [ $nm_found = yes ]; then
 		nm_std_opt=$nm_feature_flags
 		CFLAGS=${CFLAGS:+$CFLAGS}${nm_std_opt:+ $nm_std_opt}
-		have=`echo CC$nm_std_opt_name` . ${NM_HOME}auto/have_headers
 	fi
 fi
