@@ -28,6 +28,7 @@ CC = $CC
 CPP = $CPP
 CAS = $CAS
 AS = $AS
+AR = $AR
 LINK = $LINK
 
 CPPFLAGS = $CPPFLAGS
@@ -84,6 +85,7 @@ cpp_out = $cpp_out
 asm_out = $asm_out
 obj_out = $obj_out
 lib_out = $bin_out
+ar_out = $ar_out
 bin_out = $bin_out
 
 # output extension
@@ -91,6 +93,7 @@ cpp_ext = $cpp_ext
 asm_ext = $asm_ext
 obj_ext = $obj_ext
 lib_ext = $lib_ext
+ar_ext = $ar_ext
 bin_ext = $bin_ext
 
 

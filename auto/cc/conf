@@ -5,6 +5,7 @@ CPP=
 CAS=
 
 AS=
+AR=
 LINK="\$(CC)"
 
 CFLAGS=
@@ -39,12 +40,14 @@ obj_out="-o "
 bin_out="-o "
 cpp_out="-o "
 asm_out="-o "
+ar_out=
 
 obj_ext=".o"
 bin_ext=
 cpp_ext=".i"
 asm_ext=".s"
 lib_ext=".so"
+ar_ext=".a"
 
 
 . ${NM_HOME}auto/cc/name

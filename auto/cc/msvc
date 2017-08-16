@@ -23,6 +23,10 @@ nm_msvc_ver=`echo $NM_MSVC_VER | sed -e 's/^\([0-9]*\).*/\1/'`
 [ "." = ".$AS" ] && AS="ml"
 
 
+# archive
+[ "." = ".$AR" ] && AR="lib"
+
+
 # optimize: -Og -Oi -Ot -Oy -Ob2 -Gs -GF -Gy
 nm_optimize_opt=${nm_optimize_opt:-"-O2"}
 
@@ -47,6 +51,7 @@ cpp_out=">"
 asm_out="-Fa"
 obj_out="-Fo"
 bin_out="-Fe"
+ar_out="-OUT:"
 
 # auto object output option
 auto_out=$obj_out
@@ -57,6 +62,7 @@ asm_ext=".asm"
 obj_ext=".obj"
 lib_ext=".dll"
 bin_ext=".exe"
+ar_ext=".lib"
 
 
 # MSVC 6.0 SP2                            cl 12.00
