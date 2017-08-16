@@ -33,9 +33,6 @@ nm_warn_opt=${nm_warn_opt:-"-Wall -Wpointer-arith -Wunused-variable"}
 # error
 nm_error_opt="-Werror"
 
-# std
-nm_std_opt="-std=c99"
-
 # verbose
 nm_verbose_opt=${nm_verbose_opt:-"-v"}
 
@@ -156,28 +153,27 @@ nm_stage_c="-c"
 
 # std 
 case "$NM_STD" in
+	NO)
+		;;
 	YES)
 		nm_feature_flags="-std=c99"
-		nm_feature="$CC_NAME $nm_feature_flags switch"
-		nm_feature_name=nm_have_${CC_NAME}_std_c99
-		nm_std_opt_name="_STD_C99"
-		;;
-	NO)
 		;;
 	*)
 		case "$NM_STD" in
 			[cC]89|[cC]90|[cC]99|[cC]11)
-				NM_STD="-std=`echo $NM_STD | tr [:upper:] [:lower:]`"
+				nm_feature_flags="-std=`echo $NM_STD | tr [:upper:] [:lower:]`"
+				;;
+			*)
+				nm_feature_flags=$NM_STD
 				;;
 		esac
-		nm_feature_flags=$NM_STD
-		nm_feature="$CC_NAME $nm_feature_flags switch"
-		nm_std_opt_name="`echo $NM_STD | tr '[\-: =]' '_' | tr [:lower:] [:upper:]`"
-		nm_feature_name=nm_have_${CC_NAME}${nm_std_opt_name}
 		;;
 esac
 
 if [ "$NM_STD" != "NO" ]; then
+	nm_feature="$CC_NAME $nm_feature_flags switch"
+	nm_feature_name="nm_have_${CC_NAME}${_std_opt_name}`echo $nm_feature_flags | tr '[\-: =]' '_' | tr [:lower:] [:upper:]`"
+
 	nm_feature_run=no
 	nm_feature_incs=
 	nm_feature_path=
