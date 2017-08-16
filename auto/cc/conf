@@ -40,7 +40,7 @@ obj_out="-o "
 bin_out="-o "
 cpp_out="-o "
 asm_out="-o "
-ar_out=
+ar_out="rcs "
 
 obj_ext=".o"
 bin_ext=

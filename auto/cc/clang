@@ -17,6 +17,9 @@ have=NM_COMPILER value="\"clang $NM_CLANG_VER\"" . ${NM_HOME}auto/define
 # assembler
 [ "." = ".$AS" ] && AS="\$(CC)"
 
+# archive
+[ "." = ".$AR" ] && AR="ar"
+
 
 # optimizations
 nm_optimize_opt=${nm_optimize_opt:-"-O2"}
