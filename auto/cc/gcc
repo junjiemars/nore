@@ -173,7 +173,6 @@ esac
 if [ "$NM_STD" != "NO" ]; then
 	nm_feature="$CC_NAME $nm_feature_flags switch"
 	nm_feature_name="nm_have_${CC_NAME}${_std_opt_name}`echo $nm_feature_flags | tr '[\-: =]' '_' | tr [:lower:] [:upper:]`"
-
 	nm_feature_run=no
 	nm_feature_incs=
 	nm_feature_path=
