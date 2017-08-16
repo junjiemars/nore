@@ -20,6 +20,9 @@ have=NM_COMPILER value="\"gcc $NM_GCC_VER\"" . ${NM_HOME}auto/define
 # assembler
 [ "." = ".$AS" ] && AS="\$(CC)"
 
+# archive
+[ "." = ".$AR" ] && AR="ar"
+
 
 # optimization
 nm_optimize_opt=${nm_optimize_opt:-"-O2"}
