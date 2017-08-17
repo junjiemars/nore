@@ -43,8 +43,8 @@ nm_error_opt="-WX"
 nm_verbose_opt=${nm_verbose_opt:-""}
 
 if [ "$NM_VERBOSE" == "NO" ]; then
-	CFLAGS="${CFLAGS:+$CFLAGS }-nologo"
-	ARFLAGS="${ARFLAGS:+$ARFLAGS }-nologo"
+	CC="${CC:+$CC }-nologo"
+	AR="${AR:+$AR }-nologo"
 fi
 
 
