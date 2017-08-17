@@ -34,13 +34,18 @@ nm_optimize_opt=${nm_optimize_opt:-"-O2"}
 nm_symbol_opt=${nm_symbol_opt:-"-Z7"}
 
 # warnings
-nm_warn_opt=${nm_warn_opt:-"-W4 -nologo"}
+nm_warn_opt=${nm_warn_opt:-"-W4"}
 
 # error
 nm_error_opt="-WX"
 
 # cl has no verbose option
 nm_verbose_opt=${nm_verbose_opt:-""}
+
+if [ "$NM_VERBOSE" == "NO" ]; then
+	CFLAGS="${CFLAGS:+$CFLAGS }-nologo"
+	ARFLAGS="${ARFLAGS:+$ARFLAGS }-nologo"
+fi
 
 
 # pic option
@@ -51,7 +56,7 @@ cpp_out=">"
 asm_out="-Fa"
 obj_out="-Fo"
 bin_out="-Fe"
-ar_out="-OUT:"
+ar_out="-out:"
 
 # auto object output option
 auto_out=$obj_out
@@ -181,3 +186,5 @@ nm_long_cont='
 nm_stage_pre="-E"
 nm_stage_asm="-c"
 nm_stage_c="-c"
+
+
