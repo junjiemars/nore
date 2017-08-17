@@ -176,7 +176,10 @@ END
 		lib_path=$NM_OBJS/lib/
 		bin_path=$NM_OBJS/bin/
 		
-		if [ -f $stick_src/Makefile.$NM_SYSTEM ]; then
+		if [ -f $stick_src/Makefile.$CC_NAME ]; then
+			stick_makefile=$stick_src/Makefile.$CC_NAME
+
+		elif [ -f $stick_src/Makefile.$NM_SYSTEM ]; then
 			stick_makefile=$stick_src/Makefile.$NM_SYSTEM
 
 		elif [ -f $stick_src/Makefile ]; then
