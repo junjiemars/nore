@@ -125,6 +125,7 @@ fi
 # machine spec
 if [ "$NM_MACHINE_SPEC" != "NO" ]; then
 	nm_feature="$CC_NAME ${NM_MACHINE_SPEC} spec"
+	nm_feature_flags="$NM_MACHINE_SPEC"
 	nm_feature_name=
 	nm_feature_run=no
 	nm_feature_incs=
