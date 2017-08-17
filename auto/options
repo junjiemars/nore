@@ -21,7 +21,7 @@ NM_OBJS=objs
 NM_SRC=("src" ".")
 
 NM_CROSS_BUILD=NO
-NM_MACHINE_SPEC=NO
+NM_CPU_SPEC=NO
 
 NM_SYMBOL=YES
 NM_OPTIMIZE=NO
@@ -31,7 +31,6 @@ NM_DEBUG=YES
 NM_VERBOSE=NO
 NM_STD=YES
 
-CPU=${CPU}
 
 NM_RPATH=NO
 
@@ -70,7 +69,7 @@ do
     --build-dir=*)                   NM_OBJS="$value"           	;;
 
     --cross-build=*)                 NM_CROSS_BUILD="$value"     	;;
-    --machine-spec=*)                NM_MACHINE_SPEC="$value"     ;;
+    --cpu-spec=*)                    NM_CPU_SPEC="$value"         ;;
 
 		--without-symbol)                NM_SYMBOL=NO               	;;
 		--without-debug)                 NM_DEBUG=NO                	;;
@@ -112,7 +111,7 @@ cat << END
   --build-dir=DIR                    set build directory
 
   --cross-build=[YES|NO]             set cross build option
-  --machine-spec=[NO|*]              set machine spec
+  --cpu-spec=[NO|*]                  set cpu spec
 
   --without-symbol                   disable CC generate debug symbols option
   --without-debug                    enable build for release option
@@ -131,8 +130,8 @@ END
 fi
 
 
-if [ -z "$NM_MACHINE_SPEC" ]; then
-	NM_MACHINE_SPEC=NO
+if [ -z "$NM_CPU_SPEC" ]; then
+	NM_CPU_SPEC=NO
 fi
 
 if [ -z "$NM_WARN" ]; then

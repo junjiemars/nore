@@ -123,9 +123,9 @@ if [ "$NM_VERBOSE" = "YES" ]; then
 fi
 
 # machine spec
-if [ "$NM_MACHINE_SPEC" != "NO" ]; then
-	nm_feature="$CC_NAME ${NM_MACHINE_SPEC} spec"
-	nm_feature_flags="$NM_MACHINE_SPEC"
+if [ "$NM_CPU_SPEC" != "NO" ]; then
+	nm_feature="$CC_NAME ${NM_CPU_SPEC} spec"
+	nm_feature_flags="$NM_CPU_SPEC"
 	nm_feature_name=
 	nm_feature_run=no
 	nm_feature_incs=
@@ -135,7 +135,7 @@ if [ "$NM_MACHINE_SPEC" != "NO" ]; then
 	. ${NM_HOME}auto/feature
 
 	if [ $nm_found = yes ]; then
-		CFLAGS=${CFLAGS:+$CFLAGS}${NM_MACHINE_SPEC:+ $NM_MACHINE_SPEC}
+		CFLAGS=${CFLAGS:+$CFLAGS}${NM_CPU_SPEC:+ $NM_CPU_SPEC}
 	fi
 
 fi
