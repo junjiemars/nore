@@ -21,7 +21,7 @@ NM_OBJS=objs
 NM_SRC=("src" ".")
 
 NM_CROSS_BUILD=NO
-NM_MACHINE_SPEC=
+NM_MACHINE_SPEC=NO
 
 NM_SYMBOL=YES
 NM_OPTIMIZE=NO
@@ -111,8 +111,8 @@ cat << END
   --src-dir=DIR                      set source directory
   --build-dir=DIR                    set build directory
 
-  --cross-build=[YES|NO|]            set cross build option
-  --machine-spec=SPEC                set machine spec
+  --cross-build=[YES|NO]             set cross build option
+  --machine-spec=[NO|*]              set machine spec
 
   --without-symbol                   disable CC generate debug symbols option
   --without-debug                    enable build for release option
@@ -130,6 +130,10 @@ END
 
 fi
 
+
+if [ -z "$NM_MACHINE_SPEC" ]; then
+	NM_MACHINE_SPEC=NO
+fi
 
 if [ -z "$NM_WARN" ]; then
 	NM_WARN=YES

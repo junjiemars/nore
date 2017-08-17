@@ -122,7 +122,12 @@ if [ "$NM_VERBOSE" = "YES" ]; then
 	CFLAGS=${CFLAGS:+$CFLAGS}${nm_verbose_opt:+ $nm_verbose_opt}
 fi
 
-CFLAGS=${CFLAGS:+$CFLAGS}${nm_cpu_opt:+ $nm_cpu_opt}
+# machine spec
+if [ "$NM_MACHINE_SPEC" != "NO" ]; then
+	CFLAGS=${CFLAGS:+$CFLAGS}${nm_cpu_opt:+ $nm_cpu_opt}
+fi
+
+# link option
 LDFLAGS=${LDFLAGS}
 
 nm_shared_opt=${nm_shared_opt:+$nm_shared_opt}${nm_pic_opt:+ $nm_pic_opt}

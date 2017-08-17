@@ -42,9 +42,6 @@ nm_verbose_opt=${nm_verbose_opt:-"-v"}
 # pic
 nm_pic_opt=${nm_pic_opt:-"-fPIC"}
 
-# cpu/arch
-nm_cpu_opt=
-
 
 nm_feature="gcc -pipe switch"
 nm_feature_name=
@@ -61,79 +58,23 @@ if [ $nm_found = yes ]; then
 fi
 
 
-case "$NM_MACHINE" in
+# cpu/arch
+nm_cpu_opt=
 
-  sun4u | sun4v | sparc | sparc64 )
-    # "-mcpu=v9" enables the "casa" assembler instruction
-		nm_cpu_opt="${nm_cpu_opt:+$nm_cpu_opt }-mcpu=v9"
-  ;;
+if [ "$NM_MACHINE_SPEC" != "NO" ]; then
+	nm_feature="gcc ${NM_MACHINE_SPEC} spec"
+	nm_feature_name=
+	nm_feature_run=no
+	nm_feature_incs=
+	nm_feature_path=
+	nm_feature_libs=
+	nm_feature_test=
+	. ${NM_HOME}auto/feature
 
-esac
-
-
-case $CPU in
-  pentium)
-    # optimize for Pentium and Athlon
-		nm_cpu_opt="${nm_cpu_opt:+$nm_cpu_opt }-march=pentium"
-    NM_CPU_CACHE_LINE=32
-  ;;
-
-  pentiumpro | pentium3)
-    # optimize for Pentium Pro, Pentium II and Pentium III
-		nm_cpu_opt="${nm_cpu_opt:+$nm_cpu_opt }-march=pentiumpro"
-    NM_CPU_CACHE_LINE=32
-  ;;
-
-  pentium4)
-    # optimize for Pentium 4, gcc 3.x
-		nm_cpu_opt="${nm_cpu_opt:+$nm_cpu_opt }-march=pentium4"
-    NM_CPU_CACHE_LINE=128
-  ;;
-
-  athlon)
-    # optimize for Athlon, gcc 3.x
-		nm_cpu_opt="${nm_cpu_opt:+$nm_cpu_opt }-march=athlon"
-    NM_CPU_CACHE_LINE=64
-  ;;
-
-  opteron)
-    # optimize for Opteron, gcc 3.x
-		nm_cpu_opt="${nm_cpu_opt:+$nm_cpu_opt }-march=opteron"
-    NM_CPU_CACHE_LINE=64
-  ;;
-
-  sparc32)
-    # build 32-bit UltraSparc binary
-		nm_cpu_opt="${nm_cpu_opt:+$nm_cpu_opt }-m32"
-    CORE_LINK="$CORE_LINK -m32"
-    NM_CPU_CACHE_LINE=64
-  ;;
-
-  sparc64)
-    # build 64-bit UltraSparc binary
-		nm_cpu_opt="${nm_cpu_opt:+$nm_cpu_opt }-m64"
-    CORE_LINK="$CORE_LINK -m64"
-    NM_CPU_CACHE_LINE=64
-  ;;
-
-   ppc64)
-    # build 64-bit PowerPC binary
-		nm_cpu_opt="${nm_cpu_opt:+$nm_cpu_opt }-m64"
-		nm_cpu_opt="${nm_cpu_opt:+$nm_cpu_opt }-falign-functions=32 -falign-labels=32"
-		nm_cpu_opt="${nm_cpu_opt:+$nm_cpu_opt }-falign-loops=32 -falign-jumps=32"
-    CORE_LINK="$CORE_LINK -m64"
-    NM_CPU_CACHE_LINE=128
-  ;;
-
-esac
-
-
-case "$NM_GCC_VER" in
-  2.7*)
-    # batch build
-		nm_cpu_opt=
-  ;;
-esac
+	if [ $nm_found = yes ]; then
+		nm_cpu_opt=$NM_MACHINE_SPEC	
+	fi
+fi
 
 
 nm_test_cflags="${nm_test_cflags:+$nm_test_cflags}${nm_cpu_opt:+ $nm_cpu_opt}"
