@@ -77,3 +77,5 @@ if [ "$NM_STD" != "NO" ]; then
 		CFLAGS=${CFLAGS:+$CFLAGS}${nm_std_opt:+ $nm_std_opt}
 	fi
 fi
+
+

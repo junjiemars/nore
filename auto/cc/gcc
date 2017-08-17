@@ -58,25 +58,6 @@ if [ $nm_found = yes ]; then
 fi
 
 
-# cpu/arch
-nm_cpu_opt=
-
-if [ "$NM_MACHINE_SPEC" != "NO" ]; then
-	nm_feature="gcc ${NM_MACHINE_SPEC} spec"
-	nm_feature_name=
-	nm_feature_run=no
-	nm_feature_incs=
-	nm_feature_path=
-	nm_feature_libs=
-	nm_feature_test=
-	. ${NM_HOME}auto/feature
-
-	if [ $nm_found = yes ]; then
-		nm_cpu_opt=$NM_MACHINE_SPEC	
-	fi
-fi
-
-
 nm_test_cflags="${nm_test_cflags:+$nm_test_cflags}${nm_cpu_opt:+ $nm_cpu_opt}"
 
 
