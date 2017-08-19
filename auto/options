@@ -21,7 +21,6 @@ NM_OBJS=objs
 NM_SRC=("src" ".")
 
 NM_CROSS_BUILD=NO
-NM_CPU_SPEC=NO
 
 NM_SYMBOL=YES
 NM_OPTIMIZE=NO
@@ -30,6 +29,7 @@ NM_ERROR=YES
 NM_DEBUG=YES
 NM_VERBOSE=NO
 NM_STD=YES
+NM_CPU=NO
 
 
 NM_RPATH=NO
@@ -69,7 +69,6 @@ do
     --build-dir=*)                   NM_OBJS="$value"           	;;
 
     --cross-build=*)                 NM_CROSS_BUILD="$value"     	;;
-    --cpu-spec=*)                    NM_CPU_SPEC="$value"         ;;
 
 		--without-symbol)                NM_SYMBOL=NO               	;;
 		--without-debug)                 NM_DEBUG=NO                	;;
@@ -77,6 +76,7 @@ do
 		--with-warn=*)                   NM_WARN="$value"            	;;
 		--with-optimize=*)               NM_OPTIMIZE="$value"        	;;
 		--with-std=*)                    NM_STD="$value"            	;;
+    --with-cpu=*)                    NM_CPU="$value"              ;;
 		--with-verbose)                  NM_VERBOSE=YES             	;;
 
 		--has-*)                         NM_HAS_STICKS+=($option)   	;;
@@ -111,7 +111,6 @@ cat << END
   --build-dir=DIR                    set build directory
 
   --cross-build=[YES|NO]             set cross build option
-  --cpu-spec=[NO|*]                  set cpu spec
 
   --without-symbol                   disable CC generate debug symbols
   --without-debug                    enable build for release
@@ -119,6 +118,7 @@ cat << END
   --with-warn=[YES|NO|*]             set CC warn level option 
   --with-optimize=[YES|NO|*]         set CC optimize level option 
   --with-std=[YES|NO|*]              set CC std option 
+  --with-cpu=[NO|*|?]                set cpu option 
   --with-verbose                     enable verbose build option
 
   --has-*                            has [*] to do
@@ -130,8 +130,8 @@ END
 fi
 
 
-if [ -z "$NM_CPU_SPEC" ]; then
-	NM_CPU_SPEC=NO
+if [ -z "$NM_CPU" ]; then
+	NM_CPU=NO
 fi
 
 if [ -z "$NM_WARN" ]; then

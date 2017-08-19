@@ -18,16 +18,16 @@ YFLAGS=
 INC=
 LDLIBS=
 
-nm_pic_opt=
-nm_cpu_opt=
-
 nm_symbol_opt=
 nm_debug_opt=
 nm_warn_opt=
 nm_error_opt=
 nm_optimize_opt=
-nm_verbose_opt=
 nm_std_opt=
+nm_cpu_opt=
+nm_verbose_opt=
+
+nm_pic_opt=
 nm_shared_opt=
 
 nm_stage_pre=
@@ -122,27 +122,8 @@ if [ "$NM_VERBOSE" = "YES" ]; then
 	CFLAGS=${CFLAGS:+$CFLAGS}${nm_verbose_opt:+ $nm_verbose_opt}
 fi
 
-# machine spec
-if [ "$NM_CPU_SPEC" != "NO" ]; then
-	nm_feature="$CC_NAME ${NM_CPU_SPEC} spec"
-	nm_feature_flags="$NM_CPU_SPEC"
-	nm_feature_name=
-	nm_feature_run=no
-	nm_feature_incs=
-	nm_feature_path=
-	nm_feature_libs=
-	nm_feature_test=
-	. ${NM_HOME}auto/feature
-
-	if [ $nm_found = yes ]; then
-		CFLAGS=${CFLAGS:+$CFLAGS}${NM_CPU_SPEC:+ $NM_CPU_SPEC}
-	fi
-
-fi
-
 # link option
 LDFLAGS=${LDFLAGS}
 
 nm_shared_opt=${nm_shared_opt:+$nm_shared_opt}${nm_pic_opt:+ $nm_pic_opt}
-
 
