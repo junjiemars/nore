@@ -113,8 +113,8 @@ cat << END
   --cross-build=[YES|NO]             set cross build option
   --cpu-spec=[NO|*]                  set cpu spec
 
-  --without-symbol                   disable CC generate debug symbols option
-  --without-debug                    enable build for release option
+  --without-symbol                   disable CC generate debug symbols
+  --without-debug                    enable build for release
   --without-error                    disable warn as error
   --with-warn=[YES|NO|*]             set CC warn level option 
   --with-optimize=[YES|NO|*]         set CC optimize level option 
