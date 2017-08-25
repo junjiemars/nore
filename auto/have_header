@@ -1,7 +1,7 @@
 
 # have_header
 
-have="NM_HAVE_`echo $have | tr '[:lower:]/.' '[:upper:]__'`"
+have=NM_HAVE_`echo $have | tr '[:lower:]/.' '[:upper:]__'`
 
 cat << END >> $NM_AUTO_CONFIG_H
 
