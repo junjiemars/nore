@@ -3,8 +3,7 @@
 
 NM_MAKEFILE=$NM_OUT/Makefile
 
-NM_AUTO_HEADER_H=$NM_OUT/nm_auto_header.h
-NM_AUTO_CONFIG_H=$NM_OUT/nm_auto_config.h
+NM_AUTO_H=$NM_OUT/nm_auto.h
 
 NM_AUTOTEST=$NM_OUT/autotest
 NM_AUTOCONF_ERR=$NM_OUT/autoconf.err

@@ -3,7 +3,7 @@
 
 have=NM_HAVE_`echo $have | tr '[:lower:]/.' '[:upper:]__'`
 
-cat << END >> $NM_AUTO_CONFIG_H
+cat << END >> $NM_AUTO_H
 
 #ifndef $have
 #define $have  1

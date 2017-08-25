@@ -72,7 +72,7 @@ if [ -x $NM_AUTOTEST ]; then
         echo " found"
         nm_found=yes
 
-        cat << END >> $NM_AUTO_CONFIG_H
+        cat << END >> $NM_AUTO_H
 
 #ifndef $nm_have_feature
 #define $nm_have_feature  `$NM_AUTOTEST`

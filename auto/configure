@@ -12,11 +12,10 @@ NM_HOME="${NM_HOME%/}/"
 
 test -d "$NM_OUT" || mkdir -p $NM_OUT
 
-echo > $NM_AUTO_HEADER_H
 echo > $NM_AUTOCONF_ERR
 
 
-echo "#define NM_CONFIGURE \"$NM_CONFIGURE\"" > $NM_AUTO_CONFIG_H
+echo "#define NM_CONFIGURE \"$NM_CONFIGURE\"" > $NM_AUTO_H
 
 if test -z "$NM_PLATFORM"; then
   echo "checking for OS"
