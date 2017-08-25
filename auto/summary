@@ -8,9 +8,9 @@ yes_no_out() {
 	
 	case "$opt" in
 
-		YES) echo $nm_n "$opt: $val" ;;
+		YES) echo "$opt: $val" ;;
 
-		NO) echo $nm_n "$opt" ;;
+		NO) echo "$opt" ;;
 		
 		*) ;;
 
@@ -23,9 +23,9 @@ no_yes_out() {
 
 	case "$opt" in
 		
-		NO) echo $nm_n "$opt: $val" ;;
+		NO) echo "$opt: $val" ;;
 
-		YES) echo $nm_n "$opt" ;;
+		YES) echo "$opt" ;;
 		
 		*) ;;
 
@@ -38,11 +38,11 @@ yes_no_val_out() {
 
 	case "$opt" in
 
-		YES) echo $nm_n "$opt: $val" ;;
+		YES) echo "$opt: $val" ;;
 
-		NO) echo $nm_n "$opt" ;;
+		NO) echo "$opt" ;;
 
-		*) echo $nm_n "$val" ;;
+		*) echo "$val" ;;
 
 	esac
 }
@@ -54,11 +54,11 @@ yes_no_any_out() {
 
 	case "$opt" in
 
-		YES) echo $nm_n "$opt: $val" ;;
+		YES) echo "$opt: $val" ;;
 
-		NO) echo $nm_n "$opt" ;;
+		NO) echo "$opt" ;;
 
-		*) echo $nm_n "$any" ;;
+		*) echo "$any" ;;
 
 	esac
 }
