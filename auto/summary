@@ -1,14 +1,31 @@
 
 # summary
 
+
+yes_out() {
+	local opt="$1"
+	local val="$2"
+	test ".$opt" == ".NO" || echo "$val"
+}
+
+no_out() {
+	local opt="$1"
+	local val="$2"
+	test ".$opt" == ".YES" || echo "$val"
+}
+
 echo
 echo "Configuration summary"
 
 cat << END
-  path prefix: "$NM_PREFIX"
-  configuration path: "$NM_CONF_PATH"
-  binary path: "$NM_BIN_PATH"
-  library path: "$NM_LIB_PATH"
-  pid path: "$NM_PID_PATH"
-  log path: "$NM_LOG_PATH"
+  platform: $NM_PLATFORM
+  compiler: $NM_COMPILER
+  path prefix: $NM_PREFIX
+  std= `yes_out $NM_STD $nm_std_opt`
+  symbol= $NM_SYMBOL: `yes_out $NM_SYMBOL "$nm_symbol_opt"`
+  debug= $NM_DEBUG: `no_out $NM_DEBUG $nm_debug_opt`
+  optimize= $NM_OPTIMIZE:`yes_out $NM_OPTIMIZE "$nm_optimize_opt"`
+  cpu= $NM_CPU
+  error= $NM_ERROR: `yes_out $NM_ERROR $nm_error_opt`
+  warn= $NM_WARN: `yes_out $NM_WARN "$nm_warn_opt"`
 END
