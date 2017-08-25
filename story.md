@@ -1,5 +1,5 @@
 # Nore
-Why we need another C building system?
+Why we need another C build system?
 
 
 ## Story

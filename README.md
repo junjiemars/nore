@@ -1,6 +1,6 @@
 # Nore
 
-No More than a C building system for clang, gcc and msvc.
+No More than a C build system for clang, gcc and msvc.
 
 
 ## How to Play
