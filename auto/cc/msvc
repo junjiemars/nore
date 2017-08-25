@@ -7,6 +7,7 @@ NM_MSVC_VER=`$CC 2>&1 | grep 'Compiler Version' 2>&1 \
 
 echo " + msvc version: $NM_MSVC_VER"
 
+NM_COMPILER="msvc $NM_MSVC_VER" 
 have=NM_COMPILER value="\"msvc $NM_MSVC_VER\"" . ${NM_HOME}auto/define
 
 nm_msvc_ver=`echo $NM_MSVC_VER | sed -e 's/^\([0-9]*\).*/\1/'`
