@@ -53,7 +53,8 @@ ar_ext=".a"
 
 . ${NM_HOME}auto/cc/name
 
-have=`echo CC_$CC_NAME | tr '[:lower:]' '[:upper:]'` . ${NM_HOME}auto/have_headers
+#have=`echo CC_$CC_NAME | tr '[:lower:]' '[:upper:]'` . ${NM_HOME}auto/have
+have=CC_$CC_NAME . ${NM_HOME}auto/have
 
 
 nm_test_cflags=

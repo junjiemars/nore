@@ -1,4 +1,6 @@
 
+# include
+
 
 echo $nm_n "checking for $nm_include ...$nm_c"
 
@@ -33,11 +35,9 @@ if [ -x $NM_AUTOTEST ]; then
 
   echo " found"
 
-  nm_name=`echo $nm_include | tr '[:lower:]/.' '[:upper:]__'`
+  have=$nm_include . ${NM_HOME}auto/have_header
 
-  have=NM_HAVE_$nm_name . ${NM_HOME}auto/have_headers
-
-  eval "NM_INCLUDE_$nm_name='#include <$nm_include>'"
+  #eval "NM_INCLUDE_$nm_name='#include <$nm_include>'"
 
 else
 
