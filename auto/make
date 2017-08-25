@@ -2,16 +2,16 @@
 echo
 echo "creating $NM_MAKEFILE"
 
-mkdir -p $NM_OBJS/bin \
-         $NM_OBJS/lib \
-	       $NM_OBJS/inc \
-	       $NM_OBJS/log \
-	       $NM_OBJS/pid \
-	       $NM_OBJS/tmp \
-	       $NM_OBJS/conf
+mkdir -p $NM_OUT/bin \
+         $NM_OUT/lib \
+	       $NM_OUT/inc \
+	       $NM_OUT/log \
+	       $NM_OUT/pid \
+	       $NM_OUT/tmp \
+	       $NM_OUT/conf
 
-asm_out="${auto_out:+$auto_out$NM_OBJS/tmp/ }$asm_out"
-bin_out="${auto_out:+$auto_out$NM_OBJS/tmp/ }$bin_out"
+asm_out="${auto_out:+$auto_out$NM_OUT/tmp/ }$asm_out"
+bin_out="${auto_out:+$auto_out$NM_OUT/tmp/ }$bin_out"
 
 
 for d in ${NM_SRC[@]}; do
@@ -40,9 +40,9 @@ ARFLAGS = $ARFLAGS
 LFLAGS = $LFLAGS
 YFLAGS = $YFLAGS
 
-LDFLAGS = ${LDFLAGS:+$LDFLAGS}-L$NM_OBJS/lib
+LDFLAGS = ${LDFLAGS:+$LDFLAGS}-L$NM_OUT/lib
 
-INC = ${INC:+$INC }-I$NM_OBJS -I$NM_OBJS/inc
+INC = ${INC:+$INC }-I$NM_OUT -I$NM_OUT/inc
 
 nm_symbol_opt = $nm_symbol_opt
 nm_optimize_opt = $nm_optimize_opt
@@ -102,13 +102,13 @@ bin_ext = $bin_ext
 default: build
 
 clean:
-	\$(RM) -r $NM_OBJS/bin/*
-	\$(RM) -r $NM_OBJS/lib/*
-	\$(RM) -r $NM_OBJS/inc/*
-	\$(RM) -r $NM_OBJS/log/*
-	\$(RM) -r $NM_OBJS/pid/*
-	\$(RM) -r $NM_OBJS/tmp/*
-	\$(RM) -r $NM_OBJS/conf/*
+	\$(RM) -r $NM_OUT/bin/*
+	\$(RM) -r $NM_OUT/lib/*
+	\$(RM) -r $NM_OUT/inc/*
+	\$(RM) -r $NM_OUT/log/*
+	\$(RM) -r $NM_OUT/pid/*
+	\$(RM) -r $NM_OUT/tmp/*
+	\$(RM) -r $NM_OUT/conf/*
 
 
 END
@@ -171,10 +171,10 @@ END
 		fi
 
 		src_path=$stick_src/
-		inc_path=$NM_OBJS/inc/
-		tmp_path=$NM_OBJS/tmp/
-		lib_path=$NM_OBJS/lib/
-		bin_path=$NM_OBJS/bin/
+		inc_path=$NM_OUT/inc/
+		tmp_path=$NM_OUT/tmp/
+		lib_path=$NM_OUT/lib/
+		bin_path=$NM_OUT/bin/
 		
 		if [ -f $stick_src/Makefile.$CC_NAME ]; then
 			stick_makefile=$stick_src/Makefile.$CC_NAME

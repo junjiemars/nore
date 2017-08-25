@@ -17,7 +17,7 @@ AS=
 LINK=
 
 
-NM_OBJS=objs
+NM_OUT=out
 NM_SRC=("src" ".")
 
 NM_CROSS_BUILD=NO
@@ -66,7 +66,7 @@ do
     --group=*)                       NM_GROUP="$value"          	;;
     
     --src-dir=*)                     NM_SRC="$value"            	;;
-    --build-dir=*)                   NM_OBJS="$value"           	;;
+    --build-dir=*)                   NM_OUT="$value"           	  ;;
 
     --cross-build=*)                 NM_CROSS_BUILD="$value"     	;;
 

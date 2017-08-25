@@ -1,13 +1,13 @@
 
 # init
 
-NM_MAKEFILE=$NM_OBJS/Makefile
+NM_MAKEFILE=$NM_OUT/Makefile
 
-NM_AUTO_HEADER_H=$NM_OBJS/nm_auto_header.h
-NM_AUTO_CONFIG_H=$NM_OBJS/nm_auto_config.h
+NM_AUTO_HEADER_H=$NM_OUT/nm_auto_header.h
+NM_AUTO_CONFIG_H=$NM_OUT/nm_auto_config.h
 
-NM_AUTOTEST=$NM_OBJS/autotest
-NM_AUTOCONF_ERR=$NM_OBJS/autoconf.err
+NM_AUTOTEST=$NM_OUT/autotest
+NM_AUTOCONF_ERR=$NM_OUT/autoconf.err
 
 
 # check the echo's "-n" option and "\c" capability
@@ -38,16 +38,16 @@ cat << END > Makefile
 default: build
 
 clean:
-	\$(MAKE) -f $NM_OBJS/Makefile clean
+	\$(MAKE) -f $NM_OUT/Makefile clean
 
 reset:
-	\$(RM) -r Makefile $NM_OBJS
+	\$(RM) -r Makefile $NM_OUT
 
 test:
-	\$(MAKE) -f $NM_OBJS/Makefile test
+	\$(MAKE) -f $NM_OUT/Makefile test
 
 task:
-	\$(MAKE) -f $NM_OBJS/Makefile \$(TASK)
+	\$(MAKE) -f $NM_OUT/Makefile \$(TASK)
 
 END
 

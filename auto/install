@@ -16,10 +16,10 @@ cat << END >> $NM_MAKEFILE
 
 
 install: build $NM_BIN_PATH $NM_LIB_PATH $NM_CONF_PATH $NM_INC_PATH
-	\$(call cp-if, $NM_OBJS/bin, $NM_BIN_PATH/)
-	\$(call cp-if, $NM_OBJS/lib, $NM_LIB_PATH/)
-	\$(call cp-if, $NM_OBJS/conf, $NM_CONF_PATH/)
-	\$(call cp-if, $NM_OBJS/inc, $NM_INC_PATH/)
+	\$(call cp-if, $NM_OUT/bin, $NM_BIN_PATH/)
+	\$(call cp-if, $NM_OUT/lib, $NM_LIB_PATH/)
+	\$(call cp-if, $NM_OUT/conf, $NM_CONF_PATH/)
+	\$(call cp-if, $NM_OUT/inc, $NM_INC_PATH/)
 
 
 $NM_BIN_PATH $NM_LIB_PATH $NM_CONF_PATH $NM_INC_PATH:
