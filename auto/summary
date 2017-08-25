@@ -8,9 +8,9 @@ yes_no_out() {
 	
 	case "$opt" in
 
-		YES) echo "$opt: $val" ;;
+		YES) echo $nm_n "$opt: $val" ;;
 
-		NO) echo "$opt" ;;
+		NO) echo $nm_n "$opt" ;;
 		
 		*) ;;
 
@@ -23,9 +23,9 @@ no_yes_out() {
 
 	case "$opt" in
 		
-		NO) echo "$opt: $val" ;;
+		NO) echo $nm_n "$opt: $val" ;;
 
-		YES) echo "$opt" ;;
+		YES) echo $nm_n "$opt" ;;
 		
 		*) ;;
 
@@ -38,11 +38,11 @@ yes_no_val_out() {
 
 	case "$opt" in
 
-		YES) echo "$opt: $val" ;;
+		YES) echo $nm_n "$opt: $val" ;;
 
-		NO) echo "$opt" ;;
+		NO) echo $nm_n "$opt" ;;
 
-		*) echo "$val" ;;
+		*) echo $nm_n "$val" ;;
 
 	esac
 }
@@ -54,18 +54,18 @@ yes_no_any_out() {
 
 	case "$opt" in
 
-		YES) echo "$opt: $val" ;;
+		YES) echo $nm_n "$opt: $val" ;;
 
-		NO) echo "$opt" ;;
+		NO) echo $nm_n "$opt" ;;
 
-		*) echo "$any" ;;
+		*) echo $nm_n "$any" ;;
 
 	esac
 }
 
 
 echo
-echo "Configuration summary"
+echo $nm_n "Configuration summary"
 
 cat << END
   platform: $NM_PLATFORM

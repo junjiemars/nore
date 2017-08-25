@@ -1,7 +1,7 @@
 
 # feature
 
-echo $nm_n "checking for $nm_feature ...$nm_c"
+echo $nm_n " + checking for $nm_feature ...$nm_c"
 
 cat << END >> $NM_AUTOCONF_ERR
 
