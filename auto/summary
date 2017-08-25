@@ -6,7 +6,6 @@ echo "Configuration summary"
 
 cat << END
   path prefix: "$NM_PREFIX"
-  configuration prefix: "$NM_CONF_PREFIX"
   configuration path: "$NM_CONF_PATH"
   binary path: "$NM_BIN_PATH"
   library path: "$NM_LIB_PATH"
