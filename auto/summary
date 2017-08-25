@@ -65,7 +65,7 @@ yes_no_any_out() {
 
 
 echo
-echo $nm_n "Configuration summary"
+echo "Configuration summary"
 
 cat << END
   platform: $NM_PLATFORM
