@@ -78,7 +78,7 @@ esac
 
 if [ "$NM_CPU" != "NO" ]; then
 	nm_feature="$CC_NAME $nm_feature_flags switch"
-	nm_feature_name="nm_have_$nm_feature_flags"
+	nm_feature_name="nm_have$nm_feature_flags"
 	nm_feature_run=no
 	nm_feature_incs=
 	nm_feature_path=
