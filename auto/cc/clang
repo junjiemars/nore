@@ -46,26 +46,27 @@ nm_stage_c="-c"
 
 # std 
 case "$NM_STD" in
-	NO)
-		;;
-	YES)
-		nm_feature_flags="-std=c99"
-		;;
+	NO) ;;
+
+	YES) nm_feature_flags="-std=c99" ;;
+
 	*)
 		case "$NM_STD" in
 			[cC]89|[cC]90|[cC]99|[cC]11)
-				nm_feature_flags="-std=`echo $NM_STD | tr [:upper:] [:lower:]`"
+				nm_feature_flags="-std=`echo $NM_STD | tr '[:upper:]' '[:lower:]'`"
 				;;
 			*)
 				nm_feature_flags=$NM_STD
 				;;
 		esac
-		;;
+	;;
+
 esac
 
 if [ "$NM_STD" != "NO" ]; then
+
 	nm_feature="$CC_NAME $nm_feature_flags switch"
-	nm_feature_name="nm_have_${CC_NAME}`echo $nm_feature_flags | tr '[\-: =]' '_' | tr [:lower:] [:upper:]`"
+	nm_feature_name="nm_have$nm_feature_flags"
 	nm_feature_run=no
 	nm_feature_incs=
 	nm_feature_path=
@@ -77,23 +78,28 @@ if [ "$NM_STD" != "NO" ]; then
 		nm_std_opt=$nm_feature_flags
 		CFLAGS=${CFLAGS:+$CFLAGS}${nm_std_opt:+ $nm_std_opt}
 	fi
+
 fi
+
 
 # cpu
 case "$NM_CPU" in
-	NO)
-		;;
+	NO) ;;
+
 	-march=*)
 		nm_feature_flags="$NM_CPU"
-		;;
+	;;
+
 	*)
 		nm_feature_flags="-march=$NM_CPU"
-		;;
+	;;
+
 esac
 
 if [ "$NM_CPU" != "NO" ]; then
+
 	nm_feature="$CC_NAME $nm_feature_flags switch"
-	nm_feature_name="nm_have_${CC_NAME}`echo $nm_feature_flags | tr '[\-: =]' '_' | tr [:lower:] [:upper:]`"
+	nm_feature_name="nm_have_cpu$nm_feature_flags"
 	nm_feature_run=no
 	nm_feature_incs=
 	nm_feature_path=
@@ -105,4 +111,5 @@ if [ "$NM_CPU" != "NO" ]; then
 		nm_cpu_opt=$nm_feature_flags
 		CFLAGS=${CFLAGS:+$CFLAGS}${nm_cpu_opt:+ $nm_cpu_opt}
 	fi
+
 fi
