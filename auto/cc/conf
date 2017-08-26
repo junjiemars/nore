@@ -57,10 +57,6 @@ ar_ext=".a"
 have=$CC_NAME . ${NM_HOME}auto/have
 
 
-nm_test_cflags=
-nm_test_ldflags=
-
-
 case $CC_NAME in
   gcc)
     . ${NM_HOME}auto/cc/gcc

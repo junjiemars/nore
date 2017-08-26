@@ -41,7 +41,7 @@ nm_error_opt="-Werror"
 nm_verbose_opt=${nm_verbose_opt:-"-v"}
 
 # pic
-nm_pic_opt=${nm_pic_opt:-"-fPIC"}
+nm_pic_opt=
 
 
 nm_feature="gcc -pipe switch"
@@ -51,11 +51,12 @@ nm_feature_incs=
 nm_feature_path=
 nm_feature_libs=
 nm_feature_test=
+nm_feature_flags=-pipe
 . ${NM_HOME}auto/feature
 
 
 if [ $nm_found = yes ]; then
-	nm_test_cflags="-pipe"
+	nm_pic_opt=-fPIC
 fi
 
 
@@ -92,9 +93,6 @@ if [ "$NM_CPU" != "NO" ]; then
 	fi
 
 fi
-
-
-nm_test_cflags="${nm_test_cflags:+$nm_test_cflags}${nm_cpu_opt:+ $nm_cpu_opt}"
 
 
 # warnings
