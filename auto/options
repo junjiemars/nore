@@ -130,6 +130,12 @@ END
 fi
 
 
+if [ -z "$NM_OUT" ]; then
+	NM_OUT=out
+else
+	NM_OUT=${NM_OUT%/}
+fi
+
 if [ -z "$NM_CPU" ]; then
 	NM_CPU=NO
 fi

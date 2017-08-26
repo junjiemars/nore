@@ -67,12 +67,12 @@ case ".$NM_PREFIX" in
 	.*)
     have=NM_PREFIX value="\"$NM_PREFIX/\"" . ${NM_HOME}auto/define
 	;;
+
 esac
 
 
 . ${NM_HOME}auto/make
 
 . ${NM_HOME}auto/install
-
 
 . ${NM_HOME}auto/summary

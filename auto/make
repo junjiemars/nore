@@ -1,4 +1,7 @@
 
+# make
+
+
 echo
 echo "creating $NM_MAKEFILE"
 
