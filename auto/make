@@ -64,6 +64,10 @@ nm_stage_chk = $nm_stage_chk
 nm_stage_asm = $nm_stage_asm
 nm_stage_c = $nm_stage_c
 
+# macro define 
+nm_def_opt = $nm_def_opt
+nm_undef_opt = $nm_undef_opt
+
 # path separator
 nm_p = $nm_p
 
