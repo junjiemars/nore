@@ -1,4 +1,6 @@
 
+# define 
+
 
 cat << END >> $NM_AUTO_H
 
