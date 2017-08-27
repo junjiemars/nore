@@ -1,4 +1,7 @@
 
+# make_define
+
+
 cat << END >> $NM_MAKEFILE
 
 $flag = $value
