@@ -7,13 +7,11 @@ nm_msvc_ver=`$CC 2>&1 | grep 'Compiler Version' 2>&1 \
 
 echo " + msvc version: $nm_msvc_ver"
 
-NM_COMPILER="msvc $nm_msvc_ver" 
 have=NM_COMPILER value="\"msvc $nm_msvc_ver\"" . ${NM_HOME}auto/define
 
-
 . ${NM_HOME}auto/cc/version
-NM_COMPILER_VER=`version_n $(echo $nm_msvc_ver | cut -d' ' -f1)`
-have=NM_COMPILER_VER value=$NM_COMPILER_VER . ${NM_HOME}auto/define
+CC_VER=`version_n $(echo $nm_msvc_ver | cut -d' ' -f1)`
+have=MSVC value=$CC_VER . ${NM_HOME}auto/define
 
 
 # preprocess

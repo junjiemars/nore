@@ -57,9 +57,6 @@ ar_ext=".a"
 . ${NM_HOME}auto/cc/name
 
 
-have=$CC_NAME . ${NM_HOME}auto/have
-
-
 case $CC_NAME in
   gcc)
     . ${NM_HOME}auto/cc/gcc

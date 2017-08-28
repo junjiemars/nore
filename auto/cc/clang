@@ -6,12 +6,11 @@ nm_clang_ver=`$CC -v 2>&1 | grep '\(clang\|LLVM\) version' 2>&1 \
 
 echo " + clang version: $nm_clang_ver"
 
-NM_COMPILER="clang $nm_clang_ver" 
-have=NM_COMPILER value="\"$NM_COMPILER\"" . ${NM_HOME}auto/define
+have=NM_COMPILER value="\"clang $nm_clang_ver\"" . ${NM_HOME}auto/define
 
 . ${NM_HOME}auto/cc/version
-NM_COMPILER_VER=`version_n $(echo $nm_clang_ver | cut -d' ' -f1)`
-have=NM_COMPILER_VER value=$NM_COMPILER_VER . ${NM_HOME}auto/define
+CC_VER=`version_n $(echo $nm_clang_ver | cut -d' ' -f1)`
+have=CLANG value=$CC_VER . ${NM_HOME}auto/define
 
 
 # preprocess
