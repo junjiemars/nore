@@ -37,4 +37,4 @@ $ ./configure --update
 
 [a story](story.md)
 
-[an example](https://github.com:junjiemars/nore-hi.git)
+[wiki](https://github.com/junjiemars/nore/wiki)
