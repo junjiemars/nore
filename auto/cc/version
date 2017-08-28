@@ -1,0 +1,30 @@
+
+# cc/version
+
+version_n() {
+	local s="$1"
+	local v=( ${s//\./ } )
+	local v2=
+	local b=
+	local n=0
+
+	if [ 0 -eq ${#v[@]} ]; then
+		echo $n
+		return 1
+	fi
+
+	if [ ${#v[@]} -ge 2 ]; then
+		v2=${v[@]:0:2}
+	else
+		v2=v
+	fi	
+	
+	b=$(( 10**(${#v[@]}-1) ))
+	for i in ${v2[@]}; do 
+		n=$(( n+b*i ))
+		b=$(( b/10 ))
+	done
+
+	echo $n
+}
+
