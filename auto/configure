@@ -36,7 +36,11 @@ if test -z "$NM_PLATFORM"; then
 	case $NM_SYSTEM in
 		MSYS_NT-*)
 			NM_RELEASE=${NM_SYSTEM:8}
-			NM_SYSTEM=${NM_SYSTEM:0:7}
+			NM_SYSTEM=WinNT
+		;;
+		MINGW??_NT-*)
+			NM_RELEASE=${NM_SYSTEM:11}
+			NM_SYSTEM=WinNT
 		;;
 	esac
 		
