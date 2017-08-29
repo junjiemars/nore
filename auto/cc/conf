@@ -25,6 +25,7 @@ nm_error_opt=
 nm_optimize_opt=
 nm_std_opt=
 nm_cpu_opt=
+nm_utf_opt=
 nm_verbose_opt=
 
 nm_pic_opt=
@@ -116,6 +117,11 @@ fi
 if [ "$NM_DEBUG" = "NO" ]; then
 	nm_debug_opt='-DNDEBUG=1'
 	CFLAGS=${CFLAGS:+$CFLAGS}${nm_debug_opt:+ $nm_debug_opt}
+fi
+
+# unicode option
+if [ -n "$nm_utf_opt" ]; then
+	CFLAGS=${CFLAGS:+$CFLAGS}${nm_utf_opt:+ $nm_utf_opt}
 fi
 
 # verbose option

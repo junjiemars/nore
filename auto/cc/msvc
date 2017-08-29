@@ -40,6 +40,9 @@ nm_warn_opt=${nm_warn_opt:-"-W4"}
 # error
 nm_error_opt="-WX"
 
+# unicode
+nm_utf_opt="-utf-8"
+
 # cl has no verbose option
 nm_verbose_opt=${nm_verbose_opt:-""}
 
