@@ -6,7 +6,8 @@ nm_gcc_ver=`$CC -v 2>&1 | grep 'gcc version' 2>&1 \
 
 echo " + gcc version: $nm_gcc_ver"
 
-have=NM_COMPILER value="\"gcc $nm_gcc_ver\"" . ${NM_HOME}auto/define
+NM_COMPILER="gcc $nm_gcc_ver"
+have=NM_COMPILER value="\"$NM_COMPILER\"" . ${NM_HOME}auto/define
 
 . ${NM_HOME}auto/cc/version
 CC_VER=`version_n $(echo $nm_gcc_ver | cut -d' ' -f1)`
