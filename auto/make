@@ -37,15 +37,13 @@ LINK = $LINK
 CPPFLAGS = $CPPFLAGS
 CFLAGS += $CFLAGS
 ASFLAGS = $ASFLAGS
+LDFLAGS += -L$NM_OUT/lib
 LDLIBS = $LDLIBS
-LDFLAGS = $LDFLAGS
 ARFLAGS = $ARFLAGS
 LFLAGS = $LFLAGS
 YFLAGS = $YFLAGS
 
-LDFLAGS = ${LDFLAGS:+$LDFLAGS}-L$NM_OUT/lib
-
-INC = ${INC:+$INC }-I$NM_OUT -I$NM_OUT/inc
+INC += -I$NM_OUT -I$NM_OUT/inc
 
 nm_symbol_opt = $nm_symbol_opt
 nm_optimize_opt = $nm_optimize_opt
