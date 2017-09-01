@@ -3,7 +3,7 @@
 No More than a C build system for clang, gcc and msvc.
 
 
-## How to Play
+## How to play
 
 ```sh
 $ cd <your-c-apps-dir>
@@ -20,7 +20,7 @@ $ make
 Use ```./configure --help``` to show help message.
 
 
-## How to Upgrade Nore
+## How to upgrade 
 
 ```sh
 # in your C apps dir
