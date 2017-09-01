@@ -17,10 +17,6 @@ $ ./configure --has-<app-name-or-src-dirname>
 $ make
 ```
 
-On Windows, to setup bash environment first via:
-download [Git Bash](https://git-scm.com/downloads), select 'unix compatible tools' when installing. Then run your __VS command prompt__, and start __bash__ in it.
- 
-
 Use ```./configure --help``` to show help message.
 
 
@@ -32,9 +28,4 @@ $ ./configure --update
 ```
 
 
-
-
-
-[a story](story.md)
-
-[wiki](https://github.com/junjiemars/nore/wiki)
+[story](story.md) | [wiki](wiki.md)
