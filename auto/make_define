@@ -1,9 +1,11 @@
 
 # make_define
 
+op=${op:-"="}
+
 
 cat << END >> $NM_MAKEFILE
 
-$flag = $value
+$flag $op $value
 
 END

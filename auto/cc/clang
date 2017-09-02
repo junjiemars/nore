@@ -73,9 +73,11 @@ if [ "$NM_STD" != "NO" ]; then
 	nm_feature="$CC_NAME $nm_feature_flags switch"
 	nm_feature_name="nm_have$nm_feature_flags"
 	nm_feature_run=no
-	nm_feature_incs=
-	nm_feature_path=
-	nm_feature_libs=
+	nm_feature_h=
+	nm_feature_cflags=
+	nm_feature_inc=
+	nm_feature_ldflags=
+	nm_feature_ldlibs=
 	nm_feature_test=
 	. ${NM_HOME}auto/feature
 	
@@ -106,9 +108,11 @@ if [ "$NM_CPU" != "NO" ]; then
 	nm_feature="$CC_NAME $nm_feature_flags switch"
 	nm_feature_name="nm_have_cpu$nm_feature_flags"
 	nm_feature_run=no
-	nm_feature_incs=
-	nm_feature_path=
-	nm_feature_libs=
+	nm_feature_h=
+	nm_feature_cflags=
+	nm_feature_inc=
+	nm_feature_ldflags=
+	nm_feature_ldlibs=
 	nm_feature_test=
 	. ${NM_HOME}auto/feature
 	

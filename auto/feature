@@ -16,16 +16,11 @@ if test -n "$nm_feature_name"; then
 	nm_have_feature=`echo $nm_feature_name | tr '[\-: =]' '_' | tr '[:lower:]' '[:upper:]'`
 fi
 
-if test -n "$nm_feature_path"; then
-  for nm_tmp in $nm_feature_path; do
-		nm_feature_inc_path="${nm_feature_inc_path:+$nm_feature_inc_path }-I $nm_tmp"
-  done
-fi
 
 cat << END > $NM_AUTOTEST.c
 
 #include <sys/types.h>
-$nm_feature_incs
+$nm_feature_h
 
 int main(void) {
     $nm_feature_test;
@@ -38,11 +33,11 @@ END
 nm_test_out="${auto_out:+$auto_out`dirname $NM_AUTOTEST`/ }$bin_out$NM_AUTOTEST"
 
 nm_test="$CC $nm_feature_flags \
-					$nm_feature_inc_path \
+					$nm_feature_cflags \
+					$nm_feature_inc \
+					$nm_feature_ldflags \
 					$nm_test_out $NM_AUTOTEST.c \
-					$nm_feature_libs"
-
-nm_feature_inc_path=
+					$nm_feature_ldlibs"
 
 
 `$nm_test >> $NM_AUTOCONF_ERR 2>&1`
