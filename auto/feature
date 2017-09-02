@@ -33,9 +33,7 @@ END
 nm_test_out="${auto_out:+$auto_out`dirname $NM_AUTOTEST`/ }$bin_out$NM_AUTOTEST"
 
 nm_test="$CC $nm_feature_flags \
-					$nm_feature_cflags \
 					$nm_feature_inc \
-					$nm_feature_ldflags \
 					$nm_test_out $NM_AUTOTEST.c \
 					$nm_feature_ldlibs"
 

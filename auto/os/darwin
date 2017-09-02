@@ -19,9 +19,8 @@ have=$NM_SYSTEM . ${NM_HOME}auto/have
 #nm_feature_run=bug
 #nm_feature_h="#include <sys/event.h>
 #              #include <sys/time.h>"
-#nm_feature_cflags=
+#nm_feature_flags=
 #nm_feature_inc=
-#nm_feature_ldflags=
 #nm_feature_ldlibs=
 #nm_feature_test="int  kq;
 #                  struct kevent    kev;
