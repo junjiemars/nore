@@ -26,6 +26,7 @@ done
 
 
 cat << END > $NM_MAKEFILE
+# $NM_MAKEFILE ($NM_COMPILER, $NM_PLATFORM)
 
 CC = $CC
 CPP = $CPP
