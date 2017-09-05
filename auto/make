@@ -70,8 +70,6 @@ nm_undef_opt = $nm_undef_opt
 # path separator
 nm_p = $nm_p
 
-src_root = ${NM_SRC%/}/
-
 # nore options
 NM_SYMBOL = $NM_SYMBOL
 NM_OPTIMIZE = $NM_OPTIMIZE
@@ -158,6 +156,9 @@ if [ -n "$nm_sticks" ]; then
 build: ${nm_sticks[@]}
 
 test: ${nm_sticks_test[@]}
+
+
+root = ${NM_SRC%/}/
 
 inc_path=$NM_OUT/inc/
 tmp_path=$NM_OUT/tmp/
