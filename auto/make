@@ -159,9 +159,15 @@ build: ${nm_sticks[@]}
 
 test: ${nm_sticks_test[@]}
 
+inc_path=$NM_OUT/inc/
+tmp_path=$NM_OUT/tmp/
+lib_path=$NM_OUT/lib/
+bin_path=$NM_OUT/bin/
+
 
 END
-	
+
+
 	for stick in ${nm_sticks[@]}; do
 
 		stick_src=$NM_SRC/$stick
@@ -177,11 +183,6 @@ END
 			. $stick_src/configure
 		fi
 
-		src_path=$stick_src/
-		inc_path=$NM_OUT/inc/
-		tmp_path=$NM_OUT/tmp/
-		lib_path=$NM_OUT/lib/
-		bin_path=$NM_OUT/bin/
 		
 		if [ -f $stick_src/Makefile.$CC_NAME ]; then
 			stick_makefile=$stick_src/Makefile.$CC_NAME
@@ -206,16 +207,12 @@ END
 
 		fi
 		
+		cat << END >> $NM_MAKEFILE
+#---------------------------------------
+${stick}_root := $stick_src/
+include $stick_makefile
 
-		echo "#---------------------------------------" >> $NM_MAKEFILE
-		echo $nm_n "`cat $stick_makefile`" \
-			| sed -e "s@\$(src_path)@$src_path@g" \
-					  -e "s@\$(inc_path)@$inc_path@g" \
-						-e "s@\$(tmp_path)@$tmp_path@g" \
-						-e "s@\$(lib_path)@$lib_path@g" \
-						-e "s@\$(bin_path)@$bin_path@g" \
-		>> $NM_MAKEFILE 
-		echo >> $NM_MAKEFILE
+END
 
 	done
 
