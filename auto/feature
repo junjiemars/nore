@@ -30,7 +30,7 @@ int main(void) {
 END
 
 
-nm_test_out="${auto_out:+$auto_out`dirname $NM_AUTOTEST`/ }$bin_out$NM_AUTOTEST"
+nm_test_out="${bin_out}${NM_AUTOTEST}"
 
 nm_test="$CC $nm_feature_flags \
 					$nm_feature_inc \
