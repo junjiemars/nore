@@ -50,6 +50,7 @@ nm_verbose_opt=${nm_verbose_opt:-""}
 if [ "$NM_VERBOSE" == "NO" ]; then
 	CC="${CC:+$CC }-nologo"
 	AR="${AR:+$AR }-nologo"
+	AS="${AS:+$AS }-nologo"
 fi
 
 
