@@ -1,5 +1,7 @@
 # Nore
 
+[![build status](https://api.travis-ci.org/junjiemars/nore.svg?branch=master)](https://api.travis-ci.org/junjiemars/nore)
+
 No More than a C build system for clang, gcc and msvc.
 
 
