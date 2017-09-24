@@ -1,5 +1,6 @@
 #!/bin/bash
 
+cd "$NORE_TEST_DIR"
 make clean
 
 case "$TRAVIS_OS_NAME" in
