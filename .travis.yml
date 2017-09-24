@@ -1,6 +1,10 @@
 language: bash
-dist: trusty
-sudo: false
+
+matrix:
+  include:
+    - os: linux
+    - os: osx
+
 env:
   - SHELL=bash
 
@@ -10,8 +14,4 @@ before_script:
   - bash <(curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.sh)
 
 script: 
-  - CC=gcc ./configure --has-hi
-  - make test
-  - make clean
-  - CC=clang ./configure --has-hi
-  - make test
+  - ./.travis-tests.sh
