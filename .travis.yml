@@ -9,10 +9,18 @@ addons:
       - make
       - git
       - curl
-script: >
-  cd /tmp
-  git clone --depth=1 https://github.com/junjiemars/c.git
-  cd /tmp/c
-  bash <(curl https://raws.githubusercontent.com/junjiemars/nore/master/bootstrap.sh)
-  ./configure --has-hi
-  make test
+compiler:
+	- gcc
+	- clang
+
+before_script:
+  - git clone --depth=1 https://github.com/junjiemars/c.git
+	- cd c/
+  - bash <(curl https://raws.githubusercontent.com/junjiemars/nore/master/bootstrap.sh)
+
+script: 
+  - CC=gcc ./configure --has-hi
+  - make test
+	- make clean
+	- CC=clang ./configure --has-hi
+	- make test
