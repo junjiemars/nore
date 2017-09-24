@@ -3,10 +3,11 @@ dist: trusty
 sudo: false
 env:
   - SHELL=bash
+
 before_script:
   - git clone --depth=1 https://github.com/junjiemars/c.git
   - cd c/
-  - bash <(curl https://raws.githubusercontent.com/junjiemars/nore/master/bootstrap.sh)
+  - bash <(curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.sh)
 
 script: 
   - CC=gcc ./configure --has-hi
