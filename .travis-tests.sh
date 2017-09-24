@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd "$NORE_TEST_DIR"
-make clean
+[ -f "Makefile" ] && make clean
 
 case "$TRAVIS_OS_NAME" in
   osx)
@@ -13,7 +13,8 @@ case "$TRAVIS_OS_NAME" in
     CC=gcc ./configure --has-hi
     make test
 
-    make clean
+    [ -f "Makefile" ] && make clean
+
     CC=clang ./configure --has-hi
     make test
   ;;
