@@ -29,12 +29,31 @@ GITHUB_R="${GITHUB_R:-https://raw.githubusercontent.com/junjiemars}"
 GITHUB_H="${GITHUB_H:-https://github.com/junjiemars}"
 GITHUB_BASH_ENV="${GITHUB_R}/kit/master/ul/setup-bash.sh"
 
-case ".$1" in
-	.-u|.--update)
-		NORE_UPDATE=0
-		;;
-	*)
-		NORE_UPDATE=1
+NORE_UPGRADE=no
+NORE_BRANCH=master
+
+for option
+do
+  opt="$opt `echo $option | sed -e \"s/\(--[^=]*=\)\(.* .*\)/\1'\2'/\"`"
+  
+  case "$option" in
+    -*=*) value=`echo "$option" | sed -e 's/[-_a-zA-Z0-9]*=//'` ;;
+    *) value="" ;;
+  esac
+  
+  case "$option" in
+    --help)                  help=yes                   ;;
+    --branch=*)              NORE_BRANCH="$value"       ;;
+
+    *)
+			command="`echo $option | tr '[:upper:]' '[:lower:]'`"
+    ;;
+  esac
+done
+
+case ".$command" in
+	.u|.upgrade)
+		NORE_UPGRADE=yes
 		;;
 esac
 
@@ -51,7 +70,7 @@ if [ ! -f "$HOME/.bash_paths" -o ! -f "$HOME/.bash_vars" ]; then
 	$(curl -sqL $GITHUB_BASH_ENV | bash &>/dev/null)
 else
 	echo "found"
-	[ 0 -eq $NORE_UPDATE ] && $(curl -sqL $GITHUB_BASH_ENV | bash &>/dev/null)
+	[ 0 -eq $NORE_UPGRADE ] && $(curl -sqL $GITHUB_BASH_ENV | bash &>/dev/null)
 fi
 . $HOME/.bashrc
 
@@ -63,9 +82,9 @@ else
 	case ${PLATFORM} in
 	  MSYS_NT*|MINGW*)
 			HAS_GMAKE=1 bash <(curl ${GITHUB_R}/kit/master/win/install-win-kits.sh)
-			;;
+		;;
 	  *)
-	    ;;
+		;;
 	esac
 fi
 
@@ -77,9 +96,9 @@ clone_nore() {
 						 		grep 'nore\.git' &>/dev/null; echo $? )`"
 	if [ 0 -eq $n ]; then
 		`( cd ${PREFIX} && git reset --hard &>/dev/null )`
-		cd ${PREFIX} && git pull origin master &>/dev/null
+		cd ${PREFIX} && git pull origin ${NORE_BRANCH} &>/dev/null
 	else
-		git clone --depth=1 --branch=master ${GITHUB_H}/nore.git ${PREFIX} &>/dev/null
+		git clone --depth=1 --branch=${NORE_BRANCH} ${GITHUB_H}/nore.git ${PREFIX} &>/dev/null
 	fi
 }
 
@@ -95,27 +114,42 @@ NORE_R_BOOT=${GITHUB_R}/nore/master/bootstrap.sh
 NORE_L_CONF=\${NORE_PREFIX}/auto/configure
 
 
-cd "\`dirname \${BASH_SOURCE}\`" && \\
-if [ 1 -le \$# ]; then
-	case ".\$1" in
-	  .-u*|.--update*)
-			if [ -f \$NORE_L_BOOT ]; then
-				\$NORE_L_BOOT -u
-			else
-				curl -sqL \${NORE_R_BOOT} | PREFIX=\$NORE_PREFIX bash -s -- -u
-			fi
-	  	;;
-		.*)
-			if [ -f \$NORE_L_CONF ]; then
-				\$NORE_L_CONF "\$@"
-			else
-				echo
-				echo "!nore << no found, to fix >: configure --update"
-				echo 
-			fi
-			;;
-	esac
-fi
+cd "\`dirname \${BASH_SOURCE}\`"
+for option
+do
+  opt="\$opt `echo \$option | sed -e \"s/\(--[^=]*=\)\(.* .*\)/\1'\2'/\"`"
+  
+  case "\$option" in
+    -*=*) value=`echo "\$option" | sed -e 's/[-_a-zA-Z0-9]*=//'` ;;
+    *) value="" ;;
+  esac
+  
+  case "\$option" in
+    *)
+			command="`echo \$option | tr '[:upper:]' '[:lower:]'`"
+    ;;
+  esac
+done
+
+case \$command in
+	.upgrade)
+		if [ -f \$NORE_L_BOOT ]; then
+			\$NORE_L_BOOT upgrade
+		else
+			curl -sqL \${NORE_R_BOOT} | PREFIX=\$NORE_PREFIX bash -s -- upgrade
+		fi
+	;;
+	
+	.*)
+		if [ -f \$NORE_L_CONF ]; then
+			\$NORE_L_CONF "\$@"
+		else
+			echo
+			echo "!nore << no found, to fix >: configure upgrade"
+			echo 
+		fi
+	;;
+esac
 
 END
 
@@ -128,8 +162,8 @@ END
 echo -n " + checking nore ... "
 if [ -x "$NORE_CONFIGURE" ]; then
 	echo "found"
-	if [ 0 -eq "$NORE_UPDATE" ]; then
-		echo -n " + updating nore ... "
+	if [ "yes" = "$NORE_UPGRADE" ]; then
+		echo -n " + upgrading nore ... "
 		if `clone_nore`; then
 			echo "ok"
 		else
