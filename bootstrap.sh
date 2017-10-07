@@ -98,6 +98,7 @@ clone_nore() {
 						 		grep 'nore\.git' &>/dev/null; echo $? )`"
 	if [ 0 -eq $n ]; then
 		`( cd ${PREFIX} && git reset --hard &>/dev/null )`
+		`( cd ${PREFIX} && git checkout ${NORE_BRANCH} &>/dev/null )`
 		cd ${PREFIX} && git pull origin ${NORE_BRANCH} &>/dev/null
 	else
 		git clone --depth=1 --branch=${NORE_BRANCH} ${GITHUB_H}/nore.git ${PREFIX} &>/dev/null
@@ -139,7 +140,7 @@ case ".\$command" in
 		if [ -f \$NORE_L_BOOT ]; then
 			\$NORE_L_BOOT upgrade
 		else
-			curl -sqL \${NORE_R_BOOT} | PREFIX=\$NORE_PREFIX bash -s -- upgrade
+			curl -sqL \${NORE_R_BOOT} | PREFIX=\$NORE_PREFIX bash -s -- --branch=${NORE_BRANCH} upgrade
 		fi
 	;;
 	
@@ -187,5 +188,5 @@ fi
 
 END="`date +%s`"
 echo 
-echo "... elpased $(( ${END}-${BEGIN} )) seconds, successed."
+echo "... elpased $(( ${END}-${BEGIN} )) seconds."
 
