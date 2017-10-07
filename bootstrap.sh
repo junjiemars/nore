@@ -98,7 +98,6 @@ clone_nore() {
 						 		grep 'nore\.git' &>/dev/null; echo $? )`"
 	if [ 0 -eq $n ]; then
 		`( cd ${PREFIX} && git reset --hard &>/dev/null )`
-		`( cd ${PREFIX} && git checkout ${NORE_BRANCH} &>/dev/null )`
 		cd ${PREFIX} && git pull origin ${NORE_BRANCH} &>/dev/null
 	else
 		git clone --depth=1 --branch=${NORE_BRANCH} ${GITHUB_H}/nore.git ${PREFIX} &>/dev/null
@@ -138,7 +137,7 @@ done
 case ".\$command" in
 	.upgrade)
 		if [ -f \$NORE_L_BOOT ]; then
-			\$NORE_L_BOOT upgrade
+			\$NORE_L_BOOT --branch=${NORE_BRANCH} upgrade
 		else
 			curl -sqL \${NORE_R_BOOT} | PREFIX=\$NORE_PREFIX bash -s -- --branch=${NORE_BRANCH} upgrade
 		fi
