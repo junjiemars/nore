@@ -22,7 +22,7 @@ bootstrap_path() {
 }
 
 PREFIX="${PREFIX:-`bootstrap_path`}"
-NM_WORK="`pwd`"
+NORE_WORK="`pwd`"
 
 PLATFORM="`uname -s 2>/dev/null`"
 GITHUB_R="${GITHUB_R:-https://raw.githubusercontent.com/junjiemars}"
@@ -70,7 +70,7 @@ else
 fi
 
 
-NM_CONFIGURE="${NM_WORK%/}/configure"
+NORE_CONFIGURE="${NORE_WORK%/}/configure"
 
 clone_nore() {
 	local n="`( cd ${PREFIX} && git remote -v 2>/dev/null | \
@@ -84,7 +84,7 @@ clone_nore() {
 }
 
 cat_configure() {
-	local conf="${NM_CONFIGURE}.n"
+	local conf="${NORE_CONFIGURE}.n"
 
 	cat << END > "$conf"
 #!/bin/bash
@@ -120,13 +120,13 @@ fi
 END
 
 	chmod u+x "$conf"
-	mv "$conf" "$NM_CONFIGURE"
+	mv "$conf" "$NORE_CONFIGURE"
 }
 
 
 [ -d "${PREFIX}" ] || mkdir -p "${PREFIX}"	
 echo -n " + checking nore ... "
-if [ -x "$NM_CONFIGURE" ]; then
+if [ -x "$NORE_CONFIGURE" ]; then
 	echo "found"
 	if [ 0 -eq "$NORE_UPDATE" ]; then
 		echo -n " + updating nore ... "
