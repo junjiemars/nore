@@ -70,7 +70,7 @@ if [ ! -f "$HOME/.bash_paths" -o ! -f "$HOME/.bash_vars" ]; then
 	$(curl -sqL $GITHUB_BASH_ENV | bash &>/dev/null)
 else
 	echo "found"
-	[ 0 -eq $NORE_UPGRADE ] && $(curl -sqL $GITHUB_BASH_ENV | bash &>/dev/null)
+	[ "yes" = $NORE_UPGRADE ] && $(curl -sqL $GITHUB_BASH_ENV | bash &>/dev/null)
 fi
 . $HOME/.bashrc
 
@@ -117,16 +117,16 @@ NORE_L_CONF=\${NORE_PREFIX}/auto/configure
 cd "\`dirname \${BASH_SOURCE}\`"
 for option
 do
-  opt="\$opt `echo \$option | sed -e \"s/\(--[^=]*=\)\(.* .*\)/\1'\2'/\"`"
+  opt="\$opt \`echo \$option | sed -e \"s/\(--[^=]*=\)\(.* .*\)/\1'\2'/\"\`"
   
   case "\$option" in
-    -*=*) value=`echo "\$option" | sed -e 's/[-_a-zA-Z0-9]*=//'` ;;
+    -*=*) value=\`echo "\$option" | sed -e 's/[-_a-zA-Z0-9]*=//'\` ;;
     *) value="" ;;
   esac
   
   case "\$option" in
     *)
-			command="`echo \$option | tr '[:upper:]' '[:lower:]'`"
+			command="\`echo \$option | tr '[:upper:]' '[:lower:]'\`"
     ;;
   esac
 done
