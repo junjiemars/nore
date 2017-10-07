@@ -134,16 +134,21 @@ do
   esac
 done
 
-case ".\$command" in
-	.upgrade)
+if [ -z "$command" ]; then
+	exit 1
+fi
+
+case "\$command" in
+	upgrade)
 		if [ -f \$NORE_L_BOOT ]; then
 			\$NORE_L_BOOT --branch=${NORE_BRANCH} upgrade
 		else
-			curl -sqL \${NORE_R_BOOT} | PREFIX=\$NORE_PREFIX bash -s -- --branch=${NORE_BRANCH} upgrade
+			curl -sqL \${NORE_R_BOOT} \\
+				| PREFIX=\$NORE_PREFIX bash -s -- --branch=${NORE_BRANCH} upgrade
 		fi
 	;;
 	
-	.*)
+	*)
 		if [ -f \$NORE_L_CONF ]; then
 			\$NORE_L_CONF "\$@"
 		else
