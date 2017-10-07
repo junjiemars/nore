@@ -126,12 +126,12 @@ do
   
   case "\$option" in
     *)
-			command="\`echo \$option | tr '[:upper:]' '[:lower:]'\`"
+			command="\`echo \$option | tr [:upper:] [:lower:]\`"
     ;;
   esac
 done
 
-case \$command in
+case ".\$command" in
 	.upgrade)
 		if [ -f \$NORE_L_BOOT ]; then
 			\$NORE_L_BOOT upgrade
