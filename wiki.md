@@ -17,7 +17,8 @@ bash <(curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.s
 ```
 then all had done.
 
-On Windows, because there are no __bash__ by default, so we need install [Git Bash](https://git-scm.com/downloads) first, and select _unix compatible tools_ option box when installing. Run ```bash``` in any ```CMD``` or ```MSYS```, then
+On Windows, because there are no __bash__ by default, so we need install [Git Bash](https://git-scm.com/downloads) first, 
+and select _unix compatible tools_ option box when installing. Run ```bash``` in any ```CMD``` or ```MSYS```, then
 ```sh
 bash <(curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.sh)
 ```

@@ -13,6 +13,8 @@ bootstrap_path() {
 		p="`( cd \"${p}\" && pwd )`"
 		if [ -z "$p" -o "/dev/fd" = "$p" ]; then
 			echo "$n"
+		elif [ ! -f "${p}/auto/configure" ]; then
+			echo "${p}/.nore"
 		else
 			echo "$p"
 		fi
@@ -115,6 +117,7 @@ NORE_L_CONF=\${NORE_PREFIX}/auto/configure
 
 
 cd "\`dirname \${BASH_SOURCE}\`"
+
 for option
 do
   opt="\$opt \`echo \$option | sed -e \"s/\(--[^=]*=\)\(.* .*\)/\1'\2'/\"\`"
@@ -126,7 +129,7 @@ do
   
   case "\$option" in
     *)
-			command="\`echo \$option | tr [:upper:] [:lower:]\`"
+			command="\`echo \$option | tr '[:upper:]' '[:lower:]'\`"
     ;;
   esac
 done
