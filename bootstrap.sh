@@ -113,7 +113,7 @@ cat_configure() {
 NORE_PREFIX=${PREFIX%/}
 NORE_GITHUB=${GITHUB_H}/nore.git
 NORE_L_BOOT=\$NORE_PREFIX/bootstrap.sh
-NORE_R_BOOT=${GITHUB_R}/nore/master/bootstrap.sh
+NORE_R_BOOT=${GITHUB_R}/nore/${NORE_BRANCH}/bootstrap.sh
 NORE_L_CONF=\${NORE_PREFIX}/auto/configure
 
 
