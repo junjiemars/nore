@@ -116,6 +116,10 @@ NORE_R_BOOT=${GITHUB_R}/nore/${NORE_BRANCH}/bootstrap.sh
 NORE_L_CONF=\${NORE_PREFIX}/auto/configure
 
 
+if [ 0 -eq "\$#" ]; then
+	exit 1
+fi
+
 cd "\`dirname \${BASH_SOURCE}\`"
 
 for option
@@ -133,10 +137,6 @@ do
     ;;
   esac
 done
-
-if [ -z "$command" ]; then
-	exit 1
-fi
 
 case "\$command" in
 	upgrade)
