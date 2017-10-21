@@ -2,9 +2,9 @@
 
 NM_BIN_PATH=${NM_PREFIX%/}/${NM_BIN_PATH%/}
 NM_LIB_PATH=${NM_PREFIX%/}/${NM_LIB_PATH%/}
-NM_CONF_PATH=${NM_PREFIX%/}/${NM_CONF_PATH%/}
-NM_LOG_PATH=${NM_PREFIX%/}/${NM_LOG_PATH%/}
 NM_INC_PATH=${NM_PREFIX%/}/${NM_INC_PATH%/}
+NM_ETC_PATH=${NM_PREFIX%/}/${NM_ETC_PATH%/}
+NM_LOG_PATH=${NM_PREFIX%/}/${NM_LOG_PATH%/}
 NM_PID_PATH=${NM_PREFIX%/}/${NM_PID_PATH%/}
 
 
@@ -15,18 +15,18 @@ cat << END >> $NM_MAKEFILE
 #---------------------------------------
 
 
-install: build $NM_BIN_PATH $NM_LIB_PATH $NM_CONF_PATH $NM_INC_PATH
+install: build $NM_BIN_PATH $NM_LIB_PATH $NM_INC_PATH $NM_ETC_PATH
 	\$(call cp-if, $NM_OUT/bin, $NM_BIN_PATH/)
 	\$(call cp-if, $NM_OUT/lib, $NM_LIB_PATH/)
-	\$(call cp-if, $NM_OUT/conf, $NM_CONF_PATH/)
 	\$(call cp-if, $NM_OUT/inc, $NM_INC_PATH/)
+	\$(call cp-if, $NM_OUT/etc, $NM_ETC_PATH/)
 
 
-$NM_BIN_PATH $NM_LIB_PATH $NM_CONF_PATH $NM_INC_PATH:
+$NM_BIN_PATH $NM_LIB_PATH $NM_INC_PATH $NM_ETC_PATH:
 	\$(call mkdir-if, $NM_BIN_PATH)
 	\$(call mkdir-if, $NM_LIB_PATH)
-	\$(call mkdir-if, $NM_CONF_PATH)
 	\$(call mkdir-if, $NM_INC_PATH)
+	\$(call mkdir-if, $NM_ETC_PATH)
 	\$(call mkdir-if, $NM_LOG_PATH)
 
 

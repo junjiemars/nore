@@ -8,10 +8,10 @@ echo "creating $NM_MAKEFILE"
 mkdir -p $NM_OUT/bin \
          $NM_OUT/lib \
 	       $NM_OUT/inc \
+	       $NM_OUT/etc \
 	       $NM_OUT/log \
 	       $NM_OUT/pid \
-	       $NM_OUT/tmp \
-	       $NM_OUT/conf
+	       $NM_OUT/tmp
 
 asm_out="${auto_out:+$auto_out$NM_OUT/tmp/ }$asm_out"
 bin_out="${auto_out:+$auto_out$NM_OUT/tmp/ }$bin_out"
@@ -110,10 +110,10 @@ clean:
 	\$(RM) -r $NM_OUT/bin/*
 	\$(RM) -r $NM_OUT/lib/*
 	\$(RM) -r $NM_OUT/inc/*
+	\$(RM) -r $NM_OUT/etc/*
 	\$(RM) -r $NM_OUT/log/*
 	\$(RM) -r $NM_OUT/pid/*
 	\$(RM) -r $NM_OUT/tmp/*
-	\$(RM) -r $NM_OUT/conf/*
 
 
 END

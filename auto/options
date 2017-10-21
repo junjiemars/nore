@@ -5,8 +5,8 @@ NM_PREFIX=
 
 NM_BIN_PATH=
 NM_LIB_PATH=
-NM_CONF_PATH=
 NM_INC_PATH=
+NM_ETC_PATH=
 NM_LOG_PATH=
 NM_PID_PATH=
 
@@ -58,8 +58,8 @@ do
     --prefix=*)                      NM_PREFIX="$value"         	;;
     --bin-path=*)                    NM_BIN_PATH="$value"       	;;
     --lib-path=*)                    NM_LIB_PATH="$value"  		  	;;
-    --conf-path=*)                   NM_CONF_PATH="$value"      	;;
     --inc-path=*)                    NM_INC_PATH="$value"       	;;
+    --etc-path=*)                    NM_ETC_PATH="$value"      	  ;;
     --pid-path=*)                    NM_PID_PATH="$value"       	;;
     --log-path=*)                    NM_LOG_PATH="$value"       	;;
     --user=*)                        NM_USER="$value"           	;;
@@ -102,8 +102,8 @@ cat << END
   --prefix=PATH                      set installation prefix
   --bin-path=PATH                    set bin pathname 
   --lib-path=PATH                    set lib pathname
-  --conf-path=PATH                   set conf pathname
-  --inc-path=PATH                    set inc pathname
+  --inc-path=PATH                    set include pathname
+  --etc-path=PATH                    set etc pathname
   --pid-path=PATH                    set pid pathname
   --log-path=PATH                    set log pathname
 
@@ -158,8 +158,8 @@ fi
 
 NM_BIN_PATH=${NM_BIN_PATH:-bin}
 NM_LIB_PATH=${NM_LIB_PATH:-lib}
-NM_CONF_PATH=${NM_CONF_PATH:-conf}
-NM_INC_PATH=${NM_INC_PATH:-inc}
+NM_ETC_PATH=${NM_ETC_PATH:-etc}
+NM_INC_PATH=${NM_INC_PATH:-include}
 NM_PID_PATH=${NM_PID_PATH:-log}
 NM_LOG_PATH=${NM_LOG_PATH:-log}
 
