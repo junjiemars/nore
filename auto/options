@@ -7,8 +7,7 @@ NM_BIN_PATH=
 NM_LIB_PATH=
 NM_INC_PATH=
 NM_ETC_PATH=
-NM_LOG_PATH=
-NM_PID_PATH=
+NM_VAR_PATH=
 
 CC=${CC:-"cc"}
 CPP=
@@ -60,8 +59,7 @@ do
     --lib-path=*)                    NM_LIB_PATH="$value"  		  	;;
     --inc-path=*)                    NM_INC_PATH="$value"       	;;
     --etc-path=*)                    NM_ETC_PATH="$value"      	  ;;
-    --pid-path=*)                    NM_PID_PATH="$value"       	;;
-    --log-path=*)                    NM_LOG_PATH="$value"       	;;
+    --var-path=*)                    NM_VAR_PATH="$value"       	;;
     --user=*)                        NM_USER="$value"           	;;
     --group=*)                       NM_GROUP="$value"          	;;
     
@@ -104,8 +102,7 @@ cat << END
   --lib-path=PATH                    set lib pathname
   --inc-path=PATH                    set include pathname
   --etc-path=PATH                    set etc pathname
-  --pid-path=PATH                    set pid pathname
-  --log-path=PATH                    set log pathname
+  --var-path=PATH                    set var pathname
 
   --src-dir=DIR                      set source directory
   --out-dir=DIR                      set build out directory
@@ -160,6 +157,5 @@ NM_BIN_PATH=${NM_BIN_PATH:-bin}
 NM_LIB_PATH=${NM_LIB_PATH:-lib}
 NM_ETC_PATH=${NM_ETC_PATH:-etc}
 NM_INC_PATH=${NM_INC_PATH:-include}
-NM_PID_PATH=${NM_PID_PATH:-log}
-NM_LOG_PATH=${NM_LOG_PATH:-log}
+NM_VAR_PATH=${NM_VAR_PATH:-var}
 

@@ -4,8 +4,7 @@ NM_BIN_PATH=${NM_PREFIX%/}/${NM_BIN_PATH%/}
 NM_LIB_PATH=${NM_PREFIX%/}/${NM_LIB_PATH%/}
 NM_INC_PATH=${NM_PREFIX%/}/${NM_INC_PATH%/}
 NM_ETC_PATH=${NM_PREFIX%/}/${NM_ETC_PATH%/}
-NM_LOG_PATH=${NM_PREFIX%/}/${NM_LOG_PATH%/}
-NM_PID_PATH=${NM_PREFIX%/}/${NM_PID_PATH%/}
+NM_VAR_PATH=${NM_PREFIX%/}/${NM_VAR_PATH%/}
 
 
 # append install target
@@ -27,7 +26,7 @@ $NM_BIN_PATH $NM_LIB_PATH $NM_INC_PATH $NM_ETC_PATH:
 	\$(call mkdir-if, $NM_LIB_PATH)
 	\$(call mkdir-if, $NM_INC_PATH)
 	\$(call mkdir-if, $NM_ETC_PATH)
-	\$(call mkdir-if, $NM_LOG_PATH)
+	\$(call mkdir-if, $NM_VAR_PATH)
 
 
 mkdir-if = \$(if \$(wildcard \$1),,mkdir -p \$1)

@@ -9,8 +9,7 @@ mkdir -p $NM_OUT/bin \
          $NM_OUT/lib \
 	       $NM_OUT/inc \
 	       $NM_OUT/etc \
-	       $NM_OUT/log \
-	       $NM_OUT/pid \
+	       $NM_OUT/var \
 	       $NM_OUT/tmp
 
 asm_out="${auto_out:+$auto_out$NM_OUT/tmp/ }$asm_out"
@@ -111,8 +110,7 @@ clean:
 	\$(RM) -r $NM_OUT/lib/*
 	\$(RM) -r $NM_OUT/inc/*
 	\$(RM) -r $NM_OUT/etc/*
-	\$(RM) -r $NM_OUT/log/*
-	\$(RM) -r $NM_OUT/pid/*
+	\$(RM) -r $NM_OUT/var/*
 	\$(RM) -r $NM_OUT/tmp/*
 
 
