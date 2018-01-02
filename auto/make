@@ -106,12 +106,12 @@ bin_ext = $bin_ext
 default: build
 
 clean:
-	test ! -d $NM_OUT/bin || \$(RM) -r $NM_OUT/bin/*
-	test ! -d $NM_OUT/lib || \$(RM) -r $NM_OUT/lib/*
-	test ! -d $NM_OUT/inc || \$(RM) -r $NM_OUT/inc/*
-	test ! -d $NM_OUT/etc || \$(RM) -r $NM_OUT/etc/*
-	test ! -d $NM_OUT/var || \$(RM) -r $NM_OUT/var/*
-	test ! -d $NM_OUT/tmp || \$(RM) -r $NM_OUT/tmp/*
+	-\$(RM) -r $NM_OUT/bin/*
+	-\$(RM) -r $NM_OUT/lib/*
+	-\$(RM) -r $NM_OUT/inc/*
+	-\$(RM) -r $NM_OUT/etc/*
+	-\$(RM) -r $NM_OUT/var/*
+	-\$(RM) -r $NM_OUT/tmp/*
 
 
 END
