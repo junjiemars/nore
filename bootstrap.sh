@@ -115,7 +115,9 @@ NORE_GITHUB=${GITHUB_H}/nore.git
 NORE_L_BOOT=\${NORE_PREFIX}/bootstrap.sh
 NORE_R_BOOT=${GITHUB_R}/nore/${NORE_BRANCH}/bootstrap.sh
 NORE_L_CONF=\${NORE_PREFIX}/auto/configure
-
+NORE_L_CONF_OPTS=()
+NORE_L_CONF_DEBUG="no"
+NORE_L_CONF_COMMAND=
 
 cd "\`dirname \${BASH_SOURCE}\`"
 
@@ -124,18 +126,17 @@ do
   opt="\$opt \`echo \$option | sed -e \"s/\(--[^=]*=\)\(.* .*\)/\1'\2'/\"\`"
   
   case "\$option" in
-    -*=*) value=\`echo "\$option" | sed -e 's/[-_a-zA-Z0-9]*=//'\` ;;
-    *) value="" ;;
-  esac
-  
-  case "\$option" in
+    -*=*) value=\`echo "\$option" | sed -e 's/[-_a-zA-Z0-9]*=//'\`  ;;
+    -*) value=""  ;;
     *)
-			command="\`echo \$option | tr '[:upper:]' '[:lower:]'\`"
+      value=""
+      NORE_L_CONF_COMMAND="\$option"
     ;;
   esac
+
 done
 
-case "\${command}" in
+case "\`echo \${NORE_L_CONF_COMMAND} | tr '[:upper:]' '[:lower:]'\`" in
 	upgrade)
 		if [ -f \${NORE_L_BOOT} ]; then
 			\$NORE_L_BOOT --branch=${NORE_BRANCH} upgrade
@@ -143,18 +144,33 @@ case "\${command}" in
 			curl -sqL \${NORE_R_BOOT} \\
 				| PREFIX=\${NORE_PREFIX} bash -s -- --branch=${NORE_BRANCH} upgrade
 		fi
+    exit \$?
 	;;
-	
-	*)
-		if [ -f \${NORE_L_CONF} ]; then
-			\$NORE_L_CONF "\$@"
-		else
-			echo
-			echo "!nore << no found, to fix >: configure upgrade"
-			echo 
-		fi
-	;;
+
+  debug)
+    NORE_L_CONF_DEBUG="yes"
+    for i in "\$@"; do
+      if [ "\$i" != "\${NORE_L_CONF_COMMAND}" ]; then
+        NORE_L_CONF_OPTS+=("\$i")
+      fi
+    done
+  ;;
 esac
+
+if [ -f \${NORE_L_CONF} ]; then
+  case "\${NORE_L_CONF_DEBUG}" in
+	  no)
+      \$NORE_L_CONF "\$@"
+    ;;
+    yes)  
+      bash -x \$NORE_L_CONF "\${NORE_L_CONF_OPTS[@]}"
+    ;;
+  esac
+else
+	echo
+	echo "!nore << no found, to fix >: configure upgrade"
+	echo 
+fi
 
 END
 
