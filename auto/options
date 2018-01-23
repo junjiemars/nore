@@ -17,7 +17,7 @@ LINK=
 
 
 NM_OUT=out
-NM_SRC=("src" ".")
+NM_SRC=.
 
 NM_CROSS_BUILD=NO
 
@@ -63,7 +63,7 @@ do
     --user=*)                        NM_USER="$value"           	;;
     --group=*)                       NM_GROUP="$value"          	;;
     
-    --src-dir=*)                     NM_SRC="$value"            	;;
+    --src-dir=*)                     NM_SRC="${value%/}"         	;;
     --out-dir=*)                     NM_OUT="$value"           	  ;;
 
     --cross-build=*)                 NM_CROSS_BUILD="$value"     	;;
@@ -126,6 +126,9 @@ END
 
 fi
 
+if [ 0 -eq ${#NM_HAS_STICKS} ]; then
+  NM_HAS_STICKS+=("src")
+fi
 
 if [ -z "$NM_OUT" ]; then
 	NM_OUT=out

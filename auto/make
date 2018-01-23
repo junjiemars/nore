@@ -16,14 +16,6 @@ asm_out="${auto_out:+$auto_out$NM_OUT/tmp/ }$asm_out"
 bin_out="${auto_out:+$auto_out$NM_OUT/tmp/ }$bin_out"
 
 
-for d in ${NM_SRC[@]}; do
-  if [ -d $d ]; then
-    NM_SRC=${d%/}
-    break
-  fi
-done
-
-
 cat << END > $NM_MAKEFILE
 # $NM_MAKEFILE ($NM_COMPILER, $NM_PLATFORM)
 
