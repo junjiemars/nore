@@ -174,7 +174,6 @@ if [ -x "$NORE_CONFIGURE" ]; then
 		else
 			echo "failed"
 		fi
-		cat_configure
 	fi
 else
 	echo "no found"
@@ -184,8 +183,8 @@ else
 	else
 		echo "failed"
 	fi
-	cat_configure
 fi
+cat_configure
 
 END="`date +%s`"
 echo 
