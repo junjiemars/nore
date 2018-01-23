@@ -109,9 +109,10 @@ cat_configure() {
 
 	cat << END > "$conf"
 #!/bin/bash
+
 NORE_PREFIX=${PREFIX%/}
 NORE_GITHUB=${GITHUB_H}/nore.git
-NORE_L_BOOT=\$NORE_PREFIX/bootstrap.sh
+NORE_L_BOOT=\${NORE_PREFIX}/bootstrap.sh
 NORE_R_BOOT=${GITHUB_R}/nore/${NORE_BRANCH}/bootstrap.sh
 NORE_L_CONF=\${NORE_PREFIX}/auto/configure
 
@@ -138,18 +139,18 @@ do
   esac
 done
 
-case "\$command" in
+case "\${command}" in
 	upgrade)
-		if [ -f \$NORE_L_BOOT ]; then
+		if [ -f \${NORE_L_BOOT} ]; then
 			\$NORE_L_BOOT --branch=${NORE_BRANCH} upgrade
 		else
 			curl -sqL \${NORE_R_BOOT} \\
-				| PREFIX=\$NORE_PREFIX bash -s -- --branch=${NORE_BRANCH} upgrade
+				| PREFIX=\${NORE_PREFIX} bash -s -- --branch=${NORE_BRANCH} upgrade
 		fi
 	;;
 	
 	*)
-		if [ -f \$NORE_L_CONF ]; then
+		if [ -f \${NORE_L_CONF} ]; then
 			\$NORE_L_CONF "\$@"
 		else
 			echo
