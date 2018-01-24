@@ -123,7 +123,9 @@ cd "\`dirname \${BASH_SOURCE}\`"
 
 for option
 do
-  opt="\$opt \`echo \$option | sed -e \"s/\(--[^=]*=\)\(.* .*\)/\1'\2'/\"\`"
+  NORE_L_CONF_OPTS+=("\`echo \$option \\
+		| sed -e \"s/\(--[^=]*=\)\(.* .*\)/\1'\2'/\"\`"
+	)
   
   case "\$option" in
     -*=*) value=\`echo "\$option" | sed -e 's/[-_a-zA-Z0-9]*=//'\`  ;;
@@ -149,11 +151,6 @@ case "\`echo \${NORE_L_CONF_COMMAND} | tr '[:upper:]' '[:lower:]'\`" in
 
   debug)
     NORE_L_CONF_DEBUG="yes"
-    for i in "\$@"; do
-      if [ "\$i" != "\${NORE_L_CONF_COMMAND}" ]; then
-        NORE_L_CONF_OPTS+=("\$i")
-      fi
-    done
   ;;
 esac
 
