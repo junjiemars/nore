@@ -110,49 +110,23 @@ END
 
 
 nm_sticks=()
-nm_sticks_build=()
 nm_sticks_test=()
-nm_src_stick=
-nm_stick_norm=
 
-make_stick_path() {
-	local src="$1"
-	local stick="$2"
-	if [ "." = "$stick" ]; then
-		echo "$src"
+
+for opt in "${NM_HAS_STICKS[@]}"; do
+
+	stick=`echo $opt \
+				 | sed -e 's/\ *--has-\([a-zA-Z][a-zA-Z]*\)/\1/' \
+				 | tr '[:upper:]' '[:lower:]'`
+
+	if [ -d $NM_SRC/$stick ]; then
+		nm_sticks+=($stick)
+		nm_sticks_test+=(${stick}_test)
 	else
-		echo "$src/$stick"
-	fi
-}
-
-make_stick_norm() {
-	local src="$1"
-	local stick="$2"
-	if [ "." = "$stick" ]; then
-		if [ "src" = "`basename $src`" ]; then
-			echo "`basename $PWD`"
-		else
-			echo "`basename $src`"
-		fi
-	else
-		echo "$stick"
-	fi
-}
-
-
-for stick in "${NM_HAS_STICKS[@]}"; do
-
-	nm_src_stick="`make_stick_path $NM_SRC $stick`"
-
-	if [ -d "$nm_src_stick" ]; then
-		nm_sticks+=("$stick")
-		nm_sticks_build+=("`make_stick_norm $nm_src_stick $stick`")
-		nm_sticks_test+=("`make_stick_norm $nm_src_stick $stick`_test")
-	else
-		echo " + checking for $nm_src_stick ... no found"
+		echo " + checking for $NM_SRC/$stick ... no found"
 		cat << END >> $NM_AUTOCONF_ERR
 ---------------------------------------
-checking for $nm_src_stick ... no found
+checking for $NM_SRC/$stick ... no found
 
 END
 
@@ -161,18 +135,20 @@ END
 done
 
 
-if [ 0 -lt ${#nm_sticks} ]; then
+
+
+if [ -n "$nm_sticks" ]; then
 
 	cat << END >> $NM_MAKEFILE
 
-.PHONY: ${nm_sticks_build[@]} ${nm_sticks_test[@]}
+.PHONY: ${nm_sticks[@]} ${nm_sticks_test[@]}
 
-build: ${nm_sticks_build[@]}
+build: ${nm_sticks[@]}
 
 test: ${nm_sticks_test[@]}
 
 
-root = $NM_SRC/
+root = ${NM_SRC%/}/
 
 inc_path=$NM_OUT/inc/
 tmp_path=$NM_OUT/tmp/
@@ -185,41 +161,36 @@ END
 
 	for stick in ${nm_sticks[@]}; do
 
-		nm_src_stick="`make_stick_path $NM_SRC $stick`"
-		nm_stick_norm="`make_stick_norm $nm_src_stick $stick`"
-		
-    if [ -f $nm_src_stick/Makefile ]; then
-			echo " + checking for $nm_src_stick/Makefile ... found"
-		fi
- 
-    if [ -f $nm_src_stick/version ]; then
-			echo " + checking for $nm_src_stick/version ... found"
-      have=`echo $nm_stick_norm | tr '[:lower:]' '[:upper:]'`_VERSION \
-      value=`cat $nm_src_stick/version` . ${NM_HOME}auto/define
+		stick_src=$NM_SRC/$stick
+
+    if [ -f $stick_src/version ]; then
+			echo " + checking for $stick_src/version ... found"
+      have=`echo $stick | tr '[:lower:]' '[:upper:]'`_VERSION \
+      value=`cat $stick_src/version` . ${NM_HOME}auto/define
 		fi
     
-		if [ -f $nm_src_stick/configure ]; then
-			echo " + checking for $nm_src_stick/configure ... found"
-			. $nm_src_stick/configure
+		if [ -f $stick_src/configure ]; then
+			echo " + checking for $stick_src/configure ... found"
+			. $stick_src/configure
 		fi
 
 		
-		if [ -f $nm_src_stick/Makefile.$CC_NAME ]; then
-			stick_makefile=$nm_src_stick/Makefile.$CC_NAME
+		if [ -f $stick_src/Makefile.$CC_NAME ]; then
+			stick_makefile=$stick_src/Makefile.$CC_NAME
 
-		elif [ -f $nm_src_stick/Makefile.$NM_SYSTEM ]; then
-			stick_makefile=$nm_src_stick/Makefile.$NM_SYSTEM
+		elif [ -f $stick_src/Makefile.$NM_SYSTEM ]; then
+			stick_makefile=$stick_src/Makefile.$NM_SYSTEM
 
-		elif [ -f $nm_src_stick/Makefile ]; then
-			stick_makefile=$nm_src_stick/Makefile
+		elif [ -f $stick_src/Makefile ]; then
+			stick_makefile=$stick_src/Makefile
 
 		else
 
-			echo " + checking for $nm_src_stick/Makefile ... no found"
+			echo " + checking for $stick_src/Makefile ... no found"
 			cat << END >> $NM_AUTOCONF_ERR
 
 ----------------------------------------
-checking for $nm_src_stick/Makefile no found
+checking for $stick_makefile no found
 
 END
 
@@ -229,7 +200,7 @@ END
 		
 		cat << END >> $NM_MAKEFILE
 #---------------------------------------
-${nm_stick_norm}_root := $nm_src_stick/
+${stick}_root := $stick_src/
 include $stick_makefile
 
 END

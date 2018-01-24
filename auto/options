@@ -17,7 +17,7 @@ LINK=
 
 
 NM_OUT=out
-NM_SRC=src
+NM_SRC=.
 
 NM_CROSS_BUILD=NO
 
@@ -64,7 +64,7 @@ do
     --group=*)                       NM_GROUP="$value"          	;;
     
     --src-dir=*)                     NM_SRC="${value%/}"         	;;
-    --out-dir=*)                     NM_OUT="${value%/}"       	  ;;
+    --out-dir=*)                     NM_OUT="$value"           	  ;;
 
     --cross-build=*)                 NM_CROSS_BUILD="$value"     	;;
 
@@ -77,12 +77,7 @@ do
     --with-cpu=*)                    NM_CPU="$value"              ;;
 		--with-verbose)                  NM_VERBOSE=YES             	;;
 
-		--has-*)
-      NM_HAS_STICKS+=(`echo $option \
-				| sed -e 's/\ *--has-\([a-zA-Z][a-zA-Z]*\)/\1/' \
-				| tr '[:upper:]' '[:lower:]'`
-      )
-    ;;
+		--has-*)                         NM_HAS_STICKS+=($option)   	;;
     
     *)
       echo "$0: error: invalid option \"$option\""
@@ -131,9 +126,14 @@ END
 
 fi
 
-
 if [ 0 -eq ${#NM_HAS_STICKS} ]; then
-  NM_HAS_STICKS+=(".")
+  NM_HAS_STICKS+=("src")
+fi
+
+if [ -z "$NM_OUT" ]; then
+	NM_OUT=out
+else
+	NM_OUT=${NM_OUT%/}
 fi
 
 if [ -z "$NM_CPU" ]; then
