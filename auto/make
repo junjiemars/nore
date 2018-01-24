@@ -188,10 +188,6 @@ END
 		nm_src_stick="`make_stick_path $NM_SRC $stick`"
 		nm_stick_norm="`make_stick_norm $nm_src_stick $stick`"
 		
-    if [ -f $nm_src_stick/Makefile ]; then
-			echo " + checking for $nm_src_stick/Makefile ... found"
-		fi
- 
     if [ -f $nm_src_stick/version ]; then
 			echo " + checking for $nm_src_stick/version ... found"
       have=`echo $nm_stick_norm | tr '[:lower:]' '[:upper:]'`_VERSION \
@@ -206,13 +202,15 @@ END
 		
 		if [ -f $nm_src_stick/Makefile.$CC_NAME ]; then
 			stick_makefile=$nm_src_stick/Makefile.$CC_NAME
+			echo " + checking for $nm_src_stick/Makefile.$CC_NAME ... found"
 
 		elif [ -f $nm_src_stick/Makefile.$NM_SYSTEM ]; then
 			stick_makefile=$nm_src_stick/Makefile.$NM_SYSTEM
+			echo " + checking for $nm_src_stick/Makefile.$NM_SYSTEM ... found"
 
 		elif [ -f $nm_src_stick/Makefile ]; then
 			stick_makefile=$nm_src_stick/Makefile
-
+			echo " + checking for $nm_src_stick/Makefile ... found"
 		else
 
 			echo " + checking for $nm_src_stick/Makefile ... no found"
@@ -223,7 +221,7 @@ checking for $nm_src_stick/Makefile no found
 
 END
 
-			break
+			continue	
 
 		fi
 		
