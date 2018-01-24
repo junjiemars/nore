@@ -54,15 +54,13 @@ do
   case "$option" in
     --help)                          help=yes                   	;;
     
-    --prefix=*)                      NM_PREFIX="$value"         	;;
-    --bin-path=*)                    NM_BIN_PATH="$value"       	;;
-    --lib-path=*)                    NM_LIB_PATH="$value"  		  	;;
-    --inc-path=*)                    NM_INC_PATH="$value"       	;;
-    --etc-path=*)                    NM_ETC_PATH="$value"      	  ;;
-    --var-path=*)                    NM_VAR_PATH="$value"       	;;
-    --user=*)                        NM_USER="$value"           	;;
-    --group=*)                       NM_GROUP="$value"          	;;
-    
+    --prefix=*)                      NM_PREFIX="${value%/}"      	;;
+    --bin-path=*)                    NM_BIN_PATH="${value%/}"     ;;
+    --lib-path=*)                    NM_LIB_PATH="${value%/}"  		;;
+    --inc-path=*)                    NM_INC_PATH="${value%/}"     ;;
+    --etc-path=*)                    NM_ETC_PATH="${value%/}"     ;;
+    --var-path=*)                    NM_VAR_PATH="${value%/}"     ;;
+
     --src-dir=*)                     NM_SRC="${value%/}"         	;;
     --out-dir=*)                     NM_OUT="${value%/}"       	  ;;
 
