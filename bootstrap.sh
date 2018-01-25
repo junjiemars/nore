@@ -36,8 +36,6 @@ NORE_BRANCH=master
 
 for option
 do
-  opt="$opt `echo $option | sed -e \"s/\(--[^=]*=\)\(.* .*\)/\1'\2'/\"`"
-  
   case "$option" in
     -*=*) value=`echo "$option" | sed -e 's/[-_a-zA-Z0-9]*=//'` ;;
     *) value="" ;;
