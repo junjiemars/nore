@@ -14,19 +14,23 @@ $ cd <your-c-apps-dir>
 $ bash <(curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.sh)
 
 # compose a Makefile then
-$ ./configure --has-<app-name-or-src-dirname>
+$ ./configure
 
 $ make
 ```
 
 Use ```./configure --help``` to show help message.
 
+## How to debug
+```sh
+$ ./configure debug
+```
 
 ## How to upgrade 
 
 ```sh
 # in your C apps dir
-$ ./configure --update
+$ ./configure upgrade
 ```
 
 
