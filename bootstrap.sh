@@ -124,22 +124,12 @@ cd "\`dirname \${BASH_SOURCE}\`"
 for option
 do
   case "\$option" in
-    -*=*) 
-			value=\`echo "\$option" | sed -e 's/[-_a-zA-Z0-9]*=//'\`
-			NORE_L_CONF_OPTS+=("\$option")
-		;;
+    -*=*) NORE_L_CONF_OPTS+=("\$option")  ;;
 
-    -*) 
-			value=""
-			NORE_L_CONF_OPTS+=("\$option")
-		;;
+    -*) NORE_L_CONF_OPTS+=("\$option")  ;;
 
-    *)
-      value=""
-      NORE_L_CONF_COMMAND="\$option"
-    ;;
+    *) NORE_L_CONF_COMMAND="\$option"  ;;
   esac
-
 done
 
 case "\`echo \${NORE_L_CONF_COMMAND} | tr '[:upper:]' '[:lower:]'\`" in
