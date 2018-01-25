@@ -123,13 +123,17 @@ cd "\`dirname \${BASH_SOURCE}\`"
 
 for option
 do
-  NORE_L_CONF_OPTS+=("\`echo \$option \\
-		| sed -e \"s/\(--[^=]*=\)\(.* .*\)/\1'\2'/\"\`"
-	)
-  
   case "\$option" in
-    -*=*) value=\`echo "\$option" | sed -e 's/[-_a-zA-Z0-9]*=//'\`  ;;
-    -*) value=""  ;;
+    -*=*) 
+			value=\`echo "\$option" | sed -e 's/[-_a-zA-Z0-9]*=//'\`
+			NORE_L_CONF_OPTS+=("\$option")
+		;;
+
+    -*) 
+			value=""
+			NORE_L_CONF_OPTS+=("\$option")
+		;;
+
     *)
       value=""
       NORE_L_CONF_COMMAND="\$option"
