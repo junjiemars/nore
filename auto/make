@@ -212,7 +212,7 @@ include $stick_makefile
 
 END
 
-done
+done # iterate sticks
 
 
 if [ 0 -lt ${#nm_sticks} ]; then
