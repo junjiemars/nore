@@ -103,11 +103,16 @@ clone_nore() {
 	local n="`( cd ${PREFIX} && git remote -v 2>/dev/null | \
 						 		grep 'nore\.git' &>/dev/null; echo $? )`"
 	local t=0
+	local b=${NORE_BRANCH}
 
 	if [ 0 -eq $n ]; then
 		if [ "yes" = "$NORE_UPGRADE" ]; then
 			echo -n " + upgrading nore ... "
 			`( cd ${PREFIX} && git reset --hard &>/dev/null )`
+			b="`( cd ${PREFIX} && git rev-parse --abbrev-ref HEAD )`"
+			if [ ${NORE_BRANCH} != ${b} ]; then
+				`( cd ${PREFIX} && git fetch && git checkout ${NORE_BRANCH} )`
+			fi
 			cd ${PREFIX} && git pull origin ${NORE_BRANCH} &>/dev/null
 			t=$?
 		else
@@ -133,12 +138,12 @@ cat_configure() {
 	cat << END > "$conf"
 #!/bin/bash
 
-NORE_PREFIX=${PREFIX%/}
-NORE_GITHUB=${GITHUB_H}/nore.git
-NORE_BRANCH=\${NORE_BRANCH:-$NORE_BRANCH}
-NORE_L_BOOT=\${NORE_PREFIX}/bootstrap.sh
-NORE_R_BOOT=${GITHUB_R}/nore/\${NORE_BRANCH}/bootstrap.sh
-NORE_L_CONF=\${NORE_PREFIX}/auto/configure
+NORE_PREFIX="${PREFIX%/}"
+NORE_GITHUB="${GITHUB_H}/nore.git"
+NORE_BRANCH="\${NORE_BRANCH:-$NORE_BRANCH}"
+NORE_L_BOOT="\${NORE_PREFIX}/bootstrap.sh"
+NORE_R_BOOT="${GITHUB_R}/nore/\${NORE_BRANCH}/bootstrap.sh"
+NORE_L_CONF="\${NORE_PREFIX}/auto/configure"
 NORE_L_CONF_OPTS=()
 NORE_L_CONF_DEBUG="no"
 NORE_L_CONF_COMMAND=
