@@ -99,38 +99,26 @@ fi
 
 NORE_CONFIGURE="${NORE_WORK%/}/configure"
 
+check_nore() {
+	cd ${PREFIX} && git remote -v 2>/dev/null | grep 'nore\.git' &>/dev/null
+}
+
+upgrade_nore() {
+  local b=${NORE_BRANCH}
+  
+  cd ${PREFIX} && git reset --hard &>/dev/null || return $?
+	cd ${PREFIX} && git fetch &>/dev/null || return $?
+  
+	b="$(cd ${PREFIX} && git rev-parse --abbrev-ref HEAD)"
+	if [ ${NORE_BRANCH} != ${b} ]; then
+		cd ${PREFIX} && git checkout ${NORE_BRANCH} &>/dev/null || return $?
+	fi
+  cd ${PREFIX} && git pull origin ${NORE_BRANCH} &>/dev/null
+}
+
 clone_nore() {
-	local n="`( cd ${PREFIX} && git remote -v 2>/dev/null | \
-						 		grep 'nore\.git' &>/dev/null; echo $? )`"
-	local t=0
-	local b=${NORE_BRANCH}
-
-	if [ 0 -eq $n ]; then
-		if [ "yes" = "$NORE_UPGRADE" ]; then
-			echo -n " + upgrading nore ... "
-			cd ${PREFIX} && git reset --hard &>/dev/null
-			cd ${PREFIX} && git fetch &>/dev/null
-			b="$(cd ${PREFIX} && git rev-parse --abbrev-ref HEAD)"
-			if [ ${NORE_BRANCH} != ${b} ]; then
-				cd ${PREFIX} && git checkout ${NORE_BRANCH} &>/dev/null
-				t=$?
-			fi
-      cd ${PREFIX} && git pull origin ${NORE_BRANCH} &>/dev/null
-		else
-			return 0
-		fi
-	else
-		echo -n " + cloning nore ... "
-		git clone --depth=1 --branch=${NORE_BRANCH} \
-			${GITHUB_H}/nore.git ${PREFIX} &>/dev/null
-		t=$?
-	fi
-
-	if [ 0 -eq $t ]; then
-		echo "ok"
-	else
-		echo "failed"
-	fi
+	cd ${PREFIX} && git clone --depth=1 --branch=${NORE_BRANCH} \
+      ${GITHUB_H}/nore.git ${PREFIX} &>/dev/null
 }
 
 cat_configure() {
@@ -204,15 +192,36 @@ END
 }
 
 
-[ -d "${PREFIX}" ] || mkdir -p "${PREFIX}"	
-echo -n " + checking nore ... "
+[ -d "${PREFIX}" ] || mkdir -p "${PREFIX}"
+
+echo -n " + checking configure ... "
 if [ -x "$NORE_CONFIGURE" ]; then
 	echo "found"
 else
 	echo "no found"
 fi
 cat_configure
-clone_nore
+
+echo -n " + checking nore ... "
+if `check_nore`; then
+  echo "found"
+  if [ "yes" = "$NORE_UPGRADE" ]; then
+    echo -n " + upgrading nore ... "
+    if `upgrade_nore`; then
+      echo "ok"
+    else
+      echo "failed"
+    fi
+  fi
+else
+  echo "no found"
+  echo -n " + cloning nore ... "
+  if `clone_nore`; then
+    echo "ok"
+  else
+    echo "failed"
+  fi
+fi
 
 
 END="`date +%s`"
