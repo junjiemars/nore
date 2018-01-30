@@ -82,7 +82,7 @@ else
 	echo "no found"
 	if `on_windows_nt`; then
 		echo -n " + checking bash environment ... "
-		if `echo $KIT_GITHUB | grep 'junjiemars/kit &>/dev/null'; then
+		if `echo $KIT_GITHUB | grep 'junjiemars/kit' &>/dev/null`; then
 			echo "no found"
 			echo 
 			$(curl -sqL $GITHUB_BASH_ENV | bash &>/dev/null)
