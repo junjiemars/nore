@@ -57,35 +57,43 @@ case ".$command" in
 		;;
 esac
 
+on_windows_nt () { 
+    case "$PLATFORM" in 
+        MSYS_NT* | MINGW*)
+            return 0
+        ;;
+        *)
+            return 1
+        ;;
+    esac
+}
+
 
 BEGIN=`date +%s`
 echo 
 echo "configure Nore on $PLATFORM ..."
 echo
 
-echo -n " + checking bash environment ... "
-if [ ! -f "$HOME/.bash_paths" -o ! -f "$HOME/.bash_vars" ]; then
-	echo "no found"
-	echo 
-	$(curl -sqL $GITHUB_BASH_ENV | bash &>/dev/null)
-else
-	echo "found"
-	[ "yes" = $NORE_UPGRADE ] && $(curl -sqL $GITHUB_BASH_ENV | bash &>/dev/null)
-fi
-. $HOME/.bashrc
 
 echo -n " + checking make ... "
 if `make -v &>/dev/null`; then
 	echo "found"
 else
 	echo "no found"
-	case ${PLATFORM} in
-	  MSYS_NT*|MINGW*)
-			HAS_GMAKE=1 bash <(curl ${GITHUB_R}/kit/master/win/install-win-kits.sh)
-		;;
-	  *)
-		;;
-	esac
+	if `on_windows_nt`; then
+		echo -n " + checking bash environment ... "
+		if `echo $KIT_GITHUB | grep 'junjiemars/kit &>/dev/null'; then
+			echo "no found"
+			echo 
+			$(curl -sqL $GITHUB_BASH_ENV | bash &>/dev/null)
+		else
+			echo "found"
+			[ "yes" = $NORE_UPGRADE ] && $(curl -sqL $GITHUB_BASH_ENV | bash &>/dev/null)
+		fi
+		. $HOME/.bashrc
+
+		HAS_GMAKE=1 bash <(curl ${GITHUB_R}/kit/master/win/install-win-kits.sh)
+	fi
 fi
 
 
@@ -127,8 +135,9 @@ cat_configure() {
 
 NORE_PREFIX=${PREFIX%/}
 NORE_GITHUB=${GITHUB_H}/nore.git
+NORE_BRANCH=\${NORE_BRANCH:-$NORE_BRANCH}
 NORE_L_BOOT=\${NORE_PREFIX}/bootstrap.sh
-NORE_R_BOOT=${GITHUB_R}/nore/${NORE_BRANCH}/bootstrap.sh
+NORE_R_BOOT=${GITHUB_R}/nore/\${NORE_BRANCH}/bootstrap.sh
 NORE_L_CONF=\${NORE_PREFIX}/auto/configure
 NORE_L_CONF_OPTS=()
 NORE_L_CONF_DEBUG="no"
@@ -150,10 +159,10 @@ done
 case "\`echo \${NORE_L_CONF_COMMAND} | tr '[:upper:]' '[:lower:]'\`" in
 	upgrade)
 		if [ -f \${NORE_L_BOOT} ]; then
-			\$NORE_L_BOOT --branch=${NORE_BRANCH} upgrade
+			\$NORE_L_BOOT --branch=\${NORE_BRANCH} upgrade
 		else
 			curl -sqL \${NORE_R_BOOT} \\
-				| PREFIX=\${NORE_PREFIX} bash -s -- --branch=${NORE_BRANCH} upgrade
+				| PREFIX=\${NORE_PREFIX} bash -s -- --branch=\${NORE_BRANCH} upgrade
 		fi
     exit \$?
 	;;
