@@ -33,6 +33,8 @@ GITHUB_BASH_ENV="${GITHUB_R}/kit/master/ul/setup-bash.sh"
 
 NORE_UPGRADE=no
 NORE_BRANCH=master
+NORE_CONFIGURE="${NORE_WORK%/}/configure"
+
 
 for option
 do
@@ -67,37 +69,6 @@ on_windows_nt () {
         ;;
     esac
 }
-
-
-BEGIN=`date +%s`
-echo 
-echo "configure Nore on $PLATFORM ..."
-echo
-
-
-echo -n " + checking make ... "
-if `make -v &>/dev/null`; then
-	echo "found"
-else
-	echo "no found"
-	if `on_windows_nt`; then
-		echo -n " + checking bash environment ... "
-		if `echo $KIT_GITHUB | grep 'junjiemars/kit' &>/dev/null`; then
-			echo "no found"
-			echo 
-			$(curl -sqL $GITHUB_BASH_ENV | bash &>/dev/null)
-		else
-			echo "found"
-			[ "yes" = $NORE_UPGRADE ] && $(curl -sqL $GITHUB_BASH_ENV | bash &>/dev/null)
-		fi
-		. $HOME/.bashrc
-
-		HAS_GMAKE=1 bash <(curl ${GITHUB_R}/kit/master/win/install-win-kits.sh)
-	fi
-fi
-
-
-NORE_CONFIGURE="${NORE_WORK%/}/configure"
 
 check_nore() {
 	cd ${PREFIX} && git remote -v 2>/dev/null | grep 'nore\.git' &>/dev/null
@@ -191,6 +162,32 @@ END
 	mv "$conf" "$NORE_CONFIGURE"
 }
 
+
+BEGIN=`date +%s`
+echo 
+echo "configure Nore on $PLATFORM ..."
+echo
+
+echo -n " + checking make ... "
+if `make -v &>/dev/null`; then
+	echo "found"
+else
+	echo "no found"
+	if `on_windows_nt`; then
+		echo -n " + checking bash environment ... "
+		if `echo $KIT_GITHUB | grep 'junjiemars/kit' &>/dev/null`; then
+			echo "no found"
+			echo 
+			$(curl -sqL $GITHUB_BASH_ENV | bash &>/dev/null)
+		else
+			echo "found"
+			[ "yes" = $NORE_UPGRADE ] && $(curl -sqL $GITHUB_BASH_ENV | bash &>/dev/null)
+		fi
+		. $HOME/.bashrc
+
+		HAS_GMAKE=1 bash <(curl ${GITHUB_R}/kit/master/win/install-win-kits.sh)
+	fi
+fi
 
 [ -d "${PREFIX}" ] || mkdir -p "${PREFIX}"
 
