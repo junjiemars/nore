@@ -96,6 +96,7 @@ clone_nore() {
 }
 
 cat_configure() {
+  local b="`check_nore_branch`"
 	local conf="${NORE_CONFIGURE}.n"
 	cat << END > "$conf"
 #!/bin/bash
@@ -106,7 +107,7 @@ cat_configure() {
 #------------------------------------------------
 
 NORE_PREFIX="${PREFIX%/}"
-NORE_BRANCH="${NORE_BRANCH}"
+NORE_BRANCH="${b}"
 NORE_L_BOOT="\${NORE_PREFIX}/bootstrap.sh"
 NORE_R_BOOT="${GITHUB_R}/nore/\${NORE_BRANCH}/bootstrap.sh"
 NORE_L_CONF="\${NORE_PREFIX}/auto/configure"
