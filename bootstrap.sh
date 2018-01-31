@@ -60,7 +60,6 @@ case ".$command" in
 esac
 
 on_windows_nt () {
-  # return 0
     case "$PLATFORM" in 
         MSYS_NT* | MINGW*)
             return 0
