@@ -162,6 +162,25 @@ END
 	mv "$conf" "$NORE_CONFIGURE"
 }
 
+echo_ok_or_failed() {
+	local c=$1
+	if [ 0 -eq $c ]; then
+		echo "ok"
+	else
+		echo "failed"
+	fi
+	return $c
+}
+
+exit_checking() {
+	local c=$1
+	local begin=$2
+	local end="`date +%s`"
+	echo 
+	echo "... elpased $(( ${end}-${begin} )) seconds."
+	exit $c
+}
+
 
 BEGIN=`date +%s`
 echo 
@@ -194,34 +213,26 @@ fi
 echo -n " + checking configure ... "
 if [ -x "$NORE_CONFIGURE" ]; then
 	echo "found"
+	cat_configure
 else
 	echo "no found"
+	echo -n " + generating configure ... "
+	echo_ok_or_failed `cat_configure ; echo $?`
+	exit_checking $? $BEGIN
 fi
-cat_configure
 
 echo -n " + checking nore ... "
 if `check_nore`; then
   echo "found"
   if [ "yes" = "$NORE_UPGRADE" ]; then
     echo -n " + upgrading nore ... "
-    if `upgrade_nore`; then
-      echo "ok"
-    else
-      echo "failed"
-    fi
+		echo_ok_or_failed `upgrade_nore ; echo $?`
+		exit_checking $? $BEGIN
   fi
 else
   echo "no found"
   echo -n " + cloning nore ... "
-  if `clone_nore`; then
-    echo "ok"
-  else
-    echo "failed"
-  fi
+	echo_ok_or_failed `clone_nore ; echo $?`
+	exit_checking $? $BEGIN
 fi
-
-
-END="`date +%s`"
-echo 
-echo "... elpased $(( ${END}-${BEGIN} )) seconds."
 
