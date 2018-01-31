@@ -86,8 +86,7 @@ upgrade_nore() {
 	if [ ${NORE_BRANCH} != ${b} ]; then
 		cd ${PREFIX} && git checkout ${NORE_BRANCH} &>/dev/null || return $?
 	fi
-  cd ${PREFIX} && git pull --rebase origin ${NORE_BRANCH} &>/dev/null || return $?
-  cd ${PREFIX} && git reset --hard &>/dev/null
+  cd ${PREFIX} && git pull --rebase origin ${NORE_BRANCH} &>/dev/null
 }
 
 clone_nore() {
@@ -238,8 +237,7 @@ if `check_nore`; then
   echo "found"
   if [ "yes" = "$NORE_UPGRADE" ]; then
     echo -n " + upgrading nore ... "
-		upgrade_nore
-		echo_ok_or_failed $?
+		echo_ok_or_failed `upgrade_nore ; echo $?`
 		exit_checking $? $BEGIN
   fi
 else
