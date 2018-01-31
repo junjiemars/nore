@@ -86,7 +86,8 @@ upgrade_nore() {
 	if [ ${NORE_BRANCH} != ${b} ]; then
 		cd ${PREFIX} && git checkout ${NORE_BRANCH} &>/dev/null || return $?
 	fi
-  cd ${PREFIX} && git pull --rebase origin ${NORE_BRANCH} &>/dev/null
+  cd ${PREFIX} && git pull --rebase origin ${NORE_BRANCH} &>/dev/null || return $?
+  cd ${PREFIX} && git reset --hard &>/dev/null
 }
 
 clone_nore() {
