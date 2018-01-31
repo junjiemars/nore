@@ -178,7 +178,7 @@ exit_checking() {
 	local end="`date +%s`"
 	echo 
 	echo "... elpased $(( ${end}-${begin} )) seconds."
-	exit $c
+	[ 0 -eq $c ] || exit $c
 }
 
 
