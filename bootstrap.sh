@@ -82,9 +82,9 @@ upgrade_nore() {
   
 	b="$(cd ${PREFIX} && git rev-parse --abbrev-ref HEAD)"
 	if [ ${NORE_BRANCH} != ${b} ]; then
-		cd ${PREFIX} && git checkout ${NORE_BRANCH} &>/dev/null || return $?
+		cd ${PREFIX} && git checkout ${b} &>/dev/null || return $?
 	fi
-  cd ${PREFIX} && git pull origin ${NORE_BRANCH} &>/dev/null
+  cd ${PREFIX} && git pull origin ${b} &>/dev/null
 }
 
 clone_nore() {
