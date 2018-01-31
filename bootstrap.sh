@@ -228,10 +228,10 @@ else
 			$(curl -sqL $GITHUB_BASH_ENV | bash &>/dev/null)
 		fi
 		exit_checking $? $BEGIN
-		# . $HOME/.bashrc
+		. $HOME/.bashrc
 
-		# HAS_GMAKE=1 bash <(curl ${GITHUB_R}/kit/master/win/install-win-kits.sh)
-		# exit_checking $? $BEGIN
+		HAS_GMAKE=1 bash <(curl ${GITHUB_R}/kit/master/win/install-win-kits.sh)
+		exit_checking $? $BEGIN
   else
     echo_found_or_not $?
     exit_checking $? $BEGIN 
