@@ -95,7 +95,7 @@ upgrade_nore() {
 		t=$?
 		[ 0 -eq $t ] || return $t
 	fi
-  cd ${PREFIX} && git pull &>/dev/null
+  cd ${PREFIX} && git pull origin ${NORE_BRANCH} &>/dev/null
 }
 
 clone_nore() {
