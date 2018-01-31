@@ -88,8 +88,8 @@ upgrade_nore() {
 }
 
 clone_nore() {
-	cd ${PREFIX} && git clone --depth=1 --branch=${NORE_BRANCH} \
-      ${GITHUB_H}/nore.git ${PREFIX} &>/dev/null
+	git clone --depth=1 --branch=${NORE_BRANCH} \
+		${GITHUB_H}/nore.git ${PREFIX} &>/dev/null
 }
 
 cat_configure() {
