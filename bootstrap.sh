@@ -86,7 +86,7 @@ upgrade_nore() {
 	t=$?
 	[ 0 -eq $t ] || return $t
 
-  cd ${PREFIX} && git reset --hard &>/dev/null
+  cd ${PREFIX} && git reset --hard HEAD &>/dev/null
 	t=$?
 	[ 0 -eq $t ] || return $t
   
@@ -94,7 +94,7 @@ upgrade_nore() {
 		cd ${PREFIX} && git checkout ${NORE_BRANCH} &>/dev/null
 		t=$?
 		[ 0 -eq $t ] || return $t
-		cd ${PREFIX} && git reset --hard &>/dev/null
+		cd ${PREFIX} && git reset --hard HEAD &>/dev/null
 		t=$?
 		[ 0 -eq $t ] || return $t
 	fi
