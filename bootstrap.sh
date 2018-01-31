@@ -71,23 +71,23 @@ on_windows_nt () {
     esac
 }
 
+
 check_nore() {
 	cd ${PREFIX} && git remote -v 2>/dev/null | grep 'nore\.git' &>/dev/null
 }
 
+check_nore_branch() {
+  cd ${PREFIX} && git rev-parse --abbrev-ref HEAD
+}
+
 upgrade_nore() {
-  local b=
-  
-	b="$(cd ${PREFIX} && git rev-parse --abbrev-ref HEAD)"
+  local b="`check_nore_branch`"
 	[ -n "${b}" ] || return 1
 
-	cd ${PREFIX} && git fetch --all &>/dev/null || return $?
   cd ${PREFIX} && git reset --hard &>/dev/null || return $?
   
-	if [ ${NORE_BRANCH} != ${b} ]; then
-		cd ${PREFIX} && git checkout ${NORE_BRANCH} &>/dev/null || return $?
-	fi
-  cd ${PREFIX} && git pull --rebase origin ${NORE_BRANCH} &>/dev/null
+	[ ${NORE_BRANCH} = ${b} ] || return $?
+  cd ${PREFIX} && git pull --rebase origin ${b} &>/dev/null
 }
 
 clone_nore() {
@@ -106,7 +106,7 @@ cat_configure() {
 #------------------------------------------------
 
 NORE_PREFIX="${PREFIX%/}"
-NORE_BRANCH="\${NORE_BRANCH:-$NORE_BRANCH}"
+NORE_BRANCH="${NORE_BRANCH}"
 NORE_L_BOOT="\${NORE_PREFIX}/bootstrap.sh"
 NORE_R_BOOT="${GITHUB_R}/nore/\${NORE_BRANCH}/bootstrap.sh"
 NORE_L_CONF="\${NORE_PREFIX}/auto/configure"
@@ -239,17 +239,6 @@ fi
 
 [ -d "${PREFIX}" ] || mkdir -p "${PREFIX}"
 
-echo -n " + checking configure ... "
-if [ -x "$NORE_CONFIGURE" ]; then
-  echo_found_or_not $?
-	cat_configure
-else
-	echo_found_or_not $?
-	echo -n " + generating configure ... "
-	echo_ok_or_failed `cat_configure ; echo $?`
-	exit_checking $? $BEGIN
-fi
-
 echo -n " + checking nore ... "
 if `check_nore`; then
  echo_found_or_not $?
@@ -264,6 +253,18 @@ else
  echo_ok_or_failed `clone_nore ; echo $?`
  exit_checking $? $BEGIN
 fi
+
+echo -n " + checking configure ... "
+if [ -x "$NORE_CONFIGURE" ]; then
+  echo_found_or_not $?
+	cat_configure
+else
+	echo_found_or_not $?
+	echo -n " + generating configure ... "
+	echo_ok_or_failed `cat_configure ; echo $?`
+	exit_checking $? $BEGIN
+fi
+
 
 echo_elapsed_seconds $BEGIN
 
