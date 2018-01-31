@@ -76,29 +76,17 @@ check_nore() {
 
 upgrade_nore() {
   local b=
-	local t=
   
 	b="$(cd ${PREFIX} && git rev-parse --abbrev-ref HEAD)"
-	t=$?
-	[ 0 -eq $t ] || return $t
+	[ -n "${b}" ] || return 1
 
-	cd ${PREFIX} && git fetch --all &>/dev/null
-	t=$?
-	[ 0 -eq $t ] || return $t
-
-  cd ${PREFIX} && git reset --hard HEAD &>/dev/null
-	t=$?
-	[ 0 -eq $t ] || return $t
+	cd ${PREFIX} && git fetch --all &>/dev/null || return $?
+  cd ${PREFIX} && git reset --hard &>/dev/null || return $?
   
 	if [ ${NORE_BRANCH} != ${b} ]; then
-		cd ${PREFIX} && git checkout ${NORE_BRANCH} &>/dev/null
-		t=$?
-		[ 0 -eq $t ] || return $t
-		cd ${PREFIX} && git reset --hard HEAD &>/dev/null
-		t=$?
-		[ 0 -eq $t ] || return $t
+		cd ${PREFIX} && git checkout ${NORE_BRANCH} &>/dev/null || return $?
 	fi
-  cd ${PREFIX} && git pull origin ${NORE_BRANCH} &>/dev/null
+  cd ${PREFIX} && git pull --rebase origin ${NORE_BRANCH} &>/dev/null
 }
 
 clone_nore() {
