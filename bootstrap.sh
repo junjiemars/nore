@@ -77,10 +77,11 @@ check_nore() {
 upgrade_nore() {
   local b=${NORE_BRANCH}
   
-  cd ${PREFIX} && git reset --hard &>/dev/null || return $?
-	cd ${PREFIX} && git fetch &>/dev/null || return $?
-  
 	b="$(cd ${PREFIX} && git rev-parse --abbrev-ref HEAD)"
+
+	cd ${PREFIX} && git fetch --all &>/dev/null || return $?
+  cd ${PREFIX} && git reset --hard origin/${b} &>/dev/null || return $?
+  
 	if [ ${NORE_BRANCH} != ${b} ]; then
 		cd ${PREFIX} && git checkout ${NORE_BRANCH} &>/dev/null || return $?
 	fi
