@@ -209,9 +209,11 @@ else
 			echo "found"
 			[ "yes" = $NORE_UPGRADE ] && $(curl -sqL $GITHUB_BASH_ENV | bash &>/dev/null)
 		fi
+		exit_checking $? $BEGIN
 		. $HOME/.bashrc
 
 		HAS_GMAKE=1 bash <(curl ${GITHUB_R}/kit/master/win/install-win-kits.sh)
+		exit_checking $? $BEGIN
 	fi
 fi
 
