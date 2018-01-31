@@ -172,13 +172,20 @@ echo_ok_or_failed() {
 	return $c
 }
 
-exit_checking() {
-	local c=$1
-	local begin=$2
+echo_elapsed_seconds() {
+	local begin=$1
 	local end="`date +%s`"
 	echo 
 	echo "... elpased $(( ${end}-${begin} )) seconds."
-	[ 0 -eq $c ] || exit $c
+}
+
+exit_checking() {
+	local c=$1
+	local begin=$2
+	if [ 0 -ne $c ]; then
+		echo_ok_or_failed $begin
+		exit $c
+	fi
 }
 
 
@@ -236,3 +243,4 @@ else
 	exit_checking $? $BEGIN
 fi
 
+echo_elapsed_seconds $BEGIN
