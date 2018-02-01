@@ -213,7 +213,7 @@ else
   echo_found_or_not $?
 	if `on_windows_nt`; then
 		echo -n " + checking bash environment ... "
-		if `echo $KIT_GITHUB | grep 'junjiemars/kit' &>/dev/null`; then
+		if `echo $INSIDE_KIT_BASH_ENV | grep 'junjiemars/kit' &>/dev/null`; then
       echo_found_or_not $?
 			if [ "yes" = $NORE_UPGRADE ]; then
         echo -n " + upgrading bash environement ... "
