@@ -210,8 +210,8 @@ echo -n " + checking make ... "
 if `make -v &>/dev/null`; then
 	echo_found_or_not $?
 else
+  echo_found_or_not $?
 	if `on_windows_nt`; then
-    echo_found_or_not $?
 		echo -n " + checking bash environment ... "
 		if `echo $KIT_GITHUB | grep 'junjiemars/kit' &>/dev/null`; then
       echo_found_or_not $?
@@ -229,11 +229,10 @@ else
 		exit_checking $? $BEGIN
 		. $HOME/.bashrc
 
-		HAS_GMAKE=1 bash <(curl ${GITHUB_R}/kit/master/win/install-win-kits.sh)
+		echo -n " + installing make ... "
+		HAS_GMAKE=1 bash <(curl -sqL ${GITHUB_R}/kit/master/win/install-win-kits.sh)
+		echo_ok_or_failed $?
 		exit_checking $? $BEGIN
-  else
-    echo_found_or_not $?
-    exit_checking $? $BEGIN 
 	fi
 fi
 
@@ -254,16 +253,9 @@ else
  exit_checking $? $BEGIN
 fi
 
-echo -n " + checking configure ... "
-if [ -x "$NORE_CONFIGURE" ]; then
-  echo_found_or_not $?
-	cat_configure
-else
-	echo_found_or_not $?
-	echo -n " + generating configure ... "
-	echo_ok_or_failed `cat_configure ; echo $?`
-	exit_checking $? $BEGIN
-fi
+echo -n " + generating configure ... "
+echo_ok_or_failed `cat_configure ; echo $?`
+exit_checking $? $BEGIN
 
 
 echo_elapsed_seconds $BEGIN
