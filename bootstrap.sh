@@ -230,7 +230,7 @@ else
 		. $HOME/.bashrc
 
 		echo -n " + installing make ... "
-		HAS_GMAKE=1 ECHO_QUIET=NO bash <(curl -sqL ${GITHUB_R}/kit/master/win/install-win-kits.sh)
+		HAS_GMAKE=1 ECHO_QUIET=YES bash <(curl -sqL ${GITHUB_R}/kit/master/win/install-win-kits.sh)
 		echo_ok_or_failed $?
 		exit_checking $? $BEGIN
 	fi
