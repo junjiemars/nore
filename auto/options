@@ -63,7 +63,7 @@ do
 
     --cross-build=*)                 NM_CROSS_BUILD="$value"     	;;
 
-    --new=*)                         NM_NEW=YES                   ;;
+    --new=*)                         NM_NEW="$value"              ;;
 
 		--without-symbol)                NM_SYMBOL=NO               	;;
 		--without-debug)                 NM_DEBUG=NO                	;;
@@ -111,7 +111,7 @@ cat << END
 
   --cross-build=[YES|NO]             set cross build option
 
-  --new=[YES|NO]                     generate Nore script templates
+  --new=[NO|YES]                     generate Nore script templates
 
   --without-symbol                   disable CC generate debug symbols
   --without-debug                    enable build for release
@@ -131,6 +131,10 @@ END
 fi
 
 
+if [ -z "$NM_NEW" ]; then
+  NM_NEW=NO
+fi
+
 if [ 0 -eq ${#NM_HAS_STICKS} ]; then
   NM_HAS_STICKS+=(".")
 fi
@@ -143,16 +147,13 @@ if [ -z "$NM_WARN" ]; then
 	NM_WARN=YES
 fi
 
-
 if [ -z "$NM_OPTIMIZE" ]; then
 	NM_OPTIMIZE=YES
 fi
 
-
 if [ -z "$NM_STD" ]; then
 	NM_STD=YES
 fi
-
 
 
 NM_BIN_PATH=${NM_BIN_PATH:-bin}
