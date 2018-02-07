@@ -21,6 +21,8 @@ NM_SRC=src
 
 NM_CROSS_BUILD=NO
 
+NM_NEW=NO
+
 NM_SYMBOL=YES
 NM_OPTIMIZE=NO
 NM_WARN=YES
@@ -65,6 +67,8 @@ do
     --out-dir=*)                     NM_OUT="${value%/}"       	  ;;
 
     --cross-build=*)                 NM_CROSS_BUILD="$value"     	;;
+
+    --new=*)                         NM_NEW=YES                   ;;
 
 		--without-symbol)                NM_SYMBOL=NO               	;;
 		--without-debug)                 NM_DEBUG=NO                	;;
@@ -111,6 +115,8 @@ cat << END
   --out-dir=DIR                      set build out directory
 
   --cross-build=[YES|NO]             set cross build option
+
+  --new=[YES|NO]                     generate Nore script templates
 
   --without-symbol                   disable CC generate debug symbols
   --without-debug                    enable build for release

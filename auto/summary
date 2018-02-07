@@ -72,6 +72,7 @@ cat << END
   compiler: $NM_COMPILER
   prefix= $NM_PREFIX
   out= $NM_OUT
+  new= ${NM_NEW}
   std= `yes_no_val_out $NM_STD $nm_std_opt`
   symbol= `yes_no_out $NM_SYMBOL "$nm_symbol_opt"`
   debug= `no_yes_out $NM_DEBUG $nm_debug_opt`
