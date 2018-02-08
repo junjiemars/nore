@@ -239,7 +239,7 @@ END
 #		nm_feature_test=
 #		. \${NM_HOME}auto/feature
 #
-#		if [ yes = $nm_found ]; then
+#		if [ yes = \$nm_found ]; then
 #			flag=LDFLAGS op="+=" value=\$nm_feature_flags . \${NM_HOME}auto/make_define
 #		fi
 #		;;
