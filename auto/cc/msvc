@@ -15,6 +15,9 @@ CC_VER=`version_n $(echo $nm_msvc_ver | cut -d' ' -f1)`
 have=MSVC value=$CC_VER . ${NM_HOME}auto/define
 
 
+# compiler 
+[ "." = ".$CC" ] && CC="cl"
+
 # preprocess
 [ "." = ".$CPP" ] && CPP="\$(CC)"
 

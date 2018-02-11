@@ -1,10 +1,12 @@
 
 # cc/conf
 
+CC=${CC}
+
 CPP=
 CAS=
 
-AS=
+AS=${AS}
 AR=
 LINK="\$(CC)"
 

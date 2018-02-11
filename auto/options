@@ -9,13 +9,6 @@ NM_INC_PATH=
 NM_ETC_PATH=
 NM_VAR_PATH=
 
-CC=${CC:-"cc"}
-CPP=
-CAS=
-AS=
-LINK=
-
-
 NM_OUT=out
 NM_SRC=src
 
