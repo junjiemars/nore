@@ -33,7 +33,6 @@ GITHUB_BASH_ENV="${GITHUB_R}/kit/master/ul/setup-bash.sh"
 
 NORE_UPGRADE=no
 NORE_BRANCH=master
-NORE_CONFIGURE="${NORE_WORK%/}/configure"
 
 
 for option
@@ -96,8 +95,10 @@ clone_nore() {
 
 cat_configure() {
   local b="`check_nore_branch`"
-	local conf="${NORE_CONFIGURE}.n"
-	cat << END > "$conf"
+  local conf="${NORE_WORK%/}/configure"
+  local new_conf="${conf}.n"
+
+	cat << END > "$new_conf"
 #!/bin/bash
 #------------------------------------------------
 # target: configure
@@ -170,8 +171,8 @@ fi
 
 END
 
-	chmod u+x "$conf"
-	mv "$conf" "$NORE_CONFIGURE"
+	chmod u+x "$new_conf"
+	mv "$new_conf" "$conf"
 }
 
 echo_found_or_not() {
