@@ -1,7 +1,7 @@
 
 # cc/conf
 
-CC=${CC}
+CC=${CC:-cc}
 
 CPP=
 CAS=
