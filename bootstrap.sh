@@ -7,7 +7,7 @@
 
 bootstrap_path() {
 	local p="`dirname $0`"
-	local n="./.nore"
+	local n="`pwd`/.nore"
 
 	if [ -d "${p}" ]; then
 		p="`( cd \"${p}\" && pwd )`"
