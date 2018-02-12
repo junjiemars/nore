@@ -138,6 +138,16 @@ case "\`echo \${NORE_L_CONF_COMMAND} | tr '[:upper:]' '[:lower:]'\`" in
     exit \$?
 	;;
 
+  clone)
+		if [ -f \${NORE_L_BOOT} ]; then
+			NORE_WORK="\`pwd\`" \$NORE_L_BOOT --branch=\${NORE_BRANCH}
+		else
+			curl -sqL \${NORE_R_BOOT} \\
+				| PREFIX=\${NORE_PREFIX} bash -s -- --branch=\${NORE_BRANCH}
+		fi
+    exit \$?
+  ;;
+
   debug)
     NORE_L_CONF_DEBUG="yes"
   ;;
