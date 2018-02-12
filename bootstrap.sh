@@ -45,6 +45,7 @@ do
   case "$option" in
     --help)                  help=yes                   ;;
     --branch=*)              NORE_BRANCH="$value"       ;;
+    --work=*)                NORE_WORK="$value"         ;;
 
     *)
 			command="`echo $option | tr '[:upper:]' '[:lower:]'`"
@@ -141,10 +142,12 @@ case "\`echo \${NORE_L_CONF_COMMAND} | tr '[:upper:]' '[:lower:]'\`" in
 
   clone)
 		if [ -f \${NORE_L_BOOT} ]; then
-			NORE_WORK="\`pwd\`" \$NORE_L_BOOT --branch=\${NORE_BRANCH}
+			\$NORE_L_BOOT --branch=\${NORE_BRANCH} --work=\`pwd\`
 		else
 			curl -sqL \${NORE_R_BOOT} \\
-				| PREFIX=\${NORE_PREFIX} bash -s -- --branch=\${NORE_BRANCH}
+				| PREFIX=\${NORE_PREFIX} bash -s -- \\
+        --branch=\${NORE_BRANCH} \\
+        --work=\`pwd\`
 		fi
     exit \$?
   ;;
