@@ -114,7 +114,7 @@ NORE_L_CONF_OPTS=()
 NORE_L_CONF_DEBUG="no"
 NORE_L_CONF_COMMAND=
 
-cd "\`dirname \${BASH_SOURCE}\`"
+# cd "\`dirname \${BASH_SOURCE}\`"
 
 for option
 do
