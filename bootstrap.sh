@@ -116,7 +116,6 @@ NORE_L_CONF_OPTS=()
 NORE_L_CONF_DEBUG="no"
 NORE_L_CONF_COMMAND=
 
-# cd "\`dirname \${BASH_SOURCE}\`"
 
 for option
 do
@@ -157,6 +156,8 @@ case "\`echo \${NORE_L_CONF_COMMAND} | tr '[:upper:]' '[:lower:]'\`" in
     NORE_L_CONF_DEBUG="yes"
   ;;
 esac
+
+cd "\`dirname \${BASH_SOURCE}\`"
 
 if [ -f \${NORE_L_CONF} ]; then
   case "\${NORE_L_CONF_DEBUG}" in
