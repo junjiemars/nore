@@ -112,7 +112,7 @@ cat << END
   --with-warn=[YES|NO|*]             set CC warn level option 
   --with-optimize=[NO|YES|*]         set CC optimize level option 
   --with-std=[YES|NO|*]              set CC std option 
-  --with-cpu=[NO|*|?]                set cpu option 
+  --with-cpu=[NO|*]                  set cpu option 
   --with-verbose                     enable verbose build option
 
   --has-*                            has [*] to do
