@@ -110,7 +110,7 @@ cat << END
   --without-debug                    enable build for release
   --without-error                    disable warn as error
   --with-warn=[YES|NO|*]             set CC warn level option 
-  --with-optimize=[YES|NO|*]         set CC optimize level option 
+  --with-optimize=[NO|YES|*]         set CC optimize level option 
   --with-std=[YES|NO|*]              set CC std option 
   --with-cpu=[NO|*|?]                set cpu option 
   --with-verbose                     enable verbose build option
@@ -141,7 +141,7 @@ if [ -z "$NM_WARN" ]; then
 fi
 
 if [ -z "$NM_OPTIMIZE" ]; then
-	NM_OPTIMIZE=YES
+	NM_OPTIMIZE=NO
 fi
 
 if [ -z "$NM_STD" ]; then
