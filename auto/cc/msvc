@@ -62,7 +62,7 @@ nm_pic_opt=
 
 # output options
 cpp_out=">"
-asm_out="-Fa"
+asm_out="-FAu -Fa"
 obj_out="-Fo"
 bin_out="-Fe"
 ar_out="-out:"
