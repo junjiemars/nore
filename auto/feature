@@ -56,7 +56,7 @@ if [ -x $NM_AUTOTEST ]; then
         fi
 
       else
-        echo " found but is not working"
+        echo " not found"
       fi
     ;;
 
@@ -74,7 +74,7 @@ if [ -x $NM_AUTOTEST ]; then
 
 END
       else
-        echo " found but is not working"
+        echo " not found"
       fi
     ;;
 
