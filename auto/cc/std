@@ -6,30 +6,16 @@ if [ "NO" = "$NM_STD" ]; then
   :;
 
 elif [ "YES" = "$NM_STD" ]; then
-  nm_feature_flags="${std_opt}c99"
+  nm_std_opt="${std_opt}c99"
 
 else
-  nm_feature_flags="${std_opt}`echo $NM_STD | tr [:upper:] [:lower:]`"
+  nm_std_opt="${std_opt}`echo $NM_STD | tr [:upper:] [:lower:]`"
 
 fi
 
 
 if [ "NO" != "$NM_STD" ]; then
-
-	nm_feature="$CC_NAME $nm_feature_flags switch"
-	nm_feature_name="nm_have$nm_feature_flags"
-	nm_feature_run=no
-	nm_feature_h=
-	nm_feature_inc=
-	nm_feature_ldlibs=
-	nm_feature_test=
-	. ${NM_HOME}auto/feature
-	
-	if [ yes = $nm_found ]; then
-		nm_std_opt=$nm_feature_flags
-		CFLAGS=${CFLAGS:+$CFLAGS}${nm_std_opt:+ $nm_std_opt}
-	fi
-
+	CFLAGS=${CFLAGS:+$CFLAGS}${nm_std_opt:+ $nm_std_opt}
 fi
 
 
