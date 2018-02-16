@@ -5,15 +5,15 @@
 case "$NM_STD" in
 	NO) ;;
 
-	YES) nm_feature_flags="-std=c99" ;;
+	YES) nm_feature_flags="${std_opt}=c99" ;;
 
 	*)
 		case "$NM_STD" in
 			[cC]89|[cC]90|[cC]99|[cC]11)
-				nm_feature_flags="-std=`echo $NM_STD | tr '[:upper:]' '[:lower:]'`"
+				nm_feature_flags="${std_opt}=`echo $NM_STD | tr '[:upper:]' '[:lower:]'`"
 				;;
 			*)
-				nm_feature_flags="-std=`echo $NM_STD | tr '[:upper:]' '[:lower:]'`"
+				nm_feature_flags="${std_opt}=`echo $NM_STD | tr '[:upper:]' '[:lower:]'`"
 				;;
 		esac
 	;;
