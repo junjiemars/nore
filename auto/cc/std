@@ -6,10 +6,10 @@ if [ NO = $NM_STD ]; then
   :;
 
 elif [ YES = $NM_STD ]; then
-  nm_feature_flags="${std_opt}=c99"
+  nm_feature_flags="${std_opt}c99"
 
 else
-  nm_feature_flags="${std_opt}=`echo $NM_STD | tr [:upper:] [:lower:]`"
+  nm_feature_flags="${std_opt}`echo $NM_STD | tr [:upper:] [:lower:]`"
 
 fi
 

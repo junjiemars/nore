@@ -31,7 +31,7 @@ have=GCC value=$CC_VER . ${NM_HOME}auto/define
 
 
 # std
-std_opt='-std' . ${NM_HOME}auto/cc/std
+std_opt='-std=' . ${NM_HOME}auto/cc/std
 
 # optimization
 nm_optimize_opt=${nm_optimize_opt:-"-O2"}
