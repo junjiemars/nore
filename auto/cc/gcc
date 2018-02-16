@@ -103,10 +103,6 @@ if [ "$NM_CPU" != "NO" ]; then
 fi
 
 
-# warnings
-nm_warn_opt="${nm_warn_opt:+$nm_warn_opt }-Wunused-parameter"
-
-
 # stage
 nm_stage_pre="-E"
 nm_stage_chk=
