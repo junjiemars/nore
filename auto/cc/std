@@ -1,0 +1,42 @@
+
+# std
+
+
+case "$NM_STD" in
+	NO) ;;
+
+	YES) nm_feature_flags="-std=c99" ;;
+
+	*)
+		case "$NM_STD" in
+			[cC]89|[cC]90|[cC]99|[cC]11)
+				nm_feature_flags="-std=`echo $NM_STD | tr '[:upper:]' '[:lower:]'`"
+				;;
+			*)
+				nm_feature_flags=$NM_STD
+				;;
+		esac
+	;;
+
+esac
+
+if [ "NO" != "$NM_STD" ]; then
+
+	nm_feature="$CC_NAME $nm_feature_flags switch"
+	nm_feature_name="nm_have$nm_feature_flags"
+	nm_feature_run=no
+	nm_feature_h=
+	nm_feature_inc=
+	nm_feature_ldlibs=
+	nm_feature_test=
+	. ${NM_HOME}auto/feature
+	
+	if [ yes = $nm_found ]; then
+		nm_std_opt=$nm_feature_flags
+		CFLAGS=${CFLAGS:+$CFLAGS}${nm_std_opt:+ $nm_std_opt}
+	fi
+
+fi
+
+
+

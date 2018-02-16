@@ -30,6 +30,9 @@ have=CLANG value=$CC_VER . ${NM_HOME}auto/define
 [ "." = ".$AR" ] && AR="ar"
 
 
+# std
+. ${NM_HOME}auto/cc/std
+
 # optimizations
 nm_optimize_opt=${nm_optimize_opt:-"-O2"}
 
@@ -50,44 +53,6 @@ nm_stage_pre="-E"
 nm_stage_chk="-fsyntax-only"
 nm_stage_asm="-S"
 nm_stage_c="-c"
-
-
-# std 
-case "$NM_STD" in
-	NO) ;;
-
-	YES) nm_feature_flags="-std=c99" ;;
-
-	*)
-		case "$NM_STD" in
-			[cC]89|[cC]90|[cC]99|[cC]11)
-				nm_feature_flags="-std=`echo $NM_STD | tr '[:upper:]' '[:lower:]'`"
-				;;
-			*)
-				nm_feature_flags=$NM_STD
-				;;
-		esac
-	;;
-
-esac
-
-if [ "$NM_STD" != "NO" ]; then
-
-	nm_feature="$CC_NAME $nm_feature_flags switch"
-	nm_feature_name="nm_have$nm_feature_flags"
-	nm_feature_run=no
-	nm_feature_h=
-	nm_feature_inc=
-	nm_feature_ldlibs=
-	nm_feature_test=
-	. ${NM_HOME}auto/feature
-	
-	if [ $nm_found = yes ]; then
-		nm_std_opt=$nm_feature_flags
-		CFLAGS=${CFLAGS:+$CFLAGS}${nm_std_opt:+ $nm_std_opt}
-	fi
-
-fi
 
 
 # cpu
