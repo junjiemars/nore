@@ -87,6 +87,9 @@ ar_ext=".lib"
 # MSVC 2015 (14.0)                        cl 19.00
 
 
+# cpu
+cpu_opt='-arch:' . ${NM_HOME}auto/cc/cpu
+
 
 # msvc opt
 nm_long_start='@<<
