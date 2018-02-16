@@ -13,7 +13,7 @@ case "$NM_STD" in
 				nm_feature_flags="-std=`echo $NM_STD | tr '[:upper:]' '[:lower:]'`"
 				;;
 			*)
-				nm_feature_flags=$NM_STD
+				nm_feature_flags="-std=`echo $NM_STD | tr '[:upper:]' '[:lower:]'`"
 				;;
 		esac
 	;;
