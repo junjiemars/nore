@@ -69,43 +69,4 @@ fi
 
 
 # cpu
-case "$NM_CPU" in
-
-	NO)
-	;;
-
-	-march=*)
-		nm_feature_flags="$NM_CPU"
-	;;
-
-	*)
-		nm_feature_flags="-march=$NM_CPU"
-	;;
-
-esac
-
-
-if [ "$NM_CPU" != "NO" ]; then
-	nm_feature="$CC_NAME $nm_feature_flags switch"
-	nm_feature_name="nm_have$nm_feature_flags"
-	nm_feature_run=no
-	nm_feature_h=
-	nm_feature_inc=
-	nm_feature_ldlibs=
-	nm_feature_test=
-	. ${NM_HOME}auto/feature
-	
-	if [ $nm_found = yes ]; then
-		nm_cpu_opt=$nm_feature_flags
-		CFLAGS=${CFLAGS:+$CFLAGS}${nm_cpu_opt:+ $nm_cpu_opt}
-	fi
-
-fi
-
-
-# stage
-nm_stage_pre="-E"
-nm_stage_chk=
-nm_stage_asm="-S"
-nm_stage_c="-c"
-
+cpu_opt='-march=' . ${NM_HOME}auto/cc/cpu

@@ -1,0 +1,28 @@
+
+# cpu
+
+
+if [ "NO" = "$NM_CPU" ]; then
+   :;
+else
+	nm_feature_flags="${cpu_opt}$NM_CPU"
+fi
+
+
+if [ "NO" != "$NM_CPU" ]; then
+
+	nm_feature="$CC_NAME $nm_feature_flags switch"
+	nm_feature_name="nm_have_cpu$nm_feature_flags"
+	nm_feature_run=no
+	nm_feature_h=
+	nm_feature_inc=
+	nm_feature_ldlibs=
+	nm_feature_test=
+	. ${NM_HOME}auto/feature
+	
+	if [ yes = $nm_found ]; then
+		nm_cpu_opt=$nm_feature_flags
+		CFLAGS=${CFLAGS:+$CFLAGS}${nm_cpu_opt:+ $nm_cpu_opt}
+	fi
+
+fi
