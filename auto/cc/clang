@@ -42,8 +42,8 @@ nm_symbol_opt=${nm_symbol_opt:-"-g"}
 # error
 nm_error_opt="-Werror"
 
-# warnings
-nm_warn_opt=${nm_warn_opt:-"-Weverything"}
+# warnings (-Weverything)
+nm_warn_opt=${nm_warn_opt:-"-Wall -Wextra"}
 
 # verbose
 nm_verbose_opt=${nm_verbose_opt:-"-v"}

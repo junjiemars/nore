@@ -38,7 +38,7 @@ nm_optimize_opt=${nm_optimize_opt:-"-O2"}
 # debug
 nm_symbol_opt=${nm_symbol_opt:-"-Z7"}
 
-# warnings
+# warnings (-Wall)
 nm_warn_opt=${nm_warn_opt:-"-W4"}
 
 # error
