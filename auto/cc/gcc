@@ -40,7 +40,7 @@ nm_optimize_opt=${nm_optimize_opt:-"-O2"}
 nm_symbol_opt=${nm_symbol_opt:-"-g"}
 
 # warning
-nm_warn_opt=${nm_warn_opt:-"-Wall -Wpointer-arith -Wunused-variable"}
+nm_warn_opt=${nm_warn_opt:-"-Wall -Wextra"}
 
 # error
 nm_error_opt="-Werror"

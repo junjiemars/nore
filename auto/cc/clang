@@ -40,7 +40,7 @@ nm_symbol_opt=${nm_symbol_opt:-"-g"}
 nm_error_opt="-Werror"
 
 # warnings
-nm_warn_opt=${nm_warn_opt:-"-Wall -Wextra -Wpointer-arith -Wconditional-uninitialized -Wunused-variable -Wunused-parameter -Wno-error=unused-command-line-argument"}
+nm_warn_opt=${nm_warn_opt:-"-Weverything"}
 
 # verbose
 nm_verbose_opt=${nm_verbose_opt:-"-v"}
