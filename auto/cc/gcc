@@ -48,25 +48,6 @@ nm_error_opt="-Werror"
 # verbose
 nm_verbose_opt=${nm_verbose_opt:-"-v"}
 
-# pic
-nm_pic_opt=
-
-
-nm_feature="gcc -pipe switch"
-nm_feature_name=
-nm_feature_run=no
-nm_feature_h=
-nm_feature_flags=-pipe
-nm_feature_inc=
-nm_feature_ldlibs=
-nm_feature_test=
-. ${NM_HOME}auto/feature
-
-
-if [ $nm_found = yes ]; then
-	nm_pic_opt=-fPIC
-fi
-
 
 # stage
 nm_stage_pre="-E"

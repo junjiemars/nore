@@ -46,7 +46,6 @@ nm_std_opt = $nm_std_opt
 nm_cpu_opt = $nm_cpu_opt
 nm_verbose_opt = $nm_verbose_opt
 
-nm_pic_opt = $nm_pic_opt
 nm_shared_opt = $nm_shared_opt
 
 nm_stage_pre = $nm_stage_pre
