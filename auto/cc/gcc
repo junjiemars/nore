@@ -68,5 +68,12 @@ if [ $nm_found = yes ]; then
 fi
 
 
+# stage
+nm_stage_pre="-E"
+nm_stage_chk=
+nm_stage_asm="-S"
+nm_stage_c="-c"
+
+
 # cpu
 cpu_opt='-march=' . ${NM_HOME}auto/cc/cpu
