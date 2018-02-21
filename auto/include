@@ -35,7 +35,7 @@ if [ -x $NM_AUTOTEST ]; then
 
   echo " found"
 
-  have=$nm_include . ${NM_HOME}auto/have_header
+  have=$nm_include . ${NORE_ROOT}/auto/have_header
 
   #eval "NM_INCLUDE_$nm_name='#include <$nm_include>'"
 

@@ -9,7 +9,7 @@ nm_shared_opt="-dynamiclib"
 lib_ext=".dylib"
 
 
-have=$NM_SYSTEM . ${NM_HOME}auto/have
+have=$NM_SYSTEM . ${NORE_ROOT}/auto/have
 
 # os specifics for Darwin
 

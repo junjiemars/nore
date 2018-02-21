@@ -3,11 +3,11 @@
 LC_ALL=C
 export LC_ALL
 
-NM_HOME=$(dirname `dirname $0`)
-NM_HOME="${NM_HOME%/}/"
+NORE_ROOT=$(dirname `dirname $0`)
+NORE_ROOT="${NORE_ROOT%/}"
 
-. ${NM_HOME}auto/options
-. ${NM_HOME}auto/init
+. ${NORE_ROOT}/auto/options
+. ${NORE_ROOT}/auto/init
 
 
 test -d "$NM_OUT" || mkdir -p $NM_OUT
@@ -50,9 +50,9 @@ fi
 
 
 
-. ${NM_HOME}auto/cc/conf
+. ${NORE_ROOT}/auto/cc/conf
 
-. ${NM_HOME}auto/os/conf
+. ${NORE_ROOT}/auto/os/conf
 
 
 case ".$NM_PREFIX" in
@@ -62,18 +62,18 @@ case ".$NM_PREFIX" in
 		else
 			NM_PREFIX=/opt/run
 		fi
-    have=NM_PREFIX value="\"$NM_PREFIX/\"" . ${NM_HOME}auto/define
+    have=NM_PREFIX value="\"$NM_PREFIX/\"" . ${NORE_ROOT}/auto/define
 	;;
 
 	.*)
-    have=NM_PREFIX value="\"$NM_PREFIX/\"" . ${NM_HOME}auto/define
+    have=NM_PREFIX value="\"$NM_PREFIX/\"" . ${NORE_ROOT}/auto/define
 	;;
 
 esac
 
 
-. ${NM_HOME}auto/make
+. ${NORE_ROOT}/auto/make
 
-. ${NM_HOME}auto/install
+. ${NORE_ROOT}/auto/install
 
-. ${NM_HOME}auto/summary
+. ${NORE_ROOT}/auto/summary

@@ -7,15 +7,15 @@ echo "checking for $NM_PLATFORM specific features"
 case "$NM_PLATFORM" in
 
 	Linux:*)
-		. ${NM_HOME}auto/os/linux
+		. ${NORE_ROOT}/auto/os/linux
 	;;
 	
 	Darwin:*)
-		. ${NM_HOME}auto/os/darwin
+		. ${NORE_ROOT}/auto/os/darwin
 	;;
 	
   WinNT:*)
-		. ${NM_HOME}auto/os/nt
+		. ${NORE_ROOT}/auto/os/nt
 	;;
 
 esac
@@ -42,4 +42,4 @@ case "$NM_MACHINE" in
 esac
 
 
-have=NM_CPU_CACHE_LINE value=$NM_CPU_CACHE_LINE . ${NM_HOME}auto/define
+have=NM_CPU_CACHE_LINE value=$NM_CPU_CACHE_LINE . ${NORE_ROOT}/auto/define

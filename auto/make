@@ -184,7 +184,7 @@ END
   if [ -f $nm_src_stick/version ]; then
 		echo " + checking for $nm_src_stick/version ... found"
     have=`echo $nm_stick_norm | tr '[:lower:]' '[:upper:]'`_VERSION \
-    value=`cat $nm_src_stick/version` . ${NM_HOME}auto/define
+    value=`cat $nm_src_stick/version` . ${NORE_ROOT}/auto/define
     
   elif [ YES = $NM_NEW ]; then
     echo $nm_n " + generating $nm_src_stick/version file ... "
@@ -209,7 +209,7 @@ END
 
 # check header file existing
 #----------------------------------------
-#nm_include="stdint.h" . \${NM_HOME}auto/include
+#nm_include="stdint.h" . \${NORE_ROOT}/auto/include
 
 
 # check features
@@ -225,7 +225,7 @@ END
 #                 char *p = (char *)&i;
 #             		int le = (0x44 == *p);
 #                 printf("%d", le);'
-#. \${NM_HOME}auto/feature
+#. \${NORE_ROOT}/auto/feature
 
 
 # check features based on Compiler
@@ -242,10 +242,10 @@ END
 #		nm_feature_inc=
 #		nm_feature_ldlibs=
 #		nm_feature_test=
-#		. \${NM_HOME}auto/feature
+#		. \${NORE_ROOT}/auto/feature
 #
 #		if [ yes = \$nm_found ]; then
-#			flag=LDFLAGS op="+=" value=\$nm_feature_flags . \${NM_HOME}auto/make_define
+#			flag=LDFLAGS op="+=" value=\$nm_feature_flags . \${NORE_ROOT}/auto/make_define
 #		fi
 #		;;
 #	msvc)
@@ -265,7 +265,7 @@ END
 #		nm_feature_inc=-I/opt/local/include
 #		nm_feature_ldlibs=-luv
 #		nm_feature_test=
-#		. \${NM_HOME}auto/feature
+#		. \${NORE_ROOT}/auto/feature
 #	  ;;
 #	Linux)
 #	  ;;

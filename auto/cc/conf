@@ -56,20 +56,20 @@ lib_ext=".so"
 ar_ext=".a"
 
 
-. ${NM_HOME}auto/cc/name
+. ${NORE_ROOT}/auto/cc/name
 
 
 case $CC_NAME in
   gcc)
-    . ${NM_HOME}auto/cc/gcc
+    . ${NORE_ROOT}/auto/cc/gcc
   ;;
 
   clang)
-    . ${NM_HOME}auto/cc/clang
+    . ${NORE_ROOT}/auto/cc/clang
   ;;
 
   msvc*)
-    . ${NM_HOME}auto/cc/msvc
+    . ${NORE_ROOT}/auto/cc/msvc
 	;;
 esac
 

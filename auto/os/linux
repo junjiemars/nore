@@ -6,6 +6,6 @@ LDFLAGS=${LDFLAGS}
 nm_shared_opt=-shared
 
 
-have=$NM_SYSTEM . ${NM_HOME}auto/have
+have=$NM_SYSTEM . ${NORE_ROOT}/auto/have
 
 # os specifics for Linux

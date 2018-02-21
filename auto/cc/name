@@ -10,7 +10,7 @@ nm_feature_flags=
 nm_feature_inc=
 nm_feature_ldlibs=
 nm_feature_test=
-. ${NM_HOME}auto/feature
+. ${NORE_ROOT}/auto/feature
 
 if [ ".$nm_found" = ".no" ]; then
   echo " + $0: error: C compiler $CC is not found"

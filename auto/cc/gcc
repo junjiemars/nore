@@ -7,11 +7,11 @@ nm_gcc_ver=`$CC -v 2>&1 | grep 'gcc version' 2>&1 \
 echo " + gcc version: $nm_gcc_ver"
 
 NM_COMPILER="gcc $nm_gcc_ver"
-have=NM_COMPILER value="\"$NM_COMPILER\"" . ${NM_HOME}auto/define
+have=NM_COMPILER value="\"$NM_COMPILER\"" . ${NORE_ROOT}/auto/define
 
-. ${NM_HOME}auto/cc/version
+. ${NORE_ROOT}/auto/cc/version
 CC_VER=`version_n $(echo $nm_gcc_ver | cut -d' ' -f1)`
-have=GCC value=$CC_VER . ${NM_HOME}auto/define
+have=GCC value=$CC_VER . ${NORE_ROOT}/auto/define
 
 
 # compiler 
@@ -31,7 +31,7 @@ have=GCC value=$CC_VER . ${NM_HOME}auto/define
 
 
 # std
-std_opt='-std=' . ${NM_HOME}auto/cc/std
+std_opt='-std=' . ${NORE_ROOT}/auto/cc/std
 
 # optimization
 nm_optimize_opt=${nm_optimize_opt:-"-O2"}
@@ -57,4 +57,4 @@ nm_stage_c="-c"
 
 
 # cpu
-cpu_opt='-march=' . ${NM_HOME}auto/cc/cpu
+cpu_opt='-march=' . ${NORE_ROOT}/auto/cc/cpu

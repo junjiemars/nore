@@ -4,7 +4,7 @@
 LDFLAGS=${LDFLAGS}
 nm_shared_opt="-LD"
 
-have=$NM_SYSTEM . ${NM_HOME}auto/have
+have=$NM_SYSTEM . ${NORE_ROOT}/auto/have
 
 nm_p="\;"
 

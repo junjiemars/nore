@@ -8,11 +8,11 @@ nm_msvc_ver=`$CC 2>&1 | grep 'Compiler Version' 2>&1 \
 echo " + msvc version: $nm_msvc_ver"
 
 NM_COMPILER="msvc $nm_msvc_ver"
-have=NM_COMPILER value="\"$NM_COMPILER\"" . ${NM_HOME}auto/define
+have=NM_COMPILER value="\"$NM_COMPILER\"" . ${NORE_ROOT}/auto/define
 
-. ${NM_HOME}auto/cc/version
+. ${NORE_ROOT}/auto/cc/version
 CC_VER=`version_n $(echo $nm_msvc_ver | cut -d' ' -f1)`
-have=MSVC value=$CC_VER . ${NM_HOME}auto/define
+have=MSVC value=$CC_VER . ${NORE_ROOT}/auto/define
 
 
 # compiler 
@@ -85,7 +85,7 @@ ar_ext=".lib"
 
 
 # cpu
-cpu_opt='-arch:' . ${NM_HOME}auto/cc/cpu
+cpu_opt='-arch:' . ${NORE_ROOT}/auto/cc/cpu
 
 
 # msvc opt
@@ -124,7 +124,7 @@ nm_stage_c="-c"
 #	nm_feature_inc=
 #	nm_feature_ldlibs=
 #	nm_feature_test=
-#	. ${NM_HOME}auto/feature
+#	. ${NORE_ROOT}/auto/feature
 #	
 #	if [ $nm_found = yes ]; then
 #		nm_cpu_opt=$nm_feature_flags

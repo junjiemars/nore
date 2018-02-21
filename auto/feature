@@ -52,7 +52,7 @@ if [ -x $NM_AUTOTEST ]; then
         nm_found=yes
 
         if test -n "$nm_feature_name"; then
-          have=$nm_have_feature . ${NM_HOME}auto/have
+          have=$nm_have_feature . ${NORE_ROOT}/auto/have
         fi
 
       else
@@ -88,7 +88,7 @@ END
         nm_found=yes
 
         if test -n "$nm_feature_name"; then
-          have=$nm_have_feature . ${NM_HOME}auto/have
+          have=$nm_have_feature . ${NORE_ROOT}/auto/have
         fi
       fi
     ;;
@@ -98,7 +98,7 @@ END
       nm_found=yes
 
       if test -n "$nm_feature_name"; then
-        have=$nm_have_feature . ${NM_HOME}auto/have
+        have=$nm_have_feature . ${NORE_ROOT}/auto/have
       fi
     ;;
 
