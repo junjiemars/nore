@@ -209,7 +209,7 @@ END
 
 # check header file existing
 #----------------------------------------
-#nm_include="stdint.h" . ${NM_HOME}auto/include
+#nm_include="stdint.h" . \${NM_HOME}auto/include
 
 
 # check features
