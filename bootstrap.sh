@@ -225,6 +225,24 @@ delete_tail_lines() {
     fi
   fi
 }
+
+set_vim_cc_path() {
+  local f="\$1"
+  local inc_lns=("\${@:2}")
+  local inc_ln="\${#inc_lns[@]}"
+  local cc_header="\" cc include path"
+  local t=0
+
+  delete_tail_lines "\${cc_header}" "yes" "\$f"
+
+  echo -e "\${cc_header} :check_cc_include" >> \$f
+  for i in "\${inc_lns[@]}"; do
+		local ln=\$(echo "\$i" | sed 's_ _\\\\\\ _g')
+    echo "set path+=\${ln}" >> \$f
+  done
+}
+
+
 END
 }
 
