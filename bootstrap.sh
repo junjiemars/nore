@@ -339,9 +339,6 @@ fi
 fi
 
 END
-
-	[ -f "$cc_env_sh" ] || return 1
-	chmod u+x "$cc_env_sh"
 }
 
 echo_found_or_not() {
