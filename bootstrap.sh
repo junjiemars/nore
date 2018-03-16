@@ -316,11 +316,8 @@ echo ":echo_inc"
 echo "echo \"%INCLUDE%\" "
 echo "END"
 echo ""
-echo "	if [ -f \"\\$cc_env_bat\" ]; then"
-echo "	  chmod u+x \"\\$cc_env_bat\""
-echo "  else"
-echo "    return 1"
-echo "  fi"
+echo "	[ -f \"\\$cc_env_bat\" ] && return 0"
+echo "  return 1"
 echo "}"
 fi
 `
