@@ -202,6 +202,11 @@ cat_cc_env() {
 
 ROOT="${NORE_WORK%/}"
 CC_ENV_CHECKED="\${ROOT}/.cc-env.checked"
+`
+if on_windows_nt; then
+echo "CC_ENV_BAT=\"\\${ROOT}/.cc-env.bat\""
+fi
+`
 
 delete_tail_lines() {
   local h="\$1"
@@ -287,7 +292,7 @@ if on_windows_nt; then
 echo "gen_cc_env_bat () {"
 echo "	local vcvarsall=\"\\$(find_vcvarsall)\""
 echo "	[ 0 -eq \\$? ] || return 1"
-echo "	local cc_env_bat=\"\\${ROOT}/.cc-env.bat\""
+echo "	local cc_env_bat=\"\\${CC_ENV_BAT}\""
 echo ""
 echo "	cat << END > \"\\$cc_env_bat\""
 echo "@echo off"
@@ -322,6 +327,16 @@ echo "}"
 fi
 `
 
+check_cc_include () {
+  local cc_inc=
+`
+if on_windows_nt; then
+echo "  [ -f \"\\${CC_ENV_BAT}\" ] || return 1"
+echo "  cc_inc=\"\\$(\"\\${CC_ENC_BAT}\" | tail -n1)\""
+fi
+`
+}
+
 if test ! -f "\${CC_ENV_CHECKED}" || test "0" = "\`cat \${CC_ENV_CHECKED}\`"; then
 `
 if on_windows_nt; then
@@ -329,6 +344,7 @@ if on_windows_nt; then
   echo "  echo \\$? > \"\\${CC_ENV_CHECKED}\""
 fi
 `
+  check_cc_include
   #check_win_cc_include \${ROOT}/.cc-inc.list \${HOME}/.vimrc \${ROOT}/.cc-env.bat
 fi
 
