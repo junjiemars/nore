@@ -207,9 +207,11 @@ if on_windows_nt; then
 fi
 `
 CC_INC_LST="\${HOME%/}/.cc-inc.lst"
+CC_INC_VIMRC="\${HOME%/}/.cc-inc.vimrc"
+VIMRC="\${HOME%/}/.vimrc"
 
 
-delete_tail_lines() {
+delete_vimrc_src () {
   local h="\$1"
   local lines="\$2"
   local f="\$3"
@@ -220,7 +222,7 @@ delete_tail_lines() {
  fi
 `
 
-  [ -f "\$f" ] || return 1
+  [ -f "\$f" ] || return 0
 
   local line_no=\`grep -m1 -n "^\${h}" \$f | cut -d':' -f1\`
   [[ \$line_no =~ ^[0-9]+\$ ]] || return 1
@@ -232,22 +234,6 @@ delete_tail_lines() {
       sed \$sed_opt_i -e "\${line_no}d" "\$f"
     fi
   fi
-}
-
-set_vim_cc_path() {
-  local f="\$1"
-  local inc_lns=("\${@:2}")
-  local inc_ln="\${#inc_lns[@]}"
-  local cc_header="\" cc include path"
-  local t=0
-
-  delete_tail_lines "\${cc_header}" "yes" "\$f"
-
-  echo -e "\${cc_header} :check_cc_include" >> \$f
-  for i in "\${inc_lns[@]}"; do
-		local ln=\$(echo "\$i" | sed 's_ _\\\\\\ _g')
-    echo "set path+=\${ln}" >> \$f
-  done
 }
 
 `
@@ -348,19 +334,34 @@ fi
 `
 }
 
-src_vimrc_path () {
-  command -v vim || return 0
+src_cc_inc_vimrc () {
+  command -v vim &>/dev/null || return 0
   [ -f "\${CC_INC_LST}" ] || return 1
+  local cc_h="\\" nore cc inc"
+  if [ ! -f "\$VIMRC" ]; then
+    touch "\$VIMRC"
+  else
+    delete_vimrc_src "\$cc_h" "yes" "\$VIMRC"
+    echo -e "\$cc_h" >> "\$VIMRC"
+    echo "source \$CC_INC_VIMRC" >> "\$VIMRC"
+  fi
 
+  cat /dev/null > "\$CC_INC_VIMRC"
   while IFS= read -r inc; do
-    echo -e "\${inc[@]}"
+    local ln=\$(echo "\$inc" | sed 's_ _\\\\\\ _g');
+`
+if on_windows_nt; then
+  echo "    ln=\\$(echo \\$ln | sed 's_\(^[a-zA-Z]\):_\/\1_g')"
+fi
+`
+    echo "set path+=\${ln}" >> "\$CC_INC_VIMRC"
   done < "\${CC_INC_LST}"
 }
 
-if test ! -f "\${CC_ENV_ID}" || test "0" = "\`cat \${CC_ENV_ID}\`"; then
+if test ! -f "\${CC_ENV_ID}" || test "0" != "\`cat \${CC_ENV_ID}\`"; then
 `
 if on_windows_nt; then
-  echo "  gen_cc_env_bat && gen_cc_inc_lst && src_vimrc_path"
+  echo "  gen_cc_env_bat && gen_cc_inc_lst && src_cc_inc_vimrc"
   echo "  echo \\$? > \"\\${CC_ENV_ID}\""
 fi
 `
