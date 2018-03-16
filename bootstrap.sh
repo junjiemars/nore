@@ -269,7 +269,7 @@ echo "		fi"
 echo "	fi"
 echo ""
 echo "	vcvarsall=\"\\$(posix_path \\${PROGRAMFILES}) (x86)/Microsoft Visual Studio\""
-echo "	local ver=\"\\$(ls \"\\$vcvarsall\" | grep -E [0-9]+ | sort -gr | head -n1)\""
+echo "	local ver=\"\\$(ls \"\\$vcvarsall\" | grep -E '[0-9]+' | sort -gr | head -n1)\""
 echo "	[ -n \"\\$ver\" ] || return 1"
 echo ""
 echo "	vcvarsall=\"\\${vcvarsall}/\\$ver/BuildTools/VC/Auxiliary/Build/vcvarsall.bat\""
@@ -329,10 +329,10 @@ if test ! -f "\${CC_ENV_CHECKED}" || test "0" = "\`cat \${CC_ENV_CHECKED}\`"; th
 `
 if on_windows_nt; then
   echo "  gen_cc_env_bat"
+  echo "  echo \\$? > \"\\${CC_ENV_CHECKED}\""
 fi
 `
   #check_win_cc_include \${ROOT}/.cc-inc.list \${HOME}/.vimrc \${ROOT}/.cc-env.bat
-	echo "1" > "\${CC_ENV_CHECKED}"
 fi
 
 END
