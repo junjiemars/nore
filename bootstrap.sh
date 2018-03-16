@@ -206,7 +206,7 @@ if on_windows_nt; then
 echo "CC_ENV_BAT=\"\\${HOME%/}/.cc-env.bat\""
 fi
 `
-CC_ENV_LST="\${HOME%/}/.cc-env.lst"
+CC_INC_LST="\${HOME%/}/.cc-inc.lst"
 
 
 delete_tail_lines() {
@@ -328,7 +328,7 @@ echo "}"
 fi
 `
 
-check_cc_include () {
+gen_cc_inc_lst () {
   local cc_inc=
 `
 if on_windows_nt; then
@@ -343,7 +343,7 @@ fi
   local inc_lns=();
 `
 if on_windows_nt; then
-  echo "  echo \"\\${cc_inc}\" | tr ';' '\n' > \"\\${CC_ENV_LST}\""
+  echo "  echo \"\\${cc_inc}\" | tr ';' '\n' > \"\\${CC_INC_LST}\""
 fi
 `
 }
@@ -351,12 +351,10 @@ fi
 if test ! -f "\${CC_ENV_ID}" || test "0" = "\`cat \${CC_ENV_ID}\`"; then
 `
 if on_windows_nt; then
-  echo "  gen_cc_env_bat"
+  echo "  gen_cc_env_bat && gen_cc_inc_lst"
   echo "  echo \\$? > \"\\${CC_ENV_ID}\""
 fi
 `
-  check_cc_include
-  #check_win_cc_include \${ROOT}/.cc-inc.list \${HOME}/.vimrc \${ROOT}/.cc-env.bat
 fi
 
 END
