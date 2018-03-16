@@ -331,8 +331,7 @@ check_cc_include () {
 `
 if on_windows_nt; then
 echo "  [ -f \"\\${CC_ENV_BAT}\" ] || return 1"
-echo "  cc_inc=\"\\$(\\${CC_ENC_BAT} | tail -n1)\""
-echo "  echo \"xxx\\${cc_inc}xxx\""
+echo "  cc_inc=\"\\$(\\${CC_ENV_BAT} | tail -n1)\""
 fi
 `
 }
