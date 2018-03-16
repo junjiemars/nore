@@ -337,21 +337,30 @@ if on_windows_nt; then
 fi
 `
   [ -n "\${cc_inc}" ] || return 1
-  cat /dev/null > "\$CC_ENV_LST"
+  cat /dev/null > "\$CC_INC_LST"
   cc_inc=\$(echo \$cc_inc | sed 's#\"##g')
 
-  local inc_lns=();
 `
 if on_windows_nt; then
+  echo "  cc_inc=\"\\$(posix_path \\$cc_inc)\""
   echo "  echo \"\\${cc_inc}\" | tr ';' '\n' > \"\\${CC_INC_LST}\""
 fi
 `
 }
 
+src_vimrc_path () {
+  command -v vim || return 0
+  [ -f "\${CC_INC_LST}" ] || return 1
+
+  while IFS= read -r inc; do
+    echo -e "\${inc[@]}"
+  done < "\${CC_INC_LST}"
+}
+
 if test ! -f "\${CC_ENV_ID}" || test "0" = "\`cat \${CC_ENV_ID}\`"; then
 `
 if on_windows_nt; then
-  echo "  gen_cc_env_bat && gen_cc_inc_lst"
+  echo "  gen_cc_env_bat && gen_cc_inc_lst && src_vimrc_path"
   echo "  echo \\$? > \"\\${CC_ENV_ID}\""
 fi
 `
