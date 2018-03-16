@@ -206,6 +206,8 @@ if on_windows_nt; then
 echo "CC_ENV_BAT=\"\\${HOME%/}/.cc-env.bat\""
 fi
 `
+CC_ENV_LST="\${HOME%/}/.cc-env.lst"
+
 
 delete_tail_lines() {
   local h="\$1"
@@ -334,6 +336,16 @@ echo "  [ -f \"\\${CC_ENV_BAT}\" ] || return 1"
 echo "  cc_inc=\"\\$(\\${CC_ENV_BAT} | tail -n1)\""
 fi
 `
+  [ -n "\${cc_inc}" ] || return 1
+  cat /dev/null > "\$CC_ENV_LST"
+  cc_inc=\$(echo \$cc_inc | sed 's#\"##g')
+
+  local inc_lns=();
+`
+if on_windows_nt; then
+  echo "  echo \"\\${cc_inc}\" | tr ';' '\n' > \"\\${CC_ENV_LST}\""
+fi
+`
 }
 
 if test ! -f "\${CC_ENV_ID}" || test "0" = "\`cat \${CC_ENV_ID}\`"; then
@@ -446,7 +458,7 @@ exit_checking $? $BEGIN
 if on_windows_nt; then
 	echo -n " + generating %userprofile%/.cc-env.sh ... "
 else
-	echo -n " + generating ~/.cc-env.sh ... "
+	echo -n " + generating .cc-env.sh ... "
 fi
 echo_ok_or_failed `cat_cc_env "${HOME%/}/.cc-env.sh"; echo $?`
 exit_checking $? $BEGIN
