@@ -103,33 +103,6 @@ clone_nore() {
 		${GITHUB_H}/nore.git ${ROOT} &>/dev/null
 }
 
-
-find_windows_nt_vcvarsall() {
-	local vswhere="`posix_path ${PROGRAMFILES}` (x86)/Microsoft Visual Studio/Installer/vswhere.exe"
-	local vcvarsall=
-	if [ -f "$vswhere" ]; then
-		vcvarsall="`\"$vswhere\" -nologo -latest -property installationPath 2>/dev/null`"
-		if [ -n "$vcvarsall" ]; then
-			vcvarsall="`posix_path $vcvarsall`/VC/Auxiliary/Build/vcvarsall.bat"
-			if [ -f "$vcvarsall" ]; then
-				echo "$vcvarsall"
-				return 0
-			fi
-		fi
-	fi
-
-	vcvarsall="`posix_path ${PROGRAMFILES}` (x86)/Microsoft Visual Studio"
-	local ver="`ls \"$vcvarsall\" | grep -E [0-9]+ | sort -gr | head -n1`"
-	[ -n "$ver" ] || return 1
-
-	vcvarsall="${vcvarsall}/$ver/BuildTools/VC/Auxiliary/Build/vcvarsall.bat"
-	if [ -f "$vcvarsall" ]; then
-		echo "$vcvarsall"
-		return 0
-	fi
-}
-
-
 cat_configure () {
   local b="`check_nore_branch`"
   local conf="${NORE_WORK%/}/configure"
@@ -281,14 +254,38 @@ fi
 
 `
 if on_windows_nt; then
-  declare -f find_windows_nt_vcvarsall
+echo "find_vcvarsall () {"
+echo "	local vswhere=\"\\$(posix_path \\${PROGRAMFILES}) (x86)/Microsoft Visual Studio/Installer/vswhere.exe\""
+echo "	local vcvarsall="
+echo "	if [ -f \"\\$vswhere\" ]; then"
+echo "		vcvarsall=\"\\$(\"\\$vswhere\" -nologo -latest -property installationPath 2>/dev/null)\""
+echo "		if [ -n \"\\$vcvarsall\" ]; then"
+echo "			vcvarsall=\"\\$(posix_path \\$vcvarsall)/VC/Auxiliary/Build/vcvarsall.bat\""
+echo "			if [ -f \"\\$vcvarsall\" ]; then"
+echo "				echo \"\\$vcvarsall\""
+echo "				return 0"
+echo "			fi"
+echo "		fi"
+echo "	fi"
+echo ""
+echo "	vcvarsall=\"\\$(posix_path \\${PROGRAMFILES}) (x86)/Microsoft Visual Studio\""
+echo "	local ver=\"\\$(ls \"\\$vcvarsall\" | grep -E [0-9]+ | sort -gr | head -n1)\""
+echo "	[ -n \"\\$ver\" ] || return 1"
+echo ""
+echo "	vcvarsall=\"\\${vcvarsall}/\\$ver/BuildTools/VC/Auxiliary/Build/vcvarsall.bat\""
+echo "	if [ -f \"\\$vcvarsall\" ]; then"
+echo "		echo \"\\$vcvarsall\""
+echo "		return 0"
+echo "	fi"
+echo "  return 1"
+echo "}"
 fi
 `
 
 `
 if on_windows_nt; then
 echo "gen_cc_env_bat () {"
-echo "	local vcvarsall=\"\\$(find_windows_nt_vcvarsall)\""
+echo "	local vcvarsall=\"\\$(find_vcvarsall)\""
 echo "	[ 0 -eq \\$? ] || return 1"
 echo "	local cc_env_bat=\"\\${ROOT}/.cc-env.bat\""
 echo ""
