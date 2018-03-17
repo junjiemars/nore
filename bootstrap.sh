@@ -302,8 +302,7 @@ if on_windows_nt; then
   echo "echo \"%INCLUDE%\" "
   echo "END"
   echo ""
-  echo "	[ -f \"\\$cc_env_bat\" ] && return 0"
-  echo "  return 1"
+  echo "	test -f \"\\$cc_env_bat\""
   echo "}"
 fi
 `
