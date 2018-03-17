@@ -320,16 +320,29 @@ gen_cc_inc_lst () {
 if on_windows_nt; then
   echo "  [ -f \"\\${CC_ENV_BAT}\" ] || return 1"
   echo "  cc_inc=\"\\$(\\${CC_ENV_BAT} | tail -n1)\""
+else
+  echo "  cc_inc=\\$(echo '' | cc -v -E 2>&1 >/dev/null - | awk '/#include <...> search starts here:/,/End of search list./')"
 fi
 `
+  echo -e "\$cc_inc"
   [ -n "\${cc_inc}" ] || return 1
+`
+if ! on_windows_nt; then
+  echo "  local cc_inc_cnt=\\$(echo \\$cc_inc | wc -l)"
+  echo "  if [ 2 -lt \\$cc_inc_cnt ]; then"
+  echo "    cc_inc=\\$(echo \\$cc_inc | tail -n -2 | head -n \\$(( cc_inc_cnt-1  )))"
+  echo "  fi"
+fi
+`	
   cat /dev/null > "\$CC_INC_LST"
   cc_inc=\$(echo \$cc_inc | sed 's#\"##g')
-
+	
 `
 if on_windows_nt; then
   echo "  cc_inc=\"\\$(posix_path \\$cc_inc)\""
   echo "  echo \"\\${cc_inc}\" | tr ';' '\n' > \"\\${CC_INC_LST}\""
+else
+  echo "  echo -e \"\\${cc_inc}\" > \"\\${CC_INC_LST}\""
 fi
 `
 }
@@ -360,14 +373,19 @@ fi
 
 if test ! -f "\${CC_ENV_ID}" || test "0" != "\`cat \${CC_ENV_ID}\`"; then
 `
-if on_windows_nt; then
-  echo "  gen_cc_env_bat && gen_cc_inc_lst && src_cc_inc_vimrc"
-  echo "  echo \\$? > \"\\${CC_ENV_ID}\""
-fi
+  if on_windows_nt; then
+    echo "  gen_cc_env_bat && gen_cc_inc_lst && src_cc_inc_vimrc"
+  else
+    echo "  gen_cc_inc_lst && src_cc_inc_vimrc"
+  fi
 `
+  echo \$? > "\${CC_ENV_ID}"
 fi
 
 END
+  if ! on_windows_nt; then
+    chmod u+x "$cc_env_sh"
+  fi
 }
 
 echo_found_or_not() {
