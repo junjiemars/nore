@@ -321,7 +321,9 @@ if on_windows_nt; then
   echo "  local cc_inc=\"\\$(\\${CC_ENV_BAT} | tail -n1)\""
   echo "  [ -n \"\\${cc_inc}\" ] || return 1"
 else
-  echo "  echo '' | cc -v -E 2>&1 >/dev/null - | awk '/#include <...> search starts here:/,/End of search list./' | sed '1 d' | sed '$ d' | sed 's/^ //' > \\${CC_INC_LST}"
+  echo "  echo '' | cc -v -E 2>&1 >/dev/null - \\\"
+  echo "    | awk '/#include <...> search starts here:/,/End of search list./' \\\"
+  echo "    | sed '1 d' | sed '$ d' | sed 's/^ //' > \"\\${CC_INC_LST}\""
   echo "  [ 0 -eq \\$? ] || return 1"
 fi
 `
@@ -332,7 +334,7 @@ if on_windows_nt; then
   echo "  cc_inc=\"\\$(posix_path \\$cc_inc)\""
   echo "  echo \"\\${cc_inc}\" | tr ';' '\n' > \"\\${CC_INC_LST}\""
 elif on_darwin; then
-  echo "  sed -i .pre 's/ (framework directory)//g' \\${CC_INC_LST}"
+  echo "  sed -i .pre 's/ (framework directory)//g' \"\\${CC_INC_LST}\""
 fi
 `
 }
