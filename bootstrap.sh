@@ -216,9 +216,9 @@ delete_vimrc_src () {
   local lines="\$2"
   local f="\$3"
 `if on_darwin; then
-	 echo "  sed_opt_i=\"-i .pre\""
+	 echo "  local sed_opt_i=\"-i .pre\""
  else
-   echo "  sed_opt_i=\"-i.pre\""
+   echo "  local sed_opt_i=\"-i.pre\""
  fi
 `
 
