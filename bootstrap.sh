@@ -346,7 +346,7 @@ src_cc_inc_vimrc () {
 
   cat /dev/null > "\$CC_INC_VIMRC"
   while IFS= read -r inc; do
-    local ln=\$(echo "\$inc" | sed 's_ _\\\\\\ _g');
+    local ln=\$(echo "\$inc" | sed 's_ _\\\\\\\\\\\ _g');
 `
 if on_windows_nt; then
   echo "    ln=\\$(echo \\$ln | sed 's_\(^[a-zA-Z]\):_\/\1_g')"
