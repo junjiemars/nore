@@ -259,7 +259,7 @@ if on_windows_nt; then
   echo ""
   echo "	vcvarsall=\"\\$(posix_path \\${PROGRAMFILES}) (x86)/Microsoft Visual Studio\""
   echo "	local ver=\"\\$(ls \"\\$vcvarsall\" | grep -E '[0-9]+' | sort -gr | head -n1)\""
-  echo "	[ -n \"\\$ver\" ] || return 1"
+  echo "	[ 0 -eq \\$? ] && [ -n \"\\$ver\" ] || return 1"
   echo ""
   echo "	vcvarsall=\"\\${vcvarsall}/\\$ver/BuildTools/VC/Auxiliary/Build/vcvarsall.bat\""
   echo "	if [ -f \"\\$vcvarsall\" ]; then"
@@ -312,7 +312,7 @@ gen_cc_inc_lst () {
 if on_windows_nt; then
   echo "  [ -f \"\\${CC_ENV_BAT}\" ] || return 1"
   echo "  local cc_inc=\"\\$(\\${CC_ENV_BAT} | tail -n1)\""
-  echo "  [ -n \"\\${cc_inc}\" ] || return 1"
+  echo "  [ 0 -eq \\$? ] && [ -n \"\\${cc_inc}\" ] || return 1"
 else
   echo "  echo '' | cc -v -E 2>&1 >/dev/null - \\\"
   echo "    | awk '/#include <...> search starts here:/,/End of search list./' \\\"
