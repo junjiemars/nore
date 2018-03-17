@@ -315,34 +315,24 @@ fi
 `
 
 gen_cc_inc_lst () {
-  local cc_inc=
 `
 if on_windows_nt; then
   echo "  [ -f \"\\${CC_ENV_BAT}\" ] || return 1"
-  echo "  cc_inc=\"\\$(\\${CC_ENV_BAT} | tail -n1)\""
+  echo "  local cc_inc=\"\\$(\\${CC_ENV_BAT} | tail -n1)\""
+  echo "  [ -n \"\\${cc_inc}\" ] || return 1"
 else
-  echo "  cc_inc=\\$(echo '' | cc -v -E 2>&1 >/dev/null - | awk '/#include <...> search starts here:/,/End of search list./')"
+  echo "  echo '' | cc -v -E 2>&1 >/dev/null - | awk '/#include <...> search starts here:/,/End of search list./' | sed '1 d' | sed '$ d' | sed 's/^ //' > \\${CC_INC_LST}"
+  echo "  [ 0 -eq \\$? ] || return 1"
 fi
 `
-  echo -e "\$cc_inc"
-  [ -n "\${cc_inc}" ] || return 1
-`
-if ! on_windows_nt; then
-  echo "  local cc_inc_cnt=\\$(echo \\$cc_inc | wc -l)"
-  echo "  if [ 2 -lt \\$cc_inc_cnt ]; then"
-  echo "    cc_inc=\\$(echo \\$cc_inc | tail -n -2 | head -n \\$(( cc_inc_cnt-1  )))"
-  echo "  fi"
-fi
-`	
-  cat /dev/null > "\$CC_INC_LST"
-  cc_inc=\$(echo \$cc_inc | sed 's#\"##g')
 	
 `
 if on_windows_nt; then
+  echo "  cc_inc=\\$(echo \\$cc_inc | sed 's#\\"##g')"
   echo "  cc_inc=\"\\$(posix_path \\$cc_inc)\""
   echo "  echo \"\\${cc_inc}\" | tr ';' '\n' > \"\\${CC_INC_LST}\""
-else
-  echo "  echo -e \"\\${cc_inc}\" > \"\\${CC_INC_LST}\""
+elif on_darwin; then
+  echo "  sed -i .pre 's/ (framework directory)//g' \\${CC_INC_LST}"
 fi
 `
 }
@@ -484,7 +474,7 @@ exit_checking $? $BEGIN
 if on_windows_nt; then
 	echo -n " + generating %userprofile%/.cc-env.sh ... "
 else
-	echo -n " + generating .cc-env.sh ... "
+	echo -n " + generating ~/.cc-env.sh ... "
 fi
 echo_ok_or_failed `cat_cc_env "${HOME%/}/.cc-env.sh"; echo $?`
 exit_checking $? $BEGIN
