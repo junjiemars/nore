@@ -237,11 +237,12 @@ delete_vimrc_src () {
 }
 `
 if on_windows_nt; then
-
+  echo ""
   echo "posix_path () { "
   echo "  echo \\$@ | sed -e 's#\\\\\#\\\/#g'"
   echo "}"
 
+  echo ""
   echo "find_vcvarsall () {"
   echo "	local vswhere=\"\\$(posix_path \\${PROGRAMFILES}) (x86)/Microsoft Visual Studio/Installer/vswhere.exe\""
   echo "	local vcvarsall="
@@ -268,6 +269,7 @@ if on_windows_nt; then
   echo "  return 1"
   echo "}"
 
+  echo ""
   echo "gen_cc_env_bat () {"
   echo "	local vcvarsall=\"\\$(find_vcvarsall)\""
   echo "	[ 0 -eq \\$? ] || return 1"
