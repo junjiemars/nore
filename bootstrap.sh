@@ -161,6 +161,37 @@ case "\`echo \${NORE_L_CONF_COMMAND} | tr '[:upper:]' '[:lower:]'\`" in
     exit \$?
   ;;
 
+  where)
+    echo -e "NORE_ROOT=\${NORE_ROOT}"
+    echo -e "NORE_BRANCH=\${NORE_BRANCH}"
+    echo -e "configure=\${BASH_SOURCE[0]}"
+    echo -e "make=\$(command -v make)"
+    echo -e "bash=\$(echo  \$SHELL)"
+    echo -n ".cc-env.sh="
+    if [ -f "\${HOME%/}/.cc-env.sh" ]; then
+      echo -e "\${HOME%/}.cc-env.sh"
+    fi
+    echo -n ".cc-env.id"
+    if [ -f "\${HOME%/}/.cc-env.id" ]; then
+      echo -e "\${HOME%/}/.cc-env.id[\$(cat \${HOME%/}/.cc-env.id)]"
+    fi
+		`if on_windows_nt; then
+       echo "    echo -n \".cc-end.bat=\""
+       echo "    if [ -f \"\\${HOME%/}/.cc-env.bat\" ]; then"
+       echo "      echo -e \"\\${HOME%/}/.cc-env.bat\""
+       echo "    fi"
+    fi`
+    echo -n ".cc-inc.lst="
+    if [ -f "\${HOME%/}/.cc-inc.lst" ]; then
+      echo -e "\${HOME%/}/.cc-inc.lst"
+    fi
+    echo -n ".cc-inc.vimrc="
+    if [ -f "\${HOME%/}/.cc-inc.vimrc" ]; then
+      echo -e "\${HOME%/}/.cc-inc.vimrc"
+    fi
+    exit \$?
+  ;;
+
   debug)
     NORE_L_CONF_DEBUG="yes"
   ;;
