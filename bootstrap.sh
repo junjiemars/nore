@@ -166,7 +166,11 @@ case "\`echo \${NORE_L_CONF_COMMAND} | tr '[:upper:]' '[:lower:]'\`" in
     echo -e "NORE_BRANCH=\${NORE_BRANCH}"
     echo -e "configure=\${BASH_SOURCE[0]}"
     echo -e "make=\$(command -v make)"
-    echo -e "bash=\$(ps -p \$(echo \$\$) | tr ' ' '\n' | tail -n1)"
+    `if on_darwin; then
+       echo "echo -e \"bash=\\$(echo \\$BASH)\""
+     else
+       echo "echo -e \"bash=\\$(ls -l /proc/\\$\\$/exe | tr ' ' '\\n' | tail -n1)\""
+     fi`
     echo -n ".cc-env.sh="
     if [ -f "\${HOME%/}/.cc-env.sh" ]; then
       echo -e "\${HOME%/}.cc-env.sh"
