@@ -166,7 +166,7 @@ case "\`echo \${NORE_L_CONF_COMMAND} | tr '[:upper:]' '[:lower:]'\`" in
     echo -e "NORE_BRANCH=\${NORE_BRANCH}"
     echo -e "configure=\${BASH_SOURCE[0]}"
     echo -e "make=\$(command -v make)"
-    echo -e "bash=\$(ps -s -p \$(echo \$\$) | tr ' ' '\n' | tail -n1)"
+    echo -e "bash=\$(ps -p \$(echo \$\$) | tr ' ' '\n' | tail -n1)"
     echo -n ".cc-env.sh="
     if [ -f "\${HOME%/}/.cc-env.sh" ]; then
       echo -e "\${HOME%/}.cc-env.sh"
