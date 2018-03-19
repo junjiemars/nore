@@ -170,10 +170,14 @@ case "\`echo \${NORE_L_CONF_COMMAND} | tr '[:upper:]' '[:lower:]'\`" in
     echo -n ".cc-env.sh="
     if [ -f "\${HOME%/}/.cc-env.sh" ]; then
       echo -e "\${HOME%/}.cc-env.sh"
+    else
+      echo ""
     fi
     echo -n ".cc-env.id"
     if [ -f "\${HOME%/}/.cc-env.id" ]; then
       echo -e "\${HOME%/}/.cc-env.id[\$(cat \${HOME%/}/.cc-env.id)]"
+    else
+      echo ""
     fi
 		`if on_windows_nt; then
        echo "    echo -n \".cc-end.bat=\""
@@ -184,11 +188,14 @@ case "\`echo \${NORE_L_CONF_COMMAND} | tr '[:upper:]' '[:lower:]'\`" in
     echo -n ".cc-inc.lst="
     if [ -f "\${HOME%/}/.cc-inc.lst" ]; then
       echo -e "\${HOME%/}/.cc-inc.lst"
+    else
+      echo ""
     fi
     echo -n ".cc-inc.vimrc="
     if [ -f "\${HOME%/}/.cc-inc.vimrc" ]; then
       echo -e "\${HOME%/}/.cc-inc.vimrc"
-    echo ""
+    else
+      echo ""
     fi
     exit \$?
   ;;
