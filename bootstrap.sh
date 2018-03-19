@@ -183,6 +183,8 @@ case "\`echo \${NORE_L_CONF_COMMAND} | tr '[:upper:]' '[:lower:]'\`" in
        echo "    echo -n \".cc-end.bat=\""
        echo "    if [ -f \"\\${HOME%/}/.cc-env.bat\" ]; then"
        echo "      echo -e \"\\${HOME%/}/.cc-env.bat\""
+       echo "    else"
+       echo "      echo \"\""
        echo "    fi"
     fi`
     echo -n ".cc-inc.lst="
