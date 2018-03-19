@@ -167,7 +167,7 @@ case "\`echo \${NORE_L_CONF_COMMAND} | tr '[:upper:]' '[:lower:]'\`" in
     echo -e "configure=\${BASH_SOURCE[0]}"
     echo -e "make=\$(command -v make)"
     `if on_darwin; then
-       echo "echo -e \"bash=\\$(echo \\$BASH)\""
+       echo "echo -e \"bash=\\$(ps -p\\$\\$ -ocommand | tr ' ' '\\n' | sed -n 2p)\""
      else
        echo "echo -e \"bash=\\$(ls -l /proc/\\$\\$/exe | tr ' ' '\\n' | tail -n1)\""
      fi`
