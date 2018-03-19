@@ -188,6 +188,7 @@ case "\`echo \${NORE_L_CONF_COMMAND} | tr '[:upper:]' '[:lower:]'\`" in
     echo -n ".cc-inc.vimrc="
     if [ -f "\${HOME%/}/.cc-inc.vimrc" ]; then
       echo -e "\${HOME%/}/.cc-inc.vimrc"
+    echo ""
     fi
     exit \$?
   ;;
