@@ -17,6 +17,8 @@ $ bash <(curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap
 $ ./configure
 
 $ make
+
+$ make test
 ```
 
 Use ```./configure --help``` to show help message.
