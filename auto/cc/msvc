@@ -76,60 +76,12 @@ bin_ext=".exe"
 ar_ext=".lib"
 
 
-# MSVC 6.0 SP2                            cl 12.00
-# MSVC Toolkit 2003 (7.1)                 cl 13.10
-# MSVC 2005 Express Edition SP1 (8.0)     cl 14.00
-# MSVC 2008 Express Edition (9.0)         cl 15.00
-# MSVC 2010 (10.0)                        cl 16.00
-# MSVC 2015 (14.0)                        cl 19.00
-
-
 # cpu
 cpu_opt='-arch:' . ${NORE_ROOT}/auto/cc/cpu
 
-
-# msvc opt
-nm_long_start='@<<
-	'
-nm_long_end='<<'
-nm_long_regex_cont=' \
-	'
-nm_long_cont='
-	'
 
 # stage
 nm_stage_pre="-E"
 nm_stage_asm="-c"
 nm_stage_c="-c"
 
-## cpu
-#case "$NM_CPU" in
-#	NO) ;;
-#
-#	[-/]arch:*)
-#		nm_feature_flags="`echo $NM_CPU | tr [:lower:] [:upper:]`"
-#	;;
-#
-#	*)
-#		nm_feature_flags="-arch:`echo $NM_CPU | tr [:lower:] [:upper:]`"
-#	;;
-#
-#esac
-#
-#if [ "$NM_CPU" != "NO" ]; then
-#	nm_feature="$CC_NAME $nm_feature_flags switch"
-#	nm_feature_name="nm_have_cpu$nm_feature_flags"
-#	nm_feature_run=no
-#	nm_feature_h=
-#	nm_feature_inc=
-#	nm_feature_ldlibs=
-#	nm_feature_test=
-#	. ${NORE_ROOT}/auto/feature
-#	
-#	if [ $nm_found = yes ]; then
-#		nm_cpu_opt=$nm_feature_flags
-#		CFLAGS=${CFLAGS:+$CFLAGS}${nm_cpu_opt:+ $nm_cpu_opt}
-#	fi
-#
-#fi
-#
