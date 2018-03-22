@@ -4,8 +4,9 @@
 version_n() {
 	local s="$1"
 	local v=( ${s//\./ } )
-	local v2=
-	local b=
+	local r=1000
+	local v2=2 # major.minor
+	local b=$(( r**v2 ))
 	local n=0
 
 	if [ 0 -eq ${#v[@]} ]; then
@@ -13,16 +14,11 @@ version_n() {
 		return 1
 	fi
 
-	if [ ${#v[@]} -ge 2 ]; then
-		v2=${v[@]:0:2}
-	else
-		v2=v
-	fi	
-	
-	b=$(( 10**(${#v[@]}-1) ))
-	for i in ${v2[@]}; do 
+	for i in ${v[@]}; do
+		[ 0 -eq $v2 ] && break;
 		n=$(( n+b*i ))
-		b=$(( b/10 ))
+		b=$(( b/r ))
+		v2=$(( v2-1 ))
 	done
 
 	echo $n
