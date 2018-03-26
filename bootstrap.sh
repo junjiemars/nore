@@ -511,11 +511,7 @@ echo -n " + generating configure ... "
 echo_ok_or_failed `cat_configure ; echo $?`
 exit_checking $? $BEGIN
 
-if on_windows_nt; then
-	echo -n " + generating %userprofile%/.cc-env.sh ... "
-else
-	echo -n " + generating ~/.cc-env.sh ... "
-fi
+echo -n " + generating ~/.cc-env.sh ... "
 echo_ok_or_failed `cat_cc_env "${HOME%/}/.cc-env.sh"; echo $?`
 exit_checking $? $BEGIN
 
