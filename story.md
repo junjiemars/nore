@@ -16,7 +16,7 @@ But the key question is how to easy build C code in varied OS by varied Compiler
 
 So the story begins...
 * Keep things simple: classic workflow (configure, make and make install).
-* Write, Run and Build code on anywhere: Linux, MacOS, Windows or Docker.
+* Write, Run and Build code on anywhere: Linux, Darwin, Windows or Docker.
 * Easy to try some new ideas but have no more unnecessary.
 
 
