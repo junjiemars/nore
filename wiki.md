@@ -10,7 +10,11 @@ No More than a C build system for clang, gcc and msvc.
   * [New a Skeleton](#new-a-skeleton)
   * [Configure existing one](#configure-existing-one)
   * [Build and Test](#build-and-test)
-
+* [Feature Testing](#feature-testing)
+  * [Compiler Feature Testing](#compiler-feature-testing)
+  * [Compiler Switch Testing](#compiler-switch-testing)
+  * [OS Feature Testing](#os-feature-testing)
+  
 
 ## Configuration
 
@@ -136,3 +140,82 @@ $ make
 
 Following the prompt of __configure__ and __make__, change the _options_ of __configure__ or modify _src/Makefile_.
 
+## Feature Testing
+
+Write a _bash_ script named _configure_ and put it into _--src-dir_ directory.
+
+### Compiler Feature Testing
+
+```sh
+# check features
+#----------------------------------------
+#nm_feature="endian"
+#nm_feature_name="nm_have_little_endian"
+#nm_feature_run=value
+#nm_feature_h="#include <stdio.h>"
+#nm_feature_flags=
+#nm_feature_inc=
+#nm_feature_ldlibs=
+#nm_feature_test='int i=0x11223344;
+#                 char *p = (char *)&i;
+#             	  int le = (0x44 == *p);
+#                 printf("%d", le);'
+#. ${NORE_ROOT}/auto/feature
+
+```
+
+
+### Compiler Switch Testing
+
+```sh
+# check features based on Compiler
+#----------------------------------------
+#case $CC_NAME in
+#	clang)
+#		;;
+#	gcc)
+#		nm_feature="$CC_NAME -Wl,-E|--export-dynamic"
+#		nm_feature_name=
+#		nm_feature_run=no
+#		nm_feature_h=
+#		nm_feature_flags=-Wl,-E
+#		nm_feature_inc=
+#		nm_feature_ldlibs=
+#		nm_feature_test=
+#		. ${NORE_ROOT}/auto/feature
+#
+#		if [ yes = $nm_found ]; then
+#			flag=LDFLAGS op="+=" value=$nm_feature_flags . ${NORE_ROOT}/auto/make_define
+#		fi
+#		;;
+#	msvc)
+#		;;
+#esac
+```
+
+### OS Feature Testing
+
+```sh
+# check features based on OS
+#----------------------------------------
+#case $NM_SYSTEM in
+#	Darwin)
+#		nm_feature="libuv"
+#		nm_feature_name="nm_have_uv_h"
+#		nm_feature_run=no
+#		nm_feature_h="#include <uv.h>"
+#		nm_feature_flags=-L/opt/local/lib
+#		nm_feature_inc=-I/opt/local/include
+#		nm_feature_ldlibs=-luv
+#		nm_feature_test=
+#		. ${NORE_ROOT}/auto/feature
+#	  ;;
+#	Linux)
+#	  ;;
+#	WinNT)
+#	  ;;
+#	*)
+#	  ;;
+#esac
+
+```
