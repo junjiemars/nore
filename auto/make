@@ -145,6 +145,7 @@ echo_ok_or_failed() {
   fi
 }
 
+
 # basic paths
 cat << END >> $NM_MAKEFILE
 
@@ -195,7 +196,7 @@ END
     echo_ok_or_failed $?
 	fi # end of -f version
   
-	if [ -f $nm_src_stick/configure ]; then
+	if [ -f $nm_src_stick/configure -a $nm_src_stick != . ]; then
 		echo " + checking for $nm_src_stick/configure ... found"
 		. $nm_src_stick/configure
     
