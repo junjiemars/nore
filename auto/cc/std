@@ -3,7 +3,7 @@
 
 
 if [ "NO" = "$NM_STD" ]; then
-  :;
+  :
 
 elif [ "YES" = "$NM_STD" ]; then
   nm_std_opt="${std_opt}c99"
