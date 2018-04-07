@@ -2,6 +2,10 @@
 # have
 
 have=`echo $have | tr [:lower:] [:upper:]`
+
+if [ -n "${NM_SYMBOL_TABLE[$have]}" ]; then
+	have=${NM_SYMBOL_TABLE[$have]}
+fi
  
 cat << END >> $NM_AUTO_H
 

@@ -1,6 +1,8 @@
 
 help=no
 
+NM_SYMBOL_FILE=
+
 NM_PREFIX=
 
 NM_BIN_PATH=
@@ -43,7 +45,8 @@ do
   
   case "$option" in
     --help)                          help=yes                   	;;
-    
+    --symbol-table=*)                NM_SYMBOL_FILE="${value%/}" 	;;
+
     --prefix=*)                      NM_PREFIX="${value%/}"      	;;
     --bin-path=*)                    NM_BIN_PATH="${value%/}"     ;;
     --lib-path=*)                    NM_LIB_PATH="${value%/}"  		;;
@@ -91,6 +94,7 @@ if [ $help = yes ]; then
 cat << END
 
   --help                             print this message
+  --symbol-table=PATH                dump or load symbol table
 
   --prefix=PATH                      set installation prefix
   --bin-path=PATH                    set bin pathname 
