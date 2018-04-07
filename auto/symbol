@@ -38,12 +38,13 @@ load_symbol_table() {
 		IFS=':'; local kv=(${line//; }); unset IFS
 
 		if [ 0 -lt $NM_ASSOCIATED_ARRAY_P ]; then
-			NM_SYMBOL_TABLE[${kv[0]}]=${kv[1]}
+			if [ -n "${NM_SYMBOL_TABLE[${kv[0]}]}" ]; then
+				NM_SYMBOL_TABLE[${kv[0]}]=${kv[1]}
+			fi
 		else
 			for i in "${!NM_SYMBOL_TABLE_NAME[@]}"; do
 				if [ "${kv[0]}" = "${NM_SYMBOL_TABLE_NAME[$i]}" ]; then
-					${NM_SYMBOL_TABLE_VAL[$i]}=${kv[1]}
-					continue
+					NM_SYMBOL_TABLE_VAL[$i]=${kv[1]}
 				fi
 			done
 		fi
@@ -61,7 +62,7 @@ dump_symbol_table() {
 		done
 	else
 		for i in "${!NM_SYMBOL_TABLE_NAME[@]}"; do
-			echo "${NM_SYMBOL_TABLE_NAME[$i]}:${NM_SYMBOL_TABLE_VAL[$i]}"
+			echo "${NM_SYMBOL_TABLE_NAME[$i]}:${NM_SYMBOL_TABLE_NAME[$i]}" >> "$df"
 		done
 	fi
 }
@@ -71,12 +72,12 @@ symbol_value() {
 	if [ 0 -lt $NM_ASSOCIATED_ARRAY_P ]; then
 		echo "${NM_SYMBOL_TABLE[$n]}"
 	else
-		for i in "${NM_SYMBOL_TABLE_NAME[@]}"; do
+		for i in "${!NM_SYMBOL_TABLE_NAME[@]}"; do
 			if [ "$n" = "${NM_SYMBOL_TABLE_NAME[$i]}" ]; then
 				echo "${NM_SYMBOL_TABLE_VAL[$i]}"
+				break
 			fi
 		done
-		echo "$n"
 	fi
 }
 
