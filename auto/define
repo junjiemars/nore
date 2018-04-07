@@ -1,11 +1,9 @@
 
 # define 
 
-if [ 0 -lt ${#NM_SYMBOL_TABLE[@]} ]; then
-	if [ -n "${NM_SYMBOL_TABLE[$have]}" ]; then
-		have=${NM_SYMBOL_TABLE[$have]}
-		echo "!!! have=$have"
-	fi
+symbol="`symbol_value $have`"
+if [ -n "$symbol" ]; then
+  have=$symbol
 fi
 
 cat << END >> $NM_AUTO_H
