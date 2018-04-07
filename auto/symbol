@@ -1,4 +1,6 @@
 
+# Bash-4+
+
 # builtin symbol table
 declare -A NM_SYMBOL_TABLE=(
 	[WINNT]=WINNT
