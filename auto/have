@@ -3,7 +3,7 @@
 
 have=`echo $have | tr [:lower:] [:upper:]`
 
-if [ -n "${NM_SYMBOL_TABLE}" ]; then
+if [ 0 -lt ${#NM_SYMBOL_TABLE[@]} ]; then
 	if [  -n "${NM_SYMBOL_TABLE[$have]}" ]; then
 		have=${NM_SYMBOL_TABLE[$have]}
 	fi

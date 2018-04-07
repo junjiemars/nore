@@ -1,6 +1,5 @@
 
 help=no
-
 NM_SYMBOL_FILE=
 
 NM_PREFIX=
