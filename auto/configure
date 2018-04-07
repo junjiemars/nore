@@ -6,7 +6,6 @@ export LC_ALL
 NORE_ROOT=$(dirname `dirname $0`)
 NORE_ROOT="${NORE_ROOT%/}"
 
-. ${NORE_ROOT}/auto/symbol
 . ${NORE_ROOT}/auto/options
 . ${NORE_ROOT}/auto/init
 
@@ -22,11 +21,14 @@ cat << END > $NM_AUTO_H
 END
 
 
-if [ -n "$NM_SYMBOL_FILE" ]; then
-	if [ -f "$NM_SYMBOL_FILE" ]; then
-		load_symbol_table "$NM_SYMBOL_FILE"
-	else
-		dump_symbol_table "$NM_SYMBOL_FILE"
+if [ 4 -le ${BASH_VERSINFO[0]} ]; then
+	. ${NORE_ROOT}/auto/symbol
+	if [ -n "$NM_SYMBOL_FILE" ]; then
+		if [ -f "$NM_SYMBOL_FILE" ]; then
+			load_symbol_table "$NM_SYMBOL_FILE"
+		else
+			dump_symbol_table "$NM_SYMBOL_FILE"
+		fi
 	fi
 fi
 

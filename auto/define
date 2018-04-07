@@ -1,8 +1,10 @@
 
 # define 
 
-if [ -n "${NM_SYMBOL_TABLE[$have]}" ]; then
-	have=${NM_SYMBOL_TABLE[$have]}
+if [ -n "${NM_SYMBOL_TABLE}" ]; then
+	if [ -n "${NM_SYMBOL_TABLE[$have]}" ]; then
+		have=${NM_SYMBOL_TABLE[$have]}
+	fi
 fi
 
 cat << END >> $NM_AUTO_H
