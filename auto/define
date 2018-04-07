@@ -1,10 +1,7 @@
 
 # define 
 
-symbol="`symbol_value $have`"
-if [ -n "$symbol" ]; then
-  have=$symbol
-fi
+have="`symbol_value $have`"
 
 cat << END >> $NM_AUTO_H
 

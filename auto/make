@@ -71,11 +71,11 @@ NM_STD = $NM_STD
 NM_CPU = $NM_CPU
 
 # platform
-NM_SYSTEM = $NM_SYSTEM
-NM_RELEASE = $NM_RELEASE
-NM_MACHINE = $NM_MACHINE
-CC_NAME = $CC_NAME
-CC_VER = $CC_VER
+`symbol_value NM_SYSTEM` = $NM_SYSTEM
+`symbol_value NM_RELEASE` = $NM_RELEASE
+`symbol_value NM_MACHINE` = $NM_MACHINE
+`symbol_value CC_NAME` = $CC_NAME
+`symbol_value CC_VER` = $CC_VER
 
 # output option
 cpp_out = $cpp_out
