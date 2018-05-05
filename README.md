@@ -236,7 +236,7 @@ Example: some tools annote ```DARWIN``` in C source code or make file as ```__DA
 $ ./configure --symbol-table=<symbol-table-file-name-your-favor>
 
 # if <symbol-table-file-name-your-favor> does not existing, 
-# Nore will dump the builtin one into it.
+# Nore will dump the symbol table into it.
 
 # change the <symbol-table-file-name-your-favor> then
 #
