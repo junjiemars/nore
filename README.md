@@ -57,6 +57,8 @@ Cooking
   * [New a Skeleton](#new-a-skeleton)
   * [Configure existing one](#configure-existing-one)
   * [Build and Test](#build-and-test)
+  * [Multiple Targets](#multiple-targets)
+  * [Multiple Projects](#multiple-projects)
 * [Feature Testing](#feature-testing)
   * [Compiler Feature Testing](#compiler-feature-testing)
   * [Compiler Switch Testing](#compiler-switch-testing)
@@ -165,8 +167,6 @@ Configuration summary
   has= .
 ```
 
-Add a _c.c_ source file into _src/_.
-
 
 ### Configure existing one
 
@@ -185,9 +185,44 @@ $ ./configure --src-dir=<source-directory>
 $ ./configure
 
 $ make
+
+$ make test
+
 ```
 
 Following the prompt of __configure__ and __make__, change the _options_ of __configure__ or modify _src/Makefile_.
+
+### Multiple Targets
+
+Suppose project P has A and B two targets, one is a _Executable_, the other is a _Library_
+
+```sh
+$ ./configure --has-A --has-B
+
+```
+
+### Multiple Projects
+
+All projects can use only one Nore.
+
+Suppose there are A, B and C projects, those projects use one Nore clone.
+
+```sh
+# clone Nore in a directory, annoted as <Nore>
+
+# in A project directory:
+$ cd <A>
+$ <Nore>/bootstrap.sh
+
+# in B project directory:
+$ cd <B>
+$ <Nore>/bootstrap.sh
+
+# in C project directory:
+$ cd <C>
+$ <Nore>/bootstrap.sh
+
+```
 
 
 ## Feature Testing
