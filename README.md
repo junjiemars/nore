@@ -62,9 +62,8 @@ Cooking
   * [Compiler Switch Testing](#compiler-switch-testing)
   * [OS Feature Testing](#os-feature-testing)
 * [Tips](#tips)
-  * [Upgrade](#upgrade)
-  * [Troubleshooting](#troubleshooting)
-  
+
+
 
 ## Configuration
 
@@ -273,7 +272,13 @@ esac
 
 ## Tips
 
-### Upgrade
+Nore will generate some auxiliary files, you can find those files via __where__ command.
+
+```sh
+$ ./configure where
+
+```
+
 
 ```sh
 # in your C application directory
@@ -282,7 +287,6 @@ $ ./configure upgrade
 
 ```
 
-### Troubleshooting
 
 Troubleshotting is more easier than other ones, because all just Makefile and shell scripts. And Nore provides a command for debugging purpose.
 
