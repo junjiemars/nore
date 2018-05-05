@@ -29,9 +29,9 @@ $ make test
 Story
 =======
 
-Q: Why we need another C build system?
+Why we need another C build system?
 
-A: Frequently, I want to know how things works in machine level, so I need to
+Frequently, I want to know how things works in machine level, so I need to
 try something in C on popular platforms, but sadly, there are no handy weapons 
 to do that.
 
