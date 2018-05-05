@@ -5,18 +5,23 @@
 No More than a C build system for [clang](https://clang.llvm.org), [gcc](https://gcc.gnu.org) and [msvc](https://www.visualstudio.com/vs/cplusplus/).
 
 
-## How to play
+## Getting start
 
 ```sh
-$ cd your-c-apps-root-dir
+# make a new directory for your C application
+# 
+$ make your-c-app-dir
+$ cd your-c-app-dir
 
 # run bootstrap from github, it will generate a configure file in current directory
+#
 $ bash <(curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.sh)
 
-# compose a Makefile then
-$ ./configure
+# generate a C application skeleton
+#
+$ ./configure --new
 
-$ make
+$ ./configure
 
 $ make test
 ```
