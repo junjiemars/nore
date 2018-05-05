@@ -59,6 +59,7 @@ Cooking
   * [Build and Test](#build-and-test)
   * [Multiple Targets](#multiple-targets)
   * [Multiple Projects](#multiple-projects)
+  * [Symbol Table](#symbol-table)
 * [Feature Testing](#feature-testing)
   * [Compiler Feature Testing](#compiler-feature-testing)
   * [Compiler Switch Testing](#compiler-switch-testing)
@@ -221,6 +222,26 @@ $ <Nore>/bootstrap.sh
 # in C project directory:
 $ cd <C>
 $ <Nore>/bootstrap.sh
+
+```
+
+### Symbol Table
+
+Nore's builtin exportable symbols can be replaced via _--symbol-table_ option,
+which let Nore easy to port to existing C projects.
+
+Example: some tools annote __DARWIN__ as __\_\_DARWIN\_\___, but the default in Nore is __DARWIN__, you can change that to __\_\_DARWIN\_\___.
+
+```sh
+$ ./configure --symbol-table=<symbol-table-file-name-your-favor>
+
+# if <symbol-table-file-name-your-favor> does not existing, 
+# Nore will dump the builtin one into it.
+
+# change the <symbol-table-file-name-your-favor> then
+#
+$ ./configure --symbol-table=<symbol-table-file-name-your-favor> --has-<A>
+$ make clean test
 
 ```
 
