@@ -230,7 +230,7 @@ $ <Nore>/bootstrap.sh
 Nore's builtin exportable symbols can be replaced via _--symbol-table_ option,
 which let Nore easy to port to existing C projects.
 
-Example: some tools annote __DARWIN__ as __\_\_DARWIN\_\___, but the default in Nore is __DARWIN__, you can change that to __\_\_DARWIN\_\___.
+Example: some tools annote ```DARWIN``` in C source code or make file as ```__DARWIN__``` , but the default in Nore is ```DARWIN```, you can change that to ```__DARWIN__```.
 
 ```sh
 $ ./configure --symbol-table=<symbol-table-file-name-your-favor>
