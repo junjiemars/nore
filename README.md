@@ -53,7 +53,7 @@ Cooking
 * [Configuration](#configuration)
   * [On Unix-like Platform](#on-unix-like-platform)
   * [On Windows Platform](#on-windows-platform)
-* [Getting start](#getting-start)
+* [Getting Started](#getting-started)
   * [New a Skeleton](#new-a-skeleton)
   * [Configure existing one](#configure-existing-one)
   * [Build and Test](#build-and-test)
@@ -114,7 +114,7 @@ $ ~/.cc-env.sh
 If want to use Windows C/C++ toolchains, you need to install [Windows SDK](https://developer.microsoft.com/en-US/windows/downloads/windows-10-sdk) + [C/C++ Build Tools](http://landinghub.visualstudio.com/visual-cpp-build-tools) or install [Visual Studio](https://www.visualstudio.com/).
 
 
-## Getting start
+## Getting Started
 
 ```sh
 $ ./configure --help
