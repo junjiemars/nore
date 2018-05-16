@@ -375,7 +375,9 @@ On any platform, don't warry about C include path.
 On any Unix-like platform.
 
 But on Window,
+
 ```shell-command: %userprofile%/.cc-env.bat && e:/app/c/configure --has-x```
+
 ```compile: %userprofile%/.cc-env.bat && make -C e:/apps/c/ clean test```
 
 * Visual Stduio Code
