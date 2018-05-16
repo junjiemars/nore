@@ -376,7 +376,7 @@ But on Window,
 ```shell-command: %userprofile%/.cc-env.bat && e:/app/c/configure --has-x```
 ```compile: %userprofile%/.cc-env.bat && make -C e:/apps/c/ clean test```
 
-* Visual Stduio
+* Visual Stduio Code
 
 
 ### Debugger
