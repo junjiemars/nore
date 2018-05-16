@@ -367,9 +367,11 @@ $ make --just-print
 ### Code Editor
 
 * Vim
+
 On any platform, don't warry about C include path. 
 
 * Emacs
+
 On any Unix-like platform.
 
 But on Window,
