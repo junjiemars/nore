@@ -68,6 +68,7 @@ Cooking
   * [Nore's Commands](#nore's-command)
   * [Troubleshotting](#troubleshotting)
   * [Code Editor](#code-editor)
+  * [Debugger](#debugger)
 
 
 ## Configuration
@@ -364,4 +365,24 @@ $ make --just-print
 ```
 
 ### Code Editor
+
+* Vim
+On any platform, don't warry about C include path. 
+
+* Emacs
+On any Unix-like platform.
+
+But on Window,
+```shell-command: %userprofile%/.cc-env.bat && e:/app/c/configure --has-x```
+```compile: %userprofile%/.cc-env.bat && make -C e:/apps/c/ clean test```
+
+* Visual Stduio
+
+
+### Debugger
+
+* lldb
+* gdb
+* cdb or wdg
+
 
