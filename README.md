@@ -69,6 +69,7 @@ Cooking
   * [Troubleshotting](#troubleshotting)
   * [Code Editor](#code-editor)
   * [Debugger](#debugger)
+* [Screenshot](screenshot.md)
 
 
 ## Configuration
@@ -390,3 +391,4 @@ on Window,
 * cdb or windbg
 
 
+[screenshot](screenshot.md)
