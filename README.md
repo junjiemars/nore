@@ -8,7 +8,7 @@ No More than a C build system for [clang](https://clang.llvm.org), [gcc](https:/
 Let's start ... 
 
 ```sh
-# make a new directory for your C application
+# make a new directory as the root of your C application
 # 
 $ make your-c-app-dir
 $ cd your-c-app-dir
