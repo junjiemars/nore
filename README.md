@@ -374,7 +374,7 @@ On any platform, don't warry about C include path.
 
 On any Unix-like platform.
 
-But on Window,
+on Window,
 
 ```shell-command: %userprofile%/.cc-env.bat && bash e:/app/c/configure --has-x```
 
