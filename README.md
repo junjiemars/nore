@@ -387,6 +387,6 @@ But on Window,
 
 * lldb
 * gdb
-* cdb or wdg
+* cdb or windbg
 
 
