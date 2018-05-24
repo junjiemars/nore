@@ -21,32 +21,36 @@ echo_test_what() {
 	echo "------------"
 }
 
-# basic testing
+
 CC=$CC ./configure --new
 CC=$CC ./configure
 make clean test
 
-# --with-optimize testing
+
 echo_test_what "--with-optimize="
 CC=$CC ./configure --with-optimize=YES
 make clean test
 
-# --with-std=c11 testing
+
 echo_test_what "--with-std=c11"
 CC=$CC ./configure --with-std=c11
 make clean
 
-# --without-* testing
+
 echo_test_what "--without-*="
 CC=$CC ./configure \
 	--without-symbol \
 	--without-debug \
-	--without-error \
-	--without-warn \
-	--with-verbose
+	--without-error
 make clean test
 
-# --src-dir --out-dir testing
+
+echo_test_what "--with-warn/verbose="
+CC=$CC ./configure \
+	--with-warn=NO \
+	--with-verbose
+
+
 echo_test_what "--src/out-dir="
 CC=$CC ./configure --src-dir=src --out-dir=build
 make clean test
