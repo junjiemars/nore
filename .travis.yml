@@ -10,7 +10,7 @@ env:
   # - NORE_TEST_DIR=$TRAVIS_BUILD_DIR/nore_test
 
 before_script:
-  - mkdir -p test
+  - mkdir test
   - cd test
   - bash <(curl https://raw.githubusercontent.com/junjiemars/nore/edge/bootstrap.sh)
 
