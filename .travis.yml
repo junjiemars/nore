@@ -12,7 +12,7 @@ env:
 before_script:
   - mkdir -p nore_test
   - cd nore_test
-  - bash <(curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.sh)
+  - bash <(curl https://raw.githubusercontent.com/junjiemars/nore/edge/bootstrap.sh)
 
 script: 
   - $TRAVIS_BUILD_DIR/.travis-tests.sh
