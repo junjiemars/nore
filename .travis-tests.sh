@@ -1,7 +1,6 @@
 #!/bin/bash
 
-cd "$TRAVIS_BUILD_DIR/test"
-[ -f "Makefile" ] && make clean
+cd "test"
 
 echo "TRAVIS_BUILD_DIR=$TRAVIS_BUILD_DIR"
 echo "`./configure where`"
