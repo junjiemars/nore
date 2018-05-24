@@ -23,7 +23,7 @@ case "$TRAVIS_OS_NAME" in
 	;;
 esac
 
-$CC ./configure --new
-./configure
+CC=$CC ./configure --new
+CC=$CC ./configure
 make clean test
 
