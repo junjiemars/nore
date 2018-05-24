@@ -1,17 +1,18 @@
 #!/bin/bash
 
+[ -d "$TRAVIS_BUILD_DIR" ] && cd "$TRAVIS_BUILD_DIR"
 
-# cd $TRAVIS_BUILD_DIR
-echo "ls -lh"
-echo "`ls -lh`"
+echo "============"
 echo "TRAVIS_BUILD_DIR=$TRAVIS_BUILD_DIR"
 echo "./configure where"
 echo "`./configure where`"
+echo "============"
+
 
 case "$TRAVIS_OS_NAME" in
   osx)
-    ./configure --new
-		./configure
+    CC=clang ./configure --new
+		CC=clang ./configure
     make clean test
   ;;
 
