@@ -5,6 +5,8 @@
 echo "TRAVIS_BUILD_DIR=$TRAVIS_BUILD_DIR"
 echo "`./configure where`"
 echo "`cat ./configure`"
+echo "`cat ./Makefile`"
+echo "`cat out/Makefile`"
 
 case "$TRAVIS_OS_NAME" in
   osx)
