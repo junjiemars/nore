@@ -70,6 +70,7 @@ Cooking
   * [Troubleshotting](#troubleshotting)
   * [Code Editor](#code-editor)
   * [Debugger](#debugger)
+  * [Object Dump](#object-dump)
 * [Screenshot](screenshot.md)
 
 
@@ -410,9 +411,18 @@ on Window,
 
 ### Debugger
 
-* lldb
-* gdb
-* cdb or windbg
+* Load executable
+  * _lldb_: ```lldb {executable}```
+  * _gdb_: 
+  * _cdb_:
+
+
+### Object Dump
+
+* Print shared library used:
+  * _otool_: ```otool -L {executable}```
+  * _objdump_: 
+  * _dumpbin_:
 
 
 [screenshot](screenshot.md)
