@@ -27,7 +27,7 @@ case "$TRAVIS_OS_NAME" in
   ;;
 
   *)
-    ./configure --new
+		./configure --new
 		./configure
 		make clean test
 	;;

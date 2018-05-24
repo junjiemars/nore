@@ -139,6 +139,9 @@ $ cmd
 
 ### New a Skeleton
 
+Using ```--new``` option to make a testable skeleton, you can easy to try some new idea from scratch.
+
+
 ```sh
 # generate a new project's skeleton
 $ ./configure --new
@@ -171,6 +174,11 @@ Configuration summary
   warn= YES: -W4
   verbose= NO
   has= .
+
+# after --new a skeleton, configure skeleton and make
+./configure
+make clean test
+
 ```
 
 
