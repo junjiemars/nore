@@ -8,29 +8,22 @@ echo "./configure where"
 echo "`./configure where`"
 echo "============"
 
-
+CC=
 case "$TRAVIS_OS_NAME" in
   osx)
-    CC=clang ./configure --new
-		CC=clang ./configure
-    make clean test
+    CC=clang
   ;;
 
   linux)
-    CC=gcc ./configure --new
-		CC=gcc ./configure
-    make clean test
-
-    CC=clang ./configure --new
-		CC=clang ./configure
-    make clean test
+    CC=gcc
   ;;
 
   *)
-		./configure --new
-		./configure
-		make clean test
+		:
 	;;
-
 esac
+
+$CC ./configure --new
+./configure
+make clean test
 
