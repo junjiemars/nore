@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd "test"
+cd $TRAVIS_BUILD_DIR/test
 
 echo "TRAVIS_BUILD_DIR=$TRAVIS_BUILD_DIR"
 echo "`./configure where`"
