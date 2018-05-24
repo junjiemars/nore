@@ -61,7 +61,8 @@ Cooking
   * [Multiple Projects](#multiple-projects)
   * [Symbol Table](#symbol-table)
 * [Feature Testing](#feature-testing)
-  * [Compiler Feature Testing](#compiler-feature-testing)
+  * [Header File Exists Testing](#header-file-exists-testing)
+  * [Machine Feature Testing](#machine-feature-testing)
   * [Compiler Switch Testing](#compiler-switch-testing)
   * [OS Feature Testing](#os-feature-testing)
 * [Tips](#tips)
@@ -255,7 +256,22 @@ $ make clean test
 
 Write a _bash_ script named _configure_ and put it into _--src-dir_ directory.
 
-### Compiler Feature Testing
+
+### Header File Exists Testing
+
+```sh
+# check header file exiting
+#----------------------------------------
+echo " + checking C99 header files ..."
+nm_include="complex.h" . ${NORE_ROOT}/auto/include
+nm_include="fenv.h" . ${NORE_ROOT}/auto/include
+nm_include="inttypes.h" . ${NORE_ROOT}/auto/include
+nm_include="stdint.h" . ${NORE_ROOT}/auto/include
+nm_include="tgmath.h" . ${NORE_ROOT}/auto/include
+
+```
+
+### Machine Feature Testing
 
 ```sh
 # check features

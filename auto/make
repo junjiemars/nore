@@ -230,10 +230,31 @@ END
 
 # check header file existing
 #----------------------------------------
+#echo " + checking C99 header files ..."
+#nm_include="complex.h" . \${NORE_ROOT}/auto/include
+#nm_include="fenv.h" . \${NORE_ROOT}/auto/include
+#nm_include="inttypes.h" . \${NORE_ROOT}/auto/include
 #nm_include="stdint.h" . \${NORE_ROOT}/auto/include
+#nm_include="tgmath.h" . \${NORE_ROOT}/auto/include
+#
+#echo " + checking C11 header files ..."
+#nm_include="stdalign.h" . \${NORE_ROOT}/auto/include
+#nm_include="stdatomic.h" . \${NORE_ROOT}/auto/include
+#nm_include="stdnoreturn.h" . \${NORE_ROOT}/auto/include
+#nm_include="threads.h" . \${NORE_ROOT}/auto/include
+#nm_include="uchar.h" . \${NORE_ROOT}/auto/include
+#
+#echo " + checking NA1 header files ..."
+#nm_include="iso646.h" . \${NORE_ROOT}/auto/include
+#nm_include="wchar.h" . \${NORE_ROOT}/auto/include
+#nm_include="wctype.h" . \${NORE_ROOT}/auto/include
+#
+#echo " + checking nonstandard posix header files ..."
+#nm_include="unistd.h" . \${NORE_ROOT}/auto/include
+#nm_include="signal.h" . \${NORE_ROOT}/auto/include
+#
 
-
-# check features
+# check machine features
 #----------------------------------------
 #nm_feature="endian"
 #nm_feature_name="nm_have_little_endian"
@@ -249,7 +270,7 @@ END
 #. \${NORE_ROOT}/auto/feature
 
 
-# check features based on Compiler
+# check compiler features
 #----------------------------------------
 #case \$CC_NAME in
 #	clang)
@@ -274,7 +295,7 @@ END
 #esac
 
 
-# check features based on OS
+# check OS features
 #----------------------------------------
 #case \$NM_SYSTEM in
 #	Darwin)
