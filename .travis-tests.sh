@@ -1,12 +1,10 @@
 #!/bin/bash
 
-# cd $TRAVIS_BUILD_DIR
+
+cd $TRAVIS_BUILD_DIR
 
 echo "TRAVIS_BUILD_DIR=$TRAVIS_BUILD_DIR"
-echo "`./configure where`"
-echo "`cat ./configure`"
-echo "`cat ./Makefile`"
-echo "`cat out/Makefile`"
+echo "WHERE=`./configure where`"
 
 case "$TRAVIS_OS_NAME" in
   osx)
@@ -15,7 +13,7 @@ case "$TRAVIS_OS_NAME" in
     make clean test
   ;;
 
-  linux|*)
+  linux)
     CC=gcc ./configure --new
 		CC=gcc ./configure
     make clean test
@@ -24,5 +22,12 @@ case "$TRAVIS_OS_NAME" in
 		CC=clang ./configure
     make clean test
   ;;
+
+  *)
+    ./configure --new
+		./configure
+		make clean test
+	;;
+
 esac
 
