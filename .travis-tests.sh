@@ -2,6 +2,7 @@
 
 cd "$NORE_TEST_DIR"
 [ -f "Makefile" ] && make clean
+echo "`./configure where`"
 
 case "$TRAVIS_OS_NAME" in
   osx)
