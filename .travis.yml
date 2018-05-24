@@ -7,11 +7,11 @@ matrix:
 
 env:
   - SHELL=bash
-  - NORE_TEST_DIR=$TRAVIS_BUILD_DIR/nore_test
+  # - NORE_TEST_DIR=$TRAVIS_BUILD_DIR/nore_test
 
 before_script:
-  - mkdir -p nore_test
-  - cd nore_test
+  - mkdir -p $TRAVIS_BUILD_DIR/test
+  - cd $TRAVIS_BUILD_DIR/test
   - bash <(curl https://raw.githubusercontent.com/junjiemars/nore/edge/bootstrap.sh)
 
 script: 

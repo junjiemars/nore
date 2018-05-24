@@ -1,9 +1,9 @@
 #!/bin/bash
 
-cd "$NORE_TEST_DIR"
+cd "$TRAVIS_BUILD_DIR/test"
 [ -f "Makefile" ] && make clean
 
-echo "NORE_TEST_DIR=$NORE_TEST_DIR"
+echo "TRAVIS_BUILD_DIR=$TRAVIS_BUILD_DIR"
 echo "`./configure where`"
 echo "`cat ./configure`"
 
