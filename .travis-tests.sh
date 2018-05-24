@@ -2,7 +2,8 @@
 
 
 # cd $TRAVIS_BUILD_DIR
-
+echo "ls -lh"
+echo "`ls -lh`"
 echo "TRAVIS_BUILD_DIR=$TRAVIS_BUILD_DIR"
 echo "./configure where"
 echo "`./configure where`"
