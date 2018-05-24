@@ -164,6 +164,7 @@ case "\`echo \${NORE_L_CONF_COMMAND} | tr '[:upper:]' '[:lower:]'\`" in
   where)
     echo -e "NORE_ROOT=\${NORE_ROOT}"
     echo -e "NORE_BRANCH=\${NORE_BRANCH}"
+		echo -e "NORE_L_CONF=\${NORE_L_CONF}"
     echo -e "configure=\${BASH_SOURCE[0]}"
     echo -e "make=\$(command -v make)"
     `if on_darwin; then

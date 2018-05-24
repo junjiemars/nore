@@ -4,7 +4,8 @@
 cd $TRAVIS_BUILD_DIR
 
 echo "TRAVIS_BUILD_DIR=$TRAVIS_BUILD_DIR"
-echo "WHERE=`./configure where`"
+echo "./configure where"
+echo "`./configure where`"
 
 case "$TRAVIS_OS_NAME" in
   osx)
