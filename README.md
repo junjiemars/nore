@@ -411,6 +411,10 @@ on Window,
 
 ### Debugger
 
+* Help
+  * _lldb_: ```(lldb) h h```
+
+
 * Load executable
   * _lldb_: ```lldb {executable}```
   * _gdb_: 
