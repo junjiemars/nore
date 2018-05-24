@@ -5,17 +5,20 @@ cd "$NORE_TEST_DIR"
 
 case "$TRAVIS_OS_NAME" in
   osx)
-    ./configure --has-hi
+    ./configure --new
+		./configure
     make test
   ;;
 
   linux|*)
-    CC=gcc ./configure --has-hi
+    CC=gcc ./configure --new
+		CC=gcc ./configure
     make test
 
     [ -f "Makefile" ] && make clean
 
-    CC=clang ./configure --has-hi
+    CC=clang ./configure --new
+		CC=clang ./configure
     make test
   ;;
 esac

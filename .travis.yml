@@ -7,11 +7,11 @@ matrix:
 
 env:
   - SHELL=bash
-  - NORE_TEST_DIR=$TRAVIS_BUILD_DIR/c
+  - NORE_TEST_DIR=$TRAVIS_BUILD_DIR/nore_test
 
 before_script:
-  - git clone --depth=1 https://github.com/junjiemars/c.git
-  - cd c
+  - mkdir -p $NORE_TEST_DIR
+  - cd $NORE_TEST_DIR
   - bash <(curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.sh)
 
 script: 
