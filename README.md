@@ -412,8 +412,21 @@ on Window,
 ### Debugger
 
 * Help
-  * _lldb_: ```(lldb) h h```
+  * _lldb_: ```h h```
+  * _gdb_:
+  * _cdb_: ```?```
 
+* Quit
+  * _lldb_: ```q```
+  * _gdb_:
+  * _cdb_: ```q```
+
+* Environment variable
+  * show
+	* _cdb_: ```!envvar userprofile```
+  * set
+  * unset
+  
 
 * Load executable
   * _lldb_: ```lldb {executable}```
