@@ -437,9 +437,9 @@ on Window,
 ### Object Dump
 
 * Print shared library used:
-  * _otool_: ```otool -L {executable}```
+  * _otool_: ```otool -L <executable>```
   * _objdump_: 
-  * _dumpbin_:
+  * _dumpbin_: ```dumpbin -dependents <executable>```
 
 
 [screenshot](screenshot.md)
