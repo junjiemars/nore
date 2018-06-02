@@ -68,7 +68,7 @@ but have no more unnecessary.
 -  [[#code-editor][Code Editor]]
 -  [[#debugger][Debugger]]
 -  [[#object-dump][Object Dump]]
--  [[screenshot.md][Screenshot]]
+-  [[file:screenshot.md][Screenshot]]
 
 ** Configuration
 
@@ -412,34 +412,29 @@ on Window,
 
 *** Debugger
 
--  Help
--  /lldb/: =h h=
--  /gdb/:
--  /cdb/: =?=
+**** LLDB
+***** Help
+***** Environment Variable
+***** Load Executable
 
--  Quit
--  /lldb/: =q=
--  /gdb/:
--  /cdb/: =q=
+**** GDB
+***** Help
+***** Environment Variable
+***** Load Executable
 
--  Environment variable
--  show
-
-   -  /cdb/: =!envvar userprofile=
-
--  set
--  unset
-
--  Load executable
--  /lldb/: =lldb {executable}=
--  /gdb/:
--  /cdb/:
+**** CDB
+***** Help
+***** Environment Variable
+- =!envvar userprofile=
+***** Load Executable
 
 *** Object Dump
 
--  Print shared library used:
--  /otool/: =otool -L <executable>=
--  /objdump/:
--  /dumpbin/: =dumpbin -dependents <executable>=
+**** otool
+/otool/: =otool -L <executable>=
 
-[[screenshot.md][screenshot]]
+**** objdump
+
+**** dumpbin
+=dumpbin -dependents <executable>=
+
