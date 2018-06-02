@@ -358,7 +358,6 @@ directory.
 #+END_SRC
 
 ** Tips
-
 *** Nore's Commands
 
 -  =where=: Nore will generate some auxiliary files, you can find those
@@ -394,11 +393,11 @@ purpose.
 
 *** Code Editor
 
--  Vim
+****  Vim
 
 On any platform, don't warry about C include path.
 
--  Emacs
+****  Emacs
 
 On any Unix-like platform.
 
@@ -408,7 +407,7 @@ on Window,
 
 =compile: %userprofile%/.cc-env.bat && make -C e:/apps/c/ clean test=
 
--  Visual Stduio Code
+****  Visual Stduio Code
 
 *** Debugger
 
@@ -431,7 +430,7 @@ on Window,
 *** Object Dump
 
 **** otool
-/otool/: =otool -L <executable>=
+=otool -L <executable>=
 
 **** objdump
 
