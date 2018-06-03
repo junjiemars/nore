@@ -63,16 +63,22 @@ but have no more unnecessary.
 -  [[#compiler-switch-testing][Compiler Switch Testing]]
 -  [[#os-feature-testing][OS Feature Testing]]
 -  [[#tips][Tips]]
--  [[#nores-commands][Nore's Commands]](#nore's-command)
--  [[#troubleshotting][Troubleshotting]]
+-  [[#nores-commands][Nore's Commands]]
+-  [[#troubleshoting][Troubleshoting]]
 -  [[#code-editor][Code Editor]]
 -  [[#debugger][Debugger]]
 -  [[#object-dump][Object Dump]]
 -  [[file:screenshot.md][Screenshot]]
 
 ** Configuration
+	 :PROPERTIES:
+	 :CUSTOM_ID: configuration
+	 :END:
 
 *** On Unix-like Platform
+		:PROPERTIES:
+		:CUSTOM_ID: on-unix-like-platform
+		:END:
 
 There are no installation process just setup *bash* and *make*
 environment.
@@ -96,6 +102,9 @@ directory and run
 then all had done.
 
 *** On Windows Platform
+		:PROPERTIES:
+		:CUSTOM_ID: on-windows-platform
+		:END:
 
 On Windows, because there are no *bash* by default, so we need to
 install one, [[https://git-scm.com/downloads][Git Bash]] easy to install
@@ -127,6 +136,9 @@ SDK]] +
 Tools]].
 
 ** Getting Started
+	 :PROPERTIES:
+	 :CUSTOM_ID: getting-started
+	 :END:
 
 #+BEGIN_SRC sh
     $ ./configure --help
@@ -147,6 +159,9 @@ first
 #+END_SRC
 
 *** New a Skeleton
+		:PROPERTIES:
+		:CUSTOM_ID: new-a-skeleton
+		:END:
 
 Using =--new= option to make a testable skeleton, you can easy to try
 some new idea from scratch.
@@ -190,6 +205,9 @@ some new idea from scratch.
 #+END_SRC
 
 *** Configure existing one
+		:PROPERTIES:
+		:CUSTOM_ID: configure-existing-one
+		:END:
 
 For existing C project at //
 
@@ -200,6 +218,9 @@ For existing C project at //
 #+END_SRC
 
 *** Build and Test
+		:PROPERTIES:
+		:CUSTOM_ID: build-and-test
+		:END:
 
 #+BEGIN_SRC sh
     $ ./configure
@@ -213,6 +234,9 @@ Following the prompt of *configure* and *make*, change the /options/ of
 *configure* or modify /src/Makefile/.
 
 *** Multiple Targets
+		:PROPERTIES:
+		:CUSTOM_ID: multiple-targets
+		:END:
 
 Suppose project P has A and B two targets, one is a /Executable/, the
 other is a /Library/
@@ -222,6 +246,9 @@ other is a /Library/
 #+END_SRC
 
 *** Multiple Projects
+		:PROPERTIES:
+		:CUSTOM_ID: multiple-projects
+		:END:
 
 All projects can use only one Nore.
 
@@ -245,6 +272,9 @@ clone.
 #+END_SRC
 
 *** Symbol Table
+		:PROPERTIES:
+		:CUSTOM_ID: symbol-table
+		:END:
 
 Nore's builtin exportable symbols can be replaced via /--symbol-table/
 option, which let Nore easy to port to existing C projects.
@@ -267,11 +297,17 @@ to =__DARWIN__=.
 #+END_SRC
 
 ** Feature Testing
+	 :PROPERTIES:
+	 :CUSTOM_ID: feature-testing
+	 :END:
 
 Write a /bash/ script named /configure/ and put it into /--src-dir/
 directory.
 
 *** Header File Exists Testing
+		:PROPERTIES:
+		:CUSTOM_ID: header-file-exists-testing
+		:END:
 
 #+BEGIN_SRC sh
     # check header file exiting
@@ -285,6 +321,9 @@ directory.
 #+END_SRC
 
 *** Machine Feature Testing
+		:PROPERTIES:
+		:CUSTOM_ID: machine-feature-testing
+		:END:
 
 #+BEGIN_SRC sh
     # check features
@@ -304,6 +343,9 @@ directory.
 #+END_SRC
 
 *** Compiler Switch Testing
+		:PROPERTIES:
+		:CUSTOM_ID: compiler-switch-testing
+		:END:
 
 #+BEGIN_SRC sh
     # check features based on Compiler
@@ -332,6 +374,9 @@ directory.
 #+END_SRC
 
 *** OS Feature Testing
+		:PROPERTIES:
+		:CUSTOM_ID: os-feature-testing
+		:END:
 
 #+BEGIN_SRC sh
     # check features based on OS
@@ -358,7 +403,13 @@ directory.
 #+END_SRC
 
 ** Tips
+	 :PROPERTIES:
+	 :CUSTOM_ID: tips
+	 :END:
 *** Nore's Commands
+		:PROPERTIES:
+		:CUSTOM_ID: nores-commands
+		:END:
 
 -  =where=: Nore will generate some auxiliary files, you can find those
    files via *where* command.
@@ -375,7 +426,10 @@ directory.
     $ ./configure upgrade
 #+END_SRC
 
-*** Troubleshotting
+*** Troubleshoting
+		:PROPERTIES:
+		:CUSTOM_ID: troubleshoting
+		:END:
 
 Troubleshotting is more easier than other ones, because all just
 Makefile and shell scripts. And Nore provides a command for debugging
@@ -392,6 +446,9 @@ purpose.
 #+END_SRC
 
 *** Code Editor
+		:PROPERTIES:
+		:CUSTOM_ID: code-editor
+		:END:
 
 ****  Vim
 
@@ -410,6 +467,9 @@ on Window,
 ****  Visual Stduio Code
 
 *** Debugger
+		:PROPERTIES:
+		:CUSTOM_ID: debugger
+		:END:
 
 **** LLDB
 ***** Help
@@ -428,6 +488,9 @@ on Window,
 ***** Load Executable
 
 *** Object Dump
+		:PROPERTIES:
+		:CUSTOM_ID: object-dump
+		:END:
 
 **** otool
 =otool -L <executable>=
