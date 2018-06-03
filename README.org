@@ -48,26 +48,9 @@ but have no more unnecessary.
 * Cooking
 
 -  [[#configuration][Configuration]]
--  [[#on-unix-like-platform][On Unix-like Platform]]
--  [[#on-windows-platform][On Windows Platform]]
 -  [[#getting-started][Getting Started]]
--  [[#new-a-skeleton][New a Skeleton]]
--  [[#configure-existing-one][Configure existing one]]
--  [[#build-and-test][Build and Test]]
--  [[#multiple-targets][Multiple Targets]]
--  [[#multiple-projects][Multiple Projects]]
--  [[#symbol-table][Symbol Table]]
 -  [[#feature-testing][Feature Testing]]
--  [[#header-file-exists-testing][Header File Exists Testing]]
--  [[#machine-feature-testing][Machine Feature Testing]]
--  [[#compiler-switch-testing][Compiler Switch Testing]]
--  [[#os-feature-testing][OS Feature Testing]]
 -  [[#tips][Tips]]
--  [[#nores-commands][Nore's Commands]]
--  [[#troubleshoting][Troubleshoting]]
--  [[#code-editor][Code Editor]]
--  [[#debugger][Debugger]]
--  [[#object-dump][Object Dump]]
 -  [[file:screenshot.md][Screenshot]]
 
 ** Configuration
