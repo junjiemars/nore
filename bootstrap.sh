@@ -173,7 +173,7 @@ case "\`echo \${NORE_L_CONF_COMMAND} | tr '[:upper:]' '[:lower:]'\`" in
      fi`
     echo -n ".cc-env.sh="
     if [ -f "\${HOME%/}/.cc-env.sh" ]; then
-      echo -e "\${HOME%/}.cc-env.sh"
+      echo -e "\${HOME%/}/.cc-env.sh"
     else
       echo ""
     fi
