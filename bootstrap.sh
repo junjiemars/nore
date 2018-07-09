@@ -90,7 +90,7 @@ check_nore_branch() {
 
 upgrade_nore() {
   local b="`check_nore_branch`"
-	[ -n "${b}" ] || return 1
+  [ -n "${b}" ] || return 1
 
   cd ${ROOT} && git reset --hard &>/dev/null || return $?
   
@@ -507,6 +507,7 @@ else
  exit_checking $? $BEGIN
 fi
 
+echo "!!! arg0=$0"
 echo -n " + generating configure ... "
 echo_ok_or_failed `cat_configure ; echo $?`
 exit_checking $? $BEGIN
