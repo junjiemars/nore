@@ -507,7 +507,6 @@ else
  exit_checking $? $BEGIN
 fi
 
-echo "!!! arg0=$0 NORE_BRANCH=$NORE_BRANCH"
 echo -n " + generating configure ... "
 echo_ok_or_failed `cat_configure ; echo $?`
 exit_checking $? $BEGIN

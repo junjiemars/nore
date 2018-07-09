@@ -11,16 +11,13 @@ Let's start ...
 
 #+BEGIN_SRC sh
     # make a new directory as the root of your C application
-    # 
     $ make your-c-app-dir
     $ cd your-c-app-dir
 
     # run bootstrap from github, it will generate a configure file in current directory
-    #
     $ bash <(curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.sh)
 
     # generate a C application skeleton
-    #
     $ ./configure --new
 
     $ ./configure
@@ -113,10 +110,7 @@ tools/ option box. Run =bash= in any =CMD= or =Git Bash=, then
 #+END_SRC
 
 If want to use Windows C/C++ toolchains, you need to install
-[[https://developer.microsoft.com/en-US/windows/downloads/windows-10-sdk][Windows
-SDK]] +
-[[http://landinghub.visualstudio.com/visual-cpp-build-tools][C/C++ Build
-Tools]].
+[[https://developer.microsoft.com/en-US/windows/downloads/windows-10-sdk][Windows SDK]] + [[http://landinghub.visualstudio.com/visual-cpp-build-tools][C/C++ Build Tools]].
 
 ** Getting Started
 	 :PROPERTIES:
