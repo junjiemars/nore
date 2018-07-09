@@ -20,8 +20,10 @@ Let's start ...
     # generate a C application skeleton
     $ ./configure --new
 
+		# configure the skeleton that previous generated
     $ ./configure
 
+		# build and test
     $ make test
 #+END_SRC
 
@@ -111,6 +113,18 @@ tools/ option box. Run =bash= in any =CMD= or =Git Bash=, then
 
 If want to use Windows C/C++ toolchains, you need to install
 [[https://developer.microsoft.com/en-US/windows/downloads/windows-10-sdk][Windows SDK]] + [[http://landinghub.visualstudio.com/visual-cpp-build-tools][C/C++ Build Tools]].
+
+*** From Recent Branch
+		:PROPERTIES:
+		:CUSTOM_ID: from-recent-branch
+		:END:
+
+
+#+BEGIN_SRC sh
+    $ curl https://raw.githubusercontent.com/junjiemars/nore/edge/bootstrap.sh | bash -s -- --branch=edge
+#+END_SRC
+
+
 
 ** Getting Started
 	 :PROPERTIES:
