@@ -51,6 +51,5 @@ objs/Makefile
 .vscode/
 /TAGS
 
-
-
-
+# org mode export
+*.html

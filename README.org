@@ -125,7 +125,6 @@ If want to use Windows C/C++ toolchains, you need to install
 #+END_SRC
 
 
-
 ** Getting Started
 	 :PROPERTIES:
 	 :CUSTOM_ID: getting-started
@@ -397,6 +396,7 @@ directory.
 	 :PROPERTIES:
 	 :CUSTOM_ID: tips
 	 :END:
+
 *** Nore's Commands
 		:PROPERTIES:
 		:CUSTOM_ID: nores-commands
@@ -417,24 +417,6 @@ directory.
     $ ./configure upgrade
 #+END_SRC
 
-*** Troubleshoting
-		:PROPERTIES:
-		:CUSTOM_ID: troubleshoting
-		:END:
-
-Troubleshotting is more easier than other ones, because all just
-Makefile and shell scripts. And Nore provides a command for debugging
-purpose.
-
-#+BEGIN_SRC sh
-    # debug command for debugging Nore's shell script
-    #
-    $ ./configure debug
-
-    # make debugging options: --just-print --print-data-base --warn-undefined-variables
-    #
-    $ make --just-print
-#+END_SRC
 
 *** Code Editor
 		:PROPERTIES:
@@ -491,3 +473,21 @@ on Window,
 **** dumpbin
 =dumpbin -dependents <executable>=
 
+* Troubleshoting
+		:PROPERTIES:
+		:CUSTOM_ID: troubleshoting
+		:END:
+
+Troubleshotting is more easier than other ones, because all just
+Makefile and shell scripts. And Nore provides a command for debugging
+purpose.
+
+#+BEGIN_SRC sh
+    # debug command for debugging Nore's shell script
+    #
+    $ ./configure debug
+
+    # make debugging options: --just-print --print-data-base --warn-undefined-variables
+    #
+    $ make --just-print
+#+END_SRC
