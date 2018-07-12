@@ -44,13 +44,14 @@ So the story begins ... * Keep things simple: classic workflow
 anywhere: Linux, Darwin, Windows or Docker. * Easy to try some new ideas
 but have no more unnecessary.
 
+See [[file:screenshot.md][Screenshot]].
+
 * Cooking
 
 -  [[#configuration][Configuration]]
 -  [[#getting-started][Getting Started]]
 -  [[#feature-testing][Feature Testing]]
 -  [[#tips][Tips]]
--  [[file:screenshot.md][Screenshot]]
 
 ** Configuration
 	 :PROPERTIES:
@@ -123,7 +124,6 @@ If want to use Windows C/C++ toolchains, you need to install
 #+BEGIN_SRC sh
     $ curl https://raw.githubusercontent.com/junjiemars/nore/edge/bootstrap.sh | bash -s -- --branch=edge
 #+END_SRC
-
 
 ** Getting Started
 	 :PROPERTIES:
@@ -417,7 +417,6 @@ directory.
     $ ./configure upgrade
 #+END_SRC
 
-
 *** Code Editor
 		:PROPERTIES:
 		:CUSTOM_ID: code-editor
@@ -433,9 +432,9 @@ On any Unix-like platform.
 
 on Window,
 
-=shell-command: %userprofile%/.cc-env.bat && bash e:/app/c/configure --has-x=
+- @@html:<kbd>@@shell-command: %userprofile%/.cc-env.bat && bash e:/app/c/configure --has-x@@html:</kbd>@@
 
-=compile: %userprofile%/.cc-env.bat && make -C e:/apps/c/ clean test=
+- @@html:<kbd>@@M: compile: %userprofile%/.cc-env.bat && make -C e:/apps/c/ clean test@@html:</kbd>@@
 
 ****  Visual Stduio Code
 
