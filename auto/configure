@@ -51,7 +51,7 @@ if test -z "$NM_PLATFORM"; then
 		;;
 	esac
 		
-  NM_PLATFORM="$NM_SYSTEM:$NM_RELEASE:$NM_MACHINE";
+  NM_PLATFORM="$NM_SYSTEM-$NM_RELEASE-$NM_MACHINE";
   
 else
   echo "building for $NM_PLATFORM"
