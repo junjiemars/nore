@@ -1,5 +1,11 @@
+#### -*- mode:sh -*- vim:ft=sh
+####
+## No More than a C build system for clang, gcc and msvc.
+## https://github.com/junjiemars/nore
+####
+## have_header
+####
 
-# have_header
 
 have=NM_HAVE_`echo $have | tr '[:lower:]/.' '[:upper:]__'`
 

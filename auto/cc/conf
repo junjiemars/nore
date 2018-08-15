@@ -1,5 +1,11 @@
+#### -*- mode:sh -*- vim:ft=sh
+####
+## No More than a C build system for clang, gcc and msvc.
+## https://github.com/junjiemars/nore
+####
+## cc/conf
+####
 
-# cc/conf
 
 CC=${CC:-cc}
 

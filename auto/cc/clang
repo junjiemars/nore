@@ -1,5 +1,11 @@
+#### -*- mode:sh -*- vim:ft=sh
+####
+## No More than a C build system for clang, gcc and msvc.
+## https://github.com/junjiemars/nore
+####
+## cc/clang
+####
 
-# clang
 
 nm_clang_ver=`$CC -v 2>&1 | grep '\(clang\|LLVM\) version' 2>&1 \
                           | sed -e 's/^.* version \(.*\)/\1/'`
