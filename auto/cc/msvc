@@ -1,6 +1,10 @@
-## -*- mode:sh -*- vim:ft=sh
-#
-# msvc
+#### -*- mode:sh -*- vim:ft=sh
+####
+## No More than a C build system for clang, gcc and msvc.
+## https://github.com/junjiemars/nore
+####
+## msvc
+####
 
 
 nm_msvc_ver=`$CC 2>&1 | grep 'Compiler Version' 2>&1 \
