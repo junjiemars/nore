@@ -455,8 +455,13 @@ on Window,
 
 **** CDB
 ***** Help
+- =?= displays a list of all commands and operators.
+- =!help= displays help text that describes the extension commands exported from the extension DLL.
+- =.help= displays a list of all meta-commands.
+
 ***** Environment Variable
-- =!envvar userprofile=
+- =!envvar= displays the value of the specified environment variable, such as =!envvar USERPROFILE=.
+
 ***** Load Executable
 
 *** Object Dump
