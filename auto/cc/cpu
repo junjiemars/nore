@@ -8,7 +8,7 @@
 
 
 if [ "NO" = "$NM_CPU" ]; then
-   :;
+   :
 
 else
 	nm_cpu_opt="${cpu_opt}$NM_CPU"
