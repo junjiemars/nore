@@ -1,3 +1,10 @@
+#### -*- mode:sh -*- vim:ft=sh
+####
+## No More than a C build system for clang, gcc and msvc.
+## https://github.com/junjiemars/nore
+####
+## install
+####
 
 
 NM_BIN_PATH=${NM_PREFIX}/${NM_BIN_PATH}
