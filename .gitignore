@@ -53,3 +53,5 @@ objs/Makefile
 
 # org mode export
 *.html
+*.odt
+.~*#
