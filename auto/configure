@@ -72,11 +72,10 @@ fi
 
 case ".$NM_PREFIX" in
 	.)
-		if [ -n "$OPT_RUN" ]; then
-			NM_PREFIX="$OPT_RUN"
-		else
-			NM_PREFIX=/opt/run
-		fi
+		case "$NM_SYSTEM" in
+			Darwin) NM_PREFIX="/opt/local" ;;
+			Linux)  NM_PREFIX="/usr/local" ;;
+		esac
     have=NM_PREFIX value="\"$NM_PREFIX/\"" . ${NORE_ROOT}/auto/define
 	;;
 
