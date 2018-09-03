@@ -234,7 +234,7 @@ Following the prompt of *configure* and *make*, change the /options/ of
 		:CUSTOM_ID: multiple-targets
 		:END:
 
-Suppose project P has A and B two targets, one is a /Executable/, the
+Suppose project /P/ has /A/ and /B/ two targets, one is a /Executable/, the
 other is a /Library/
 
 #+BEGIN_SRC sh
@@ -248,7 +248,7 @@ other is a /Library/
 
 All projects can use only one Nore.
 
-Suppose there are A, B and C projects, those projects use one Nore
+Suppose there are /A/, /B/ and /C/ projects, those projects use one Nore
 clone.
 
 #+BEGIN_SRC sh
@@ -333,7 +333,7 @@ directory.
     nm_feature_ldlibs=
     nm_feature_test='int i=0x11223344;
                      char *p = (char *)&i;
-                      int le = (0x44 == *p);
+                     int le = (0x44 == *p);
                      printf("%d", le);'
     . ${NORE_ROOT}/auto/feature
 #+END_SRC
