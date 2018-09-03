@@ -63,11 +63,10 @@ See [[file:screenshot.md][Screenshot]].
 		:CUSTOM_ID: on-unix-like-platform
 		:END:
 
-There are no installation process just setup *bash* and *make*
-environment.
+There are no installation process just setup *bash* and *make* environment.
 
 The most simplest way to configure is go into your *C* application
-directory and run
+directory and run:
 
 #+BEGIN_SRC sh
     $ bash <(curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.sh)
@@ -82,7 +81,6 @@ directory and run
     ... elpased 0 seconds.
 #+END_SRC
 
-then all had done.
 
 *** On Windows Platform
 		:PROPERTIES:
@@ -92,7 +90,7 @@ then all had done.
 On Windows, because there are no *bash* by default, so we need to
 install one, [[https://git-scm.com/downloads][Git Bash]] easy to install
 and use. In the installation of /Git Bash/, select /unix compatible
-tools/ option box. Run =bash= in any =CMD= or =Git Bash=, then
+tools/ option box. Run =bash= in any =CMD= or =Git Bash=, then run:
 
 #+BEGIN_SRC sh
     $ bash <(curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.sh)
@@ -114,6 +112,10 @@ tools/ option box. Run =bash= in any =CMD= or =Git Bash=, then
 
 If want to use Windows C/C++ toolchains, you need to install
 [[https://developer.microsoft.com/en-US/windows/downloads/windows-10-sdk][Windows SDK]] + [[http://landinghub.visualstudio.com/visual-cpp-build-tools][C/C++ Build Tools]].
+
+
+screenshots:
+- [[https://github.com/junjiemars/images/blob/master/nore/bootstrap-on-windows.png][bootstrap on Windows]]
 
 *** From Recent Branch
 		:PROPERTIES:
