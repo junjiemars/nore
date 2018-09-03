@@ -198,6 +198,7 @@ some new idea from scratch. Don't warry, it is the same processing on Windows, D
 
 /screenshots/:
 - [[https://github.com/junjiemars/images/blob/master/nore/new-skeleton-msvc.png][new skeleton msvc]]
+- [[https://github.com/junjiemars/images/blob/master/nore/new-skeleton-clang.png][new skeleton clang]]
 
 *** Configure existing one
 		:PROPERTIES:
