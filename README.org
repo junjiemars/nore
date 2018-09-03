@@ -297,8 +297,7 @@ to =__DARWIN__=.
 	 :CUSTOM_ID: feature-testing
 	 :END:
 
-Write a /bash/ script named /configure/ and put it into /--src-dir/
-directory.
+Write a /bash/ script named /configure/ and put it into *--src-dir* directory.
 
 *** Header File Exists Testing
 		:PROPERTIES:
