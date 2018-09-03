@@ -39,10 +39,10 @@ I known there are already aswsome tools existing, but the key question
 is how to easy build C code in varied OS by varied Compilers, among
 those things I just pick the most critical ones: *Make* and *Shell*.
 
-So the story begins ... * Keep things simple: classic workflow
-(configure, make and make install). * Write, Run and Build code on
-anywhere: Linux, Darwin, Windows or Docker. * Easy to try some new ideas
-but have no more unnecessary.
+So the story begins ... 
+- Keep things simple: classic workflow (configure, make and make install).
+- Write, Build, Test and Run code on anywhere: Linux, Darwin, Windows or Docker.
+- Easy to try some new ideas but have no more unnecessary.
 
 See [[file:screenshot.md][Screenshot]].
 
