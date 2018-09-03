@@ -44,7 +44,6 @@ So the story begins ...
 - Write, Build, Test and Run code on anywhere: Linux, Darwin, Windows or Docker.
 - Easy to try some new ideas but have no more unnecessary.
 
-See [[file:screenshot.md][Screenshot]].
 
 * Cooking
 
@@ -81,7 +80,6 @@ directory and run:
     ... elpased 0 seconds.
 #+END_SRC
 
-
 *** On Windows Platform
 		:PROPERTIES:
 		:CUSTOM_ID: on-windows-platform
@@ -117,11 +115,12 @@ If want to use Windows C/C++ toolchains, you need to install
 screenshots:
 - [[https://github.com/junjiemars/images/blob/master/nore/bootstrap-on-windows.png][bootstrap on Windows]]
 
-*** From Recent Branch
+*** From Edge Branch
 		:PROPERTIES:
-		:CUSTOM_ID: from-recent-branch
+		:CUSTOM_ID: from-edge-branch
 		:END:
 
+If you want to try new features of Nore, try the =edge= branch.
 
 #+BEGIN_SRC sh
     $ curl https://raw.githubusercontent.com/junjiemars/nore/edge/bootstrap.sh | bash -s -- --branch=edge
@@ -136,8 +135,7 @@ screenshots:
     $ ./configure --help
 #+END_SRC
 
-On Windows, if use *MSVC* environment, we need host *MSVC* environment
-first
+On Windows, if using *MSVC* environment, we need host *MSVC* environment first.
 
 #+BEGIN_SRC sh
     # switch to Command Prompt
@@ -150,13 +148,16 @@ first
     > bash
 #+END_SRC
 
+screenshots:
+- [[https://github.com/junjiemars/images/blob/master/nore/host-msvc-env-on-windows.png][host msvc environment]]
+
 *** New a Skeleton
 		:PROPERTIES:
 		:CUSTOM_ID: new-a-skeleton
 		:END:
 
 Using =--new= option to make a testable skeleton, you can easy to try
-some new idea from scratch.
+some new idea from scratch. Don't warry, it is the same processing on Windows, Darwin and Linux.
 
 #+BEGIN_SRC sh
     # generate a new project's skeleton
@@ -192,9 +193,12 @@ some new idea from scratch.
       has= .
 
     # after --new a skeleton, configure skeleton and make
-    ./configure
-    make clean test
+    $ ./configure
+    $ make clean test
 #+END_SRC
+
+screenshots:
+- [[https://github.com/junjiemars/images/blob/master/nore/new-skeleton-on-windows.png][new skeleton on Windows]]
 
 *** Configure existing one
 		:PROPERTIES:
