@@ -8,7 +8,10 @@
 
 
 LDFLAGS=${LDFLAGS}
+
 nm_shared_opt="-LD"
+lib_ext=".dll"
+
 
 have=$NM_SYSTEM . ${NORE_ROOT}/auto/have
 

@@ -8,8 +8,9 @@
 
 
 LDFLAGS=${LDFLAGS}
-nm_shared_opt=-shared
 
+nm_shared_opt="-shared"
+lib_ext=".so"
 
 have=$NM_SYSTEM . ${NORE_ROOT}/auto/have
 

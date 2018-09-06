@@ -9,17 +9,17 @@
 
 echo "checking for $NM_PLATFORM specific features"
 
-case "$NM_PLATFORM" in
+case "$NM_SYSTEM" in
 
-	Linux:*)
+	Linux)
 		. ${NORE_ROOT}/auto/os/linux
 	;;
 	
-	Darwin:*)
+	Darwin)
 		. ${NORE_ROOT}/auto/os/darwin
 	;;
 	
-  WinNT:*)
+  WinNT)
 		. ${NORE_ROOT}/auto/os/nt
 	;;
 

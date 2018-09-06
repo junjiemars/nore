@@ -76,7 +76,6 @@ auto_out=$obj_out
 cpp_ext=".c"
 asm_ext=".asm"
 obj_ext=".obj"
-lib_ext=".dll"
 bin_ext=".exe"
 ar_ext=".lib"
 

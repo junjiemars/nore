@@ -8,9 +8,8 @@
 
 
 LDFLAGS=${LDFLAGS}
+
 nm_shared_opt="-dynamiclib"
-
-
 lib_ext=".dylib"
 
 
