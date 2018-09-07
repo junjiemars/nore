@@ -452,12 +452,13 @@ on Window,
 
 |             | lldb        | gdb        | cdb          |
 |-------------+-------------+------------+--------------|
-| help        | (lldb) h    | (gdb) h    | 000> ?       |
+| Help        |             |            |              |
+|             | (lldb) h    | (gdb) h    | 000> ?       |
 |             | (lldb) help | (gdb) help | 000> !help   |
 |             |             |            | 000> .help   |
 |-------------+-------------+------------+--------------|
-| environment |             |            | 000> !envvar |
-|             |             |            |              |
+| Environment |             |            |              |
+|             |             |            | 000> !envvar |
 
 
 
@@ -466,13 +467,10 @@ on Window,
 		:CUSTOM_ID: object-dump
 		:END:
 
-**** otool
-=otool -L <executable>=
+|   | otool(Darwin) | objdump(Linux) | dumpbin(WinNT) |
+|---+---------------+----------------+----------------|
+|   |               |                |                |
 
-**** objdump
-
-**** dumpbin
-=dumpbin -dependents <executable>=
 
 * Troubleshoting
 		:PROPERTIES:
