@@ -450,26 +450,16 @@ on Window,
 		:CUSTOM_ID: debugger
 		:END:
 
-**** LLDB
-***** Help
-***** Environment Variable
-***** Load Executable
+|             | lldb        | gdb        | cdb          |
+|-------------+-------------+------------+--------------|
+| help        | (lldb) h    | (gdb) h    | 000> ?       |
+|             | (lldb) help | (gdb) help | 000> !help   |
+|             |             |            | 000> .help   |
+|-------------+-------------+------------+--------------|
+| environment |             |            | 000> !envvar |
+|             |             |            |              |
 
-**** GDB
-***** Help
-***** Environment Variable
-***** Load Executable
 
-**** CDB
-***** Help
-- =?= displays a list of all commands and operators.
-- =!help= displays help text that describes the extension commands exported from the extension DLL.
-- =.help= displays a list of all meta-commands.
-
-***** Environment Variable
-- =!envvar= displays the value of the specified environment variable, such as =!envvar USERPROFILE=.
-
-***** Load Executable
 
 *** Object Dump
 		:PROPERTIES:
