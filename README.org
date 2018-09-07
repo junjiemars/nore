@@ -429,9 +429,9 @@ Write a /bash/ script named /configure/ and put it into *--src-dir* directory.
 
 ****  Vim
 
-On any platform, don't warry about C include path, Nore could generate it for you.
+On any platform, don't warry about C include path, Nore should generate it for you.
 
-I prefer non plugin Vim settings, so I can easily work on my all machines. [[https://raw.githubusercontent.com/junjiemars/kit/master/ul/.vimrc][download non-plugin .vimrc]].
+I prefer non plugin Vim settings, so I can easily working on my all machines. [[https://raw.githubusercontent.com/junjiemars/kit/master/ul/.vimrc][download non-plugin .vimrc]].
 
 ****  Emacs
 
