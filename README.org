@@ -467,9 +467,9 @@ on Window,
 		:CUSTOM_ID: object-dump
 		:END:
 
-|   | otool(Darwin) | objdump(Linux) | dumpbin(WinNT) |
-|---+---------------+----------------+----------------|
-|   |               |                |                |
+|   | otool | objdump | dumpbin |
+|---+-------+---------+---------|
+|   |       |         |         |
 
 
 * Troubleshoting
