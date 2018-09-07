@@ -275,7 +275,7 @@ clone.
 Nore's builtin exportable symbols can be replaced via *--symbol-table* option,
 which let Nore easy port to existing C projects.
 
-Example: some tools annote =DARWIN= in C source code or make file as
+Example: some tools annote /DARWIN/ symbol in C source code or make file as
 =__DARWIN__= , but the default in Nore is =DARWIN=, you can change that
 to =__DARWIN__=.
 
