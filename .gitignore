@@ -55,3 +55,9 @@ objs/Makefile
 *.html
 *.odt
 .~*#
+
+# nore
+build/
+configure
+out/
+src/
