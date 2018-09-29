@@ -80,60 +80,64 @@ esac
 
 
 # symbol option
-if [ "$NM_SYMBOL" = "YES" ]; then
-	CFLAGS=${CFLAGS:+$CFLAGS}${nm_symbol_opt:+ $nm_symbol_opt}
+if [ "$NM_SYMBOL" = "YES" -a -n "$nm_symbol_opt" ]; then
+	CFLAGS=${CFLAGS:+$CFLAGS }${nm_symbol_opt}
 fi
 
 # optimize option
-case "$NM_OPTIMIZE" in
-	YES)
-		CFLAGS=${CFLAGS:+$CFLAGS}${nm_optimize_opt:+ $nm_optimize_opt}
+case ".$NM_OPTIMIZE" in
+	.|.NO)
 	;;
 
-	NO)
+	.YES)
+		if [ -n "$nm_optimize_opt" ]; then
+			CFLAGS=${CFLAGS:+$CFLAGS }${nm_optimize_opt}
+		fi
 	;;
 
 	*)
-		CFLAGS=${CFLAGS:+$CFLAGS}${NM_OPTIMIZE:+ $NM_OPTIMIZE}
+		CFLAGS=${CFLAGS:+$CFLAGS }${NM_OPTIMIZE}
 	;;
 
 esac
 
 # warn option
-case "$NM_WARN" in
-	YES)
-		CFLAGS=${CFLAGS:+$CFLAGS}${nm_warn_opt:+ $nm_warn_opt}
+case ".$NM_WARN" in
+	.|.NO)
 	;;
 
-	NO)
+	.YES)
+		if [ -n "$nm_warn_opt" ]; then
+			CFLAGS=${CFLAGS:+$CFLAGS }${nm_warn_opt}			
+		fi
 	;;
 
 	*)
-		CFLAGS=${CFLAGS:+$CFLAGS}${NM_WARN:+ $NM_WARN}
+		CFLAGS=${CFLAGS:+$CFLAGS }${NM_WARN}
 	;;
 
 esac
 
 # error option
 if [ "$NM_ERROR" = "YES" -a "$NM_WARN" != "NO" ]; then
-	CFLAGS=${CFLAGS:+$CFLAGS}${nm_error_opt:+ $nm_error_opt}
+	CFLAGS=${CFLAGS:+$CFLAGS }${nm_error_opt}
 fi
 
 # debug option
 if [ "$NM_DEBUG" = "NO" ]; then
 	nm_debug_opt='-DNDEBUG=1'
-	CFLAGS=${CFLAGS:+$CFLAGS}${nm_debug_opt:+ $nm_debug_opt}
+	CFLAGS=${CFLAGS:+$CFLAGS }${nm_debug_opt}
 fi
 
 # unicode option
 if [ -n "$nm_utf_opt" ]; then
-	CFLAGS=${CFLAGS:+$CFLAGS}${nm_utf_opt:+ $nm_utf_opt}
+	CFLAGS=${CFLAGS:+$CFLAGS }${nm_utf_opt}
 	CPPFLAGS=${CPPFLAGS:+$CPPFLAGS }${nm_utf_opt}
 fi
 
 # verbose option
-if [ "$NM_VERBOSE" = "YES" ]; then
-	CFLAGS=${CFLAGS:+$CFLAGS}${nm_verbose_opt:+ $nm_verbose_opt}
+if [ "$NM_VERBOSE" = "YES" -a -n "$nm_verbose_opt" ]; then
+	CFLAGS=${CFLAGS:+$CFLAGS }${nm_verbose_opt}
 fi
 
 # link option
