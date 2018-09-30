@@ -24,9 +24,9 @@ fi
 
 # check the echo's "-n" option
 if echo -n test | grep n >/dev/null; then
-  nm_n=
+  echo_n_opt=
 else
-  nm_n=-n
+  echo_n_opt=-n
 fi
 
 

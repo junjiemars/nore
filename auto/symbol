@@ -71,7 +71,7 @@ load_symbol_table() {
 
 dump_symbol_table() {
 	local df="$1"
-	echo $nm_n > "$df"
+	echo $echo_n_opt > "$df"
 
 	if [ 0 -lt $NM_ASSOCIATED_ARRAY_P ]; then
 		for k in "${!NM_SYMBOL_TABLE[@]}"; do

@@ -176,11 +176,11 @@ for stick in ${NM_HAS_STICKS[@]}; do
 	if [ ! -d "$nm_src_stick" ]; then
     
     if [ YES = $NM_NEW ]; then
-      echo $nm_n " + generating $nm_src_stick directory ... "
+      echo $echo_n_opt " + generating $nm_src_stick directory ... "
       mkdir -p $nm_src_stick
       echo_ok_or_failed $?
 
-			echo $nm_n " + generating $nm_src_stick/$nm_stick_norm.c file ... "
+			echo $echo_n_opt " + generating $nm_src_stick/$nm_stick_norm.c file ... "
 			cat <<END > $nm_src_stick/$nm_stick_norm.c
 /*
  * ${gen_by_nore}
@@ -217,7 +217,7 @@ END
     value=`cat $nm_src_stick/version` . ${NORE_ROOT}/auto/define
     
   elif [ YES = $NM_NEW ]; then
-    echo $nm_n " + generating $nm_src_stick/version file ... "
+    echo $echo_n_opt " + generating $nm_src_stick/version file ... "
     cat << END > $nm_src_stick/version
 0x030614
 
@@ -230,7 +230,7 @@ END
 		. $nm_src_stick/configure
     
   elif [ YES = $NM_NEW ]; then
-		echo $nm_n " + generating $nm_src_stick/configure file ... "
+		echo $echo_n_opt " + generating $nm_src_stick/configure file ... "
     cat << END > $nm_src_stick/configure
 # -*- mode:sh -*- vim:ft=sh
 #
@@ -344,7 +344,7 @@ END
 		echo " + checking for $nm_src_stick/Makefile ... found"
 
   elif [ YES = $NM_NEW ]; then
-    echo $nm_n " + generating $nm_src_stick/Makefile file ... "
+    echo $echo_n_opt " + generating $nm_src_stick/Makefile file ... "
     cat << END > "$nm_src_stick/Makefile"
 # ${nm_src_stick}/Makefile
 #

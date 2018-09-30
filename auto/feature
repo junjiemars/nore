@@ -7,7 +7,7 @@
 ####
 
 
-echo $nm_n "checking for $nm_feature ...$nm_c"
+echo $echo_n_opt "checking for $nm_feature ...$nm_c"
 
 cat << END >> $NM_AUTOCONF_ERR
 
