@@ -15,22 +15,18 @@ NM_AUTOTEST=$NM_OUT/autotest
 NM_AUTOCONF_ERR=$NM_OUT/autoconf.err
 
 
-# check the echo's "-n" option and "\c" capability
-
+# check the echo's "\c" capability
 if echo "test\c" | grep c >/dev/null; then
-
-  if echo -n test | grep n >/dev/null; then
-    nm_n=
-    nm_c=
-
-  else
-    nm_n=-n
-    nm_c=
-  fi
-
+	nm_c=
 else
+	nm_c='\c'
+fi
+
+# check the echo's "-n" option
+if echo -n test | grep n >/dev/null; then
   nm_n=
-  nm_c='\c'
+else
+  nm_n=-n
 fi
 
 
