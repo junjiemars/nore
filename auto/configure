@@ -21,6 +21,11 @@ echo > $NM_AUTOCONF_ERR
 
 
 cat << END > $NM_AUTO_H
+/* ${NM_AUTO_H}
+ *
+ * ${gen_by_nore}
+ *
+*/
 
 #define NM_CONFIGURE "$NM_CONFIGURE"
 END

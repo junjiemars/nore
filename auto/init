@@ -37,6 +37,11 @@ fi
 # creating Makefile
 
 cat << END > Makefile
+# Makefile
+#
+# ${gen_by_nore}
+#
+
 
 .PHONY: build reset test task
 
