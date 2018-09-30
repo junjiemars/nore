@@ -17,9 +17,9 @@ NM_AUTOCONF_ERR=$NM_OUT/autoconf.err
 
 # check the echo's "\c" capability
 if echo "test\c" | grep c >/dev/null; then
-	nm_c=
+	echo_c_cap=
 else
-	nm_c='\c'
+	echo_c_cap='\c'
 fi
 
 # check the echo's "-n" option
