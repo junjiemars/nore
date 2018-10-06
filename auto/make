@@ -275,7 +275,7 @@ END
 #nm_feature_ldlibs=
 #nm_feature_test='int i=0x11223344;
 #                 char *p = (char *)&i;
-#             		int le = (0x44 == *p);
+#                 int le = (0x44 == *p);
 #                 printf("%i", le);'
 #. \${NORE_ROOT}/auto/feature
 
