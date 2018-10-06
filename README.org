@@ -27,6 +27,8 @@ $ ./configure
 $ make test
 #+END_SRC
 
+done.
+
 
 - [[#story][Story]]
 - [[#cooking][Cooking]]
