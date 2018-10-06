@@ -49,7 +49,7 @@ So the story begins ...
 -  [[#cooking_configuration][Configuration]]
 -  [[#cooking_getting_started][Getting Started]]
 -  [[#cooking_feature_testing][Feature Testing]]
--  [[#cooking_commands][Commands]]
+-  [[#commands][Commands]]
 
 ** Configuration
 	 :PROPERTIES:
@@ -399,7 +399,7 @@ Write a /bash/ script named /configure/ and put it into =--src-dir= directory.
 
 ** Commands
 	 :PROPERTIES:
-	 :CUSTOM_ID: cooking_commands
+	 :CUSTOM_ID: commands
 	 :END:
 
 *** where
@@ -456,9 +456,16 @@ bash=/usr/bin/bash
 Upgrade current Nore via *upgrade* command.
 
 #+BEGIN_SRC sh
-    # in your C application directory
-    #
-    $ ./configure upgrade
+$ ./configure upgrade
+configure Nore on MSYS_NT-10.0 ...
+
+ + checking make ... found
+ + checking nore ... found
+ + upgrading nore ... ok
+ + generating configure ... ok
+ + generating ~/.cc-env.sh ... ok
+
+... elpased 13 seconds.
 #+END_SRC
 
 * Editing
