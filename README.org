@@ -49,7 +49,7 @@ So the story begins ...
 -  [[#cooking_configuration][Configuration]]
 -  [[#cooking_getting_started][Getting Started]]
 -  [[#cooking_feature_testing][Feature Testing]]
--  [[#cooking-commands][Commands]]
+-  [[#cooking_commands][Commands]]
 
 ** Configuration
 	 :PROPERTIES:
@@ -399,12 +399,12 @@ Write a /bash/ script named /configure/ and put it into =--src-dir= directory.
 
 ** Commands
 	 :PROPERTIES:
-	 :CUSTOM_ID: cooking-commands
+	 :CUSTOM_ID: cooking_commands
 	 :END:
 
 *** where
 		:PROPERTIES:
-		:CUSTOM_ID: cooking_commands_where
+		:CUSTOM_ID: where
 		:END:
 
 The *where* command used to view your current Nore's environment.  And
@@ -450,7 +450,7 @@ bash=/usr/bin/bash
 
 *** upgrade
 		:PROPERTIES:
-		:CUSTOM_ID: cooking_commands_upgrade
+		:CUSTOM_ID: upgrade
 		:END:
 
 Upgrade current Nore via *upgrade* command.
