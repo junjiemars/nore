@@ -49,7 +49,7 @@ So the story begins ...
 -  [[#cooking_configuration][Configuration]]
 -  [[#cooking_getting_started][Getting Started]]
 -  [[#cooking_feature_testing][Feature Testing]]
--  [[#commands][Commands]]
+-  [[#cooking-commands][Commands]]
 
 ** Configuration
 	 :PROPERTIES:
@@ -399,7 +399,7 @@ Write a /bash/ script named /configure/ and put it into =--src-dir= directory.
 
 ** Commands
 	 :PROPERTIES:
-	 :CUSTOM_ID: commands
+	 :CUSTOM_ID: cooking-commands
 	 :END:
 
 *** where
