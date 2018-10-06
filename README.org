@@ -27,6 +27,12 @@ $ ./configure
 $ make test
 #+END_SRC
 
+
+- [[#story][Story]]
+- [[#cooking][Cooking]]
+- [[#editor][Editor]]
+- [[#troubleshoting][Troubleshoting]]
+
 * Story
 	:PROPERTIES:
 	:CUSTOM_ID: story
@@ -53,6 +59,8 @@ So the story begins ...
 	:PROPERTIES:
 	:CUSTOM_ID: cooking
 	:END:
+
+This section describes how to use Nore in details.
 
 -  [[#configuration][Configuration]]
 -  [[#getting-started][Getting Started]]
@@ -435,8 +443,8 @@ esac
 		:CUSTOM_ID: where
 		:END:
 
-The *where* command used to view your current Nore's environment.  And
-after [[#configuration][configuration]], Nore should generate the =.cc-env.sh= shell
+The *where* command used to review your current Nore's environment.
+And after [[#configuration][configuration]], Nore should generate the =.cc-env.sh= shell
 script file at your =$HOME= or =%UERPROFILE%= directory. Run
 =.cc-env.sh= will generate some auxiliary files to help you setup your
 C programming environment and you can find those auxiliary files via
@@ -508,6 +516,8 @@ configure Nore on MSYS_NT-10.0 ...
 	:PROPERTIES:
 	:CUSTOM_ID: editor
 	:END:
+
+This section introduces how Nore interactive with your favor Editors.
 
 **  Vim
 	 :PROPERTIES:
