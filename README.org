@@ -49,7 +49,7 @@ So the story begins ...
 -  [[#configuration][Configuration]]
 -  [[#getting-started][Getting Started]]
 -  [[#feature-testing][Feature Testing]]
--  [[#tips][Tips]]
+-  [[#cooking_commands][Commands]]
 
 ** Configuration
 	 :PROPERTIES:
@@ -297,7 +297,7 @@ to =__DARWIN__=.
 	 :CUSTOM_ID: feature-testing
 	 :END:
 
-Write a /bash/ script named /configure/ and put it into *--src-dir* directory.
+Write a /bash/ script named /configure/ and put it into =--src-dir= directory.
 
 *** Header File Exists Testing
 		:PROPERTIES:
@@ -397,24 +397,39 @@ Write a /bash/ script named /configure/ and put it into *--src-dir* directory.
     esac
 #+END_SRC
 
-** Tips
+** Commands
 	 :PROPERTIES:
-	 :CUSTOM_ID: tips
+	 :CUSTOM_ID: cooking_commands
 	 :END:
 
-*** Nore's Commands
+*** where
 		:PROPERTIES:
-		:CUSTOM_ID: nores-commands
+		:CUSTOM_ID: cooking_commands_where
 		:END:
 
--  =where=: Nore will generate some auxiliary files, you can find those
-   files via *where* command.
+Nore will generate some auxiliary files, you can find those files via
+*where* command.
 
 #+BEGIN_SRC sh
-    $ ./configure where
+$ ./configure where
+NORE_ROOT=/c/opt/apps/nore
+NORE_BRANCH=edge
+configure=./configure
+make=/c/opt/open/gmake/4.2.90/make
+bash=/usr/bin/bash
+.cc-env.sh=/c/Users/linghua/.cc-env.sh
+.cc-env.id/c/Users/linghua/.cc-env.id[0]
+.cc-end.bat=/c/Users/linghua/.cc-env.bat
+.cc-inc.lst=/c/Users/linghua/.cc-inc.lst
+.cc-inc.vimrc=/c/Users/linghua/.cc-inc.vimrc
 #+END_SRC
 
--  =upgrade=: Upgrade current Nore.
+*** upgrade
+		:PROPERTIES:
+		:CUSTOM_ID: cooking_commands_upgrade
+		:END:
+
+Upgrade current Nore via *upgrade* command.
 
 #+BEGIN_SRC sh
     # in your C application directory
@@ -422,55 +437,42 @@ Write a /bash/ script named /configure/ and put it into *--src-dir* directory.
     $ ./configure upgrade
 #+END_SRC
 
-*** Code Editor
+* Editing
+	:PROPERTIES:
+	:CUSTOM_ID: editing
+	:END:
+
+**  Vim
+	 :PROPERTIES:
+	 :CUSTOM_ID: editing_vim
+	 :END:
+
+I prefer non plugin Vim settings, so I can easily working on my all
+machines. [[https://raw.githubusercontent.com/junjiemars/kit/master/ul/.vimrc][download non-plugin .vimrc]].
+
+On any platform, don't warry about C include path, Nore should
+generate a /shell script/ named =~/.cc-env.sh= for you.
+
+
+***  Emacs
 		:PROPERTIES:
-		:CUSTOM_ID: code-editor
+		:CUSTOM_ID: editing_emacs
 		:END:
-
-****  Vim
-
-On any platform, don't warry about C include path, Nore should generate it for you.
-
-I prefer non plugin Vim settings, so I can easily working on my all machines. [[https://raw.githubusercontent.com/junjiemars/kit/master/ul/.vimrc][download non-plugin .vimrc]].
-
-****  Emacs
 
 On any Unix-like platform.
 
 on Window,
 
-- @@html:<kbd>@@shell-command: %userprofile%/.cc-env.bat && bash <your-c-app-dir>/configure --has-x@@html:</kbd>@@
+- @@html:<kbd>@@shell-command: %userprofile%/.cc-env.bat && bash
+  <your-c-app-dir>/configure --has-x@@html:</kbd>@@
 
-- @@html:<kbd>@@compile: %userprofile%/.cc-env.bat && make -C <your-c-app-dir> clean test@@html:</kbd>@@
+- @@html:<kbd>@@compile: %userprofile%/.cc-env.bat && make -C
+  <your-c-app-dir> clean test@@html:</kbd>@@
 
-****  Visual Stduio Code
-
-*** Debugger
+***  Visual Stduio Code
 		:PROPERTIES:
-		:CUSTOM_ID: debugger
+		:CUSTOM_ID: editing_vscode
 		:END:
-
-|             | lldb        | gdb        | cdb          |
-|-------------+-------------+------------+--------------|
-| Help        |             |            |              |
-|             | (lldb) h    | (gdb) h    | 000> ?       |
-|             | (lldb) help | (gdb) help | 000> !help   |
-|             |             |            | 000> .help   |
-|-------------+-------------+------------+--------------|
-| Environment |             |            |              |
-|             |             |            | 000> !envvar |
-
-
-
-*** Object Dump
-		:PROPERTIES:
-		:CUSTOM_ID: object-dump
-		:END:
-
-|   | otool | objdump | dumpbin |
-|---+-------+---------+---------|
-|   |       |         |         |
-
 
 * Troubleshoting
 		:PROPERTIES:
