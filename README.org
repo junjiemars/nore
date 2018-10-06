@@ -373,7 +373,7 @@ nm_include="tgmath.h" . ${NORE_ROOT}/auto/include
 #+BEGIN_SRC sh
 # check features based on Compiler
 #----------------------------------------
-case $CC_NAME in
+case "$CC_NAME" in
     clang)
         ;;
     gcc)
@@ -404,7 +404,7 @@ esac
 #+BEGIN_SRC sh
 # check features based on OS
 #----------------------------------------
-case $NM_SYSTEM in
+case "$NM_SYSTEM" in
     Darwin)
         nm_feature="libuv"
         nm_feature_name="nm_have_uv_h"
