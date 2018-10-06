@@ -46,14 +46,14 @@ So the story begins ...
 
 * Cooking
 
--  [[#cooking_configuration][Configuration]]
--  [[#cooking_getting_started][Getting Started]]
--  [[#cooking_feature_testing][Feature Testing]]
--  [[#cooking_commands][Commands]]
+-  [[#configuration][Configuration]]
+-  [[#getting-started][Getting Started]]
+-  [[#feature-testing][Feature Testing]]
+-  [[#commands][Commands]]
 
 ** Configuration
 	 :PROPERTIES:
-	 :CUSTOM_ID: cooking_configuration
+	 :CUSTOM_ID: configuration
 	 :END:
 
 *** On Unix-like Platform
@@ -127,7 +127,7 @@ If you want to try new features of Nore, try the =edge= branch.
 
 ** Getting Started
 	 :PROPERTIES:
-	 :CUSTOM_ID: cooking_getting_started
+	 :CUSTOM_ID: getting-started
 	 :END:
 
 #+BEGIN_SRC sh
@@ -399,7 +399,7 @@ Write a /bash/ script named /configure/ and put it into =--src-dir= directory.
 
 ** Commands
 	 :PROPERTIES:
-	 :CUSTOM_ID: cooking_commands
+	 :CUSTOM_ID: commands
 	 :END:
 
 *** where
