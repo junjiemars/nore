@@ -46,14 +46,14 @@ So the story begins ...
 
 * Cooking
 
--  [[#configuration][Configuration]]
+-  [[#cooking_configuration][Configuration]]
 -  [[#getting-started][Getting Started]]
 -  [[#feature-testing][Feature Testing]]
 -  [[#cooking_commands][Commands]]
 
 ** Configuration
 	 :PROPERTIES:
-	 :CUSTOM_ID: configuration
+	 :CUSTOM_ID: cooking_configuration
 	 :END:
 
 *** On Unix-like Platform
@@ -407,10 +407,33 @@ Write a /bash/ script named /configure/ and put it into =--src-dir= directory.
 		:CUSTOM_ID: cooking_commands_where
 		:END:
 
-Nore will generate some auxiliary files, you can find those files via
+After [[#cooking_configuration][configuration]], Nore should generate the =.cc-env.sh= shell
+script file at your =$HOME= or =%UERPROFILE%= directory. Run
+=.cc-env.sh= will generate some auxiliary files to help you setup your
+C programming environment and you can find those auxiliary files via
 *where* command.
 
+
+- on Unix-like platform
 #+BEGIN_SRC sh
+$ ~/.cc-env.sh
+
+$ ./configure where
+NORE_ROOT=/opt/apps/c/.nore
+NORE_BRANCH=master
+configure=./configure
+make=/usr/bin/make
+bash=/bin/bash
+.cc-env.sh=/home/ubuntu/.cc-env.sh
+.cc-env.id/home/ubuntu/.cc-env.id[0]
+.cc-inc.lst=/home/ubuntu/.cc-inc.lst
+.cc-inc.vimrc=/home/ubuntu/.cc-inc.vimrc
+#+END_SRC
+
+- on Windows platform
+#+BEGIN_SRC sh
+$ ~/.cc-env.sh
+
 $ ./configure where
 NORE_ROOT=/c/opt/apps/nore
 NORE_BRANCH=edge
