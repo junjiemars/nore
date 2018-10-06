@@ -321,7 +321,7 @@ $ make clean test
 
 ** Feature Testing
 	 :PROPERTIES:
-	 :CUSTOM_ID: cooking_feature_testing
+	 :CUSTOM_ID: feature-testing
 	 :END:
 
 Write a /bash/ script named /configure/ and put it into =--src-dir=
@@ -436,7 +436,7 @@ esac
 		:END:
 
 The *where* command used to view your current Nore's environment.  And
-after [[#cooking_configuration][configuration]], Nore should generate the =.cc-env.sh= shell
+after [[#configuration][configuration]], Nore should generate the =.cc-env.sh= shell
 script file at your =$HOME= or =%UERPROFILE%= directory. Run
 =.cc-env.sh= will generate some auxiliary files to help you setup your
 C programming environment and you can find those auxiliary files via
@@ -518,25 +518,29 @@ I prefer non plugin Vim settings, so I can easily working on my all
 machines. [[https://raw.githubusercontent.com/junjiemars/kit/master/ul/.vimrc][download non-plugin .vimrc]].
 
 On any platform, don't warry about C include path, Nore should
-generate a /shell script/ named =~/.cc-env.sh= for you.
+generate a /shell script/ named =~/.cc-env.sh= for you (for details
+see [[#where][where]] command).
 
 
-***  Emacs
+**  Emacs
 		:PROPERTIES:
 		:CUSTOM_ID: emacs
 		:END:
 
-On any Unix-like platform.
+On any Unix-like platform:
+- @@html:<kbd>@@M-x shell-command: <your-c-app-dir>/configure
+  --has-x@@html:</kbd>@@
+- @@html:<kbd>@@M-x compile make -C <your-c-app-dir> clean
+  test@@html:</kbd>@@
 
-on Window,
 
+On Window:
 - @@html:<kbd>@@shell-command: %userprofile%/.cc-env.bat && bash
   <your-c-app-dir>/configure --has-x@@html:</kbd>@@
-
 - @@html:<kbd>@@compile: %userprofile%/.cc-env.bat && make -C
   <your-c-app-dir> clean test@@html:</kbd>@@
 
-***  Visual Stduio Code
+**  Visual Stduio Code
 		:PROPERTIES:
 		:CUSTOM_ID: visual-studio-code
 		:END:
