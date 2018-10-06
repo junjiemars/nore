@@ -238,8 +238,8 @@ END
 #
 
 
-# check header file existing
-#----------------------------------------
+## check header file existing
+##----------------------------------------
 #echo " + checking C99 header files ..."
 #nm_include="complex.h" . \${NORE_ROOT}/auto/include
 #nm_include="fenv.h" . \${NORE_ROOT}/auto/include
@@ -264,8 +264,8 @@ END
 #nm_include="signal.h" . \${NORE_ROOT}/auto/include
 #
 
-# check machine features
-#----------------------------------------
+## check machine features
+##----------------------------------------
 #nm_feature="endian"
 #nm_feature_name="nm_have_little_endian"
 #nm_feature_run=value
@@ -276,13 +276,13 @@ END
 #nm_feature_test='int i=0x11223344;
 #                 char *p = (char *)&i;
 #             		int le = (0x44 == *p);
-#                 printf("%d", le);'
+#                 printf("%i", le);'
 #. \${NORE_ROOT}/auto/feature
 
 
-# check compiler features
-#----------------------------------------
-#case \$CC_NAME in
+## check compiler features
+##----------------------------------------
+#case "\$CC_NAME" in
 #	clang)
 #		;;
 #	gcc)
@@ -305,9 +305,9 @@ END
 #esac
 
 
-# check OS features
-#----------------------------------------
-#case \$NM_SYSTEM in
+## check OS features
+##----------------------------------------
+#case "\$NM_SYSTEM" in
 #	Darwin)
 #		nm_feature="libuv"
 #		nm_feature_name="nm_have_uv_h"
