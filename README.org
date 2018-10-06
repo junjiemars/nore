@@ -504,9 +504,9 @@ configure Nore on MSYS_NT-10.0 ...
 ... elpased 13 seconds.
 #+END_SRC
 
-* Editing
+* Editor
 	:PROPERTIES:
-	:CUSTOM_ID: editing
+	:CUSTOM_ID: editor
 	:END:
 
 **  Vim
