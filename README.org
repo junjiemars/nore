@@ -45,8 +45,8 @@ those things I just pick the most critical ones: *Make* and *Shell*.
 So the story begins ...
 - Keep things simple: classic workflow (configure, make and make
   install).
-- Write, Build, Test and Run code on anywhere: Linux, Darwin, Windows
-  or Docker.
+- Write, Build, Test and Run on anywhere: Linux, Darwin, Windows or
+  Docker.
 - Easy to try some new ideas but have no more unnecessary.
 
 * Cooking
@@ -69,22 +69,23 @@ So the story begins ...
 		:CUSTOM_ID: on-unix-like-platform
 		:END:
 
-There are no installation process just setup *bash* and *make* environment.
+There are no installation process just configure *bash* and *make*
+environment.
 
 The most simplest way to configure is go into your *C* application
 directory and run:
 
 #+BEGIN_SRC sh
-    $ bash <(curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.sh)
+$ bash <(curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.sh)
 
-    configure Nore on Linux ...
+configure Nore on Linux ...
 
-     + checking make ... found
-     + checking nore ... found
-     + generating configure ... ok
-     + generating ~/.cc-env.sh ... ok
+ + checking make ... found
+ + checking nore ... found
+ + generating configure ... ok
+ + generating ~/.cc-env.sh ... ok
 
-    ... elpased 0 seconds.
+... elpased 0 seconds.
 #+END_SRC
 
 *** On Windows Platform
@@ -93,30 +94,30 @@ directory and run:
 		:END:
 
 On Windows, because there are no *bash* by default, so we need to
-install one, [[https://git-scm.com/downloads][Git Bash]] easy to install
-and use. In the installation of /Git Bash/, select /unix compatible
-tools/ option box. Run =bash= in any =CMD= or =Git Bash=, then run:
+install one, [[https://git-scm.com/downloads][Git Bash]] easy to install and use. When installating /Git
+Bash/, select =unix compatible tools= option box. Start =bash= in any
+=CMD= or =Git Bash=, then run:
 
 #+BEGIN_SRC sh
-    $ bash <(curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.sh)
+$ bash <(curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.sh)
 
-    configure Nore on MINGW64_NT-10.0 ...
+configure Nore on MINGW64_NT-10.0 ...
 
-     + checking make ... no found
-     + checking bash environment ... found
-     + installing make ... ok
-     + checking nore ... found
-     + generating configure ... ok
-     + generating ~/.cc-env.sh ... ok
+ + checking make ... no found
+ + checking bash environment ... found
+ + installing make ... ok
+ + checking nore ... found
+ + generating configure ... ok
+ + generating ~/.cc-env.sh ... ok
 
-    ... elpased 9 seconds.
+... elpased 9 seconds.
 
-    # generate ~/.cc-env.bat for MSVC environment
-    $ ~/.cc-env.sh
+# generate ~/.cc-env.bat for MSVC environment
+$ ~/.cc-env.sh
 #+END_SRC
 
-If want to use Windows C/C++ toolchains, you need to install
-[[https://developer.microsoft.com/en-US/windows/downloads/windows-10-sdk][Windows SDK]] + [[http://landinghub.visualstudio.com/visual-cpp-build-tools][C/C++ Build Tools]].
+If want to use Microsoft C/C++ toolchains on Windows, you just need to
+install [[https://developer.microsoft.com/en-US/windows/downloads/windows-10-sdk][Windows SDK]] and [[http://landinghub.visualstudio.com/visual-cpp-build-tools][C/C++ Build Tools]].
 
 
 /screenshots/:
@@ -130,7 +131,7 @@ If want to use Windows C/C++ toolchains, you need to install
 If you want to try new features of Nore, try the =edge= branch.
 
 #+BEGIN_SRC sh
-    $ curl https://raw.githubusercontent.com/junjiemars/nore/edge/bootstrap.sh | bash -s -- --branch=edge
+$ curl https://raw.githubusercontent.com/junjiemars/nore/edge/bootstrap.sh | bash -s -- --branch=edge
 #+END_SRC
 
 ** Getting Started
@@ -142,9 +143,10 @@ If you want to try new features of Nore, try the =edge= branch.
 $ ./configure --help
 #+END_SRC
 
-On Windows, if using *MSVC* environment, we need host *MSVC* environment first.
+On Windows, if using *MSVC* environment, we need host *MSVC*
+environment first.
 
-#+BEGIN_SRC bat
+#+BEGIN_SRC sh
 # switch to Command Prompt
 $ cmd
 
@@ -164,7 +166,8 @@ $ cmd
 		:END:
 
 Using *--new* option to make a testable skeleton, you can easy to try
-some new idea from scratch. Don't warry, it is the same processing on Windows, Darwin and Linux.
+some new idea from scratch. Don't warry, it is the same processing on
+Windows, Darwin and Linux.
 
 #+BEGIN_SRC sh
 # generate a new project's skeleton
@@ -242,11 +245,27 @@ of *configure* or modify /src/Makefile/.
 		:CUSTOM_ID: multiple-targets
 		:END:
 
-Suppose project /P/ has /A/ and /B/ two targets, one is a
-/Executable/, the other is a /Library/
+Suppose project /P/ has /A/, /B/ and /C/ three individual
+subprojects. And /A/, /B/ and /C/ has individual /Makefile/. The
+directory layout looks like:
+#+BEGIN_EXAMPLE
+P
+├── src
+│   ├── A
+│   │   ├── Makefile
+│   │   └── ...
+│   ├── B
+│   │   ├── Makefile
+│   │   └── ...
+│   └── C
+│       ├── Makefile
+│       └── ...
+└── ...
+#+END_EXAMPLE
 
+You can make them total at once:
 #+BEGIN_SRC sh
-$ ./configure --has-A --has-B
+$ ./configure --has-A --has-B --has-C
 #+END_SRC
 
 *** Multiple Projects
@@ -256,11 +275,11 @@ $ ./configure --has-A --has-B
 
 All projects can use only one Nore.
 
-Suppose there are /A/, /B/ and /C/ projects, those projects use one
-Nore clone.
+Suppose there are /A/, /B/ and /C/ projects, those projects use only
+one Nore clone.
 
 #+BEGIN_SRC sh
-# clone Nore in a directory, annoted as <Nore>
+# clone Nore in a directory, and annoted it as <Nore>
 
 # in A project directory:
 $ cd <A>
