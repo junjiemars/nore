@@ -10,24 +10,27 @@ No More than a C build system for [[https://clang.llvm.org][clang]], [[https://g
 Let's start ...
 
 #+BEGIN_SRC sh
-    # make a new directory as the root of your C application
-    $ make your-c-app-dir
-    $ cd your-c-app-dir
+# make a new directory as the root of your C application
+$ make your-c-app-dir
+$ cd your-c-app-dir
 
-    # run bootstrap from github, it will generate a configure file in current directory
-    $ bash <(curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.sh)
+# run bootstrap from github, it will generate a configure file in current directory
+$ bash <(curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.sh)
 
-    # generate a C application skeleton
-    $ ./configure --new
+# generate a C application skeleton
+$ ./configure --new
 
-		# configure the skeleton that previous generated
-    $ ./configure
+# configure the skeleton that previous generated
+$ ./configure
 
-		# build and test
-    $ make test
+# build and test
+$ make test
 #+END_SRC
 
 * Story
+	:PROPERTIES:
+	:CUSTOM_ID: story
+	:END:
 
 Why we need another C build system?
 
@@ -45,6 +48,9 @@ So the story begins ...
 - Easy to try some new ideas but have no more unnecessary.
 
 * Cooking
+	:PROPERTIES:
+	:CUSTOM_ID: cooking
+	:END:
 
 -  [[#configuration][Configuration]]
 -  [[#getting-started][Getting Started]]
@@ -131,20 +137,20 @@ If you want to try new features of Nore, try the =edge= branch.
 	 :END:
 
 #+BEGIN_SRC sh
-    $ ./configure --help
+$ ./configure --help
 #+END_SRC
 
 On Windows, if using *MSVC* environment, we need host *MSVC* environment first.
 
-#+BEGIN_SRC sh
-    # switch to Command Prompt
-    $ cmd
+#+BEGIN_SRC bat
+# switch to Command Prompt
+$ cmd
 
-    # host MSVC environment
-    > %userprofile%/.cc-env.bat
+# host MSVC environment
+> %userprofile%/.cc-env.bat
 
-    # switch back to SHELL
-    > bash
+# switch back to SHELL
+> bash
 #+END_SRC
 
 /screenshots/:
@@ -159,41 +165,41 @@ Using *--new* option to make a testable skeleton, you can easy to try
 some new idea from scratch. Don't warry, it is the same processing on Windows, Darwin and Linux.
 
 #+BEGIN_SRC sh
-    # generate a new project's skeleton
-    $ ./configure --new
+# generate a new project's skeleton
+$ ./configure --new
 
-    checking for OS
-     + MINGW64_NT-10.0 2.9.0(0.318/5/3) x86_64
-    checking for C compiler ... found
-     + using Microsoft Visual C++ compiler
-     + msvc version: 19.13.26129 for x64
-    checking for WinNT:10.0:x86_64 specific features
+checking for OS
+ + MINGW64_NT-10.0 2.9.0(0.318/5/3) x86_64
+checking for C compiler ... found
+ + using Microsoft Visual C++ compiler
+ + msvc version: 19.13.26129 for x64
+checking for WinNT:10.0:x86_64 specific features
 
-    creating out/Makefile
-     + generating src directory ... ok
-     + generating src/version file ... ok
-     + generating src/configure file ... ok
-     + generating src/Makefile file ... ok
+creating out/Makefile
+ + generating src directory ... ok
+ + generating src/version file ... ok
+ + generating src/configure file ... ok
+ + generating src/Makefile file ... ok
 
-    Configuration summary
-      platform: WinNT:10.0:x86_64
-      compiler: msvc 19.13.26129 for x64
-      prefix= D:/opt/run
-      out= out
-      new= YES
-      std= YES:
-      symbol= YES: -Z7
-      debug= YES
-      optimize= NO
-      cpu= NO
-      error= YES: -WX
-      warn= YES: -W4
-      verbose= NO
-      has= .
+Configuration summary
+  platform: WinNT:10.0:x86_64
+  compiler: msvc 19.13.26129 for x64
+  prefix= D:/opt/run
+  out= out
+  new= YES
+  std= YES:
+  symbol= YES: -Z7
+  debug= YES
+  optimize= NO
+  cpu= NO
+  error= YES: -WX
+  warn= YES: -W4
+  verbose= NO
+  has= .
 
-    # after --new a skeleton, configure skeleton and make
-    $ ./configure
-    $ make clean test
+# after --new a skeleton, configure skeleton and make
+$ ./configure
+$ make clean test
 #+END_SRC
 
 /screenshots/:
@@ -208,9 +214,9 @@ some new idea from scratch. Don't warry, it is the same processing on Windows, D
 For existing C project
 
 #+BEGIN_SRC sh
-    $ cd <existing-c-project-root>
+$ cd <existing-c-project-root>
 
-    $ ./configure --src-dir=<source-directory>
+$ ./configure --src-dir=<source-directory>
 #+END_SRC
 
 *** Build and Test
@@ -219,26 +225,26 @@ For existing C project
 		:END:
 
 #+BEGIN_SRC sh
-    $ ./configure
+$ ./configure
 
-    $ make
+$ make
 
-    $ make test
+$ make test
 #+END_SRC
 
-Following the prompt of *configure* and *make*, change the /options/ of
-*configure* or modify /src/Makefile/.
+Following the prompt of *configure* and *make*, change the /options/
+of *configure* or modify /src/Makefile/.
 
 *** Multiple Targets
 		:PROPERTIES:
 		:CUSTOM_ID: multiple-targets
 		:END:
 
-Suppose project /P/ has /A/ and /B/ two targets, one is a /Executable/, the
-other is a /Library/
+Suppose project /P/ has /A/ and /B/ two targets, one is a
+/Executable/, the other is a /Library/
 
 #+BEGIN_SRC sh
-    $ ./configure --has-A --has-B
+$ ./configure --has-A --has-B
 #+END_SRC
 
 *** Multiple Projects
@@ -248,23 +254,23 @@ other is a /Library/
 
 All projects can use only one Nore.
 
-Suppose there are /A/, /B/ and /C/ projects, those projects use one Nore
-clone.
+Suppose there are /A/, /B/ and /C/ projects, those projects use one
+Nore clone.
 
 #+BEGIN_SRC sh
-    # clone Nore in a directory, annoted as <Nore>
+# clone Nore in a directory, annoted as <Nore>
 
-    # in A project directory:
-    $ cd <A>
-    $ <Nore>/bootstrap.sh
+# in A project directory:
+$ cd <A>
+$ <Nore>/bootstrap.sh
 
-    # in B project directory:
-    $ cd <B>
-    $ <Nore>/bootstrap.sh
+# in B project directory:
+$ cd <B>
+$ <Nore>/bootstrap.sh
 
-    # in C project directory:
-    $ cd <C>
-    $ <Nore>/bootstrap.sh
+# in C project directory:
+$ cd <C>
+$ <Nore>/bootstrap.sh
 #+END_SRC
 
 *** Symbol Table
@@ -272,24 +278,24 @@ clone.
 		:CUSTOM_ID: symbol-table
 		:END:
 
-Nore's builtin exportable symbols can be replaced via *--symbol-table* option,
-which let Nore easy port to existing C projects.
+Nore's builtin exportable symbols can be replaced via *--symbol-table*
+option, which let Nore easy port to existing C projects.
 
-Example: some tools annote /DARWIN/ symbol in C source code or make file as
-=__DARWIN__= , but the default in Nore is =DARWIN=, you can change that
-to =__DARWIN__=.
+Example: some tools annote /DARWIN/ symbol in C source code or make
+file as =__DARWIN__= , but the default in Nore is =DARWIN=, you can
+change that to =__DARWIN__=.
 
 #+BEGIN_SRC sh
-    $ ./configure --symbol-table=<symbol-table-file-name-your-favor>
+$ ./configure --symbol-table=<symbol-table-file-name-your-favor>
 
-    # if <symbol-table-file-name-your-favor> does not existing, 
-    # Nore will dump the symbol table into it. Otherwise, Nore will import 
-    # <symbol-table-file-name-your-favor>
+# if <symbol-table-file-name-your-favor> does not existing, 
+# Nore will dump the symbol table into it. Otherwise, Nore will import 
+# <symbol-table-file-name-your-favor>
 
-    # change the <symbol-table-file-name-your-favor> then
-    #
-    $ ./configure --symbol-table=<symbol-table-file-name-your-favor> --has-<A>
-    $ make clean test
+# change the <symbol-table-file-name-your-favor> then
+#
+$ ./configure --symbol-table=<symbol-table-file-name-your-favor> --has-<A>
+$ make clean test
 #+END_SRC
 
 ** Feature Testing
@@ -297,7 +303,8 @@ to =__DARWIN__=.
 	 :CUSTOM_ID: cooking_feature_testing
 	 :END:
 
-Write a /bash/ script named /configure/ and put it into =--src-dir= directory.
+Write a /bash/ script named /configure/ and put it into =--src-dir=
+directory.
 
 *** Header File Exists Testing
 		:PROPERTIES:
@@ -305,14 +312,14 @@ Write a /bash/ script named /configure/ and put it into =--src-dir= directory.
 		:END:
 
 #+BEGIN_SRC sh
-    # check header file exiting
-    #----------------------------------------
-    echo " + checking C99 header files ..."
-    nm_include="complex.h" . ${NORE_ROOT}/auto/include
-    nm_include="fenv.h" . ${NORE_ROOT}/auto/include
-    nm_include="inttypes.h" . ${NORE_ROOT}/auto/include
-    nm_include="stdint.h" . ${NORE_ROOT}/auto/include
-    nm_include="tgmath.h" . ${NORE_ROOT}/auto/include
+# check header file exiting
+#----------------------------------------
+echo " + checking C99 header files ..."
+nm_include="complex.h" . ${NORE_ROOT}/auto/include
+nm_include="fenv.h" . ${NORE_ROOT}/auto/include
+nm_include="inttypes.h" . ${NORE_ROOT}/auto/include
+nm_include="stdint.h" . ${NORE_ROOT}/auto/include
+nm_include="tgmath.h" . ${NORE_ROOT}/auto/include
 #+END_SRC
 
 *** Machine Feature Testing
@@ -321,20 +328,20 @@ Write a /bash/ script named /configure/ and put it into =--src-dir= directory.
 		:END:
 
 #+BEGIN_SRC sh
-    # check features
-    #----------------------------------------
-    nm_feature="endian"
-    nm_feature_name="nm_have_little_endian"
-    nm_feature_run=value
-    nm_feature_h="#include <stdio.h>"
-    nm_feature_flags=
-    nm_feature_inc=
-    nm_feature_ldlibs=
-    nm_feature_test='int i=0x11223344;
-                     char *p = (char *)&i;
-                     int le = (0x44 == *p);
-                     printf("%d", le);'
-    . ${NORE_ROOT}/auto/feature
+ # check features
+ #----------------------------------------
+ nm_feature="endian"
+ nm_feature_name="nm_have_little_endian"
+ nm_feature_run=value
+ nm_feature_h="#include <stdio.h>"
+ nm_feature_flags=
+ nm_feature_inc=
+ nm_feature_ldlibs=
+ nm_feature_test='int i=0x11223344;
+                  char *p = (char *)&i;
+                  int le = (0x44 == *p);
+                  printf("%d", le);'
+ . ${NORE_ROOT}/auto/feature
 #+END_SRC
 
 *** Compiler Switch Testing
@@ -343,29 +350,29 @@ Write a /bash/ script named /configure/ and put it into =--src-dir= directory.
 		:END:
 
 #+BEGIN_SRC sh
-    # check features based on Compiler
-    #----------------------------------------
-    case $CC_NAME in
-        clang)
-            ;;
-        gcc)
-            nm_feature="$CC_NAME -Wl,-E|--export-dynamic"
-            nm_feature_name=
-            nm_feature_run=no
-            nm_feature_h=
-            nm_feature_flags=-Wl,-E
-            nm_feature_inc=
-            nm_feature_ldlibs=
-            nm_feature_test=
-            . ${NORE_ROOT}/auto/feature
+# check features based on Compiler
+#----------------------------------------
+case $CC_NAME in
+    clang)
+        ;;
+    gcc)
+        nm_feature="$CC_NAME -Wl,-E|--export-dynamic"
+        nm_feature_name=
+        nm_feature_run=no
+        nm_feature_h=
+        nm_feature_flags=-Wl,-E
+        nm_feature_inc=
+        nm_feature_ldlibs=
+        nm_feature_test=
+        . ${NORE_ROOT}/auto/feature
 
-            if [ yes = $nm_found ]; then
-                flag=LDFLAGS op="+=" value=$nm_feature_flags . ${NORE_ROOT}/auto/make_define
-            fi
-            ;;
-        msvc)
-            ;;
-    esac
+        if [ yes = $nm_found ]; then
+            flag=LDFLAGS op="+=" value=$nm_feature_flags . ${NORE_ROOT}/auto/make_define
+        fi
+        ;;
+    msvc)
+        ;;
+esac
 #+END_SRC
 
 *** OS Feature Testing
@@ -374,27 +381,27 @@ Write a /bash/ script named /configure/ and put it into =--src-dir= directory.
 		:END:
 
 #+BEGIN_SRC sh
-    # check features based on OS
-    #----------------------------------------
-    case $NM_SYSTEM in
-        Darwin)
-            nm_feature="libuv"
-            nm_feature_name="nm_have_uv_h"
-            nm_feature_run=no
-            nm_feature_h="#include <uv.h>"
-            nm_feature_flags=-L/opt/local/lib
-            nm_feature_inc=-I/opt/local/include
-            nm_feature_ldlibs=-luv
-            nm_feature_test=
-            . ${NORE_ROOT}/auto/feature
-          ;;
-        Linux)
-          ;;
-        WinNT)
-          ;;
-        *)
-          ;;
-    esac
+# check features based on OS
+#----------------------------------------
+case $NM_SYSTEM in
+    Darwin)
+        nm_feature="libuv"
+        nm_feature_name="nm_have_uv_h"
+        nm_feature_run=no
+        nm_feature_h="#include <uv.h>"
+        nm_feature_flags=-L/opt/local/lib
+        nm_feature_inc=-I/opt/local/include
+        nm_feature_ldlibs=-luv
+        nm_feature_test=
+        . ${NORE_ROOT}/auto/feature
+      ;;
+    Linux)
+      ;;
+    WinNT)
+      ;;
+    *)
+      ;;
+esac
 #+END_SRC
 
 ** Commands
@@ -475,7 +482,7 @@ configure Nore on MSYS_NT-10.0 ...
 
 **  Vim
 	 :PROPERTIES:
-	 :CUSTOM_ID: editing_vim
+	 :CUSTOM_ID: vim
 	 :END:
 
 I prefer non plugin Vim settings, so I can easily working on my all
@@ -487,7 +494,7 @@ generate a /shell script/ named =~/.cc-env.sh= for you.
 
 ***  Emacs
 		:PROPERTIES:
-		:CUSTOM_ID: editing_emacs
+		:CUSTOM_ID: emacs
 		:END:
 
 On any Unix-like platform.
@@ -502,7 +509,7 @@ on Window,
 
 ***  Visual Stduio Code
 		:PROPERTIES:
-		:CUSTOM_ID: editing_vscode
+		:CUSTOM_ID: visual-studio-code
 		:END:
 
 * Troubleshoting
@@ -515,11 +522,11 @@ Makefile and shell scripts. And Nore provides a command for debugging
 purpose.
 
 #+BEGIN_SRC sh
-    # debug command for debugging Nore's shell script
-    #
-    $ ./configure debug
+# debug command for debugging Nore's shell script
+#
+$ ./configure debug
 
-    # make debugging options: --just-print --print-data-base --warn-undefined-variables
-    #
-    $ make --just-print
+# make debugging options: --just-print --print-data-base --warn-undefined-variables
+#
+$ make --just-print
 #+END_SRC
