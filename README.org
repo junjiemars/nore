@@ -442,8 +442,16 @@ script file at your =$HOME= or =%UERPROFILE%= directory. Run
 C programming environment and you can find those auxiliary files via
 *where* command.
 
+The =.cc-env.sh= will generate:
+- =.cc-env.id= file: indicates =.cc-env.bat= file, =.cc-inc.lst= file
+  and =.cc-inc.vimrc= file whether had been generated. =0= indicates
+  those files had been generated, othwise is not.
+- =.cc-env.bat= file: only for /msvc/ on Windows
+- =.cc-inc.lst= file: a list of C include path
+- =.cc-inc.vimrc= file: =vimrc= file if =vim= already been instaslled
 
-- on Unix-like platform
+
+On Unix-like platform, the output of *where* command looks like:
 #+BEGIN_SRC sh
 $ ~/.cc-env.sh
 
@@ -459,7 +467,7 @@ bash=/bin/bash
 .cc-inc.vimrc=/home/ubuntu/.cc-inc.vimrc
 #+END_SRC
 
-- on Windows platform
+On Windows platform, the output of *where* command looks like:
 #+BEGIN_SRC sh
 $ ~/.cc-env.sh
 
