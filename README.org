@@ -156,19 +156,19 @@ $ ./configure --help
 On Windows, if using *MSVC* environment, we need host *MSVC*
 environment first.
 
-- in /bash/:
+In /bash/:
 #+BEGIN_SRC sh
 # host msvc environment
 $ ~/.cc-env.bat
 #+END_SRC
 
-- in /cmd/:
+In /cmd/:
 #+BEGIN_SRC bat
 REM host msvc environment
 > %userprofile%/.cc-env.bat
 
 REM switch to bash environment
-> bash -i
+> bash
 #+END_SRC
 
 /screenshots/:
