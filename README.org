@@ -156,15 +156,19 @@ $ ./configure --help
 On Windows, if using *MSVC* environment, we need host *MSVC*
 environment first.
 
+- in /bash/:
 #+BEGIN_SRC sh
-# switch to Command Prompt
-$ cmd
+# host msvc environment
+$ ~/.cc-env.bat
+#+END_SRC
 
-# host MSVC environment
+- in /cmd/:
+#+BEGIN_SRC bat
+REM host msvc environment
 > %userprofile%/.cc-env.bat
 
-# switch back to SHELL
-> bash
+REM switch to bash environment
+> bash -i
 #+END_SRC
 
 /screenshots/:
@@ -487,11 +491,11 @@ NORE_BRANCH=edge
 configure=./configure
 make=/c/opt/open/gmake/4.2.90/make
 bash=/usr/bin/bash
-.cc-env.sh=/c/Users/linghua/.cc-env.sh
-.cc-env.id/c/Users/linghua/.cc-env.id[0]
-.cc-end.bat=/c/Users/linghua/.cc-env.bat
-.cc-inc.lst=/c/Users/linghua/.cc-inc.lst
-.cc-inc.vimrc=/c/Users/linghua/.cc-inc.vimrc
+.cc-env.sh=/c/Users/junjie/.cc-env.sh
+.cc-env.id/c/Users/junjie/.cc-env.id[0]
+.cc-end.bat=/c/Users/junjie/.cc-env.bat
+.cc-inc.lst=/c/Users/junjie/.cc-inc.lst
+.cc-inc.vimrc=/c/Users/junjie/.cc-inc.vimrc
 #+END_SRC
 
 *** upgrade
