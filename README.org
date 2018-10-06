@@ -442,7 +442,7 @@ script file at your =$HOME= or =%UERPROFILE%= directory. Run
 C programming environment and you can find those auxiliary files via
 *where* command.
 
-The =.cc-env.sh= will generate:
+The =.cc-env.sh= will generates the following files:
 - =.cc-env.id= file: indicates =.cc-env.bat= file, =.cc-inc.lst= file
   and =.cc-inc.vimrc= file whether had been generated. =0= indicates
   those files had been generated, othwise is not.
