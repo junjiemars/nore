@@ -540,6 +540,12 @@ On Window:
 - @@html:<kbd>@@compile: %userprofile%/.cc-env.bat && make -C
   <your-c-app-dir> clean test@@html:</kbd>@@
 
+
+[[https://github.com/junjiemars/.emacs.d][More Reasonable Emacs]] has awsome C programming experience, including C
+source code and makefile editing, syntax highlight, auto completion,
+debuger interactive, and more. C programming with [[https://github.com/junjiemars/.emacs.d][More Reasonable
+Emacs]] excellent smooth.
+
 **  Visual Stduio Code
 		:PROPERTIES:
 		:CUSTOM_ID: visual-studio-code
