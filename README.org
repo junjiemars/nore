@@ -47,8 +47,8 @@ So the story begins ...
 * Cooking
 
 -  [[#cooking_configuration][Configuration]]
--  [[#getting-started][Getting Started]]
--  [[#feature-testing][Feature Testing]]
+-  [[#cooking_getting_started][Getting Started]]
+-  [[#cooking_feature_testing][Feature Testing]]
 -  [[#cooking_commands][Commands]]
 
 ** Configuration
@@ -127,7 +127,7 @@ If you want to try new features of Nore, try the =edge= branch.
 
 ** Getting Started
 	 :PROPERTIES:
-	 :CUSTOM_ID: getting-started
+	 :CUSTOM_ID: cooking_getting_started
 	 :END:
 
 #+BEGIN_SRC sh
@@ -294,7 +294,7 @@ to =__DARWIN__=.
 
 ** Feature Testing
 	 :PROPERTIES:
-	 :CUSTOM_ID: feature-testing
+	 :CUSTOM_ID: cooking_feature_testing
 	 :END:
 
 Write a /bash/ script named /configure/ and put it into =--src-dir= directory.
@@ -407,7 +407,8 @@ Write a /bash/ script named /configure/ and put it into =--src-dir= directory.
 		:CUSTOM_ID: cooking_commands_where
 		:END:
 
-After [[#cooking_configuration][configuration]], Nore should generate the =.cc-env.sh= shell
+The *where* command used to view your current Nore's environment.  And
+after [[#cooking_configuration][configuration]], Nore should generate the =.cc-env.sh= shell
 script file at your =$HOME= or =%UERPROFILE%= directory. Run
 =.cc-env.sh= will generate some auxiliary files to help you setup your
 C programming environment and you can find those auxiliary files via
