@@ -283,7 +283,7 @@ $ ./configure --has-A --has-B --has-C
 		:CUSTOM_ID: multiple-projects
 		:END:
 
-All projects can use only one Nore.
+All projects can share only one Nore clone.
 
 Suppose there are /A/, /B/ and /C/ projects, those projects use only
 one Nore clone.
