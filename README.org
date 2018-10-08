@@ -158,8 +158,14 @@ environment first.
 
 In /bash/:
 #+BEGIN_SRC sh
-# host msvc environment
-$ ~/.cc-env.bat
+# switch to cmd
+$ cmd
+
+REM host msvc environment
+> %userprofile%/.cc-env.bat
+
+REM switch to bash
+> bash
 #+END_SRC
 
 In /cmd/:
@@ -167,7 +173,7 @@ In /cmd/:
 REM host msvc environment
 > %userprofile%/.cc-env.bat
 
-REM switch to bash environment
+REM switch to bash
 > bash
 #+END_SRC
 
