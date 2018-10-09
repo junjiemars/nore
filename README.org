@@ -127,11 +127,12 @@ $ ~/.cc-env.sh
 #+END_SRC
 
 If want to use Microsoft C/C++ toolchains on Windows, you just need to
-install [[https://developer.microsoft.com/en-US/windows/downloads/windows-10-sdk][Windows SDK]] and [[http://landinghub.visualstudio.com/visual-cpp-build-tools][C/C++ Build Tools]].
+install [[https://developer.microsoft.com/en-US/windows/downloads/windows-10-sdk][Windows SDK]] and [[https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2017][C/C++ Build Tools]].
 
 
 /screenshots/:
 - [[https://github.com/junjiemars/images/blob/master/nore/bootstrap-on-windows.png][bootstrap on Windows]]
+- [[https://github.com/junjiemars/images/blob/master/nore/visual-studio-build-tools-2017.png][visual studio build tools 2017]]
 
 *** From Edge Branch
 		:PROPERTIES:
