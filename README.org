@@ -544,7 +544,6 @@ On any platform, don't warry about C include path, Nore should
 generate a /shell script/ named =~/.cc-env.sh= for you (for details
 see [[#where][where]] command).
 
-
 **  Emacs
 		:PROPERTIES:
 		:CUSTOM_ID: emacs
@@ -566,8 +565,7 @@ On Window:
 
 [[https://github.com/junjiemars/.emacs.d][More Reasonable Emacs]] has awsome C programming experience, including C
 source code and makefile editing, syntax highlight, auto completion,
-debuger interactive, and more. C programming with [[https://github.com/junjiemars/.emacs.d][More Reasonable
-Emacs]] excellent smooth.
+debuger interactive, and excellent smooth.
 
 **  Visual Stduio Code
 		:PROPERTIES:
