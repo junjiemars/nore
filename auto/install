@@ -43,18 +43,3 @@ cp-if = \$(foreach f,\$(wildcard \$1/*),\$(shell cp -r \$(f) \$2))
 
 END
 
-
-
-# create Makefile
-
-cat << END >> Makefile
-
-build:
-	\$(MAKE) -f $NM_MAKEFILE
-
-install: 
-	\$(MAKE) -f $NM_MAKEFILE install
-
-END
-
-

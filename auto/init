@@ -39,9 +39,12 @@ cat << END > Makefile
 #
 
 
-.PHONY: build reset test task
+.PHONY: build clean reset test task install
 
 default: build
+
+build:
+	\$(MAKE) -f $NM_MAKEFILE
 
 clean:
 	\$(MAKE) -f $NM_MAKEFILE clean
@@ -54,6 +57,9 @@ test:
 
 task:
 	\$(MAKE) -f $NM_MAKEFILE \$(TASK)
+
+install: 
+	\$(MAKE) -f $NM_MAKEFILE install
 
 END
 
