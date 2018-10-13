@@ -30,36 +30,3 @@ else
 fi
 
 
-# creating Makefile
-
-cat << END > Makefile
-# Makefile
-#
-# ${gen_by_nore}
-#
-
-
-.PHONY: build clean reset test task install
-
-default: build
-
-build:
-	\$(MAKE) -f $NM_MAKEFILE
-
-clean:
-	\$(MAKE) -f $NM_MAKEFILE clean
-
-reset:
-	\$(RM) -r Makefile $NM_OUT
-
-test:
-	\$(MAKE) -f $NM_MAKEFILE test
-
-task:
-	\$(MAKE) -f $NM_MAKEFILE \$(TASK)
-
-install: 
-	\$(MAKE) -f $NM_MAKEFILE install
-
-END
-
