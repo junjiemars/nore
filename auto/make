@@ -416,11 +416,13 @@ fi
 # create root Makefile
 
 if [ ! -f Makefile ]; then
+	echo $echo_n_opt " + generating Makefile file ... "
 	cat << END > Makefile
 # Makefile
 #
 # ${gen_by_nore}
 #
+# check ${NM_MAKEFILE} for details
 
 
 .PHONY: build clean reset test task install
