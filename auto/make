@@ -449,4 +449,6 @@ install:
 
 END
 
-fi
+	echo_ok_or_failed $?
+	
+fi # end of -f Makefile
