@@ -75,20 +75,14 @@ fi
 . ${NORE_ROOT}/auto/os/conf
 
 
-case ".$NM_PREFIX" in
-	.)
-		case "$NM_SYSTEM" in
-			Darwin) NM_PREFIX="/opt/local" ;;
-			Linux)  NM_PREFIX="/usr/local" ;;
-		esac
-    have=NM_PREFIX value="\"$NM_PREFIX/\"" . ${NORE_ROOT}/auto/define
-	;;
-
-	.*)
-    have=NM_PREFIX value="\"$NM_PREFIX/\"" . ${NORE_ROOT}/auto/define
-	;;
-
-esac
+if [ -z "$NM_PREFIX" ]; then
+	case "$NM_SYSTEM" in
+		Linux)    NM_PREFIX="/usr/local"  ;;
+		Darwin)   NM_PREFIX="/opt/local"  ;;
+		WinNT|*)  NM_PREFIX="dist"        ;;
+	esac
+fi
+have=NM_PREFIX value="\"$NM_PREFIX/\"" . ${NORE_ROOT}/auto/define
 
 
 . ${NORE_ROOT}/auto/make
