@@ -44,16 +44,16 @@ cat << END > Makefile
 default: build
 
 clean:
-	\$(MAKE) -f $NM_OUT/Makefile clean
+	\$(MAKE) -f $NM_MAKEFILE clean
 
 reset:
 	\$(RM) -r Makefile $NM_OUT
 
 test:
-	\$(MAKE) -f $NM_OUT/Makefile test
+	\$(MAKE) -f $NM_MAKEFILE test
 
 task:
-	\$(MAKE) -f $NM_OUT/Makefile \$(TASK)
+	\$(MAKE) -f $NM_MAKEFILE \$(TASK)
 
 END
 
