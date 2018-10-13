@@ -41,7 +41,7 @@ if [ -n "$NM_SYMBOL_FILE" ]; then
 fi
 
 
-if test -z "$NM_PLATFORM"; then
+if [ -z "$NM_PLATFORM" ]; then
   echo "checking for OS"
   
   NM_SYSTEM=`uname -s 2>/dev/null`
