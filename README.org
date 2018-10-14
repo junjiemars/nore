@@ -20,9 +20,6 @@ $ bash <(curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap
 # generate a C application skeleton
 $ ./configure --new
 
-# configure the skeleton that previous generated
-$ ./configure
-
 # build and test
 $ make test
 #+END_SRC
@@ -461,7 +458,7 @@ And after [[#configuration][configuration]], Nore should generate the =.cc-env.s
 script file at your =$HOME= or =%UERPROFILE%= directory. Run
 =.cc-env.sh= will generate some auxiliary files to help you setup your
 C programming environment and you can find those auxiliary files via
-*where* command.
+ *where* command.
 
 The =.cc-env.sh= will generates the following files:
 - =.cc-env.id= file: indicates =.cc-env.bat= file, =.cc-inc.lst= file
