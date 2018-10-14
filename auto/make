@@ -416,7 +416,6 @@ fi
 # create root Makefile
 if [ ! -f Makefile ]; then
 	echo $echo_n_opt " + generating Makefile file ... "
-	stick_makefile=Makefile
 	cat << END > Makefile
 # Makefile
 #
