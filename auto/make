@@ -352,6 +352,8 @@ END
   elif [ YES = $NM_NEW ]; then
     cat << END >> $NM_MAKEFILE
 
+${nm_stick_norm}_root := $nm_src_stick/
+
 ${nm_stick_norm}_binout := \$(bin_path)${nm_stick_norm}\$(bin_ext)
 
 ${nm_stick_norm}: \$(${nm_stick_norm}_binout)
@@ -379,16 +381,17 @@ END
   nm_sticks+=("$stick")
 	nm_sticks_build+=("$nm_stick_norm")
 	nm_sticks_test+=("`make_stick_norm $nm_src_stick $stick`_test")
-		
+
+if [ -n "$stick_makefile" ]; then
 	cat << END >> $NM_MAKEFILE
 
 ${nm_stick_norm}_root := $nm_src_stick/
-`
-if [ $nm_src_stick != . ]; then
-  echo "include $stick_makefile"
-fi
-`
+
+include $stick_makefile
+
+#---------------------------------------
 END
+fi
 
 done # iterate sticks
 
