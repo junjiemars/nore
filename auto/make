@@ -178,26 +178,26 @@ for stick in ${NM_HAS_STICKS[@]}; do
 	nm_src_stick="`make_stick_path $NM_SRC $stick`"
 	nm_stick_norm="`make_stick_norm $nm_src_stick $stick`"
 	
-	if [ ! -d "$nm_src_stick" -a "YES" != "$NM_NEW" ]; then
-		echo " + checking for $nm_src_stick ... no found"
-		cat << END >> $NM_AUTOCONF_ERR
+	if [ ! -d "$nm_src_stick" ]; then
+		if [ YES = $NM_NEW ]; then
+			echo $echo_n_opt " + generating $nm_src_stick directory ... "
+			mkdir -p $nm_src_stick
+			echo_ok_or_failed $?
+		else
+			echo " + checking for $nm_src_stick ... no found"
+			cat << END >> $NM_AUTOCONF_ERR
 
 ---------------------------------------
 checking for $nm_src_stick ... no found
 
 END
-    continue
-	fi
-	
-	if [ ! -d "$nm_src_stick" ]; then
-		echo $echo_n_opt " + generating $nm_src_stick directory ... "
-    mkdir -p $nm_src_stick
-    echo_ok_or_failed $?
-	fi
-    
+			continue
+		fi
+	fi # end of [ ! -d $nm_src_stick ]
+
   if [ ! -f "$nm_src_stick/$nm_stick_norm.c" -a YES = $NM_NEW ]; then
 		echo $echo_n_opt " + generating $nm_src_stick/$nm_stick_norm.c file ... "
-		cat <<END > $nm_src_stick/$nm_stick_norm.c
+		cat <<END > "$nm_src_stick/$nm_stick_norm.c"
 /*
  * ${gen_by_nore}
 */
@@ -215,7 +215,7 @@ int main(int argc, char **argv) {
 
 END
 			echo_ok_or_failed $?
-  fi # end of YES = $NM_NEW
+  fi # end of [ ! -f "$nm_src_stick/$nm_stick_norm.c" ]
 
   if [ -f "$nm_src_stick/version" ]; then
 		echo " + checking for $nm_src_stick/version ... found"
@@ -224,20 +224,20 @@ END
     
   elif [ YES = $NM_NEW ]; then
     echo $echo_n_opt " + generating $nm_src_stick/version file ... "
-    cat << END > $nm_src_stick/version
+    cat << END > "$nm_src_stick/version"
 0x030614
 
 END
     echo_ok_or_failed $?
-	fi # end of -f version
+	fi # end of [ -f $nm_src_stick/version ]
   
 	if [ -f "$nm_src_stick/auto" -a $nm_src_stick != . ]; then
 		echo " + checking for $nm_src_stick/auto ... found"
-		. $nm_src_stick/auto
+		. "$nm_src_stick/auto"
     
   elif [ YES = $NM_NEW ]; then
 		echo $echo_n_opt " + generating $nm_src_stick/auto file ... "
-    cat << END > $nm_src_stick/auto
+    cat << END > "$nm_src_stick/auto"
 # -*- mode:sh -*- vim:ft=sh
 #
 # ${gen_by_nore}
@@ -335,7 +335,7 @@ END
 
 END
     echo_ok_or_failed $?
-	fi # end of -f auto
+	fi # end of [ -f $nm_src_stick/auto ]
   
 	if [ -f $nm_src_stick/Makefile.$CC_NAME ]; then
 		stick_makefile=$nm_src_stick/Makefile.$CC_NAME
@@ -376,7 +376,7 @@ checking for ${nm_src_stick}/Makefile no found
 
 END
 		continue	
-	fi # end of -f Makefile
+	fi # end of [ -f $nm_src_stick/Makefile ]
 
   nm_sticks+=("$stick")
 	nm_sticks_build+=("$nm_stick_norm")
