@@ -255,7 +255,13 @@ END
 		echo " + checking for $nm_src_stick/Makefile ... found"
 
   elif [ YES = $NM_NEW ]; then
-		cat << END > "$nm_src_stick/Makefile.NEW"
+		stick_makefile="$nm_src_stick/Makefile"
+		if [ $nm_src_stick = . ]; then
+			stick_makefile="$nm_src_stick/Makefile.NEW"
+		else
+			echo $echo_n_opt " + generating $nm_src_stick/Makefile ... "
+		fi
+		cat << END > "$stick_makefile"
 #---------------------------------------
 
 ${nm_stick_norm}_root := $nm_src_stick/
@@ -270,7 +276,9 @@ ${nm_stick_norm}_test: ${nm_stick_norm}
 	\$(CC) \$(CFLAGS) \$(INC) \$< \$(bin_out)\$@
 
 END
-    
+	  if [ $nm_src_stick != . ]; then
+			echo_ok_or_failed $?
+		fi
 	else
 
 		echo " + checking for $nm_src_stick/Makefile ... no found"
