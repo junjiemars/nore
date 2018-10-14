@@ -18,9 +18,6 @@ NM_VAR_PATH=${NM_PREFIX}/${NM_VAR_PATH}
 
 cat << END >> $NM_MAKEFILE
 
-#---------------------------------------
-
-
 install: build $NM_BIN_PATH $NM_LIB_PATH $NM_INC_PATH $NM_ETC_PATH
 	\$(call cp-if, $NM_OUT/bin, $NM_BIN_PATH/)
 	\$(call cp-if, $NM_OUT/lib, $NM_LIB_PATH/)
@@ -39,7 +36,4 @@ $NM_BIN_PATH $NM_LIB_PATH $NM_INC_PATH $NM_ETC_PATH:
 mkdir-if = \$(if \$(wildcard \$1),,mkdir -p \$1)
 cp-if = \$(foreach f,\$(wildcard \$1/*),\$(shell cp -r \$(f) \$2))
 
-
-
 END
-

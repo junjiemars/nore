@@ -102,8 +102,6 @@ ar_ext = $ar_ext
 bin_ext = $bin_ext
 
 
-default: build
-
 clean:
 	-\$(RM) -r $NM_OUT/bin/*
 	-\$(RM) -r $NM_OUT/lib/*
@@ -113,6 +111,10 @@ clean:
 	-\$(RM) -r $NM_OUT/tmp/*
 
 END
+
+
+# make install targets
+. ${NORE_ROOT}/auto/install
 
 
 nm_sticks=()
@@ -157,6 +159,8 @@ echo_ok_or_failed() {
 
 # basic paths
 cat << END >> $NM_MAKEFILE
+
+#---------------------------------------
 
 root = $NM_SRC/
 
@@ -346,19 +350,7 @@ END
 		echo " + checking for $nm_src_stick/Makefile ... found"
 
   elif [ YES = $NM_NEW ]; then
-    echo $echo_n_opt " + generating $nm_src_stick/Makefile file ... "
-    cat << END > "$nm_src_stick/Makefile"
-# ${nm_src_stick}/Makefile
-#
-# ${gen_by_nore}
-# 
-# check ${NM_MAKEFILE} for details
-
-`
-if [ $nm_src_stick = . ]; then
-  echo "include ${NM_MAKEFILE}"
-fi
-`
+    cat << END >> $NM_MAKEFILE
 
 ${nm_stick_norm}_binout := \$(bin_path)${nm_stick_norm}\$(bin_ext)
 
@@ -369,8 +361,8 @@ ${nm_stick_norm}_test: ${nm_stick_norm}
 \$(${nm_stick_norm}_binout): \$(${nm_stick_norm}_root)*.c
 	\$(CC) \$(CFLAGS) \$(INC) \$< \$(bin_out)\$@
 
+#---------------------------------------
 END
-    echo_ok_or_failed $?
     
 	else
 
@@ -405,9 +397,13 @@ if [ 0 -lt ${#nm_sticks} ]; then
 
 	cat << END >> $NM_MAKEFILE
 
-.PHONY: ${nm_sticks_build[@]} ${nm_sticks_test[@]}
 build: ${nm_sticks_build[@]}
 test: ${nm_sticks_test[@]}
+
+default: build
+
+.PHONY: build clean reset test task install \\
+        ${nm_sticks_build[@]} ${nm_sticks_test[@]}
 END
   
 fi
@@ -424,28 +420,7 @@ if [ ! -f Makefile ]; then
 #
 # check ${NM_MAKEFILE} for details
 
-
-.PHONY: build clean reset test task install
-
-default: build
-
-build:
-	\$(MAKE) -f $NM_MAKEFILE
-
-clean:
-	\$(MAKE) -f $NM_MAKEFILE clean
-
-reset:
-	\$(RM) -r Makefile $NM_OUT
-
-test:
-	\$(MAKE) -f $NM_MAKEFILE test
-
-task:
-	\$(MAKE) -f $NM_MAKEFILE \$(TASK)
-
-install: 
-	\$(MAKE) -f $NM_MAKEFILE install
+include $NM_MAKEFILE
 
 END
 

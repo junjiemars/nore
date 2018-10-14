@@ -87,6 +87,4 @@ have=NM_PREFIX value="\"$NM_PREFIX/\"" . ${NORE_ROOT}/auto/define
 
 . ${NORE_ROOT}/auto/make
 
-. ${NORE_ROOT}/auto/install
-
 . ${NORE_ROOT}/auto/summary
