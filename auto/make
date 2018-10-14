@@ -238,103 +238,7 @@ END
     
   elif [ YES = $NM_NEW ]; then
 		echo $echo_n_opt " + generating $nm_src_stick/auto file ... "
-    cat << END > "$nm_src_stick/auto"
-# -*- mode:sh -*- vim:ft=sh
-#
-# ${gen_by_nore}
-#
-
-
-## check header file existing
-##----------------------------------------
-#echo " + checking C99 header files ..."
-#nm_include="complex.h" . \${NORE_ROOT}/auto/include
-#nm_include="fenv.h" . \${NORE_ROOT}/auto/include
-#nm_include="inttypes.h" . \${NORE_ROOT}/auto/include
-#nm_include="stdint.h" . \${NORE_ROOT}/auto/include
-#nm_include="tgmath.h" . \${NORE_ROOT}/auto/include
-#
-#echo " + checking C11 header files ..."
-#nm_include="stdalign.h" . \${NORE_ROOT}/auto/include
-#nm_include="stdatomic.h" . \${NORE_ROOT}/auto/include
-#nm_include="stdnoreturn.h" . \${NORE_ROOT}/auto/include
-#nm_include="threads.h" . \${NORE_ROOT}/auto/include
-#nm_include="uchar.h" . \${NORE_ROOT}/auto/include
-#
-#echo " + checking NA1 header files ..."
-#nm_include="iso646.h" . \${NORE_ROOT}/auto/include
-#nm_include="wchar.h" . \${NORE_ROOT}/auto/include
-#nm_include="wctype.h" . \${NORE_ROOT}/auto/include
-#
-#echo " + checking nonstandard posix header files ..."
-#nm_include="unistd.h" . \${NORE_ROOT}/auto/include
-#nm_include="signal.h" . \${NORE_ROOT}/auto/include
-#
-
-## check machine features
-##----------------------------------------
-#nm_feature="endian"
-#nm_feature_name="nm_have_little_endian"
-#nm_feature_run=value
-#nm_feature_h="#include <stdio.h>"
-#nm_feature_flags=
-#nm_feature_inc=
-#nm_feature_ldlibs=
-#nm_feature_test='int i=0x11223344;
-#                 char *p = (char *)&i;
-#                 int le = (0x44 == *p);
-#                 printf("%i", le);'
-#. \${NORE_ROOT}/auto/feature
-
-
-## check compiler features
-##----------------------------------------
-#case "\$CC_NAME" in
-#	clang)
-#		;;
-#	gcc)
-#		nm_feature="\$CC_NAME -Wl,-E|--export-dynamic"
-#		nm_feature_name=
-#		nm_feature_run=no
-#		nm_feature_h=
-#		nm_feature_flags=-Wl,-E
-#		nm_feature_inc=
-#		nm_feature_ldlibs=
-#		nm_feature_test=
-#		. \${NORE_ROOT}/auto/feature
-#
-#		if [ yes = \$nm_found ]; then
-#			flag=LDFLAGS op="+=" value=\$nm_feature_flags . \${NORE_ROOT}/auto/make_define
-#		fi
-#		;;
-#	msvc)
-#		;;
-#esac
-
-
-## check OS features
-##----------------------------------------
-#case "\$NM_SYSTEM" in
-#	Darwin)
-#		nm_feature="libuv"
-#		nm_feature_name="nm_have_uv_h"
-#		nm_feature_run=no
-#		nm_feature_h="#include <uv.h>"
-#		nm_feature_flags=-L/opt/local/lib
-#		nm_feature_inc=-I/opt/local/include
-#		nm_feature_ldlibs=-luv
-#		nm_feature_test=
-#		. \${NORE_ROOT}/auto/feature
-#	  ;;
-#	Linux)
-#	  ;;
-#	WinNT)
-#	  ;;
-#	*)
-#	  ;;
-#esac
-
-END
+    cat ${NORE_ROOT}/auto/check > "$nm_src_stick/auto"
     echo_ok_or_failed $?
 	fi # end of [ -f $nm_src_stick/auto ]
   
@@ -406,7 +310,7 @@ test: ${nm_sticks_test[@]}
 
 default: build
 
-.PHONY: build clean reset test task install \\
+.PHONY: build clean test task install \\
         ${nm_sticks_build[@]} ${nm_sticks_test[@]}
 END
   
