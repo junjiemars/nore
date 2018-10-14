@@ -112,8 +112,8 @@ cat << END
   --etc-path=PATH                    set etc pathname
   --var-path=PATH                    set var pathname
 
-  --src-dir=DIR                      set source directory
-  --out-dir=DIR                      set build out directory
+  --src-dir=[.|src|*]                set source directory
+  --out-dir=[out|*]                  set build out directory
 
   --cross-build=[YES|NO]             set cross build option
 
