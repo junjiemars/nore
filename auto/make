@@ -122,6 +122,7 @@ nm_sticks_build=()
 nm_sticks_test=()
 nm_src_stick=
 nm_stick_norm=
+nm_stick_make=
 
 
 make_stick_path() {
@@ -195,7 +196,7 @@ END
 		fi
 	fi # end of [ ! -d $nm_src_stick ]
 
-  if [ ! -f "$nm_src_stick/$nm_stick_norm.c" -a YES = $NM_NEW ]; then
+  if [ YES = $NM_NEW -a ! -f "$nm_src_stick/$nm_stick_norm.c" ]; then
 		echo $echo_n_opt " + generating $nm_src_stick/$nm_stick_norm.c file ... "
 		cat <<END > "$nm_src_stick/$nm_stick_norm.c"
 /*
@@ -214,13 +215,13 @@ int main(int argc, char **argv) {
 }
 
 END
-			echo_ok_or_failed $?
+		echo_ok_or_failed $?
   fi # end of [ ! -f "$nm_src_stick/$nm_stick_norm.c" ]
 
   if [ -f "$nm_src_stick/version" ]; then
 		echo " + checking for $nm_src_stick/version ... found"
-    have=`echo $nm_stick_norm | tr '[:lower:]' '[:upper:]'`_VERSION \
-    value=`cat $nm_src_stick/version` . ${NORE_ROOT}/auto/define
+    have=`echo "$nm_stick_norm" | tr '[:lower:]' '[:upper:]'`_VERSION \
+    value=`cat "$nm_src_stick/version"` . ${NORE_ROOT}/auto/define
     
   elif [ YES = $NM_NEW ]; then
     echo $echo_n_opt " + generating $nm_src_stick/version file ... "
@@ -231,7 +232,7 @@ END
     echo_ok_or_failed $?
 	fi # end of [ -f $nm_src_stick/version ]
   
-	if [ -f "$nm_src_stick/auto" -a $nm_src_stick != . ]; then
+	if [ -f "$nm_src_stick/auto" ]; then
 		echo " + checking for $nm_src_stick/auto ... found"
 		. "$nm_src_stick/auto"
     
@@ -337,20 +338,21 @@ END
     echo_ok_or_failed $?
 	fi # end of [ -f $nm_src_stick/auto ]
   
-	if [ -f $nm_src_stick/Makefile.$CC_NAME ]; then
-		stick_makefile=$nm_src_stick/Makefile.$CC_NAME
+	if [ -f "$nm_src_stick/Makefile.$CC_NAME" ]; then
+		stick_makefile="$nm_src_stick/Makefile.$CC_NAME"
 		echo " + checking for $nm_src_stick/Makefile.$CC_NAME ... found"
 
-	elif [ -f $nm_src_stick/Makefile.$NM_SYSTEM ]; then
-		stick_makefile=$nm_src_stick/Makefile.$NM_SYSTEM
+	elif [ -f "$nm_src_stick/Makefile.$NM_SYSTEM" ]; then
+		stick_makefile="$nm_src_stick/Makefile.$NM_SYSTEM"
 		echo " + checking for $nm_src_stick/Makefile.$NM_SYSTEM ... found"
 
-	elif [ -f $nm_src_stick/Makefile ]; then
-		stick_makefile=$nm_src_stick/Makefile
+	elif [ -f "$nm_src_stick/Makefile" ]; then
+		stick_makefile="$nm_src_stick/Makefile"
 		echo " + checking for $nm_src_stick/Makefile ... found"
 
   elif [ YES = $NM_NEW ]; then
-    cat << END >> $NM_MAKEFILE
+		cat << END > "$nm_src_stick/Makefile.NEW"
+#---------------------------------------
 
 ${nm_stick_norm}_root := $nm_src_stick/
 
@@ -363,7 +365,6 @@ ${nm_stick_norm}_test: ${nm_stick_norm}
 \$(${nm_stick_norm}_binout): \$(${nm_stick_norm}_root)*.c
 	\$(CC) \$(CFLAGS) \$(INC) \$< \$(bin_out)\$@
 
-#---------------------------------------
 END
     
 	else
@@ -382,8 +383,8 @@ END
 	nm_sticks_build+=("$nm_stick_norm")
 	nm_sticks_test+=("`make_stick_norm $nm_src_stick $stick`_test")
 
-if [ -n "$stick_makefile" ]; then
-	cat << END >> $NM_MAKEFILE
+	if [ $nm_src_stick != . -a -n "$stick_makefile" ]; then
+		cat << END >> $NM_MAKEFILE
 
 ${nm_stick_norm}_root := $nm_src_stick/
 
@@ -391,7 +392,7 @@ include $stick_makefile
 
 #---------------------------------------
 END
-fi
+	fi # end of [ -n $stick_makefile ]
 
 done # iterate sticks
 
@@ -413,9 +414,9 @@ fi
 
 
 # create root Makefile
-
 if [ ! -f Makefile ]; then
 	echo $echo_n_opt " + generating Makefile file ... "
+	stick_makefile=Makefile
 	cat << END > Makefile
 # Makefile
 #
@@ -427,6 +428,11 @@ include $NM_MAKEFILE
 
 END
 
+	if [ -f "$nm_src_stick/Makefile.NEW" ]; then
+		cat "$nm_src_stick/Makefile.NEW" >> Makefile
+		rm "$nm_src_stick/Makefile.NEW"
+	fi
 	echo_ok_or_failed $?
 	
-fi # end of -f Makefile
+fi # end of [ -f Makefile ]
+
