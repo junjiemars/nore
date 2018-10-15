@@ -172,7 +172,7 @@ REM host msvc environment
 > %userprofile%/.cc-env.bat
 
 REM switch to bash
-> bash
+> bash -i
 #+END_SRC
 
 /screenshots/:
