@@ -119,8 +119,8 @@ configure Nore on MINGW64_NT-10.0 ...
 $ ~/.cc-env.sh
 #+END_SRC
 
-If want to use Microsoft C/C++ toolchains on Windows, you just need to
-install [[https://developer.microsoft.com/en-US/windows/downloads/windows-10-sdk][Windows SDK]] and [[https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2017][C/C++ Build Tools]].
+If you want to use Microsoft C/C++ toolchains on Windows, you just
+need to install [[https://developer.microsoft.com/en-US/windows/downloads/windows-10-sdk][Windows SDK]] and [[https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2017][C/C++ Build Tools]].
 
 
 /screenshots/:
