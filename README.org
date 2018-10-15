@@ -224,6 +224,7 @@ $ make clean test
 /screenshots/:
 - [[https://github.com/junjiemars/images/blob/master/nore/new-skeleton-msvc.png][new skeleton msvc]]
 - [[https://github.com/junjiemars/images/blob/master/nore/new-skeleton-clang.png][new skeleton clang]]
+- [[https://github.com/junjiemars/images/blob/master/nore/new-skeleton-gcc.png][new skeleton gcc]]
 
 *** Configure existing one
 		:PROPERTIES:
