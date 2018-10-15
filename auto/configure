@@ -17,7 +17,7 @@ NORE_ROOT="${NORE_ROOT%/}"
 
 test -d "$NM_OUT" || mkdir -p $NM_OUT
 
-echo > $NM_AUTOCONF_ERR
+echo > $NM_AUTO_ERR
 
 
 cat << END > $NM_AUTO_H

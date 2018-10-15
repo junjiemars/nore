@@ -9,7 +9,7 @@
 
 echo $echo_n_opt "checking for $nm_feature ...$echo_c_cap"
 
-cat << END >> $NM_AUTOCONF_ERR
+cat << END >> $NM_AUTO_ERR
 
 ----------------------------------------
 checking for $nm_feature
@@ -44,7 +44,7 @@ nm_test="$CC $nm_feature_flags \
 					$nm_feature_ldlibs"
 
 
-`$nm_test >> $NM_AUTOCONF_ERR 2>&1`
+`$nm_test >> $NM_AUTO_ERR 2>&1`
 
 
 if [ -x $NM_AUTOTEST ]; then
@@ -53,7 +53,7 @@ if [ -x $NM_AUTOTEST ]; then
 
     yes)
 
-      if `$NM_AUTOTEST >> $NM_AUTOCONF_ERR 2>&1`; then
+      if `$NM_AUTOTEST >> $NM_AUTO_ERR 2>&1`; then
         echo " found"
         nm_found=yes
 
@@ -68,7 +68,7 @@ if [ -x $NM_AUTOTEST ]; then
 
     value)
 
-      if `$NM_AUTOTEST >> $NM_AUTOCONF_ERR 2>&1`; then
+      if `$NM_AUTOTEST >> $NM_AUTO_ERR 2>&1`; then
         echo " found"
         nm_found=yes
 
@@ -86,7 +86,7 @@ END
 
     bug)
 
-      if `$NM_AUTOTEST >> $NM_AUTOCONF_ERR 2>&1`; then
+      if `$NM_AUTOTEST >> $NM_AUTO_ERR 2>&1`; then
         echo " not found"
 
       else
@@ -113,11 +113,11 @@ END
 else
   echo " not found"
 
-  echo "----------"    >> $NM_AUTOCONF_ERR
-  cat $NM_AUTOTEST.c   >> $NM_AUTOCONF_ERR
-  echo "----------"    >> $NM_AUTOCONF_ERR
-  echo $nm_test        >> $NM_AUTOCONF_ERR
-  echo "----------"    >> $NM_AUTOCONF_ERR
+  echo "----------"    >> $NM_AUTO_ERR
+  cat $NM_AUTOTEST.c   >> $NM_AUTO_ERR
+  echo "----------"    >> $NM_AUTO_ERR
+  echo $nm_test        >> $NM_AUTO_ERR
+  echo "----------"    >> $NM_AUTO_ERR
 fi
 
 rm -rf $NM_AUTOTEST*

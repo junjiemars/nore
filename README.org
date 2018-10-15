@@ -339,8 +339,9 @@ $ make clean test
 	 :CUSTOM_ID: feature-testing
 	 :END:
 
-Write a /bash/ script named /configure/ and put it into =--src-dir=
-directory.
+Write a /bash/ script named /auto/ and put it into =--src-dir=
+directory. If you feel something is wrong, checking /auto.err/ in your
+=--out-dir= directory.
 
 *** Header File Exists Testing
 		:PROPERTIES:

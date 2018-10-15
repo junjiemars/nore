@@ -12,7 +12,7 @@ NM_MAKEFILE=$NM_OUT/Makefile
 NM_AUTO_H=$NM_OUT/nore.h
 
 NM_AUTOTEST=$NM_OUT/autotest
-NM_AUTOCONF_ERR=$NM_OUT/autoconf.err
+NM_AUTO_ERR=$NM_OUT/auto.err
 
 
 # check the echo's "\c" capability

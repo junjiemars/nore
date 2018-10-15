@@ -186,7 +186,7 @@ for stick in ${NM_HAS_STICKS[@]}; do
 			echo_ok_or_failed $?
 		else
 			echo " + checking for $nm_src_stick ... no found"
-			cat << END >> $NM_AUTOCONF_ERR
+			cat << END >> $NM_AUTO_ERR
 
 ---------------------------------------
 checking for $nm_src_stick ... no found
@@ -274,7 +274,7 @@ END
 	else
 
 		echo " + checking for $nm_src_stick/Makefile ... no found"
-		cat << END >> $NM_AUTOCONF_ERR
+		cat << END >> $NM_AUTO_ERR
 
 ----------------------------------------
 checking for ${nm_src_stick}/Makefile no found

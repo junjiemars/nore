@@ -9,7 +9,7 @@
 
 echo $echo_n_opt "checking for $nm_include ...$echo_c_cap"
 
-cat << END >> $NM_AUTOCONF_ERR
+cat << END >> $NM_AUTO_ERR
 
 ----------------------------------------
 checking for $nm_include
@@ -32,7 +32,7 @@ END
 
 nm_test="$CC -o $NM_AUTOTEST $NM_AUTOTEST.c"
 
-eval "$nm_test >> $NM_AUTOCONF_ERR 2>&1"
+eval "$nm_test >> $NM_AUTO_ERR 2>&1"
 
 if [ -x $NM_AUTOTEST ]; then
 
@@ -46,11 +46,11 @@ else
 
   echo " not found"
 
-  echo "----------"  	 >> $NM_AUTOCONF_ERR
-  cat $NM_AUTOTEST.c 	 >> $NM_AUTOCONF_ERR
-  echo "----------"  	 >> $NM_AUTOCONF_ERR
-  echo $nm_test    	   >> $NM_AUTOCONF_ERR
-  echo "----------"    >> $NM_AUTOCONF_ERR
+  echo "----------"  	 >> $NM_AUTO_ERR
+  cat $NM_AUTOTEST.c 	 >> $NM_AUTO_ERR
+  echo "----------"  	 >> $NM_AUTO_ERR
+  echo $nm_test    	   >> $NM_AUTO_ERR
+  echo "----------"    >> $NM_AUTO_ERR
 fi
 
 rm -rf $NM_AUTOTEST*
