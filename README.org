@@ -340,8 +340,8 @@ $ make clean test
 	 :END:
 
 Write a /bash/ script named /auto/ and put it into =--src-dir=
-directory. If you feel something is wrong, checking /auto.err/ in your
-=--out-dir= directory.
+directory. The errors of /auto/ will be recorded into the /auto.err/
+file in your =--out-dir= directory.
 
 *** Header File Exists Testing
 		:PROPERTIES:
