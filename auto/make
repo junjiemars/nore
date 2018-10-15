@@ -208,10 +208,10 @@ END
 #define _unused_(x) ((void)(x))
 
 int main(int argc, char **argv) {
-		_unused_(argc);
-		_unused_(argv);
+    _unused_(argc);
+    _unused_(argv);
 
-		printf("Hello, Nore!\n");
+    printf("Hello, Nore!\n");
 }
 
 END
