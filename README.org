@@ -10,10 +10,6 @@ No More than a C build system for [[https://clang.llvm.org][clang]], [[https://g
 Let's start ...
 
 #+BEGIN_SRC sh
-# make a new directory as the root of your C application
-$ make your-c-app-dir
-$ cd your-c-app-dir
-
 # run bootstrap from github, it will generate a configure file in current directory
 $ bash <(curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.sh)
 
