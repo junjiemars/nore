@@ -242,15 +242,7 @@ END
     echo_ok_or_failed $?
 	fi # end of [ -f $nm_src_stick/auto ]
   
-	if [ -f "$nm_src_stick/Makefile.$CC_NAME" ]; then
-		stick_makefile="$nm_src_stick/Makefile.$CC_NAME"
-		echo " + checking for $nm_src_stick/Makefile.$CC_NAME ... found"
-
-	elif [ -f "$nm_src_stick/Makefile.$NM_SYSTEM" ]; then
-		stick_makefile="$nm_src_stick/Makefile.$NM_SYSTEM"
-		echo " + checking for $nm_src_stick/Makefile.$NM_SYSTEM ... found"
-
-	elif [ -f "$nm_src_stick/Makefile" ]; then
+	if [ -f "$nm_src_stick/Makefile" ]; then
 		stick_makefile="$nm_src_stick/Makefile"
 		echo " + checking for $nm_src_stick/Makefile ... found"
 
@@ -306,7 +298,7 @@ include $stick_makefile
 END
 	fi # end of [ -n $stick_makefile ]
 
-done # iterate sticks
+done # end of for loop sticks
 
 
 if [ 0 -lt ${#nm_sticks} ]; then
