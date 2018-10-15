@@ -48,7 +48,7 @@ So the story begins ...
   install).
 - Write, Build, Test and Run on anywhere: Linux, Darwin, Windows or
   Docker.
-- Easy to try some new ideas but have no more unnecessary.
+- Easy to try some new ideas but have no more unnecessaries.
 
 * Cooking
 	:PROPERTIES:
