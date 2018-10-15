@@ -195,10 +195,10 @@ checking for C compiler ... found
 checking for WinNT:10.0:x86_64 specific features
 
 creating out/Makefile
- + generating src directory ... ok
- + generating src/version file ... ok
- + generating src/configure file ... ok
- + generating src/Makefile file ... ok
+ + generating ./c.c file ... ok
+ + generating ./version file ... ok
+ + generating ./auto file ... ok
+ + generating Makefile file ... ok
 
 Configuration summary
   platform: WinNT:10.0:x86_64
