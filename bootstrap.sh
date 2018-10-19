@@ -454,6 +454,30 @@ exit_checking() {
 	fi
 }
 
+# download_gmake () {
+# 	local gm_ver="4.2.90"
+# 	local gm_tgz="gnumake-${gm_ver}-`uname -m`.tar.gz"
+#   local gm_url="${GITHUB_H}/make/releases/download/${gm_ver}/${gm_tgz}"
+#   local gm_home="${1:-${HOME%/}/.cc-make}"
+# 	local bin_dir="${gm_home}/${gm_ver}"
+#   local cmd="${bin_dir}/make -v"
+
+#   # `check_kit "make -v" "${bin_dir}"` && return 0
+
+#   # install_kit "${bin_dir}/make.exe" \
+#   #             "${cmd}" \
+#   #             "${gm_url}" \
+#   #             "${gm_home}/${gm_tgz}" \
+#   #             "${bin_dir}" \
+#   #   || return $?
+
+#   # if `${cmd} &>/dev/null`; then
+#   #   append_kit_path "${bin_dir}" "${gm_home}"
+#   # else
+#   #   return 1
+#   # fi	
+# }
+
 
 BEGIN=`date +%s`
 echo 
