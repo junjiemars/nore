@@ -457,29 +457,29 @@ exit_checking() {
 	fi
 }
 
-# download_gmake () {
-# 	local gm_ver="4.2.90"
-# 	local gm_tgz="gnumake-${gm_ver}-`uname -m`.tar.gz"
-#   local gm_url="${GITHUB_H}/make/releases/download/${gm_ver}/${gm_tgz}"
-#   local gm_home="${1:-${HOME%/}/.cc-make}"
-# 	local bin_dir="${gm_home}/${gm_ver}"
-#   local cmd="${bin_dir}/make -v"
+download_gmake () {
+	local env_dir="${1:-${HOME%/}/.nore}"
+	local ver="4.2.90"
+	local tgz="gnumake-${ver}-`uname -m`.tar.gz"
+  local url="${GITHUB_H}/make/releases/download/${ver}/${tgz}"
+	local bin="${env_dir}/make.exe"
+	local t=0
 
-#   # `check_kit "make -v" "${bin_dir}"` && return 0
+	[ -f "$env_dir" ] || mkdir -p "$env_dir"
+	[ -f "$bin" -a "GNU Make 4.2.90" = "`$bin -v &> /dev/null | head -n1`" ] && return 0
+	
+	curl -f -s -L -o "${env_dir}/${tgz}" -C - "${url}" &> /dev/null
+  t=$?
+  if [ 33 -eq $t ]; then
+    curl -f -s -L -o "${env_dir}/${tgz}" "${url}" &> /dev/null
+  elif [ 60 -eq $t -o 22 -eq $t ]; then
+    [ -f "${env_dir}/${tgz}" ] && rm "${env_dir}/${tgz}"
+    curl -f -s -k -L -o "${env_dir}" "${url}" &> /dev/null
+  fi
+	[ 0 -eq $t ] || return $t
 
-#   # install_kit "${bin_dir}/make.exe" \
-#   #             "${cmd}" \
-#   #             "${gm_url}" \
-#   #             "${gm_home}/${gm_tgz}" \
-#   #             "${bin_dir}" \
-#   #   || return $?
-
-#   # if `${cmd} &>/dev/null`; then
-#   #   append_kit_path "${bin_dir}" "${gm_home}"
-#   # else
-#   #   return 1
-#   # fi	
-# }
+	tar xf "${env_dir}/${tgz}" -C "${env_dir}" --strip-components=1 &> /dev/null
+}
 
 
 BEGIN=`date +%s`
@@ -493,27 +493,8 @@ if `make -v &>/dev/null`; then
 else
   echo_found_or_not $?
 	if `on_windows_nt`; then
-		echo -n " + checking bash environment ... "
-		if `echo $INSIDE_KIT_BASH_ENV | grep 'junjiemars/kit' &>/dev/null`; then
-      echo_found_or_not $?
-			if [ "yes" = $NORE_UPGRADE ]; then
-        echo -n " + upgrading bash environement ... "
-        $(curl -sqL $GITHUB_BASH_ENV | bash &>/dev/null)
-        echo_ok_or_failed $?
-        exit_checking $? $BEGIN
-      fi
-		else
-			echo_found_or_not $?
-			echo 
-			$(curl -sqL $GITHUB_BASH_ENV | bash &>/dev/null)
-		fi
-		exit_checking $? $BEGIN
-		. $HOME/.bashrc
-
-		echo -n " + installing make ... "
-		HAS_GMAKE=1 ECHO_QUIET=YES bash <(curl -sqL ${GITHUB_R}/kit/master/win/install-win-kits.sh)
-		echo_ok_or_failed $?
-		exit_checking $? $BEGIN
+		echo -n " + downloading make ... "
+		echo_ok_or_failed `download_gmake "${HOME%/}/.nore"; echo $?`
 	fi
 fi
 
