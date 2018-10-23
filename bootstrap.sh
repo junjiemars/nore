@@ -164,42 +164,42 @@ case "\`echo \${NORE_L_CONF_COMMAND} | tr '[:upper:]' '[:lower:]'\`" in
   where)
     echo -e "NORE_ROOT=\${NORE_ROOT}"
     echo -e "NORE_BRANCH=\${NORE_BRANCH}"
-    echo -e "configure=\${BASH_SOURCE[0]}"
-    echo -e "make=\$(command -v make)"
+    echo -e "configure=@\${BASH_SOURCE[0]}"
+    echo -e "make=@\$(command -v make)"
     `if on_darwin; then
-       echo "echo -e \"bash=\\$(ps -p\\$\\$ -ocommand | tr ' ' '\\n' | sed -n 2p)\""
+       echo "echo -e \"bash=@\\$(ps -p\\$\\$ -ocommand | tr ' ' '\\n' | sed -n 2p)\""
      else
-       echo "echo -e \"bash=\\$(ls -l /proc/\\$\\$/exe | tr ' ' '\\n' | tail -n1)\""
+       echo "echo -e \"bash=@\\$(ls -l /proc/\\$\\$/exe | tr ' ' '\\n' | tail -n1)\""
      fi`
-    echo -n ".cc-env.sh="
-    if [ -f "\${HOME%/}/.cc-env.sh" ]; then
-      echo -e "\${HOME%/}/.cc-env.sh"
+    echo -n "cc-env.sh=@"
+    if [ -f "\${HOME%/}/.nore/cc-env.sh" ]; then
+      echo -e "\${HOME%/}/.nore/cc-env.sh"
     else
       echo ""
     fi
-    echo -n ".cc-env.id"
-    if [ -f "\${HOME%/}/.cc-env.id" ]; then
-      echo -e "\${HOME%/}/.cc-env.id[\$(cat \${HOME%/}/.cc-env.id)]"
+    echo -n "cc-env.id=@"
+    if [ -f "\${HOME%/}/.nore/cc-env.id" ]; then
+      echo -e "\${HOME%/}/.nore/cc-env.id[\$(cat \${HOME%/}/.nore/cc-env.id)]"
     else
       echo ""
     fi
 		`if on_windows_nt; then
-       echo "    echo -n \".cc-end.bat=\""
-       echo "    if [ -f \"\\${HOME%/}/.cc-env.bat\" ]; then"
-       echo "      echo -e \"\\${HOME%/}/.cc-env.bat\""
+       echo "    echo -n \"cc-end.bat=@\""
+       echo "    if [ -f \"\\${HOME%/}/.nore/cc-env.bat\" ]; then"
+       echo "      echo -e \"\\${HOME%/}/.nore/cc-env.bat\""
        echo "    else"
        echo "      echo \"\""
        echo "    fi"
     fi`
-    echo -n ".cc-inc.lst="
-    if [ -f "\${HOME%/}/.cc-inc.lst" ]; then
-      echo -e "\${HOME%/}/.cc-inc.lst"
+    echo -n "cc-inc.lst=@"
+    if [ -f "\${HOME%/}/.nore/cc-inc.lst" ]; then
+      echo -e "\${HOME%/}/.nore/cc-inc.lst"
     else
       echo ""
     fi
-    echo -n ".cc-inc.vimrc="
-    if [ -f "\${HOME%/}/.cc-inc.vimrc" ]; then
-      echo -e "\${HOME%/}/.cc-inc.vimrc"
+    echo -n "cc-inc.vimrc=@"
+    if [ -f "\${HOME%/}/.nore/cc-inc.vimrc" ]; then
+      echo -e "\${HOME%/}/.nore/cc-inc.vimrc"
     else
       echo ""
     fi
