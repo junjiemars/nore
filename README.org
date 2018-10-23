@@ -86,7 +86,7 @@ configure Nore on Linux ...
  + checking make ... found
  + checking nore ... found
  + generating configure ... ok
- + generating ~/.cc-env.sh ... ok
+ + generating ~/.nore/cc-env.sh ... ok
 
 ... elpased 0 seconds.
 #+END_SRC
@@ -108,16 +108,21 @@ configure Nore on MINGW64_NT-10.0 ...
 
  + checking make ... no found
  + checking bash environment ... found
- + installing make ... ok
+ + downloading make ... ok
  + checking nore ... found
  + generating configure ... ok
- + generating ~/.cc-env.sh ... ok
+ + generating ~/.nore/cc-env.sh ... ok
 
 ... elpased 9 seconds.
 
 # generate ~/.cc-env.bat for MSVC environment
-$ ~/.cc-env.sh
+$ ~/.nore/cc-env.sh
 #+END_SRC
+
+
+Put =%USERPROFILE%\.nore= into your Windows' =%PATH%= let life more
+easier.
+
 
 If you want to use Microsoft C/C++ toolchains on Windows, you just
 need to install [[https://developer.microsoft.com/en-US/windows/downloads/windows-10-sdk][Windows SDK]] and [[https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2017][C/C++ Build Tools]].
@@ -156,7 +161,7 @@ In /bash/:
 $ cmd
 
 REM host msvc environment
-> %userprofile%/.cc-env.bat
+> %userprofile%/.nore/cc-env.bat
 
 REM switch to bash
 > bash -i
@@ -165,7 +170,7 @@ REM switch to bash
 In /cmd/:
 #+BEGIN_SRC bat
 REM host msvc environment
-> %userprofile%/.cc-env.bat
+> %userprofile%/.nore/cc-env.bat
 
 REM switch to bash
 > bash -i
@@ -452,52 +457,52 @@ esac
 		:END:
 
 The *where* command used to review your current Nore's environment.
-And after [[#configuration][configuration]], Nore should generate the =.cc-env.sh= shell
-script file at your =$HOME= or =%UERPROFILE%= directory. Run
-=.cc-env.sh= will generate some auxiliary files to help you setup your
-C programming environment and you can find those auxiliary files via
- *where* command.
+And after [[#configuration][configuration]], Nore should generate the =cc-env.sh= shell
+script file at your =$HOME/.nore= or =%UERPROFILE%/.nore=
+directory. Run =cc-env.sh= will generate some auxiliary files to help
+you setup your C programming environment and you can find those
+auxiliary files via *where* command.
 
-The =.cc-env.sh= will generates the following files:
-- =.cc-env.id= file: indicates =.cc-env.bat= file, =.cc-inc.lst= file
-  and =.cc-inc.vimrc= file whether had been generated. =0= indicates
-  those files had been generated, othwise is not.
-- =.cc-env.bat= file: only for /msvc/ on Windows
-- =.cc-inc.lst= file: a list of C include path
-- =.cc-inc.vimrc= file: =vimrc= file if =vim= already been instaslled
+The =cc-env.sh= will generates the following files:
+- =cc-env.id= file: indicates =cc-env.bat= file, =cc-inc.lst= file and
+  =cc-inc.vimrc= file whether had been generated. =0= indicates those
+  files had been generated, othwise is not.
+- =cc-env.bat= file: only for /msvc/ on Windows
+- =cc-inc.lst= file: a list of C include path
+- =cc-inc.vimrc= file: =vimrc= file if =vim= already been instaslled
 
 
 On Unix-like platform, the output of *where* command looks like:
 #+BEGIN_SRC sh
-$ ~/.cc-env.sh
+$ ~/.nore/cc-env.sh
 
 $ ./configure where
 NORE_ROOT=/opt/apps/c/.nore
 NORE_BRANCH=master
-configure=./configure
-make=/usr/bin/make
-bash=/bin/bash
-.cc-env.sh=/home/ubuntu/.cc-env.sh
-.cc-env.id/home/ubuntu/.cc-env.id[0]
-.cc-inc.lst=/home/ubuntu/.cc-inc.lst
-.cc-inc.vimrc=/home/ubuntu/.cc-inc.vimrc
+configure=@./configure
+make=@/usr/bin/make
+bash=@/bin/bash
+cc-env.sh=@/home/ubuntu/cc-env.sh
+cc-env.id=@/home/ubuntu/cc-env.id[0]
+cc-inc.lst=@/home/ubuntu/cc-inc.lst
+cc-inc.vimrc=@/home/ubuntu/cc-inc.vimrc
 #+END_SRC
 
 On Windows platform, the output of *where* command looks like:
 #+BEGIN_SRC sh
-$ ~/.cc-env.sh
+$ ~/.nore/cc-env.sh
 
 $ ./configure where
 NORE_ROOT=/c/opt/apps/nore
 NORE_BRANCH=edge
-configure=./configure
-make=/c/opt/open/gmake/4.2.90/make
-bash=/usr/bin/bash
-.cc-env.sh=/c/Users/junjie/.cc-env.sh
-.cc-env.id/c/Users/junjie/.cc-env.id[0]
-.cc-end.bat=/c/Users/junjie/.cc-env.bat
-.cc-inc.lst=/c/Users/junjie/.cc-inc.lst
-.cc-inc.vimrc=/c/Users/junjie/.cc-inc.vimrc
+configure=@./configure
+make=@/c/opt/open/gmake/4.2.90/make
+bash=@/usr/bin/bash
+cc-env.sh=@/c/Users/junjie/cc-env.sh
+cc-env.id=@/c/Users/junjie/cc-env.id[0]
+cc-end.bat=@/c/Users/junjie/cc-env.bat
+cc-inc.lst=@/c/Users/junjie/cc-inc.lst
+cc-inc.vimrc=@/c/Users/junjie/cc-inc.vimrc
 #+END_SRC
 
 *** upgrade
@@ -515,7 +520,7 @@ configure Nore on MSYS_NT-10.0 ...
  + checking nore ... found
  + upgrading nore ... ok
  + generating configure ... ok
- + generating ~/.cc-env.sh ... ok
+ + generating ~/.nore/cc-env.sh ... ok
 
 ... elpased 13 seconds.
 #+END_SRC
@@ -536,8 +541,8 @@ I prefer non plugin Vim settings, so I can easily working on my all
 machines. [[https://raw.githubusercontent.com/junjiemars/kit/master/ul/.vimrc][download non-plugin .vimrc]].
 
 On any platform, don't warry about C include path, Nore should
-generate a /shell script/ named =~/.cc-env.sh= for you (for details
-see [[#where][where]] command).
+generate a /shell script/ named =~/.nore/cc-env.sh= for you (for
+details see [[#where][where]] command).
 
 **  Emacs
 		:PROPERTIES:
@@ -554,8 +559,8 @@ On any Unix-like platform:
 On Window:
 - @@html:<kbd>@@shell-command: %userprofile%/.cc-env.bat && bash
   <your-c-app-dir>/configure --has-x@@html:</kbd>@@
-- @@html:<kbd>@@compile: %userprofile%/.cc-env.bat && make -C
-  <your-c-app-dir> clean test@@html:</kbd>@@
+- @@html:<kbd>@@compile: cc-env.bat && make -C <your-c-app-dir> clean
+  test@@html:</kbd>@@
 
 
 [[https://github.com/junjiemars/.emacs.d][More Reasonable Emacs]] has awsome C programming experience, including C
