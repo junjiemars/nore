@@ -7,16 +7,21 @@
 ####
 
 
-if [ "NO" = "$NM_STD" ]; then
-  :
+case "$NM_STD" in
+	NO)
+	;;
 
-elif [ "YES" = "$NM_STD" ]; then
-  nm_std_opt="${std_opt}c99"
+	YES)
+		nm_std_opt="${std_opt}c99"
+		if [ ".$CXX" = ".$CC" ]; then
+			nm_std_opt="${std_opt}c++11"
+		fi
+	;;
 
-else
-  nm_std_opt="${std_opt}$NM_STD"
-
-fi
+	*)
+		nm_std_opt="${std_opt}$NM_STD"
+	;;
+esac
 
 
 if [ "NO" != "$NM_STD" -a -n "$nm_std_opt" ]; then

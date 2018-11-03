@@ -8,6 +8,7 @@
 
 
 CC=${CC:-cc}
+CXX=
 
 CPP=
 CAS=
@@ -17,6 +18,8 @@ AR=
 LINK="\$(CC)"
 
 CFLAGS=
+CXXFLAGS=
+
 ASFLAGS=
 LDFLAGS=
 ARFLAGS=
@@ -138,6 +141,11 @@ fi
 # verbose option
 if [ "$NM_VERBOSE" = "YES" -a -n "$nm_verbose_opt" ]; then
 	CFLAGS=${CFLAGS:+$CFLAGS }${nm_verbose_opt}
+fi
+
+# cxx flags
+if [ ".$CXX" = ".$CC" ]; then
+	CXXFLAGS=$CFLAGS
 fi
 
 # link option

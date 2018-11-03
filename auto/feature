@@ -7,7 +7,14 @@
 ####
 
 
-echo $echo_n_opt "checking for $nm_feature ...$echo_c_cap"
+echo_feature() {
+	if [ -z "$feature_dumb" ]; then
+		echo $@
+	fi
+}
+
+echo_feature $echo_n_opt "checking for $nm_feature ...$echo_c_cap"
+
 
 cat << END >> $NM_AUTO_ERR
 
@@ -23,7 +30,12 @@ if test -n "$nm_feature_name"; then
 fi
 
 
-cat << END > $NM_AUTOTEST.c
+autotest_c="$NM_AUTOTEST.c"
+if [ -n "$feature_cxx" ]; then
+	autotest_c="$NM_AUTOTEST.cc"
+fi
+
+cat << END > $autotest_c
 $nm_feature_h
 
 int main(void) {
@@ -38,7 +50,7 @@ nm_test_out="${bin_out}${NM_AUTOTEST}"
 
 nm_test="$CC $nm_feature_flags \
 					$nm_feature_inc \
-					$nm_test_out $NM_AUTOTEST.c \
+					$nm_test_out $autotest_c \
 					$nm_feature_ldlibs"
 
 
@@ -52,7 +64,7 @@ if [ -x $NM_AUTOTEST ]; then
     yes)
 
       if `$NM_AUTOTEST >> $NM_AUTO_ERR 2>&1`; then
-        echo " found"
+        echo_feature " found"
         nm_found=yes
 
         if test -n "$nm_feature_name"; then
@@ -60,14 +72,14 @@ if [ -x $NM_AUTOTEST ]; then
         fi
 
       else
-        echo " not found"
+        echo_feature " not found"
       fi
     ;;
 
     value)
 
       if `$NM_AUTOTEST >> $NM_AUTO_ERR 2>&1`; then
-        echo " found"
+        echo_feature " found"
         nm_found=yes
 
         cat << END >> $NM_AUTO_H
@@ -78,17 +90,17 @@ if [ -x $NM_AUTOTEST ]; then
 
 END
       else
-        echo " not found"
+        echo_feature " not found"
       fi
     ;;
 
     bug)
 
       if `$NM_AUTOTEST >> $NM_AUTO_ERR 2>&1`; then
-        echo " not found"
+        echo_feature " not found"
 
       else
-        echo " found"
+        echo_feature " found"
         nm_found=yes
 
         if test -n "$nm_feature_name"; then
@@ -98,7 +110,7 @@ END
     ;;
 
     *)
-      echo " found"
+      echo_feature " found"
       nm_found=yes
 
       if test -n "$nm_feature_name"; then
@@ -109,10 +121,10 @@ END
   esac
 
 else
-  echo " not found"
+  echo_feature " not found"
 
   echo "----------"    >> $NM_AUTO_ERR
-  cat $NM_AUTOTEST.c   >> $NM_AUTO_ERR
+  cat $autotest_c      >> $NM_AUTO_ERR
   echo "----------"    >> $NM_AUTO_ERR
   echo $nm_test        >> $NM_AUTO_ERR
   echo "----------"    >> $NM_AUTO_ERR

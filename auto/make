@@ -28,6 +28,12 @@ cat << END > $NM_MAKEFILE
 #
 
 CC = $CC
+`
+if [ ".$CXX" ".$CC" ]; then
+  echo "CXX = \$CXX"
+fi
+`
+
 CPP = $CPP
 CAS = $CAS
 AS = $AS
@@ -35,13 +41,19 @@ AR = $AR
 LINK = $LINK
 
 CPPFLAGS = $CPPFLAGS
-CFLAGS += $CFLAGS
 ASFLAGS = $ASFLAGS
 LDFLAGS += -L$NM_OUT/lib
 LDLIBS = $LDLIBS
 ARFLAGS = $ARFLAGS
 LFLAGS = $LFLAGS
 YFLAGS = $YFLAGS
+
+CFLAGS += $CFLAGS
+`
+if [ ".$CXX" = ".$CC" ]; then
+	 echo "CXXFLAGS += \$CFLAGS"
+fi
+`
 
 INC += -I$NM_OUT -I$NM_OUT/inc
 
