@@ -17,9 +17,12 @@ checking for $nm_include
 END
 
 
-nm_found=no
+autotest_c="$NM_AUTOTEST.c"
+if [ -n "$feature_cxx" ]; then
+	autotest_c="$NM_AUTOTEST.cc"
+fi
 
-cat << END > $NM_AUTOTEST.c
+cat << END > $autotest_c
 
 #include <$nm_include>
 
@@ -30,9 +33,11 @@ int main(void) {
 END
 
 
-nm_test="$CC -o $NM_AUTOTEST $NM_AUTOTEST.c"
+nm_test="$CC ${bin_out}$NM_AUTOTEST $autotest_c"
 
-eval "$nm_test >> $NM_AUTO_ERR 2>&1"
+`$nm_test >> $NM_AUTO_ERR 2>&1`
+
+nm_found=no
 
 if [ -x $NM_AUTOTEST ]; then
 
@@ -47,7 +52,7 @@ else
   echo " not found"
 
   echo "----------"  	 >> $NM_AUTO_ERR
-  cat $NM_AUTOTEST.c 	 >> $NM_AUTO_ERR
+  cat $autotest_c 	   >> $NM_AUTO_ERR
   echo "----------"  	 >> $NM_AUTO_ERR
   echo $nm_test    	   >> $NM_AUTO_ERR
   echo "----------"    >> $NM_AUTO_ERR
