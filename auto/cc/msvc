@@ -53,13 +53,21 @@ nm_error_opt="-WX"
 nm_utf_opt="-utf-8"
 
 # cl has no verbose option
-nm_verbose_opt=${nm_verbose_opt:-""}
-
-if [ "$NM_VERBOSE" == "NO" ]; then
+nm_verbose_opt=
+if [ "$NM_VERBOSE" = "NO" ]; then
+	if [ ".$CXX" = ".$CC" ]; then
+		CXX="${CC:+$CC }-nologo"
+	fi
 	CC="${CC:+$CC }-nologo"
 	AR="${AR:+$AR }-nologo"
 	AS="${AS:+$AS }-nologo"
 fi
+
+# flag
+nm_flag_opt=
+
+# model
+nm_model_opt="-EHsc"
 
 
 # output options

@@ -39,6 +39,9 @@ nm_cpu_opt=
 nm_utf_opt=
 nm_verbose_opt=
 
+nm_flag_opt=
+nm_model_opt=
+
 nm_shared_opt=
 
 nm_stage_pre=
@@ -143,10 +146,22 @@ if [ "$NM_VERBOSE" = "YES" -a -n "$nm_verbose_opt" ]; then
 	CFLAGS=${CFLAGS:+$CFLAGS }${nm_verbose_opt}
 fi
 
+# flag option
+if [ -n "$nm_flag_opt" ]; then
+	CFLAGS=${CFLAGS:+$CFLAGS }${nm_flag_opt}
+fi
+
+# model option
+if [ -n "$nm_model_opt" ]; then
+	CFLAGS=${CFLAGS:+$CFLAGS }${nm_model_opt}
+fi
+
+
 # cxx flags
 if [ ".$CXX" = ".$CC" ]; then
 	CXXFLAGS=$CFLAGS
 fi
+
 
 # link option
 LDFLAGS=${LDFLAGS}
