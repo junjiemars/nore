@@ -24,8 +24,6 @@ fi
 
 
 cat << END > $NM_AUTOTEST.c
-
-#include <sys/types.h>
 $nm_feature_h
 
 int main(void) {
