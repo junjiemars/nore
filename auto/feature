@@ -23,7 +23,6 @@ checking for $nm_feature
 
 END
 
-nm_found=no
 
 if [ -n "$nm_feature_name" ]; then
 	nm_have_feature=`echo $nm_feature_name | tr '[\-: =]' '_' | tr '[:lower:]' '[:upper:]'`
@@ -53,6 +52,7 @@ nm_test="$CC $nm_feature_flags \
 
 `$nm_test >> $NM_AUTO_ERR 2>&1`
 
+nm_found=no
 
 if [ -x $NM_AUTOTEST ]; then
 
