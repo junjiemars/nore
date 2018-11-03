@@ -29,7 +29,7 @@ cat << END > $NM_MAKEFILE
 
 CC = $CC
 `
-if [ ".$CXX" ".$CC" ]; then
+if [ ".$CXX" = ".$CC" ]; then
   echo "CXX = \$CXX"
 fi
 `
