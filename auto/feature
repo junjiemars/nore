@@ -25,7 +25,7 @@ END
 
 nm_found=no
 
-if test -n "$nm_feature_name"; then
+if [ -n "$nm_feature_name" ]; then
 	nm_have_feature=`echo $nm_feature_name | tr '[\-: =]' '_' | tr '[:lower:]' '[:upper:]'`
 fi
 
@@ -46,13 +46,10 @@ int main(void) {
 END
 
 
-nm_test_out="${bin_out}${NM_AUTOTEST}"
-
 nm_test="$CC $nm_feature_flags \
-					$nm_feature_inc \
-					$nm_test_out $autotest_c \
-					$nm_feature_ldlibs"
-
+ 					$nm_feature_inc \
+ 					${bin_out}${NM_AUTOTEST} $autotest_c \
+ 					$nm_feature_ldlibs"
 
 `$nm_test >> $NM_AUTO_ERR 2>&1`
 
@@ -67,7 +64,7 @@ if [ -x $NM_AUTOTEST ]; then
         echo_feature " found"
         nm_found=yes
 
-        if test -n "$nm_feature_name"; then
+        if [ -n "$nm_feature_name" ]; then
           have=$nm_have_feature . ${NORE_ROOT}/auto/have
         fi
 
@@ -103,7 +100,7 @@ END
         echo_feature " found"
         nm_found=yes
 
-        if test -n "$nm_feature_name"; then
+        if [ -n "$nm_feature_name" ]; then
           have=$nm_have_feature . ${NORE_ROOT}/auto/have
         fi
       fi
@@ -113,7 +110,7 @@ END
       echo_feature " found"
       nm_found=yes
 
-      if test -n "$nm_feature_name"; then
+      if [ -n "$nm_feature_name" ]; then
         have=$nm_have_feature . ${NORE_ROOT}/auto/have
       fi
     ;;
