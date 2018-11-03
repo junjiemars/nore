@@ -33,7 +33,7 @@ elif `$CC -v 2>&1 | grep '\(clang\|LLVM\) version' >/dev/null 2>&1`; then
 
 elif `$CC 2>&1 | grep 'Microsoft .* C\/C++' >/dev/null 2>&1`; then
 	CC_NAME=msvc
-  echo " + using Microsoft Visual C++ compiler"
+  echo " + using Microsoft C/C++ compiler"
 
 else
   CC_NAME=unknown
