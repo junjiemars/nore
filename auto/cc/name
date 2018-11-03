@@ -23,24 +23,6 @@ if [ ".$nm_found" = ".no" ]; then
 fi
 
 
-if `$CC -v 2>&1 | grep 'gcc version' >/dev/null 2>&1`; then
-  CC_NAME=gcc
-  echo " + using GNU C compiler"
-
-elif `$CC -v 2>&1 | grep '\(clang\|LLVM\) version' >/dev/null 2>&1`; then
-  CC_NAME=clang
-  echo " + using Clang C compiler"
-
-elif `$CC 2>&1 | grep 'Microsoft .* C\/C++' >/dev/null 2>&1`; then
-	CC_NAME=msvc
-  echo " + using Microsoft C/C++ compiler"
-
-else
-  CC_NAME=unknown
-
-fi
-
-
 nm_feature="C++ compiler"
 nm_feature_name=
 nm_feature_run=yes
@@ -51,6 +33,26 @@ nm_feature_ldlibs=
 nm_feature_test="std::cout << \"$CC can compile C++ code? yes.\n\";"
 feature_dumb=1 feature_cxx=1 . ${NORE_ROOT}/auto/feature
 
+cc_or_cxx="C"
 if [ ".yes" = ".$nm_found" ]; then
   CXX=$CC
+	cc_or_cxx="C/C++"
+fi
+
+
+if `$CC -v 2>&1 | grep 'gcc version' >/dev/null 2>&1`; then
+  CC_NAME=gcc
+  echo " + using GNU ${cc_or_cxx} compiler"
+
+elif `$CC -v 2>&1 | grep '\(clang\|LLVM\) version' >/dev/null 2>&1`; then
+  CC_NAME=clang
+  echo " + using Clang ${cc_or_cxx} compiler"
+
+elif `$CC 2>&1 | grep 'Microsoft .* C\/C++' >/dev/null 2>&1`; then
+	CC_NAME=msvc
+  echo " + using Microsoft ${cc_or_cxx} compiler"
+
+else
+  CC_NAME=unknown
+
 fi
