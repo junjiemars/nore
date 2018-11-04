@@ -7,12 +7,12 @@
 ####
 
 
-echo $echo_n_opt "checking for $nm_include ...$echo_c_cap"
+echo $echo_n_opt "checking for $include ...$echo_c_cap"
 
 cat << END >> $NM_AUTO_ERR
 
 ----------------------------------------
-checking for $nm_include
+checking for $include
 
 END
 
@@ -24,7 +24,7 @@ fi
 
 cat << END > $autotest_c
 
-#include <$nm_include>
+#include <$include>
 
 int main(void) {
     return 0;
@@ -45,7 +45,7 @@ if [ -x $NM_AUTOTEST ]; then
 
   echo " found"
 
-  have=$nm_include . ${NORE_ROOT}/auto/have_header
+  have=$include . ${NORE_ROOT}/auto/have_header
 
 else
 

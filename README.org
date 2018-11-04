@@ -357,11 +357,11 @@ file in your =--out-dir= directory.
 # check header file exiting
 #----------------------------------------
 echo " + checking C99 header files ..."
-nm_include="complex.h" . ${NORE_ROOT}/auto/include
-nm_include="fenv.h" . ${NORE_ROOT}/auto/include
-nm_include="inttypes.h" . ${NORE_ROOT}/auto/include
-nm_include="stdint.h" . ${NORE_ROOT}/auto/include
-nm_include="tgmath.h" . ${NORE_ROOT}/auto/include
+include="complex.h" . ${NORE_ROOT}/auto/include
+include="fenv.h" . ${NORE_ROOT}/auto/include
+include="inttypes.h" . ${NORE_ROOT}/auto/include
+include="stdint.h" . ${NORE_ROOT}/auto/include
+include="tgmath.h" . ${NORE_ROOT}/auto/include
 #+END_SRC
 
 *** Machine Feature Testing
