@@ -7,7 +7,7 @@
 ####
 
 
-echo $echo_n_opt "checking for $include ...$echo_c_cap"
+echo $echo_n_opt "checking for $include ... $echo_c_cap"
 
 cat << END >> $NM_AUTO_ERR
 
@@ -43,13 +43,13 @@ if [ -x $NM_AUTOTEST ]; then
 
   nm_found=yes
 
-  echo " found"
+  echo "found"
 
   have=$include . ${NORE_ROOT}/auto/have_header
 
 else
 
-  echo " not found"
+  echo "not found"
 
   echo "----------"  	 >> $NM_AUTO_ERR
   cat  $autotest_c 	   >> $NM_AUTO_ERR
