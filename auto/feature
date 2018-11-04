@@ -45,10 +45,7 @@ int main(void) {
 END
 
 
-nm_test="$CC $nm_feature_flags \
- 					$nm_feature_inc \
- 					${bin_out}${NM_AUTOTEST} $autotest_c \
- 					$nm_feature_ldlibs"
+nm_test="$CC $nm_feature_flags ${bin_out}${NM_AUTOTEST} $autotest_c"
 
 `$nm_test >> $NM_AUTO_ERR 2>&1`
 
