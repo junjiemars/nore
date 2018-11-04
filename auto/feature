@@ -9,11 +9,11 @@
 
 echo_feature() {
 	if [ -z "$feature_dumb" ]; then
-		echo $@
+		echo "$@"
 	fi
 }
 
-echo_feature $echo_n_opt "checking for $nm_feature ...$echo_c_cap"
+echo_feature $echo_n_opt "checking for $nm_feature ... $echo_c_cap"
 
 
 cat << END >> $NM_AUTO_ERR
@@ -61,7 +61,7 @@ if [ -x $NM_AUTOTEST ]; then
     yes)
 
       if `$NM_AUTOTEST >> $NM_AUTO_ERR 2>&1`; then
-        echo_feature " found"
+        echo_feature "found"
         nm_found=yes
 
         if [ -n "$nm_feature_name" ]; then
@@ -69,14 +69,14 @@ if [ -x $NM_AUTOTEST ]; then
         fi
 
       else
-        echo_feature " not found"
+        echo_feature "not found"
       fi
     ;;
 
     value)
 
       if `$NM_AUTOTEST >> $NM_AUTO_ERR 2>&1`; then
-        echo_feature " found"
+        echo_feature "found"
         nm_found=yes
 
         cat << END >> $NM_AUTO_H
@@ -87,17 +87,17 @@ if [ -x $NM_AUTOTEST ]; then
 
 END
       else
-        echo_feature " not found"
+        echo_feature "not found"
       fi
     ;;
 
     bug)
 
       if `$NM_AUTOTEST >> $NM_AUTO_ERR 2>&1`; then
-        echo_feature " not found"
+        echo_feature "not found"
 
       else
-        echo_feature " found"
+        echo_feature "found"
         nm_found=yes
 
         if [ -n "$nm_feature_name" ]; then
@@ -107,7 +107,7 @@ END
     ;;
 
     *)
-      echo_feature " found"
+      echo_feature "found"
       nm_found=yes
 
       if [ -n "$nm_feature_name" ]; then
@@ -118,7 +118,7 @@ END
   esac
 
 else
-  echo_feature " not found"
+  echo_feature "not found"
 
   echo "----------"    >> $NM_AUTO_ERR
   cat  $autotest_c     >> $NM_AUTO_ERR
