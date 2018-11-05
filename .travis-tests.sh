@@ -60,14 +60,14 @@ ci_nore_options() {
 	CC=$CC ./configure --with-std=c11
 	make clean test
 
-	echo_ci_what "--without-symbol, --without-debug, --without-error"
+	echo_ci_what "--without-symbol,--without-debug,--without-error"
 	CC=$CC ./configure \
 		--without-symbol \
 		--without-debug \
 		--without-error
 	make clean test
 
-	echo_ci_what "--with-warn=, --with-verbose"
+	echo_ci_what "--with-warn=,--with-verbose"
 	CC=$CC ./configure \
 		--with-warn=NO \
 		--with-verbose
@@ -76,7 +76,7 @@ ci_nore_options() {
 	make_ci_env
 	cd "$nore_ci_dir"
 
-	echo_ci_what "--src-dir, --out-dir="
+	echo_ci_what "--src-dir,--out-dir="
 	CC=$CC ./configure --src-dir=src --out-dir=out --new
 	make clean test
 }
