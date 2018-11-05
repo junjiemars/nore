@@ -86,4 +86,4 @@ ci_nore_options() {
 
 ci_nore_options
 
-# [ -d "${nore_ci_dir}" ] && rm -r "${nore_ci_dir}"
+[ -d "${nore_ci_dir}" ] && rm -r "${nore_ci_dir}"
