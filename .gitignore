@@ -61,3 +61,4 @@ build/
 configure
 out/
 src/
+ci/

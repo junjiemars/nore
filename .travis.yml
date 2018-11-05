@@ -8,8 +8,8 @@ matrix:
 env:
   - SHELL=bash
 
-before_script:
-  - $TRAVIS_BUILD_DIR/bootstrap.sh
+# before_script:
+#   - $TRAVIS_BUILD_DIR/bootstrap.sh
 
 
 script: 
