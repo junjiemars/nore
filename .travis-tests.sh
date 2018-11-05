@@ -24,7 +24,7 @@ make_ci_env() {
 		rm -r "${nore_ci_dir}"
 	fi
 	mkdir -p "$nore_ci_dir"
-  cd "$nore_ci_dir"
+	cd "$nore_ci_dir"
 
   echo "------------"
   echo "TRAVIS_BUILD_DIR=$TRAVIS_BUILD_DIR"
@@ -47,10 +47,11 @@ echo_ci_what() {
 
 
 ci_nore_options() {
-	make_ci_test
+	make_ci_env
+	cd "$nore_ci_dir"
 
+	echo_ci_what "--new"
 	CC=$CC ./configure --new
-	CC=$CC ./configure
 	make clean test
 
 	echo_ci_what "--with-optimize="
@@ -61,20 +62,22 @@ ci_nore_options() {
 	CC=$CC ./configure --with-std=c11
 	make clean test
 
-	echo_ci_what "--without-*="
+	echo_ci_what "--without-symbol, --without-debug, --without-error"
 	CC=$CC ./configure \
 		--without-symbol \
 		--without-debug \
 		--without-error
 	make clean test
 
-	echo_ci_what "--with-warn, --with-verbose="
+	echo_ci_what "--with-warn=, --with-verbose"
 	CC=$CC ./configure \
 		--with-warn=NO \
 		--with-verbose
 	make clean test
 
 	make_ci_env
+	cd "$nore_ci_dir"
+
 	echo_ci_what "--src-dir, --out-dir="
 	CC=$CC ./configure --src-dir=src --out-dir=out --new
 	make clean test
@@ -83,4 +86,4 @@ ci_nore_options() {
 
 ci_nore_options
 
-[ -d "${nore_ci_dir}" ] && rm -r "${nore_ci_dir}"
+# [ -d "${nore_ci_dir}" ] && rm -r "${nore_ci_dir}"
