@@ -1,5 +1,8 @@
 #!/bin/bash
 
+if [ "true" != "$TRAVIS" ]; then
+	TRAVIS_BUILD_DIR="`cd $(dirname ${BASH_SOURCE[0]}); pwd`"
+fi
 
 using_cc() {
 	if [ -z "$1" ]; then
@@ -15,10 +18,6 @@ using_cc() {
 
 
 make_ci_env() {
-  if [ ".true" != "$TRAVIS" ]; then
-  	TRAVIS_BUILD_DIR="`dirname ${BASH_SOURCE[0]}`"
-  fi
-
   nore_ci_dir="${TRAVIS_BUILD_DIR%/}/ci"
   if [ -d "$nore_ci_dir" ]; then
 		rm -r "${nore_ci_dir}"
@@ -34,7 +33,6 @@ make_ci_env() {
   echo "------------"
   echo "${nore_ci_dir}/configure where"
   echo "`${nore_ci_dir}/configure where`"
-  echo "------------"
 
 	using_cc
 }
