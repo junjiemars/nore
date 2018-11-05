@@ -39,7 +39,7 @@ make_ci_env() {
 
 echo_ci_what() {
 	echo "------------"
-	echo "# CI: $1 option ..."
+	echo "# CI: $@ ..."
 	echo "------------"
 }
 
@@ -48,35 +48,30 @@ ci_nore_options() {
 	make_ci_env
 	cd "$nore_ci_dir"
 
-	echo_ci_what "--new"
-	CC=$CC ./configure --new
+	echo_ci_what "CC=$CC ./configure --new"
+	./configure --new
 	make clean test
 
-	echo_ci_what "--with-optimize="
+	echo_ci_what "CC=$CC ./configure --with-optimize=YES"
 	CC=$CC ./configure --with-optimize=YES
 	make clean test
 
-	echo_ci_what "--with-std=c11"
+	echo_ci_what "CC=$CC ./configure --with-std=c11"
 	CC=$CC ./configure --with-std=c11
 	make clean test
 
-	echo_ci_what "--without-symbol,--without-debug,--without-error"
-	CC=$CC ./configure \
-		--without-symbol \
-		--without-debug \
-		--without-error
+	echo_ci_what "CC=$CC ./configure --without-symbol --without-debug --without-error"
+	CC=$CC ./configure --without-symbol --without-debug --without-error
 	make clean test
 
-	echo_ci_what "--with-warn=,--with-verbose"
-	CC=$CC ./configure \
-		--with-warn=NO \
-		--with-verbose
+	echo_ci_what "CC=$CC ./configure --with-warn=NO --with-verbose"
+	CC=$CC ./configure --with-warn=NO --with-verbose
 	make clean test
 
 	make_ci_env
 	cd "$nore_ci_dir"
 
-	echo_ci_what "--src-dir,--out-dir="
+	echo_ci_what "CC=$CC ./configure --src-dir=src --out-dir=out --new"
 	CC=$CC ./configure --src-dir=src --out-dir=out --new
 	make clean test
 }
