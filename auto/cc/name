@@ -12,12 +12,10 @@ nm_feature_name=
 nm_feature_run=yes
 nm_feature_h=
 nm_feature_flags=
-nm_feature_inc=
-nm_feature_ldlibs=
 nm_feature_test=
 . ${NORE_ROOT}/auto/feature
 
-if [ ".$nm_found" = ".no" ]; then
+if [ ".no" = ".$nm_found" ]; then
   echo " + $0: error: C compiler $CC is not found"
   exit 1
 fi
@@ -28,8 +26,6 @@ nm_feature_name=
 nm_feature_run=yes
 nm_feature_h='#include <iostream>'
 nm_feature_flags=
-nm_feature_inc=
-nm_feature_ldlibs=
 nm_feature_test="std::cout << \"$CC can compile C++ code? yes.\n\";"
 feature_dumb=1 feature_cxx=1 . ${NORE_ROOT}/auto/feature
 
