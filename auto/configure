@@ -27,6 +27,10 @@ cat << END > $NM_AUTO_H
  *
 */
 
+#ifndef NORE_H
+#define NORE_H
+#endif
+
 #define NM_CONFIGURE "$NM_CONFIGURE"
 END
 
