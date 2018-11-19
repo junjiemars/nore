@@ -29,7 +29,6 @@ cat << END > $NM_AUTO_H
 
 #ifndef NORE_H
 #define NORE_H
-#endif
 
 #define NM_CONFIGURE "$NM_CONFIGURE"
 END
@@ -90,5 +89,9 @@ have=NM_PREFIX value="\"$NM_PREFIX/\"" . ${NORE_ROOT}/auto/define
 
 
 . ${NORE_ROOT}/auto/make
+
+cat << END >> $NM_AUTO_H
+#endif /* end of NORE_H */
+END
 
 . ${NORE_ROOT}/auto/summary
