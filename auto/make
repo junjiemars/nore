@@ -117,6 +117,8 @@ ar_ext = $ar_ext
 bin_ext = $bin_ext
 
 
+default: all
+
 clean:
 	-\$(RM) -r $NM_OUT/bin/*
 	-\$(RM) -r $NM_OUT/lib/*
@@ -320,12 +322,11 @@ if [ 0 -lt ${#nm_sticks} ]; then
 
 	cat << END >> $NM_MAKEFILE
 
-build: ${nm_sticks_build[@]}
+all: ${nm_sticks_build[@]}
 test: ${nm_sticks_test[@]}
 
-default: build
 
-.PHONY: build clean test task install \\
+.PHONY: default all clean test task install \\
         ${nm_sticks_build[@]} ${nm_sticks_test[@]}
 END
   
