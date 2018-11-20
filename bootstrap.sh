@@ -421,24 +421,14 @@ END
   fi
 }
 
-echo_found_or_not() {
+echo_yes_or_no() {
   local c="$1"
   if [ 0 -eq $c ]; then
-    echo "found"
+    echo "yes"
   else
-    echo "no found"
+    echo "no"
   fi
   return $c
-}
-
-echo_ok_or_failed() {
-	local c=$1
-	if [ 0 -eq $c ]; then
-		echo "ok"
-	else
-		echo "failed"
-	fi
-	return $c
 }
 
 echo_elapsed_seconds() {
@@ -489,12 +479,12 @@ echo
 
 echo -n " + checking make ... "
 if `make -v &>/dev/null`; then
-	echo_found_or_not $?
+	echo_yes_or_no $?
 else
-  echo_found_or_not $?
+  echo_yes_or_no $?
 	if `on_windows_nt`; then
 		echo -n " + downloading make ... "
-		echo_ok_or_failed `download_gmake "${HOME%/}/.nore"; echo $?`
+		echo_yes_or_no `download_gmake "${HOME%/}/.nore"; echo $?`
 	fi
 fi
 
@@ -502,25 +492,25 @@ fi
 
 echo -n " + checking nore ... "
 if `check_nore`; then
- echo_found_or_not $?
+ echo_yes_or_no $?
  if [ "yes" = "$NORE_UPGRADE" ]; then
    echo -n " + upgrading nore ... "
-	 echo_ok_or_failed `upgrade_nore ; echo $?`
+	 echo_yes_or_no `upgrade_nore ; echo $?`
 	 exit_checking $? $BEGIN
  fi
 else
- echo_found_or_not $?
+ echo_yes_or_no $?
  echo -n " + cloning nore ... "
- echo_ok_or_failed `clone_nore ; echo $?`
+ echo_yes_or_no `clone_nore ; echo $?`
  exit_checking $? $BEGIN
 fi
 
 echo -n " + generating configure ... "
-echo_ok_or_failed `cat_configure ; echo $?`
+echo_yes_or_no `cat_configure ; echo $?`
 exit_checking $? $BEGIN
 
 echo -n " + generating ~/.nore/cc-env.sh ... "
-echo_ok_or_failed `cat_cc_env "${HOME%/}/.nore/cc-env.sh"; echo $?`
+echo_yes_or_no `cat_cc_env "${HOME%/}/.nore/cc-env.sh"; echo $?`
 exit_checking $? $BEGIN
 
 echo_elapsed_seconds $BEGIN
