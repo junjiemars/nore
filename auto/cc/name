@@ -16,7 +16,6 @@ nm_feature_test=
 . ${NORE_ROOT}/auto/feature
 
 if [ ".no" = ".$nm_found" ]; then
-  echo " + $0: error: C compiler $CC is not found"
   exit 1
 fi
 
