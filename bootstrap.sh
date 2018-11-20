@@ -184,7 +184,7 @@ case "\`echo \${NORE_L_CONF_COMMAND} | tr '[:upper:]' '[:lower:]'\`" in
       echo ""
     fi
 		`if on_windows_nt; then
-       echo "    echo -n \"cc-end.bat=@\""
+       echo "echo -n \"cc-env.bat=@\""
        echo "    if [ -f \"\\${HOME%/}/.nore/cc-env.bat\" ]; then"
        echo "      echo -e \"\\${HOME%/}/.nore/cc-env.bat\""
        echo "    else"
