@@ -166,11 +166,11 @@ make_stick_norm() {
 	fi
 }
 
-echo_ok_or_failed() {
+echo_yes_or_no() {
   if [ 0 -eq $1 ]; then
-    echo "ok"
+    echo "yes"
   else
-    echo "failed"
+    echo "no"
   fi
 }
 
@@ -200,13 +200,13 @@ for stick in ${NM_HAS_STICKS[@]}; do
 		if [ YES = $NM_NEW ]; then
 			echo $echo_n_opt " + generating $nm_src_stick directory ... "
 			mkdir -p $nm_src_stick
-			echo_ok_or_failed $?
+			echo_yes_or_no $?
 		else
-			echo " + checking for $nm_src_stick ... no found"
+			echo " + checking for $nm_src_stick ... no"
 			cat << END >> $NM_AUTO_ERR
 
 ---------------------------------------
-checking for $nm_src_stick ... no found
+checking for $nm_src_stick ... no
 
 END
 			continue
@@ -232,11 +232,11 @@ int main(int argc, char **argv) {
 }
 
 END
-		echo_ok_or_failed $?
+		echo_yes_or_no $?
   fi # end of [ ! -f "$nm_src_stick/$nm_stick_norm.c" ]
 
   if [ -f "$nm_src_stick/version" ]; then
-		echo " + checking for $nm_src_stick/version ... found"
+		echo " + checking for $nm_src_stick/version ... yes"
     have=`echo "$nm_stick_norm" | tr '[:lower:]' '[:upper:]'`_VERSION \
     value=`cat "$nm_src_stick/version"` . ${NORE_ROOT}/auto/define
     
@@ -246,22 +246,24 @@ END
 0x030614
 
 END
-    echo_ok_or_failed $?
+    echo_yes_or_no $?
 	fi # end of [ -f $nm_src_stick/version ]
   
 	if [ -f "$nm_src_stick/auto" ]; then
-		echo " + checking for $nm_src_stick/auto ... found"
+		echo " + checking for $nm_src_stick/auto ... yes"
 		. "$nm_src_stick/auto"
     
   elif [ YES = $NM_NEW ]; then
 		echo $echo_n_opt " + generating $nm_src_stick/auto file ... "
     cat ${NORE_ROOT}/auto/check > "$nm_src_stick/auto"
-    echo_ok_or_failed $?
+    echo_yes_or_no $?
+	else
+		echo " + checking for $nm_src_stick/auto ... no"
 	fi # end of [ -f $nm_src_stick/auto ]
   
 	if [ -f "$nm_src_stick/Makefile" ]; then
 		stick_makefile="$nm_src_stick/Makefile"
-		echo " + checking for $nm_src_stick/Makefile ... found"
+		echo " + checking for $nm_src_stick/Makefile ... yes"
 
   elif [ YES = $NM_NEW ]; then
 		stick_makefile="$nm_src_stick/Makefile"
@@ -286,15 +288,15 @@ ${nm_stick_norm}_test: ${nm_stick_norm}
 
 END
 	  if [ $nm_src_stick != . ]; then
-			echo_ok_or_failed $?
+			echo_yes_or_no $?
 		fi
 	else
 
-		echo " + checking for $nm_src_stick/Makefile ... no found"
+		echo " + checking for $nm_src_stick/Makefile ... no"
 		cat << END >> $NM_AUTO_ERR
 
 ----------------------------------------
-checking for ${nm_src_stick}/Makefile no found
+checking for ${nm_src_stick}/Makefile ... no 
 
 END
 		continue	
@@ -351,7 +353,7 @@ END
 		cat "$nm_src_stick/Makefile.NEW" >> Makefile
 		rm "$nm_src_stick/Makefile.NEW"
 	fi
-	echo_ok_or_failed $?
+	echo_yes_or_no $?
 	
 fi # end of [ -f Makefile ]
 
