@@ -83,8 +83,8 @@ $ bash <(curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap
 
 configure Nore on Linux ...
 
- + checking make ... found
- + checking nore ... found
+ + checking make ... yes
+ + checking nore ... yes
  + generating configure ... ok
  + generating ~/.nore/cc-env.sh ... ok
 
@@ -106,12 +106,12 @@ $ bash <(curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap
 
 configure Nore on MINGW64_NT-10.0 ...
 
- + checking make ... no found
- + checking bash environment ... found
- + downloading make ... ok
- + checking nore ... found
- + generating configure ... ok
- + generating ~/.nore/cc-env.sh ... ok
+ + checking make ... no
+ + checking bash environment ... yes
+ + downloading make ... yes
+ + checking nore ... yes
+ + generating configure ... yes
+ + generating ~/.nore/cc-env.sh ... yes
 
 ... elpased 9 seconds.
 
@@ -194,7 +194,7 @@ $ ./configure --new
 
 checking for OS
  + MINGW64_NT-10.0 2.9.0(0.318/5/3) x86_64
-checking for C compiler ... found
+checking for C compiler ... yes
  + using Microsoft Visual C++ compiler
  + msvc version: 19.13.26129 for x64
 checking for WinNT:10.0:x86_64 specific features
@@ -510,11 +510,11 @@ Upgrade current Nore via *upgrade* command.
 $ ./configure upgrade
 configure Nore on MSYS_NT-10.0 ...
 
- + checking make ... found
- + checking nore ... found
- + upgrading nore ... ok
- + generating configure ... ok
- + generating ~/.nore/cc-env.sh ... ok
+ + checking make ... yes
+ + checking nore ... yes
+ + upgrading nore ... yes
+ + generating configure ... yes
+ + generating ~/.nore/cc-env.sh ... yes
 
 ... elpased 13 seconds.
 #+END_SRC
