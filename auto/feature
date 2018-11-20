@@ -58,23 +58,23 @@ if [ -x $NM_AUTOTEST ]; then
     yes)
 
       if `$NM_AUTOTEST >> $NM_AUTO_ERR 2>&1`; then
-        echo_feature "found"
         nm_found=yes
+        echo_feature "$nm_found"
 
         if [ -n "$nm_feature_name" ]; then
           have=$nm_have_feature . ${NORE_ROOT}/auto/have
         fi
 
       else
-        echo_feature "not found"
+        echo_feature "$nm_found"
       fi
     ;;
 
     value)
 
       if `$NM_AUTOTEST >> $NM_AUTO_ERR 2>&1`; then
-        echo_feature "found"
         nm_found=yes
+        echo_feature "$nm_found"
 
         cat << END >> $NM_AUTO_H
 
@@ -84,18 +84,18 @@ if [ -x $NM_AUTOTEST ]; then
 
 END
       else
-        echo_feature "not found"
+        echo_feature "$nm_found"
       fi
     ;;
 
     bug)
 
       if `$NM_AUTOTEST >> $NM_AUTO_ERR 2>&1`; then
-        echo_feature "not found"
+        echo_feature "$nm_found"
 
       else
-        echo_feature "found"
         nm_found=yes
+        echo_feature "$nm_found"
 
         if [ -n "$nm_feature_name" ]; then
           have=$nm_have_feature . ${NORE_ROOT}/auto/have
@@ -104,8 +104,8 @@ END
     ;;
 
     *)
-      echo_feature "found"
       nm_found=yes
+      echo_feature "$nm_found"
 
       if [ -n "$nm_feature_name" ]; then
         have=$nm_have_feature . ${NORE_ROOT}/auto/have
@@ -115,7 +115,7 @@ END
   esac
 
 else
-  echo_feature "not found"
+  echo_feature "$nm_found"
 
   echo "----------"    >> $NM_AUTO_ERR
   cat  $autotest_c     >> $NM_AUTO_ERR
