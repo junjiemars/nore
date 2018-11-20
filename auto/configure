@@ -90,8 +90,10 @@ have=NM_PREFIX value="\"$NM_PREFIX/\"" . ${NORE_ROOT}/auto/define
 
 . ${NORE_ROOT}/auto/make
 
-cat << END >> $NM_AUTO_H
+if [ -f "$NM_AUTO_H" ]; then
+	cat << END >> $NM_AUTO_H
 #endif /* end of NORE_H */
 END
+fi
 
 . ${NORE_ROOT}/auto/summary
