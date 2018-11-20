@@ -43,7 +43,7 @@ yes_no_val_out() {
 
 	case "$opt" in
 
-		YES) echo "${opt}${val:+: val}" ;;
+		YES) echo "${opt}${val:+: $val}" ;;
 
 		NO) echo "$opt" ;;
 
