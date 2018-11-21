@@ -86,5 +86,6 @@ cat << END
   error= `yes_no_out $NM_ERROR "$nm_error_opt"`
   warn= `yes_no_any_out "$NM_WARN" "$nm_warn_opt" "$NM_WARN"`
   verbose= `yes_no_val_out $NM_VERBOSE "$nm_verbose_opt"`
+  src= $NM_SRC	
   has= ${NM_HAS_STICKS[@]}
 END
