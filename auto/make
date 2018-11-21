@@ -137,7 +137,7 @@ END
 nm_sticks=()
 nm_sticks_build=()
 nm_sticks_test=()
-nm_src_stick=
+nm_stick_src=
 nm_stick_norm=
 nm_stick_make=
 
@@ -198,29 +198,29 @@ END
 
 for stick in ${NM_HAS_STICKS[@]}; do
 
-	nm_src_stick="`make_stick_path $NM_SRC $stick`"
-	nm_stick_norm="`make_stick_norm $nm_src_stick $stick`"
+	nm_stick_src="`make_stick_path $NM_SRC $stick`"
+	nm_stick_norm="`make_stick_norm $nm_stick_src $stick`"
 	
-	if [ ! -d "$nm_src_stick" ]; then
+	if [ ! -d "$nm_stick_src" ]; then
 		if [ YES = $NM_NEW ]; then
-			echo $echo_n_opt " + generating $nm_src_stick directory ... "
-			mkdir -p $nm_src_stick
+			echo $echo_n_opt " + generating $nm_stick_src directory ... "
+			mkdir -p $nm_stick_src
 			echo_yes_or_no $?
 		else
-			echo " + checking for $nm_src_stick ... no"
+			echo " + checking for $nm_stick_src ... no"
 			cat << END >> $NM_AUTO_ERR
 
 ---------------------------------------
-checking for $nm_src_stick ... no
+checking for $nm_stick_src ... no
 
 END
 			continue
 		fi
-	fi # end of [ ! -d $nm_src_stick ]
+	fi # end of [ ! -d $nm_stick_src ]
 
-  if [ YES = $NM_NEW -a ! -f "$nm_src_stick/$nm_stick_norm.c" ]; then
-		echo $echo_n_opt " + generating `echo_pretty_path $nm_src_stick/$nm_stick_norm.c` file ... "
-		cat <<END > "$nm_src_stick/$nm_stick_norm.c"
+  if [ YES = $NM_NEW -a ! -f "$nm_stick_src/$nm_stick_norm.c" ]; then
+		echo $echo_n_opt " + generating `echo_pretty_path $nm_stick_src/$nm_stick_norm.c` file ... "
+		cat <<END > "$nm_stick_src/$nm_stick_norm.c"
 /*
  * ${gen_by_nore}
 */
@@ -238,49 +238,49 @@ int main(int argc, char **argv) {
 
 END
 		echo_yes_or_no $?
-  fi # end of [ ! -f "$nm_src_stick/$nm_stick_norm.c" ]
+  fi # end of [ ! -f "$nm_stick_src/$nm_stick_norm.c" ]
 
-  if [ -f "$nm_src_stick/version" ]; then
-		echo " + checking for `echo_pretty_path $nm_src_stick/version` ... yes"
+  if [ -f "$nm_stick_src/version" ]; then
+		echo " + checking for `echo_pretty_path $nm_stick_src/version` ... yes"
     have=`echo "$nm_stick_norm" | tr '[:lower:]' '[:upper:]'`_VERSION \
-    value=`cat "$nm_src_stick/version"` . ${NORE_ROOT}/auto/define
+    value=`cat "$nm_stick_src/version"` . ${NORE_ROOT}/auto/define
     
   elif [ YES = $NM_NEW ]; then
-    echo $echo_n_opt " + generating `echo_pretty_path $nm_src_stick/version file` ... "
-    cat << END > "$nm_src_stick/version"
+    echo $echo_n_opt " + generating `echo_pretty_path $nm_stick_src/version file` ... "
+    cat << END > "$nm_stick_src/version"
 0x030614
 
 END
     echo_yes_or_no $?
-	fi # end of [ -f $nm_src_stick/version ]
+	fi # end of [ -f $nm_stick_src/version ]
   
-	if [ -f "$nm_src_stick/auto" ]; then
-		echo " + checking for `echo_pretty_path $nm_src_stick/auto` ... yes"
-		. "$nm_src_stick/auto"
+	if [ -f "$nm_stick_src/auto" ]; then
+		echo " + checking for `echo_pretty_path $nm_stick_src/auto` ... yes"
+		. "$nm_stick_src/auto"
     
   elif [ YES = $NM_NEW ]; then
-		echo $echo_n_opt " + generating `echo_pretty_path $nm_src_stick/auto` file ... "
-    cat ${NORE_ROOT}/auto/check > "$nm_src_stick/auto"
+		echo $echo_n_opt " + generating `echo_pretty_path $nm_stick_src/auto` file ... "
+    cat ${NORE_ROOT}/auto/check > "$nm_stick_src/auto"
     echo_yes_or_no $?
 	else
-		echo " + checking for $nm_src_stick/auto ... no"
-	fi # end of [ -f $nm_src_stick/auto ]
+		echo " + checking for $nm_stick_src/auto ... no"
+	fi # end of [ -f $nm_stick_src/auto ]
   
-	if [ -f "$nm_src_stick/Makefile" ]; then
-		stick_makefile="$nm_src_stick/Makefile"
-		echo " + checking for `echo_pretty_path $nm_src_stick/Makefile` ... yes"
+	if [ -f "$nm_stick_src/Makefile" ]; then
+		stick_makefile="$nm_stick_src/Makefile"
+		echo " + checking for `echo_pretty_path $nm_stick_src/Makefile` ... yes"
 
   elif [ YES = $NM_NEW ]; then
-		stick_makefile="$nm_src_stick/Makefile"
-		if [ $nm_src_stick = . ]; then
-			stick_makefile="$nm_src_stick/Makefile.NEW"
+		stick_makefile="$nm_stick_src/Makefile"
+		if [ $nm_stick_src = . ]; then
+			stick_makefile="$nm_stick_src/Makefile.NEW"
 		else
-			echo $echo_n_opt " + generating `echo_pretty_path $nm_src_stick/Makefile` ... "
+			echo $echo_n_opt " + generating `echo_pretty_path $nm_stick_src/Makefile` ... "
 		fi
 		cat << END > "$stick_makefile"
 #---------------------------------------
 
-${nm_stick_norm}_root := $nm_src_stick/
+${nm_stick_norm}_root := $nm_stick_src/
 
 ${nm_stick_norm}_binout := \$(bin_path)${nm_stick_norm}\$(bin_ext)
 
@@ -292,29 +292,29 @@ ${nm_stick_norm}_test: ${nm_stick_norm}
 	\$(CC) \$(CFLAGS) \$(INC) \$< \$(bin_out)\$@
 
 END
-	  if [ $nm_src_stick != . ]; then
+	  if [ $nm_stick_src != . ]; then
 			echo_yes_or_no $?
 		fi
 	else
 
-		echo " + checking for $nm_src_stick/Makefile ... no"
+		echo " + checking for $nm_stick_src/Makefile ... no"
 		cat << END >> $NM_AUTO_ERR
 
 ----------------------------------------
-checking for ${nm_src_stick}/Makefile ... no 
+checking for ${nm_stick_src}/Makefile ... no 
 
 END
 		continue	
-	fi # end of [ -f $nm_src_stick/Makefile ]
+	fi # end of [ -f $nm_stick_src/Makefile ]
 
   nm_sticks+=("$stick")
 	nm_sticks_build+=("$nm_stick_norm")
-	nm_sticks_test+=("`make_stick_norm $nm_src_stick $stick`_test")
+	nm_sticks_test+=("`make_stick_norm $nm_stick_src $stick`_test")
 
-	if [ $nm_src_stick != . -a -n "$stick_makefile" ]; then
+	if [ $nm_stick_src != . -a -n "$stick_makefile" ]; then
 		cat << END >> $NM_MAKEFILE
 
-${nm_stick_norm}_root := $nm_src_stick/
+${nm_stick_norm}_root := $nm_stick_src/
 
 include $stick_makefile
 
@@ -354,9 +354,9 @@ include $NM_MAKEFILE
 
 END
 
-	if [ -f "$nm_src_stick/Makefile.NEW" ]; then
-		cat "$nm_src_stick/Makefile.NEW" >> Makefile
-		rm "$nm_src_stick/Makefile.NEW"
+	if [ -f "$nm_stick_src/Makefile.NEW" ]; then
+		cat "$nm_stick_src/Makefile.NEW" >> Makefile
+		rm "$nm_stick_src/Makefile.NEW"
 	fi
 	echo_yes_or_no $?
 	
