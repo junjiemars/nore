@@ -175,8 +175,7 @@ echo_yes_or_no() {
 }
 
 echo_pretty_path() {
-	local p="$1"
-	echo "$p" | sed -e 's#^./\(.*\)#\1#'
+	echo "$@" | sed -e 's#^./\(.*\)#\1#'
 }
 
 
@@ -246,7 +245,7 @@ END
     value=`cat "$nm_stick_src/version"` . ${NORE_ROOT}/auto/define
     
   elif [ YES = $NM_NEW ]; then
-    echo $echo_n_opt " + generating `echo_pretty_path $nm_stick_src/version file` ... "
+    echo $echo_n_opt " + generating `echo_pretty_path $nm_stick_src/version` file ... "
     cat << END > "$nm_stick_src/version"
 0x030614
 
