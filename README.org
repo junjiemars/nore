@@ -200,10 +200,10 @@ checking for C compiler ... yes
 checking for WinNT:10.0:x86_64 specific features
 
 creating out/Makefile
- + generating ./c.c file ... ok
- + generating ./version file ... ok
- + generating ./auto file ... ok
- + generating Makefile file ... ok
+ + generating c.c file ... yes
+ + generating version file ... yes
+ + generating auto file ... yes
+ + generating Makefile file ... yes
 
 Configuration summary
   platform: WinNT:10.0:x86_64
@@ -211,7 +211,7 @@ Configuration summary
   prefix= D:/opt/run
   out= out
   new= YES
-  std= YES:
+  std= YES
   symbol= YES: -Z7
   debug= YES
   optimize= NO
@@ -494,7 +494,7 @@ make=@/c/opt/open/gmake/4.2.90/make
 bash=@/usr/bin/bash
 cc-env.sh=@/c/Users/junjie/cc-env.sh
 cc-env.id=@/c/Users/junjie/cc-env.id[0]
-cc-end.bat=@/c/Users/junjie/cc-env.bat
+cc-env.bat=@/c/Users/junjie/cc-env.bat
 cc-inc.lst=@/c/Users/junjie/cc-inc.lst
 cc-inc.vimrc=@/c/Users/junjie/cc-inc.vimrc
 #+END_SRC
