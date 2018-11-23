@@ -236,6 +236,7 @@ int main(int argc, char **argv) {
     _unused_(argv);
 
     printf("Hello, Nore!\n");
+    return 0;
 }
 
 END
