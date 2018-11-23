@@ -10,45 +10,20 @@
 yes_no_out() {
 	local opt="$1"
 	local val="$2"
-	
 	case "$opt" in
-
 		YES) echo "$opt: $val" ;;
-
 		NO) echo "$opt" ;;
-		
 		*) ;;
-
 	esac
 }
 
 no_yes_out() {
 	local opt="$1"
 	local val="$2"
-
 	case "$opt" in
-		
 		NO) echo "$opt: $val" ;;
-
 		YES) echo "$opt" ;;
-		
 		*) ;;
-
-	esac
-}
-
-yes_no_val_out() {
-	local opt="$1"
-	local val="$2"
-
-	case "$opt" in
-
-		YES) echo "${opt}${val:+: $val}" ;;
-
-		NO) echo "$opt" ;;
-
-		*) echo "$val" ;;
-
 	esac
 }
 
@@ -56,15 +31,10 @@ yes_no_any_out() {
 	local opt="$1"
 	local val="$2"
 	local any="$3"
-
 	case "$opt" in
-
 		YES) echo "$opt: $val" ;;
-
 		NO) echo "$opt" ;;
-
 		*) echo "$any" ;;
-
 	esac
 }
 
@@ -78,14 +48,14 @@ cat << END
   prefix= $NM_PREFIX
   out= $NM_OUT
   new= $NM_NEW
-  std= `yes_no_val_out $NM_STD $nm_std_opt`
-  symbol= `yes_no_out $NM_SYMBOL "$nm_symbol_opt"`
-  debug= `no_yes_out $NM_DEBUG $nm_debug_opt`
+  std= `yes_no_any_out "$NM_STD" "$nm_std_opt" "$NM_STD"`
+  symbol= `yes_no_out "$NM_SYMBOL" "$nm_symbol_opt"`
+  debug= `no_yes_out "$NM_DEBUG" "$nm_debug_opt"`
   optimize= `yes_no_any_out "$NM_OPTIMIZE" "$nm_optimize_opt" "$NM_OPTIMIZE"`
   cpu= `yes_no_any_out "$NM_CPU" "$nm_cpu_opt" "$NM_CPU"`
-  error= `yes_no_out $NM_ERROR "$nm_error_opt"`
+  error= `yes_no_out "$NM_ERROR" "$nm_error_opt"`
   warn= `yes_no_any_out "$NM_WARN" "$nm_warn_opt" "$NM_WARN"`
-  verbose= `yes_no_val_out $NM_VERBOSE "$nm_verbose_opt"`
+  verbose= `yes_no_out "$NM_VERBOSE" "$nm_verbose_opt"`
   src= $NM_SRC	
   has= ${NM_HAS_STICKS[@]}
 END
