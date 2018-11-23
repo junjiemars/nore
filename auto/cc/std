@@ -9,18 +9,19 @@
 
 case "$NM_STD" in
 	NO)
-	;;
+		:
+	  ;;
 
 	YES)
 		nm_std_opt="${std_opt}c99"
 		if [ ".$CXX" = ".$CC" ]; then
-			nm_std_opt="${std_opt}c++11"
+			nm_std_opt="${std_opt}c++0x"
 		fi
-	;;
+		;;
 
 	*)
 		nm_std_opt="${std_opt}$NM_STD"
-	;;
+		;;
 esac
 
 
