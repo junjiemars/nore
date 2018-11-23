@@ -211,7 +211,7 @@ Configuration summary
   prefix= D:/opt/run
   out= out
   new= YES
-  std= YES
+  std= YES:
   symbol= YES: -Z7
   debug= YES
   optimize= NO
