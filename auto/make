@@ -17,8 +17,8 @@ mkdir -p $NM_OUT/bin \
 	       $NM_OUT/var \
 	       $NM_OUT/tmp
 
-asm_out="${auto_out:+$auto_out$NM_OUT/tmp/ }$asm_out"
-bin_out="${auto_out:+$auto_out$NM_OUT/tmp/ }$bin_out"
+asm_out="${auto_out:+${auto_out}${NM_OUT}/tmp/ }$asm_out"
+bin_out="${auto_out:+${auto_out}${NM_OUT}/tmp/ }$bin_out"
 
 
 cat << END > $NM_MAKEFILE
