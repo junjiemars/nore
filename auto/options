@@ -87,7 +87,7 @@ do
     ;;
     
     *)
-      echo "$0: error: invalid option \"$option\""
+      echo "!panic: invalid option \"$option\""
       exit 1
     ;;
   esac
@@ -131,9 +131,7 @@ cat << END
   --has-*                            has [*] to do
 
 END
-
   exit 1
-
 fi
 
 
@@ -164,6 +162,17 @@ no_any_opt() {
 }
 
 
+if [ "$NM_SRC" != "`echo $NM_SRC | tr -d '[ :=]'`" ]; then
+	echo "!panic: invalid argument --src-dir=\"$NM_SRC\""
+	exit 1
+fi
+
+if [ "$NM_OUT" != "`echo $NM_OUT | tr -d '[ :=]'`" ]; then
+	echo "!panic: invalid argument --out-dir=\"$NM_OUT\""
+	exit 1
+fi
+
+
 if [ . = "$NM_SRC" -a -d src ]; then
 	NM_SRC=src
 fi
@@ -173,17 +182,12 @@ if [ 0 -eq ${#NM_HAS_STICKS} ]; then
 fi
 
 NM_CPU="`no_any_opt $NM_CPU`"
-
 NM_WARN="`yes_no_opt YES $NM_WARN`"
-
 NM_OPTIMIZE="`yes_no_opt NO $NM_OPTIMIZE`"
-
 NM_STD="`yes_no_opt YES $NM_STD`"
-
 
 NM_BIN_PATH=${NM_BIN_PATH:-bin}
 NM_LIB_PATH=${NM_LIB_PATH:-lib}
 NM_ETC_PATH=${NM_ETC_PATH:-etc}
 NM_INC_PATH=${NM_INC_PATH:-include}
 NM_VAR_PATH=${NM_VAR_PATH:-var}
-
