@@ -311,7 +311,7 @@ END
 
   nm_sticks+=("$stick")
 	nm_sticks_build+=("$nm_stick_norm")
-	nm_sticks_test+=("`make_stick_norm $nm_stick_src $stick`_test")
+	nm_sticks_test+=("${nm_stick_norm}_test")
 
 	if [ $nm_stick_src != . -a -n "$stick_makefile" ]; then
 		cat << END >> $NM_MAKEFILE
