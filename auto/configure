@@ -15,11 +15,6 @@ NORE_ROOT="${NORE_ROOT%/}"
 . ${NORE_ROOT}/auto/init
 
 
-test -d "$NM_OUT" || mkdir -p $NM_OUT
-
-echo > $NM_AUTO_ERR
-
-
 cat << END > $NM_AUTO_H
 /* ${NM_AUTO_H}
  *
@@ -57,11 +52,11 @@ if [ -z "$NM_PLATFORM" ]; then
 		MSYS_NT-*)
 			NM_RELEASE=${NM_SYSTEM:8}
 			NM_SYSTEM=WinNT
-		;;
+			;;
 		MINGW??_NT-*)
 			NM_RELEASE=${NM_SYSTEM:11}
 			NM_SYSTEM=WinNT
-		;;
+			;;
 	esac
 		
   NM_PLATFORM="$NM_SYSTEM-$NM_RELEASE-$NM_MACHINE";
@@ -70,7 +65,6 @@ else
   echo "building for $NM_PLATFORM"
   NM_SYSTEM=$NM_PLATFORM
 fi
-
 
 
 . ${NORE_ROOT}/auto/cc/conf
