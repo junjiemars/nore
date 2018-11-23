@@ -26,7 +26,7 @@ nm_feature_run=yes
 nm_feature_h='#include <iostream>'
 nm_feature_flags=
 nm_feature_test="std::cout << \"$CC can compile C++ code? yes.\n\";"
-feature_dumb=1 feature_cxx=1 . ${NORE_ROOT}/auto/feature
+feature_dumb=yes feature_cxx=yes . ${NORE_ROOT}/auto/feature
 
 cc_or_cxx="C"
 if [ ".yes" = ".$nm_found" ]; then

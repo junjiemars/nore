@@ -8,7 +8,7 @@
 
 
 echo_feature() {
-	if [ -z "$feature_dumb" ]; then
+	if [ "yes" != "$feature_dumb" ]; then
 		echo "$@"
 	fi
 }
@@ -30,7 +30,7 @@ fi
 
 
 autotest_c="$NM_AUTOTEST.c"
-if [ -n "$feature_cxx" ]; then
+if [ "yes" = "$feature_cxx" ]; then
 	autotest_c="$NM_AUTOTEST.cc"
 fi
 
