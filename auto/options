@@ -164,7 +164,7 @@ no_any_opt() {
 }
 
 
-if [ $NM_SRC = . -a -d src ]; then
+if [ . = "$NM_SRC" -a -d src ]; then
 	NM_SRC=src
 fi
 
