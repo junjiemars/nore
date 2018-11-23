@@ -118,9 +118,9 @@ else
   echo_feature "$nm_found"
 
   echo "----------"    >> "$NM_AUTO_ERR"
-  cat  $autotest_c     >> "$NM_AUTO_ERR"
+  cat  "$autotest_c"   >> "$NM_AUTO_ERR"
   echo "----------"    >> "$NM_AUTO_ERR"
-  echo $nm_test        >> "$NM_AUTO_ERR"
+  echo "$nm_test"      >> "$NM_AUTO_ERR"
   echo "----------"    >> "$NM_AUTO_ERR"
 fi
 
