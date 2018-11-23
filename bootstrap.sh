@@ -129,11 +129,17 @@ NORE_L_CONF_COMMAND=
 for option
 do
   case "\$option" in
-    -*=*) NORE_L_CONF_OPTS+=("\$option")  ;;
+    -*=*)
+			NORE_L_CONF_OPTS+=("\$option")
+			;;
 
-    -*) NORE_L_CONF_OPTS+=("\$option")  ;;
+    -*)
+			 NORE_L_CONF_OPTS+=("\$option")
+			 ;;
 
-    *) NORE_L_CONF_COMMAND="\$option"  ;;
+    *) 
+			 NORE_L_CONF_COMMAND="\$option"  
+			 ;;
   esac
 done
 
@@ -147,7 +153,7 @@ case "\`echo \${NORE_L_CONF_COMMAND} | tr '[:upper:]' '[:lower:]'\`" in
         --branch=\${NORE_BRANCH} upgrade
 		fi
     exit \$?
-	;;
+		;;
 
   clone)
 		if [ -f \${NORE_L_BOOT} ]; then
@@ -159,7 +165,7 @@ case "\`echo \${NORE_L_CONF_COMMAND} | tr '[:upper:]' '[:lower:]'\`" in
         --work=\`pwd\`
 		fi
     exit \$?
-  ;;
+  	;;
 
   where)
     echo -e "NORE_ROOT=\${NORE_ROOT}"
@@ -204,11 +210,11 @@ case "\`echo \${NORE_L_CONF_COMMAND} | tr '[:upper:]' '[:lower:]'\`" in
       echo ""
     fi
     exit \$?
-  ;;
+  	;;
 
   debug)
     NORE_L_CONF_DEBUG="yes"
-  ;;
+  	;;
 esac
 
 cd "\`dirname \${BASH_SOURCE}\`"
@@ -217,10 +223,11 @@ if [ -f \${NORE_L_CONF} ]; then
   case "\${NORE_L_CONF_DEBUG}" in
 	  no)
       \$NORE_L_CONF "\$@"
-    ;;
+    	;;
+
     yes)  
       bash -x \$NORE_L_CONF "\${NORE_L_CONF_OPTS[@]}"
-    ;;
+    	;;
   esac
 else
 	echo
