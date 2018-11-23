@@ -16,7 +16,7 @@ echo_feature() {
 echo_feature $echo_n_opt "checking for $nm_feature ... $echo_c_cap"
 
 
-cat << END >> $NM_AUTO_ERR
+cat << END >> "$NM_AUTO_ERR"
 
 ----------------------------------------
 checking for $nm_feature
@@ -34,7 +34,7 @@ if [ -n "$feature_cxx" ]; then
 	autotest_c="$NM_AUTOTEST.cc"
 fi
 
-cat << END > $autotest_c
+cat << END > "$autotest_c"
 $nm_feature_h
 
 int main(void) {
@@ -47,17 +47,17 @@ END
 
 nm_test="$CC $nm_feature_flags ${bin_out}${NM_AUTOTEST} $autotest_c"
 
-`$nm_test >> $NM_AUTO_ERR 2>&1`
+`$nm_test >> "$NM_AUTO_ERR" 2>&1`
 
 nm_found=no
 
-if [ -x $NM_AUTOTEST ]; then
+if [ -x "$NM_AUTOTEST" ]; then
 
   case "$nm_feature_run" in
 
     yes)
 
-      if `$NM_AUTOTEST >> $NM_AUTO_ERR 2>&1`; then
+      if `$NM_AUTOTEST >> "$NM_AUTO_ERR" 2>&1`; then
         nm_found=yes
         echo_feature "$nm_found"
 
@@ -72,7 +72,7 @@ if [ -x $NM_AUTOTEST ]; then
 
     value)
 
-      if `$NM_AUTOTEST >> $NM_AUTO_ERR 2>&1`; then
+      if `$NM_AUTOTEST >> "$NM_AUTO_ERR" 2>&1`; then
         nm_found=yes
         echo_feature "$nm_found"
 
@@ -90,7 +90,7 @@ END
 
     bug)
 
-      if `$NM_AUTOTEST >> $NM_AUTO_ERR 2>&1`; then
+      if `$NM_AUTOTEST >> "$NM_AUTO_ERR" 2>&1`; then
         echo_feature "$nm_found"
 
       else
@@ -117,12 +117,12 @@ END
 else
   echo_feature "$nm_found"
 
-  echo "----------"    >> $NM_AUTO_ERR
-  cat  $autotest_c     >> $NM_AUTO_ERR
-  echo "----------"    >> $NM_AUTO_ERR
-  echo $nm_test        >> $NM_AUTO_ERR
-  echo "----------"    >> $NM_AUTO_ERR
+  echo "----------"    >> "$NM_AUTO_ERR"
+  cat  $autotest_c     >> "$NM_AUTO_ERR"
+  echo "----------"    >> "$NM_AUTO_ERR"
+  echo $nm_test        >> "$NM_AUTO_ERR"
+  echo "----------"    >> "$NM_AUTO_ERR"
 fi
 
-rm -rf $NM_AUTOTEST*
+rm -rf "$NM_AUTOTEST*"
 [ -f "autotest.obj" ] && rm "autotest.obj"

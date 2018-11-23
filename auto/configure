@@ -15,7 +15,7 @@ NORE_ROOT="${NORE_ROOT%/}"
 . ${NORE_ROOT}/auto/init
 
 
-cat << END > $NM_AUTO_H
+cat << END > "$NM_AUTO_H"
 /* ${NM_AUTO_H}
  *
  * ${gen_by_nore}

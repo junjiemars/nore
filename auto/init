@@ -7,15 +7,15 @@
 ####
 
 
-NM_AUTO_H=$NM_OUT/nore.h
-NM_AUTOTEST=$NM_OUT/autotest
-NM_AUTO_ERR=$NM_OUT/auto.err
-NM_MAKEFILE=$NM_OUT/Makefile
+NM_AUTO_H="$NM_OUT/nore.h"
+NM_AUTOTEST="$NM_OUT/autotest"
+NM_AUTO_ERR="$NM_OUT/auto.err"
+NM_MAKEFILE="$NM_OUT/Makefile"
 
 
 test -d "$NM_OUT" || mkdir -p "$NM_OUT"
 
-echo > $NM_AUTO_ERR
+echo > "$NM_AUTO_ERR"
 
 
 # check the echo's "\c" capability
