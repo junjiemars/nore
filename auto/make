@@ -203,7 +203,7 @@ for stick in ${NM_HAS_STICKS[@]}; do
 	if [ ! -d "$nm_stick_src" ]; then
 		if [ YES = $NM_NEW ]; then
 			echo $echo_n_opt " + generating $nm_stick_src directory ... "
-			mkdir -p $nm_stick_src
+			mkdir -p "$nm_stick_src"
 			echo_yes_or_no $?
 		else
 			echo " + checking for $nm_stick_src ... no"
