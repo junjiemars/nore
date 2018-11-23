@@ -44,7 +44,6 @@ else
 		NM_CPU_CACHE_LINE
 	)
 	declare -a NM_SYMBOL_TABLE_VAL=($NM_SYMBOL_TABLE_NAME)
-	
 fi
 
 load_symbol_table() {
