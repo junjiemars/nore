@@ -161,13 +161,18 @@ no_any_opt() {
   fi
 }
 
+illegal_dir() {
+	local d="$@"
+	[ "$d" != "`echo \"$d\" | tr -d '[\t :=]' 2>&1`" ]
+}
 
-if [ "$NM_SRC" != "`echo $NM_SRC | tr -d '[ :=]'`" ]; then
+
+if `illegal_dir "$NM_SRC"`; then
 	echo "!panic: invalid argument --src-dir=\"$NM_SRC\""
 	exit 1
 fi
 
-if [ "$NM_OUT" != "`echo $NM_OUT | tr -d '[ :=]'`" ]; then
+if `illegal_dir "$NM_OUT"`; then
 	echo "!panic: invalid argument --out-dir=\"$NM_OUT\""
 	exit 1
 fi
