@@ -25,7 +25,8 @@ END
 
 
 if [ -n "$nm_feature_name" ]; then
-	nm_have_feature=`echo $nm_feature_name | tr '[\-: =]' '_' | tr '[:lower:]' '[:upper:]'`
+	nm_have_feature=`echo $nm_feature_name \
+		| tr '[\-: =]' '_' | tr '[:lower:]' '[:upper:]'`
 fi
 
 
@@ -34,7 +35,7 @@ if [ "yes" = "$feature_cxx" ]; then
 	autotest_c="$NM_AUTOTEST.cc"
 fi
 
-cat << END > "$autotest_c"
+cat << END > $autotest_c
 $nm_feature_h
 
 int main(void) {
@@ -117,14 +118,14 @@ END
 else
   echo_feature "$nm_found"
 
-  echo "----------"    >> "$NM_AUTO_ERR"
-  cat  "$autotest_c"   >> "$NM_AUTO_ERR"
-  echo "----------"    >> "$NM_AUTO_ERR"
-  echo "$nm_test"      >> "$NM_AUTO_ERR"
-  echo "----------"    >> "$NM_AUTO_ERR"
+  echo "----------"    >> $NM_AUTO_ERR
+  cat  $autotest_c     >> $NM_AUTO_ERR
+  echo "----------"    >> $NM_AUTO_ERR
+  echo $nm_test        >> $NM_AUTO_ERR
+  echo "----------"    >> $NM_AUTO_ERR
 fi
 
 
-[ -f "$NM_AUTOTEST" ] && rm "$NM_AUTOTEST"
-[ -f "$autotest_c" ] && rm "$autotest_c"
-[ -f "autotest.obj" ] && rm "autotest.obj"
+[ -f $NM_AUTOTEST ] && rm $NM_AUTOTEST
+[ -f $autotest_c ]  && rm $autotest_c
+[ -f autotest.obj ] && rm autotest.obj
