@@ -208,6 +208,7 @@ creating out/Makefile
 Configuration summary
   platform: WinNT:10.0:x86_64
   compiler: msvc 19.13.26129 for x64
+	symbol-table=
   prefix= D:/opt/run
   out= out
   new= YES
