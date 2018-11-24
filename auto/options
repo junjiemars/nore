@@ -177,6 +177,11 @@ if ! `legal_dir "$NM_OUT"`; then
 	exit 1
 fi
 
+if ! `legal_dir "$NM_PREFIX"`; then
+	echo "!panic: invalid argument --prefix=\"$NM_PREFIX\""
+	exit 1
+fi
+
 
 if [ . = "$NM_SRC" -a -d src ]; then
 	NM_SRC=src
@@ -191,8 +196,8 @@ NM_WARN="`yes_no_opt YES $NM_WARN`"
 NM_OPTIMIZE="`yes_no_opt NO $NM_OPTIMIZE`"
 NM_STD="`yes_no_opt YES $NM_STD`"
 
-NM_BIN_PATH=${NM_BIN_PATH:-bin}
-NM_LIB_PATH=${NM_LIB_PATH:-lib}
-NM_ETC_PATH=${NM_ETC_PATH:-etc}
-NM_INC_PATH=${NM_INC_PATH:-include}
-NM_VAR_PATH=${NM_VAR_PATH:-var}
+NM_BIN_PATH="${NM_BIN_PATH:-bin}"
+NM_LIB_PATH="${NM_LIB_PATH:-lib}"
+NM_ETC_PATH="${NM_ETC_PATH:-etc}"
+NM_INC_PATH="${NM_INC_PATH:-include}"
+NM_VAR_PATH="${NM_VAR_PATH:-var}"
