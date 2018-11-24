@@ -62,23 +62,36 @@ do
   
   case "$option" in
     --help) help=yes ;;
-    --symbol-table=*)        NM_SYMBOL_FILE="${value%/}" 	;;
+		
+    --symbol-table=*) legal_dir "$value" \
+			&& NM_SYMBOL_FILE="${value%/}" || panic_arg "--symbol-table="	"$value"
+			;;
 
     --prefix=*) legal_dir "$value" \
 			&& NM_PREFIX="${value%/}" || panic_arg "--prefix=" "$value"
-		;;
-		
-    --bin-path=*)            NM_BIN_PATH="${value%/}"     ;;
-    --lib-path=*)            NM_LIB_PATH="${value%/}"  		;;
-    --inc-path=*)            NM_INC_PATH="${value%/}"     ;;
-    --etc-path=*)            NM_ETC_PATH="${value%/}"     ;;
-    --var-path=*)            NM_VAR_PATH="${value%/}"     ;;
+			;;
+    --bin-path=*) legal_dir "$value" \
+			&& NM_BIN_PATH="${value%/}" || panic_arg "--bin-path=" "$value"
+			;;
+    --lib-path=*) legal_dir "$value" \
+			&& NM_LIB_PATH="${value%/}" || panic_arg "--lib-path=" "$value"
+			;;
+    --inc-path=*) legal_dir "$value" \
+			&& NM_INC_PATH="${value%/}" || panic_arg "--inc-path=" "$value"
+			;;
+    --etc-path=*) legal_dir "$value" \
+			&& NM_ETC_PATH="${value%/}" || panic_arg "--etc-path=" "$value"
+			;;
+    --var-path=*) legal_dir "$value" \
+			&& NM_VAR_PATH="${value%/}" || panic_arg "--var-path=" "$value"
+			;;
 
     --src-dir=*) legal_dir "$value" \
-			&& NM_SRC="${value%/}" || panic_arg "--src-dir=" "$value" ;;
-
+			&& NM_SRC="${value%/}" || panic_arg "--src-dir=" "$value"
+			;;
     --out-dir=*) legal_dir "$value" \
-			&& NM_OUT="${value%/}" || panic_arg "--out-dir=" "$value" ;;
+			&& NM_OUT="${value%/}" || panic_arg "--out-dir=" "$value"
+			;;
 
     --cross-build=*)         NM_CROSS_BUILD="$value"     	;;
 
@@ -98,12 +111,12 @@ do
 				| sed -e 's/\ *--has-\([a-zA-Z][a-zA-Z]*\)/\1/' \
 				| tr '[:upper:]' '[:lower:]'`
       )
-    ;;
+			;;
     
     *)
       echo "!panic: invalid option '$option'"
       exit 1
-    ;;
+			;;
   esac
 done
 
