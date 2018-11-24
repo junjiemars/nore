@@ -18,7 +18,7 @@ END
 
 
 autotest_c="$NM_AUTOTEST.c"
-if [ -n "$feature_cxx" ]; then
+if [ "yes" = "$feature_cxx" ]; then
 	autotest_c="$NM_AUTOTEST.cc"
 fi
 
@@ -55,4 +55,7 @@ else
   echo "----------"    >> $NM_AUTO_ERR
 fi
 
-rm -rf $NM_AUTOTEST*
+
+[ -f $NM_AUTOTEST ] && rm $NM_AUTOTEST
+[ -f $autotest_c ]  && rm $autotest_c
+
