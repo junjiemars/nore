@@ -13,9 +13,9 @@ NM_AUTO_ERR="$NM_OUT/auto.err"
 NM_MAKEFILE="$NM_OUT/Makefile"
 
 
-test -d "$NM_OUT" || mkdir -p "$NM_OUT"
+test -d $NM_OUT || mkdir -p $NM_OUT
 
-echo > "$NM_AUTO_ERR"
+echo > $NM_AUTO_ERR
 
 
 # check the echo's "\c" capability
