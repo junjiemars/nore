@@ -68,7 +68,6 @@ fi
 
 
 . ${NORE_ROOT}/auto/cc/conf
-
 . ${NORE_ROOT}/auto/os/conf
 
 
