@@ -121,9 +121,6 @@ do
 done
 
 
-NM_CONFIGURE="$opt"
-
-
 if [ $help = yes ]; then
 	cat << END
 
@@ -186,6 +183,8 @@ no_any_opt() {
   fi
 }
 
+
+NM_CONFIGURE="$opt"
 
 if [ . = "$NM_SRC" -a -d src ]; then
 	NM_SRC=src
