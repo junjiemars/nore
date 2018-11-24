@@ -8,9 +8,7 @@
 
 
 case "$NM_STD" in
-	NO)
-		:
-	  ;;
+	NO) ;;
 
 	YES)
 		nm_std_opt="${std_opt}c99"
@@ -19,9 +17,7 @@ case "$NM_STD" in
 		fi
 		;;
 
-	*)
-		nm_std_opt="${std_opt}$NM_STD"
-		;;
+	*) nm_std_opt="${std_opt}$NM_STD" ;;
 esac
 
 
