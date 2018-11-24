@@ -37,10 +37,18 @@ NM_STD=YES
 NM_CPU=NO
 
 NM_PLATFORM=
-
 NM_CPU_CACHE_LINE=
-
 NM_HAS_STICKS=()
+
+
+legal_dir() {
+	[ "$@" = "`echo \"$@\" | tr -d '[\t :=]' 2>&1`" ]
+}
+
+panic_arg() {
+	echo "!panic: invalid argument ${1}'${@:2}'"
+	exit 1
+}
 
 
 for option
@@ -53,31 +61,37 @@ do
   esac
   
   case "$option" in
-    --help)                          help=yes                   	;;
-    --symbol-table=*)                NM_SYMBOL_FILE="${value%/}" 	;;
+    --help) help=yes ;;
+    --symbol-table=*)        NM_SYMBOL_FILE="${value%/}" 	;;
 
-    --prefix=*)                      NM_PREFIX="${value%/}"      	;;
-    --bin-path=*)                    NM_BIN_PATH="${value%/}"     ;;
-    --lib-path=*)                    NM_LIB_PATH="${value%/}"  		;;
-    --inc-path=*)                    NM_INC_PATH="${value%/}"     ;;
-    --etc-path=*)                    NM_ETC_PATH="${value%/}"     ;;
-    --var-path=*)                    NM_VAR_PATH="${value%/}"     ;;
+    --prefix=*) legal_dir "$value" \
+			&& NM_PREFIX="${value%/}" || panic_arg "--prefix=" "$value"
+		;;
+		
+    --bin-path=*)            NM_BIN_PATH="${value%/}"     ;;
+    --lib-path=*)            NM_LIB_PATH="${value%/}"  		;;
+    --inc-path=*)            NM_INC_PATH="${value%/}"     ;;
+    --etc-path=*)            NM_ETC_PATH="${value%/}"     ;;
+    --var-path=*)            NM_VAR_PATH="${value%/}"     ;;
 
-    --src-dir=*)                     NM_SRC="${value%/}"         	;;
-    --out-dir=*)                     NM_OUT="${value%/}"       	  ;;
+    --src-dir=*) legal_dir "$value" \
+			&& NM_SRC="${value%/}" || panic_arg "--src-dir=" "$value" ;;
 
-    --cross-build=*)                 NM_CROSS_BUILD="$value"     	;;
+    --out-dir=*) legal_dir "$value" \
+			&& NM_OUT="${value%/}" || panic_arg "--out-dir=" "$value" ;;
 
-    --new)                           NM_NEW=YES                   ;;
+    --cross-build=*)         NM_CROSS_BUILD="$value"     	;;
 
-		--without-symbol)                NM_SYMBOL=NO               	;;
-		--without-debug)                 NM_DEBUG=NO                	;;
-		--without-error)                 NM_ERROR=NO         	        ;;
-		--with-warn=*)                   NM_WARN="$value"            	;;
-		--with-optimize=*)               NM_OPTIMIZE="$value"        	;;
-		--with-std=*)                    NM_STD="$value"            	;;
-    --with-cpu=*)                    NM_CPU="$value"              ;;
-		--with-verbose)                  NM_VERBOSE=YES             	;;
+    --new)                   NM_NEW=YES                   ;;
+
+		--without-symbol)        NM_SYMBOL=NO               	;;
+		--without-debug)         NM_DEBUG=NO                	;;
+		--without-error)         NM_ERROR=NO         	        ;;
+		--with-warn=*)           NM_WARN="$value"            	;;
+		--with-optimize=*)       NM_OPTIMIZE="$value"        	;;
+		--with-std=*)            NM_STD="$value"            	;;
+    --with-cpu=*)            NM_CPU="$value"              ;;
+		--with-verbose)          NM_VERBOSE=YES             	;;
 
 		--has-*)
       NM_HAS_STICKS+=(`echo $option \
@@ -87,7 +101,7 @@ do
     ;;
     
     *)
-      echo "!panic: invalid option \"$option\""
+      echo "!panic: invalid option '$option'"
       exit 1
     ;;
   esac
@@ -98,9 +112,7 @@ NM_CONFIGURE="$opt"
 
 
 if [ $help = yes ]; then
-
-
-cat << END
+	cat << END
 
   --help                             print this message
   --symbol-table=PATH                dump or load symbol table
@@ -160,27 +172,6 @@ no_any_opt() {
     echo "$v"
   fi
 }
-
-legal_dir() {
-	local d="$@"
-	[ "$d" = "`echo \"$d\" | tr -d '[\t :=]' 2>&1`" ]
-}
-
-
-if ! `legal_dir "$NM_SRC"`; then
-	echo "!panic: invalid argument --src-dir=\"$NM_SRC\""
-	exit 1
-fi
-
-if ! `legal_dir "$NM_OUT"`; then
-	echo "!panic: invalid argument --out-dir=\"$NM_OUT\""
-	exit 1
-fi
-
-if ! `legal_dir "$NM_PREFIX"`; then
-	echo "!panic: invalid argument --prefix=\"$NM_PREFIX\""
-	exit 1
-fi
 
 
 if [ . = "$NM_SRC" -a -d src ]; then
