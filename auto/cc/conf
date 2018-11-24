@@ -71,17 +71,9 @@ ar_ext=".a"
 
 
 case "$CC_NAME" in
-  gcc)
-    . ${NORE_ROOT}/auto/cc/gcc
-  ;;
-
-  clang)
-    . ${NORE_ROOT}/auto/cc/clang
-  ;;
-
-  msvc*)
-    . ${NORE_ROOT}/auto/cc/msvc
-	;;
+  gcc) . ${NORE_ROOT}/auto/cc/gcc ;;
+  clang) . ${NORE_ROOT}/auto/cc/clang ;;
+  msvc*) . ${NORE_ROOT}/auto/cc/msvc ;;
 esac
 
 
@@ -92,36 +84,28 @@ fi
 
 # optimize option
 case ".$NM_OPTIMIZE" in
-	.|.NO)
-	;;
+	.|.NO) ;;
 
 	.YES)
 		if [ -n "$nm_optimize_opt" ]; then
 			CFLAGS=${CFLAGS:+$CFLAGS }${nm_optimize_opt}
 		fi
-	;;
+		;;
 
-	*)
-		CFLAGS=${CFLAGS:+$CFLAGS }${NM_OPTIMIZE}
-	;;
-
+	*) CFLAGS=${CFLAGS:+$CFLAGS }${NM_OPTIMIZE} ;;
 esac
 
 # warn option
 case ".$NM_WARN" in
-	.|.NO)
-	;;
+	.|.NO) ;;
 
 	.YES)
 		if [ -n "$nm_warn_opt" ]; then
 			CFLAGS=${CFLAGS:+$CFLAGS }${nm_warn_opt}			
 		fi
-	;;
+		;;
 
-	*)
-		CFLAGS=${CFLAGS:+$CFLAGS }${NM_WARN}
-	;;
-
+	*) CFLAGS=${CFLAGS:+$CFLAGS }${NM_WARN} ;;
 esac
 
 # error option
