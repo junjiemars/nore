@@ -78,7 +78,7 @@ if [ -z "$NM_PREFIX" ]; then
 		WinNT|*)  NM_PREFIX="dist"        ;;
 	esac
 fi
-have=NM_PREFIX value="\"$NM_PREFIX/\"" . ${NORE_ROOT}/auto/define
+have=NM_PREFIX value="$NM_PREFIX/" . ${NORE_ROOT}/auto/define
 
 
 . ${NORE_ROOT}/auto/make
