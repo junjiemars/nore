@@ -50,6 +50,11 @@ panic_arg() {
 	exit 1
 }
 
+panic_opt() {
+  echo "!panic: invalid option '$@'"
+	exit 1
+}
+
 
 for option
 do
@@ -107,16 +112,17 @@ do
 		--with-verbose)          NM_VERBOSE=YES             	;;
 
 		--has-*)
-      NM_HAS_STICKS+=(`echo $option \
-				| sed -e 's/\ *--has-\([a-zA-Z][a-zA-Z]*\)/\1/' \
-				| tr '[:upper:]' '[:lower:]'`
-      )
+			if `legal_dir "$option"`; then
+				NM_HAS_STICKS+=(`echo "$option" \
+												| sed -e 's/\ *--has-\([a-zA-Z][a-zA-Z]*\)/\1/' \
+												| tr '[:upper:]' '[:lower:]'`
+											 )
+			else
+				panic_opt "$option"
+			fi
 			;;
     
-    *)
-      echo "!panic: invalid option '$option'"
-      exit 1
-			;;
+    *) panic_opt "$option" ;;
   esac
 done
 
