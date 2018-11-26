@@ -60,7 +60,7 @@ legal_has_opt() {
 
 panic_has_opt() {
   echo "! panic: invalid option '$@'"
-	echo "  --has-* where * should be '${legal_dir_reg}'"
+	echo "  --has-* where * should be '${legal_has_opt}'"
 	exit 1
 }
 
