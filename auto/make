@@ -156,8 +156,8 @@ make_stick_norm() {
 	local src="$1"
 	local stick="$2"
 	if [ "." = "$stick" ]; then
-		if [ "." = "$src" -o "src" = "`basename $src`" ]; then
-			echo "`basename $PWD`"
+		if [ "." = "$src" ]; then
+			echo "`basename \"$PWD\" | tr '[\t :=]' '_'`"
 		else
 			echo "`basename $src`"
 		fi
