@@ -114,9 +114,9 @@ do
 		--has-*)
 			if `legal_dir "$option"`; then
 				NM_HAS_STICKS+=(`echo "$option" \
-												| sed -e 's/\ *--has-\([a-zA-Z][a-zA-Z]*\)/\1/' \
-												| tr '[:upper:]' '[:lower:]'`
-											 )
+					| sed -e 's/\ *--has-\([a-zA-Z][a-zA-Z]*\)/\1/' \
+					| tr '[:upper:]' '[:lower:]'`
+				)
 			else
 				panic_opt "$option"
 			fi
