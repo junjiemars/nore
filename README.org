@@ -284,7 +284,7 @@ P
 └── ...
 #+END_EXAMPLE
 
-You can make them total at once:
+You can make them all at once:
 #+BEGIN_SRC sh
 $ ./configure --has-A --has-B --has-C
 #+END_SRC
@@ -296,8 +296,8 @@ $ ./configure --has-A --has-B --has-C
 
 All projects can share only one Nore clone.
 
-Suppose there are /A/, /B/ and /C/ projects, those projects use only
-one Nore clone.
+Suppose there are /A/, /B/ and /C/ projects, those projects sharing
+only one Nore clone.
 
 #+BEGIN_SRC sh
 # clone Nore in a directory, and annoted it as <Nore>
@@ -323,20 +323,18 @@ $ <Nore>/bootstrap.sh
 Nore's builtin exportable symbols can be replaced via *--symbol-table*
 option, which let Nore easy port to existing C projects.
 
-Example: some tools annote /DARWIN/ symbol in C source code or make
-file as =__DARWIN__= , but the default in Nore is =DARWIN=, you can
-change that to =__DARWIN__=.
+For example: some tools annote /DARWIN/ symbol in C source code or
+make file as =__DARWIN__= , but the default in Nore is =DARWIN=, you
+can change that to =__DARWIN__=.
 
 #+BEGIN_SRC sh
-$ ./configure --symbol-table=<symbol-table-file-name-your-favor>
+$ ./configure --symbol-table=<favored-symbols>
 
-# if <symbol-table-file-name-your-favor> does not existing, 
-# Nore will dump the symbol table into it. Otherwise, Nore will import 
-# <symbol-table-file-name-your-favor>
+# if <favored-symbols> does not existing, Nore will dump the symbol
+# table into it. Otherwise, Nore will import <favored-symbols>
 
-# change the <symbol-table-file-name-your-favor> then
-#
-$ ./configure --symbol-table=<symbol-table-file-name-your-favor> --has-<A>
+# change the <favored-symbols> then
+$ ./configure --symbol-table=<favored-symbols> --has-<A>
 $ make clean test
 #+END_SRC
 
@@ -573,15 +571,13 @@ debuger interactive, and excellent smooth.
 		:END:
 
 Troubleshotting is more easier than other ones, because all just
-Makefile and shell scripts. And Nore provides a command for debugging
+Makefiles and shell scripts. And Nore provides a command for debugging
 purpose.
 
 #+BEGIN_SRC sh
 # debug command for debugging Nore's shell script
-#
 $ ./configure debug
 
 # make debugging options: --just-print --print-data-base --warn-undefined-variables
-#
 $ make --just-print
 #+END_SRC
