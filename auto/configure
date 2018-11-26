@@ -8,14 +8,14 @@
 LC_ALL=C
 export LC_ALL
 
-NORE_ROOT=$(dirname `dirname $0`)
+NORE_ROOT="$(dirname `dirname $0`)"
 NORE_ROOT="${NORE_ROOT%/}"
 
 . ${NORE_ROOT}/auto/options
 . ${NORE_ROOT}/auto/init
 
 
-cat << END > "$NM_AUTO_H"
+cat << END > $NM_AUTO_H
 /* ${NM_AUTO_H}
  *
  * ${gen_by_nore}

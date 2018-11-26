@@ -16,7 +16,7 @@ echo_feature() {
 echo_feature $echo_n_opt "checking for $nm_feature ... $echo_c_cap"
 
 
-cat << END >> "$NM_AUTO_ERR"
+cat << END >> $NM_AUTO_ERR
 
 ----------------------------------------
 checking for $nm_feature
@@ -52,12 +52,10 @@ nm_test="$CC $nm_feature_flags ${bin_out}${NM_AUTOTEST} $autotest_c"
 
 nm_found=no
 
-if [ -x "$NM_AUTOTEST" ]; then
+if [ -x $NM_AUTOTEST ]; then
 
   case "$nm_feature_run" in
-
     yes)
-
       if `$NM_AUTOTEST >> "$NM_AUTO_ERR" 2>&1`; then
         nm_found=yes
         echo_feature "$nm_found"
@@ -69,10 +67,9 @@ if [ -x "$NM_AUTOTEST" ]; then
       else
         echo_feature "$nm_found"
       fi
-    ;;
+			;;
 
     value)
-
       if `$NM_AUTOTEST >> "$NM_AUTO_ERR" 2>&1`; then
         nm_found=yes
         echo_feature "$nm_found"
@@ -87,10 +84,9 @@ END
       else
         echo_feature "$nm_found"
       fi
-    ;;
+			;;
 
     bug)
-
       if `$NM_AUTOTEST >> "$NM_AUTO_ERR" 2>&1`; then
         echo_feature "$nm_found"
 
@@ -102,7 +98,7 @@ END
           have=$nm_have_feature . ${NORE_ROOT}/auto/have
         fi
       fi
-    ;;
+			;;
 
     *)
       nm_found=yes
@@ -111,8 +107,7 @@ END
       if [ -n "$nm_feature_name" ]; then
         have=$nm_have_feature . ${NORE_ROOT}/auto/have
       fi
-    ;;
-
+			;;
   esac
 
 else
