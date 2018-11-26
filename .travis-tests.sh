@@ -76,7 +76,23 @@ ci_nore_options() {
 	make clean test
 }
 
+ci_nore_robust() {
+	make_ci_env
+	cd "$nore_ci_dir"
+	mkdir -p "a b c" && cd "a b c" || return 1
+  if [ -f "$nore_ci_dir/configure" ]; then
+		cp "$nore_ci_dir/configure" ./ || return 1
+	else
+		return 1
+	fi
+
+	echo_ci_what "CC=$CC ./configure --new"
+	./configure --new
+	make clean test
+}
+
 
 ci_nore_options
+ci_nore_robust
 
 [ -d "${nore_ci_dir}" ] && rm -r "${nore_ci_dir}"
