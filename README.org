@@ -575,8 +575,8 @@ Makefiles and shell scripts. And Nore provides a command for debugging
 purpose.
 
 #+BEGIN_SRC sh
-# debug command for debugging Nore's shell script
-$ ./configure debug
+# trace Nore processing
+$ ./configure trace
 
 # make debugging options: --just-print --print-data-base --warn-undefined-variables
 $ make --just-print
