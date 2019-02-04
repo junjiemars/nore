@@ -577,6 +577,7 @@ purpose.
 #+BEGIN_SRC sh
 # trace Nore processing
 $ ./configure trace
+$ ./configure trace --without-error
 
 # make debugging options: --just-print --print-data-base --warn-undefined-variables
 $ make --just-print
