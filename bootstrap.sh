@@ -122,7 +122,7 @@ NORE_L_BOOT="\${NORE_ROOT}/bootstrap.sh"
 NORE_R_BOOT="${GITHUB_R}/nore/\${NORE_BRANCH}/bootstrap.sh"
 NORE_L_CONF="\${NORE_ROOT}/auto/configure"
 NORE_L_CONF_OPTS=()
-NORE_L_CONF_DEBUG="no"
+NORE_L_CONF_TRACE="no"
 NORE_L_CONF_COMMAND=
 
 
@@ -212,15 +212,15 @@ case "\`echo \${NORE_L_CONF_COMMAND} | tr '[:upper:]' '[:lower:]'\`" in
     exit \$?
   	;;
 
-  debug)
-    NORE_L_CONF_DEBUG="yes"
+  trace)
+    NORE_L_CONF_TRACE="yes"
   	;;
 esac
 
 cd "\`dirname \${BASH_SOURCE}\`"
 
 if [ -f \${NORE_L_CONF} ]; then
-  case "\${NORE_L_CONF_DEBUG}" in
+  case "\${NORE_L_CONF_TRACE}" in
 	  no)
       \$NORE_L_CONF "\$@"
     	;;

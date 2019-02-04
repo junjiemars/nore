@@ -140,11 +140,11 @@ if [ $help = yes ]; then
 usage: configure [command]
        configure [options...]
 
-command:
+commands:
   clone                              clone Nore to current directory
   upgrade                            upgrade Nore
   where                              where Nore located
-  debug                              debug Nore
+  trace                              trace Nore
 
 options:
   --help                             print this message
