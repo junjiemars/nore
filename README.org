@@ -96,11 +96,14 @@ configure Nore on Linux ...
 		:CUSTOM_ID: on-windows-platform
 		:END:
 
-On Windows, because there are no *bash* by default, so we need to
-install one, [[https://git-scm.com/downloads][Git Bash]] easy to install and use. When installating /Git
-Bash/, select =unix compatible tools= option box. Start =bash= in any
-=CMD= or =Git Bash=, then run:
+Requirements on Windows:
+- Bash, because there are no *bash* by default, so we need to install
+  one, [[https://git-scm.com/downloads][Git Bash]] easy to install and use. When installating /Git Bash/,
+  select =unix compatible tools= option box.
+- MSVC environment, [[https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2017][C/C++ Build Tools]] installer is enough, and select
+  install [[https://developer.microsoft.com/en-US/windows/downloads/windows-10-sdk][Windows SDK]].
 
+Start =bash= in any =CMD= or =Git Bash=, then run:
 #+BEGIN_SRC sh
 $ bash <(curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.sh)
 
@@ -119,14 +122,8 @@ configure Nore on MINGW64_NT-10.0 ...
 $ ~/.nore/cc-env.sh
 #+END_SRC
 
-
 Put =%USERPROFILE%\.nore= into your Windows' =%PATH%= let life more
 easier.
-
-
-If you want to use Microsoft C/C++ toolchains on Windows, you just
-need to install [[https://developer.microsoft.com/en-US/windows/downloads/windows-10-sdk][Windows SDK]] and [[https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2017][C/C++ Build Tools]].
-
 
 /screenshots/:
 - [[https://github.com/junjiemars/images/blob/master/nore/bootstrap-on-windows.png][bootstrap on Windows]]
