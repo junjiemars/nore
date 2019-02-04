@@ -23,8 +23,6 @@ NM_VAR_PATH=
 NM_OUT=out
 NM_SRC=.
 
-NM_CROSS_BUILD=NO
-
 NM_NEW=NO
 
 NM_SYMBOL=YES
@@ -107,8 +105,6 @@ do
 			&& NM_OUT="${value%/}" || panic_arg "--out-dir=" "$value"
 			;;
 
-    --cross-build=*)         NM_CROSS_BUILD="$value"     	;;
-
     --new)                   NM_NEW=YES                   ;;
 
 		--without-symbol)        NM_SYMBOL=NO               	;;
@@ -163,8 +159,6 @@ options:
 
   --src-dir=[.|src|*]                set source directory
   --out-dir=[out|*]                  set build out directory
-
-  --cross-build=[YES|NO]             set cross build option
 
   --new                              generate Nore script templates
 
