@@ -101,7 +101,7 @@ Requirements on Windows:
   one, [[https://git-scm.com/downloads][Git Bash]] easy to install and use. When installating /Git Bash/,
   select =unix compatible tools= option box.
 - MSVC environment, [[https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2017][C/C++ Build Tools]] installer is enough, and select
-  install [[https://developer.microsoft.com/en-US/windows/downloads/windows-10-sdk][Windows SDK]].
+  [[https://developer.microsoft.com/en-US/windows/downloads/windows-10-sdk][Windows SDK]].
 
 Start =bash= in any =CMD= or =Git Bash=, then run:
 #+BEGIN_SRC sh
@@ -515,6 +515,20 @@ configure Nore on MSYS_NT-10.0 ...
 ... elpased 13 seconds.
 #+END_SRC
 
+*** clone
+		:PROPERTIES:
+		:CUSTOM_ID: clone
+		:END:
+
+Clone the existing Nore into current directory.
+
+*** trace
+		:PROPERTIES:
+		:CUSTOM_ID: trace
+		:END:
+
+Trace Nore processing.
+
 * Editor
 	:PROPERTIES:
 	:CUSTOM_ID: editor
@@ -528,7 +542,7 @@ This section introduces how Nore interactive with your favor Editors.
 	 :END:
 
 I prefer non plugin Vim settings, so I can easily working on my all
-machines. [[https://raw.githubusercontent.com/junjiemars/kit/master/ul/.vimrc][download non-plugin .vimrc]].
+machines(download [[https://raw.githubusercontent.com/junjiemars/kit/master/ul/.vimrc][non-plugin .vimrc]]).
 
 On any platform, don't warry about C include path, Nore should
 generate a /shell script/ named =~/.nore/cc-env.sh= for you (for
