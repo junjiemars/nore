@@ -141,7 +141,16 @@ done
 
 if [ $help = yes ]; then
 	cat << END
+usage: configure [command]
+       configure [options...]
 
+command:
+  clone                              clone Nore to current directory
+  upgrade                            upgrade Nore
+  where                              where Nore located
+  debug                              debug Nore
+
+options:
   --help                             print this message
   --symbol-table=PATH                dump or load symbol table
 
