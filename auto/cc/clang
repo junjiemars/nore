@@ -63,3 +63,9 @@ nm_stage_c="-c"
 
 # cpu
 cpu_opt='-march=' . ${NORE_ROOT}/auto/cc/cpu
+
+# link option
+LDFLAGS=-L$NM_OUT/lib${LDFLAGS:+ $LDFLAGS}
+
+
+# end of file

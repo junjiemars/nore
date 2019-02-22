@@ -7,11 +7,12 @@
 ####
 
 
-LDFLAGS=${LDFLAGS}
-
 nm_shared_opt="-shared"
 lib_ext=".so"
 
 have=$NM_SYSTEM . ${NORE_ROOT}/auto/have
 
 # os specifics for Linux
+
+
+# end of file

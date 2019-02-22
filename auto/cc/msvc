@@ -97,3 +97,9 @@ nm_stage_pre="-E"
 nm_stage_asm="-c"
 nm_stage_c="-c"
 
+
+# link option
+LDFLAGS=-link -libpath:$NM_OUT/lib${LDFLAGS:+ $LDFLAGS}
+
+
+# end of file

@@ -148,6 +148,7 @@ fi
 
 
 # link option
-LDFLAGS=${LDFLAGS}
 
+
+# end of file
 
