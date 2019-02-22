@@ -99,7 +99,7 @@ nm_stage_c="-c"
 
 
 # link option
-LDFLAGS=-link -libpath:$NM_OUT/lib${LDFLAGS:+ $LDFLAGS}
+LDFLAGS="-link -libpath:${NM_OUT}/lib${LDFLAGS:+ $LDFLAGS}"
 
 
 # end of file
