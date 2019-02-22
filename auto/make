@@ -55,7 +55,7 @@ if [ ".$CXX" = ".$CC" ]; then
 fi
 `
 
-INC += -I$NM_OUT -I$NM_OUT/inc
+INC += $INC
 
 nm_symbol_opt = $nm_symbol_opt
 nm_optimize_opt = $nm_optimize_opt

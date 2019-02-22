@@ -147,6 +147,10 @@ if [ ".$CXX" = ".$CC" ]; then
 fi
 
 
+# inc option
+INC="-I${NM_OUT} -I${NM_OUT}/inc"
+
+
 # link option
 
 
