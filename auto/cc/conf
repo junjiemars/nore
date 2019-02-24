@@ -22,9 +22,9 @@ AS=${AS}
 ASFLAGS=
 
 # archiver
-AR=
+AR=${AR}
 # extra flags to give to the archiver
-ARFLAGS=
+ARFLAGS=${ARFLAGS}
 
 # extra flags to give to the c compiler
 CFLAGS=${CFLAGS}
