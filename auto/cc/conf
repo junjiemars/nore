@@ -19,7 +19,7 @@ CPPFLAGS=
 # assembler
 AS=${AS}
 # extra flags to give to the assembler
-ASFLAGS=
+ASFLAGS=${ASFLAGS}
 
 # archiver
 AR=${AR}
