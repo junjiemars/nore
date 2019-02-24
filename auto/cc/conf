@@ -27,7 +27,7 @@ AR=
 ARFLAGS=
 
 # extra flags to give to the c compiler
-CFLAGS=
+CFLAGS=${CFLAGS}
 # extra flags to give to the c++ compiler
 CXXFLAGS=
 
