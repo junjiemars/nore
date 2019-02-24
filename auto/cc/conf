@@ -26,7 +26,7 @@ ARFLAGS=
 LFLAGS=
 YFLAGS=
 
-INC=
+INC=${INC}
 LDLIBS=
 
 nm_symbol_opt=
@@ -148,7 +148,7 @@ fi
 
 
 # inc option
-INC="-I${NM_OUT} -I${NM_OUT}/inc"
+INC="-I${NM_OUT} -I${NM_OUT}/inc${INC:+ $INC}"
 
 
 # link option
