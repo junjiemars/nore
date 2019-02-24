@@ -10,16 +10,20 @@
 CC=${CC:-cc}
 CXX=
 
+# c preprocessor
 CPP=
+# extra flags to give the c preprocessor
+CPPFLAGS=
+
 CAS=
 
 AS=${AS}
 AR=
 LINK="\$(CC)"
 
-# extra flags to give to the C compiler
+# extra flags to give to the c compiler
 CFLAGS=
-# extra flags to give to the C++ compiler
+# extra flags to give to the c++ compiler
 CXXFLAGS=
 
 ASFLAGS=
