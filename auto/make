@@ -47,14 +47,14 @@ ARFLAGS = $ARFLAGS
 LFLAGS = $LFLAGS
 YFLAGS = $YFLAGS
 
-CFLAGS += $CFLAGS
+CFLAGS = $CFLAGS
 `
 if [ ".$CXX" = ".$CC" ]; then
 	 echo "CXXFLAGS += \$CFLAGS"
 fi
 `
 
-INC += $INC
+INC = $INC
 
 nm_symbol_opt = $nm_symbol_opt
 nm_optimize_opt = $nm_optimize_opt
