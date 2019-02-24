@@ -42,9 +42,9 @@ LDFLAGS=${LDFLAGS}
 LDLIBS=${LDLIBS}
 
 # extra flags to give to Lex
-LFLAGS=
+LFLAGS=${LFLAGS}
 # extra flags to give to Yacc
-YFLAGS=
+YFLAGS=${YFLAGS}
 
 nm_symbol_opt=
 nm_debug_opt=
