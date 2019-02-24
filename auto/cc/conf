@@ -14,7 +14,7 @@ LINK="\$(CC)"
 # c preprocessor
 CPP=${CPP}
 # extra flags to give the c preprocessor
-CPPFLAGS=
+CPPFLAGS=${CPPFLAGS}
 
 # assembler
 AS=${AS}
