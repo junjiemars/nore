@@ -12,7 +12,7 @@ CXX=
 LINK="\$(CC)"
 
 # c preprocessor
-CPP=
+CPP=${CPP}
 # extra flags to give the c preprocessor
 CPPFLAGS=
 

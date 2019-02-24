@@ -23,13 +23,13 @@ have=GCC value=$CC_VER . ${NORE_ROOT}/auto/define
 # compiler 
 [ "." = ".$CC" ] && CC="cc"
 
-# preprocess
+# preprocessor
 [ "." = ".$CPP" ] && CPP="\$(CC)"
 
 # assembler
 [ "." = ".$AS" ] && AS="\$(CC)"
 
-# archive
+# archiver
 [ "." = ".$AR" ] && AR="ar"
 
 
