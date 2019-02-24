@@ -17,17 +17,28 @@ AS=${AS}
 AR=
 LINK="\$(CC)"
 
+# extra flags to give to the C compiler
 CFLAGS=
+# extra flags to give to the C++ compiler
 CXXFLAGS=
 
 ASFLAGS=
 ARFLAGS=
-LFLAGS=
-YFLAGS=
 
 INC=${INC}
-LDLIBS=${LDLIBS}
+
+# extra flags to give to compilers when they are supported to invoke
+# the linker, such as -L
 LDFLAGS=${LDFLAGS}
+
+# library flags or names given to compilers when they are supported to
+# invoke the linker, such as -l
+LDLIBS=${LDLIBS}
+
+# extra flags to give to Lex
+LFLAGS=
+# extra flags to give to Yacc
+YFLAGS=
 
 nm_symbol_opt=
 nm_debug_opt=
