@@ -9,23 +9,25 @@
 
 CC=${CC:-cc}
 CXX=
+LINK="\$(CC)"
 
 # c preprocessor
 CPP=
 # extra flags to give the c preprocessor
 CPPFLAGS=
 
+# assembler
 AS=${AS}
+# extra flags to give to the assembler
+ASFLAGS=
+
 AR=
-LINK="\$(CC)"
+ARFLAGS=
 
 # extra flags to give to the c compiler
 CFLAGS=
 # extra flags to give to the c++ compiler
 CXXFLAGS=
-
-ASFLAGS=
-ARFLAGS=
 
 INC=${INC}
 
