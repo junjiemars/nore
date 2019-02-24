@@ -21,7 +21,9 @@ AS=${AS}
 # extra flags to give to the assembler
 ASFLAGS=
 
+# archiver
 AR=
+# extra flags to give to the archiver
 ARFLAGS=
 
 # extra flags to give to the c compiler
