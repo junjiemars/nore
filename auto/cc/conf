@@ -15,8 +15,6 @@ CPP=
 # extra flags to give the c preprocessor
 CPPFLAGS=
 
-CAS=
-
 AS=${AS}
 AR=
 LINK="\$(CC)"

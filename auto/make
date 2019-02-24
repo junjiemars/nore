@@ -35,7 +35,6 @@ fi
 `
 
 CPP = $CPP
-CAS = $CAS
 AS = $AS
 AR = $AR
 LINK = $LINK

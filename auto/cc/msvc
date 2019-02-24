@@ -26,12 +26,8 @@ have=MSVC value=$CC_VER . ${NORE_ROOT}/auto/define
 # preprocess
 [ "." = ".$CPP" ] && CPP="\$(CC)"
 
-# assembly
-[ "." = ".$CAS" ] && CAS="\$(CC)"
-
 # assembler
 [ "." = ".$AS" ] && AS="ml"
-
 
 # archive
 [ "." = ".$AR" ] && AR="lib"
