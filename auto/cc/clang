@@ -48,6 +48,9 @@ nm_error_opt="-Werror"
 # warnings (-Weverything)
 nm_warn_opt=${nm_warn_opt:-"-Wall -Wextra"}
 
+# trigraph
+nm_trigraph_opt="-trigraphs"
+
 # verbose
 nm_verbose_opt=${nm_verbose_opt:-"-v"}
 
