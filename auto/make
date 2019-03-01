@@ -63,6 +63,7 @@ nm_error_opt = $nm_error_opt
 nm_debug_opt = $nm_debug_opt
 nm_std_opt = $nm_std_opt
 nm_cpu_opt = $nm_cpu_opt
+nm_trigraph_opt = $nm_trigraph_opt
 nm_verbose_opt = $nm_verbose_opt
 
 nm_flag_opt = $nm_flag_opt

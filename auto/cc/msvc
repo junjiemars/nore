@@ -48,6 +48,9 @@ nm_error_opt="-WX"
 # unicode
 nm_utf_opt="-utf-8"
 
+# trigraph
+nm_trigraph_opt="-Zc:trigraphs"
+
 # cl has no verbose option
 nm_verbose_opt=
 if [ "$NM_VERBOSE" = "NO" ]; then
