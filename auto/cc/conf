@@ -96,13 +96,24 @@ esac
 
 
 # symbol option
-if [ "$NM_SYMBOL" = "YES" -a -n "$nm_symbol_opt" ]; then
-	CFLAGS=${CFLAGS:+$CFLAGS }${nm_symbol_opt}
-fi
+case "$NM_SYMBOL" in
+	NO) ;;
+	YES)
+		if [ -n "$nm_symbol_opt" ]; then
+			CFLAGS=${CFLAGS:+$CFLAGS }${nm_symbol_opt}
+		fi
+		;;
+	*) CFLAGS=${CFLAGS:+$CFLAGS }${NM_SYMBOL_OPT} ;;
+esac
 
 # optimize option
-case ".$NM_OPTIMIZE" in
-	.NO|.YES)
+case "$NM_OPTIMIZE" in
+	NO)
+		if [ -n "$nm_optimize_opt" ]; then
+			CFLAGS=${CFLAGS:+$CFLAGS }${nm_optimize_opt}
+		fi
+		;;
+	YES)
 		if [ -n "$nm_optimize_opt" ]; then
 			CFLAGS=${CFLAGS:+$CFLAGS }${nm_optimize_opt}
 		fi

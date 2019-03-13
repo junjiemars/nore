@@ -33,8 +33,10 @@ have=MSVC value=$CC_VER . ${NORE_ROOT}/auto/define
 [ "." = ".$AR" ] && AR="lib"
 
 
-# debug
-nm_symbol_opt=${nm_symbol_opt:-"-Z7"}
+# symbol
+if [ "YES" = "$NM_SYMBOL" ]; then
+	nm_symbol_opt=${nm_symbol_opt:-"-Z7"}
+fi
 
 # warnings (-Wall)
 nm_warn_opt=${nm_warn_opt:-"-W4"}

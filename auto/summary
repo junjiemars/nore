@@ -46,7 +46,7 @@ cat << END
   out= $NM_OUT
   new= $NM_NEW
   std= `yes_no_any_out "$NM_STD" "$nm_std_opt"`
-  symbol= `yes_no_out "$NM_SYMBOL" "$nm_symbol_opt"`
+  symbol= `yes_no_any_out "$NM_SYMBOL" "$nm_symbol_opt"`
   debug= `no_yes_out "$NM_DEBUG" "$nm_debug_opt"`
   optimize= `yes_no_any_out "$NM_OPTIMIZE" "$nm_optimize_opt"`
   arch= `yes_no_any_out "$NM_ARCH" "$nm_arch_opt"`

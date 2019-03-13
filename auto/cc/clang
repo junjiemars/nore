@@ -33,8 +33,10 @@ have=CLANG value=$CC_VER . ${NORE_ROOT}/auto/define
 [ "." = ".$AR" ] && AR="ar"
 
 
-# symbol 
-nm_symbol_opt=${nm_symbol_opt:-"-g"}
+# symbol
+if [ "YES" = "$NM_SYMBOL" ]; then
+	nm_symbol_opt=${nm_symbol_opt:-"-g"}
+fi
 
 # error
 nm_error_opt="-Werror"
@@ -58,9 +60,9 @@ nm_stage_c="-c"
 std_opt='-std=' . ${NORE_ROOT}/auto/cc/std
 
 # optimizations
-case ".$NM_OPTIMIZE" in
-	.NO)  nm_optimize_opt="-O0" ;;
-	.YES) nm_optimize_opt="-O2" ;;
+case "$NM_OPTIMIZE" in
+	NO)  nm_optimize_opt="-O0" ;;
+	YES) nm_optimize_opt="-O2" ;;
 esac
 
 # arch

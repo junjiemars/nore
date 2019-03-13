@@ -107,9 +107,9 @@ do
 
     --new)                   NM_NEW=YES                   ;;
 
-		--without-symbol)        NM_SYMBOL=NO               	;;
 		--without-debug)         NM_DEBUG=NO                	;;
 		--without-error)         NM_ERROR=NO         	        ;;
+		--with-symbol=*)         NM_SYMBOL="$value"          	;;
 		--with-warn=*)           NM_WARN="$value"            	;;
 		--with-optimize=*)       NM_OPTIMIZE="$value"        	;;
 		--with-std=*)            NM_STD="$value"            	;;
@@ -162,13 +162,13 @@ options:
 
   --new                              generate Nore script templates
 
-  --without-symbol                   disable CC generate debug symbols
   --without-debug                    enable build for release
   --without-error                    disable warn as error
-  --with-warn=[YES|NO|*]             set CC warn level option 
-  --with-optimize=[NO|YES|*]         set CC optimize level option 
-  --with-std=[YES|NO|*]              set CC std option 
-  --with-arch=[NO|YES|*]             set CC arch option 
+  --with-symbol=[YES|NO|*]           generate debug symbols
+  --with-warn=[YES|NO|*]             warn level option
+  --with-optimize=[NO|YES|*]         optimize level option
+  --with-std=[YES|NO|*]              language standard option
+  --with-arch=[NO|YES|*]             arch option
   --with-verbose                     enable verbose build option
 
   --has-*                            has [*] to do
@@ -203,6 +203,7 @@ if [ 0 -eq ${#NM_HAS_STICKS} ]; then
   NM_HAS_STICKS+=(".")
 fi
 
+NM_SYMBOL="`yes_no_opt YES $NM_SYMBOL`"
 NM_WARN="`yes_no_opt YES $NM_WARN`"
 NM_STD="`yes_no_opt YES $NM_STD`"
 NM_ARCH="`yes_no_opt NO $NM_ARCH`"

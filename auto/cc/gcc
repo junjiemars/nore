@@ -33,8 +33,10 @@ have=GCC value=$CC_VER . ${NORE_ROOT}/auto/define
 [ "." = ".$AR" ] && AR="ar"
 
 
-# debug
-nm_symbol_opt=${nm_symbol_opt:-"-g"}
+# symbol
+if [ "YES" = "$NM_SYMBOL" ]; then
+	nm_symbol_opt=${nm_symbol_opt:-"-g"}
+fi
 
 # warning
 case ".$NM_WARN" in
