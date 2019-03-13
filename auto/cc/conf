@@ -122,8 +122,8 @@ case ".$NM_WARN" in
 esac
 
 # error option
-if [ "$NM_ERROR" = "YES" -a "$NM_WARN" != "NO" ]; then
-	CFLAGS=${CFLAGS:+$CFLAGS }${nm_error_opt}
+if [ "$NM_ERROR" = "YES" ]; then
+	CFLAGS=${CFLAGS:+$CFLAGS}${nm_error_opt:+ ${nm_error_opt}}
 fi
 
 # debug option
