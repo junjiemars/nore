@@ -34,7 +34,10 @@ have=MSVC value=$CC_VER . ${NORE_ROOT}/auto/define
 
 
 # optimize: -Og -Oi -Ot -Oy -Ob2 -Gs -GF -Gy
-nm_optimize_opt=${nm_optimize_opt:-"-O2"}
+case ".$NM_OPTIMIZE" in
+	.NO)  nm_optimize_opt="-Od" ;;
+	.YES) nm_optimize_opt="-O2" ;;
+esac
 
 # debug
 nm_symbol_opt=${nm_symbol_opt:-"-Z7"}

@@ -37,13 +37,19 @@ have=GCC value=$CC_VER . ${NORE_ROOT}/auto/define
 std_opt='-std=' . ${NORE_ROOT}/auto/cc/std
 
 # optimization
-nm_optimize_opt=${nm_optimize_opt:-"-O2"}
+case ".$NM_OPTIMIZE" in
+	.NO)  nm_optimize_opt="-O0" ;;
+	.YES) nm_optimize_opt="-O2" ;;
+esac
 
 # debug
 nm_symbol_opt=${nm_symbol_opt:-"-g"}
 
 # warning
-nm_warn_opt=${nm_warn_opt:-"-Wall -Wextra"}
+case ".$NM_WARN" in
+	.NO)  nm_warn_opt="" ;;
+	.YES) nm_warn_opt=${nm_warn_opt:-"-Wall -Wextra"} ;;
+esac
 
 # error
 nm_error_opt="-Werror"

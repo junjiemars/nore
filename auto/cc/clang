@@ -37,7 +37,10 @@ have=CLANG value=$CC_VER . ${NORE_ROOT}/auto/define
 std_opt='-std=' . ${NORE_ROOT}/auto/cc/std
 
 # optimizations
-nm_optimize_opt=${nm_optimize_opt:-"-O2"}
+case ".$NM_OPTIMIZE" in
+	.NO)  nm_optimize_opt="-O0" ;;
+	.YES) nm_optimize_opt="-O2" ;;
+esac
 
 # symbol 
 nm_symbol_opt=${nm_symbol_opt:-"-g"}

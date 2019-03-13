@@ -102,24 +102,19 @@ fi
 
 # optimize option
 case ".$NM_OPTIMIZE" in
-	.|.NO) ;;
-
-	.YES)
+	.NO|.YES)
 		if [ -n "$nm_optimize_opt" ]; then
 			CFLAGS=${CFLAGS:+$CFLAGS }${nm_optimize_opt}
 		fi
 		;;
-
 	*) CFLAGS=${CFLAGS:+$CFLAGS }${NM_OPTIMIZE} ;;
 esac
 
 # warn option
 case ".$NM_WARN" in
-	.|.NO) ;;
-
-	.YES)
+	.NO|.YES)
 		if [ -n "$nm_warn_opt" ]; then
-			CFLAGS=${CFLAGS:+$CFLAGS }${nm_warn_opt}			
+			CFLAGS=${CFLAGS:+$CFLAGS }${nm_warn_opt}
 		fi
 		;;
 
