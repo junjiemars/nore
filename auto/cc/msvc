@@ -90,6 +90,23 @@ nm_stage_pre="-E"
 nm_stage_asm="-c"
 nm_stage_c="-c"
 
+# std
+case "$NM_STD" in
+	NO) ;;
+	YES)
+		if [ ".$CXX" = ".$CC" ]; then
+			nm_std_opt="-std:c++14"
+		fi
+		;;
+	*)
+		if [ "c90" = "$NM_STD" ]; then
+			nm_std_opt="-Za"
+		else
+			nm_std_opt="${NM_STD}"
+		fi
+		;;
+esac
+
 # optimize: -Og -Oi -Ot -Oy -Ob2 -Gs -GF -Gy
 case ".$NM_OPTIMIZE" in
 	.NO)  nm_optimize_opt="-Od" ;;

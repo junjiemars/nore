@@ -57,7 +57,16 @@ nm_stage_asm="-S"
 nm_stage_c="-c"
 
 # std
-std_opt='-std=' . ${NORE_ROOT}/auto/cc/std
+case "$NM_STD" in
+	NO) ;;
+	YES)
+		nm_std_opt="-std=c99"
+		if [ ".$CXX" = ".$CC" ]; then
+			nm_std_opt="-std=c++14"
+		fi
+		;;
+	*) nm_std_opt="${NM_STD}" ;;
+esac
 
 # optimizations
 case "$NM_OPTIMIZE" in
