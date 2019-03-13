@@ -150,12 +150,12 @@ options:
   --help                             print this message
   --symbol-table=PATH                dump or load symbol table
 
-  --prefix=PATH                      set installation prefix
-  --bin-path=PATH                    set bin pathname 
-  --lib-path=PATH                    set lib pathname
-  --inc-path=PATH                    set include pathname
-  --etc-path=PATH                    set etc pathname
-  --var-path=PATH                    set var pathname
+  --prefix=PATH                      installation prefix
+  --bin-path=PATH                    bin pathname of installation
+  --lib-path=PATH                    lib pathname of installation
+  --inc-path=PATH                    include pathname of installation
+  --etc-path=PATH                    etc pathname of installation
+  --var-path=PATH                    var pathname of installation
 
   --src-dir=[.|src|*]                set source directory
   --out-dir=[out|*]                  set build out directory
