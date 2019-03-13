@@ -192,18 +192,6 @@ yes_no_opt() {
   fi
 }
 
-# no_any_opt() {
-#   local d="NO"
-#   local v="$@"
-#   local u="`echo $v | tr [:lower:] [:upper:]`"
-
-#   if [ -z "$v" -o "NO" = "$u" ]; then
-#     echo "NO"
-#   else
-#     echo "$v"
-#   fi
-# }
-
 
 NM_CONFIGURE="$opt"
 
@@ -215,10 +203,10 @@ if [ 0 -eq ${#NM_HAS_STICKS} ]; then
   NM_HAS_STICKS+=(".")
 fi
 
-NM_ARCH="`yes_no_opt NO $NM_ARCH`"
-NM_OPTIMIZE="`yes_no_opt NO $NM_OPTIMIZE`"
 NM_WARN="`yes_no_opt YES $NM_WARN`"
 NM_STD="`yes_no_opt YES $NM_STD`"
+NM_ARCH="`yes_no_opt NO $NM_ARCH`"
+NM_OPTIMIZE="`yes_no_opt NO $NM_OPTIMIZE`"
 
 NM_BIN_PATH="${NM_BIN_PATH:-bin}"
 NM_LIB_PATH="${NM_LIB_PATH:-lib}"

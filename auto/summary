@@ -26,17 +26,6 @@ no_yes_out() {
 	esac
 }
 
-# yes_no_any_out() {
-# 	local opt="$1"
-# 	local val="$2"
-# 	local any="$3"
-# 	case "$opt" in
-# 		YES) echo "$opt: $val" ;;
-# 		NO) echo "$opt" ;;
-# 		*) echo "$any" ;;
-# 	esac
-# }
-
 yes_no_any_out() {
 	local opt="$1"
 	local any="$2"
