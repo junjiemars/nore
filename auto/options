@@ -111,8 +111,8 @@ do
 		--without-error)         NM_ERROR=NO         	        ;;
 		--with-symbol=*)         NM_SYMBOL="$value"          	;;
 		--with-warn=*)           NM_WARN="$value"            	;;
-		--with-optimize=*)       NM_OPTIMIZE="$value"        	;;
 		--with-std=*)            NM_STD="$value"            	;;
+		--with-optimize=*)       NM_OPTIMIZE="$value"        	;;
     --with-arch=*)           NM_ARCH="$value"             ;;
 		--with-verbose)          NM_VERBOSE=YES             	;;
 
@@ -166,10 +166,10 @@ options:
   --without-error                    disable warn as error
   --with-symbol=[YES|NO|*]           generate debug symbols
   --with-warn=[YES|NO|*]             warn level option
-  --with-optimize=[NO|YES|*]         optimize level option
   --with-std=[YES|NO|*]              language standard option
+  --with-optimize=[NO|YES|*]         optimize level option
   --with-arch=[NO|YES|*]             arch option
-  --with-verbose                     enable verbose build option
+  --with-verbose                     verbose output
 
   --has-*                            has [*] to do
 
