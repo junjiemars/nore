@@ -81,7 +81,7 @@ esac
 case "$NM_ARCH" in
 	NO) ;;
 	YES) nm_arch_opt="-march=native" ;;
-	*) nm_arch_opt="${NM_ARCH:+-march=$NM_ARCH}" ;;
+	*) nm_arch_opt="$NM_ARCH" ;;
 esac
 
 # link option

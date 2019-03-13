@@ -116,8 +116,8 @@ esac
 # arch
 case "$NM_ARCH" in
 	NO) ;;
-	YES) ;;
-	*) nm_arch_opt="${NM_ARCH:+-arch:$NM_ARCH}" ;;
+	YES) ;; # -arch:xxx
+	*) nm_arch_opt="$NM_ARCH" ;;
 esac
 
 
