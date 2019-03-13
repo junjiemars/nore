@@ -32,7 +32,7 @@ NM_ERROR=YES
 NM_DEBUG=YES
 NM_VERBOSE=NO
 NM_STD=YES
-NM_CPU=NO
+NM_ARCH=NO
 
 NM_PLATFORM=
 NM_CPU_CACHE_LINE=
@@ -113,7 +113,7 @@ do
 		--with-warn=*)           NM_WARN="$value"            	;;
 		--with-optimize=*)       NM_OPTIMIZE="$value"        	;;
 		--with-std=*)            NM_STD="$value"            	;;
-    --with-cpu=*)            NM_CPU="$value"              ;;
+    --with-arch=*)           NM_ARCH="$value"             ;;
 		--with-verbose)          NM_VERBOSE=YES             	;;
 
 		--has-*)
@@ -168,7 +168,7 @@ options:
   --with-warn=[YES|NO|*]             set CC warn level option 
   --with-optimize=[NO|YES|*]         set CC optimize level option 
   --with-std=[YES|NO|*]              set CC std option 
-  --with-cpu=[NO|*]                  set cpu option 
+  --with-arch=[NO|YES|*]             set arch option 
   --with-verbose                     enable verbose build option
 
   --has-*                            has [*] to do
@@ -192,17 +192,17 @@ yes_no_opt() {
   fi
 }
 
-no_any_opt() {
-  local d="NO"
-  local v="$@"
-  local u="`echo $v | tr [:lower:] [:upper:]`"
+# no_any_opt() {
+#   local d="NO"
+#   local v="$@"
+#   local u="`echo $v | tr [:lower:] [:upper:]`"
 
-  if [ -z "$v" -o "NO" = "$u" ]; then
-    echo "NO"
-  else
-    echo "$v"
-  fi
-}
+#   if [ -z "$v" -o "NO" = "$u" ]; then
+#     echo "NO"
+#   else
+#     echo "$v"
+#   fi
+# }
 
 
 NM_CONFIGURE="$opt"
@@ -215,9 +215,9 @@ if [ 0 -eq ${#NM_HAS_STICKS} ]; then
   NM_HAS_STICKS+=(".")
 fi
 
-NM_CPU="`no_any_opt $NM_CPU`"
-NM_WARN="`yes_no_opt YES $NM_WARN`"
+NM_ARCH="`yes_no_opt NO $NM_ARCH`"
 NM_OPTIMIZE="`yes_no_opt NO $NM_OPTIMIZE`"
+NM_WARN="`yes_no_opt YES $NM_WARN`"
 NM_STD="`yes_no_opt YES $NM_STD`"
 
 NM_BIN_PATH="${NM_BIN_PATH:-bin}"

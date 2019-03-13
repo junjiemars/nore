@@ -33,12 +33,6 @@ have=MSVC value=$CC_VER . ${NORE_ROOT}/auto/define
 [ "." = ".$AR" ] && AR="lib"
 
 
-# optimize: -Og -Oi -Ot -Oy -Ob2 -Gs -GF -Gy
-case ".$NM_OPTIMIZE" in
-	.NO)  nm_optimize_opt="-Od" ;;
-	.YES) nm_optimize_opt="-O2" ;;
-esac
-
 # debug
 nm_symbol_opt=${nm_symbol_opt:-"-Z7"}
 
@@ -89,15 +83,23 @@ obj_ext=".obj"
 bin_ext=".exe"
 ar_ext=".lib"
 
-
-# cpu
-cpu_opt='-arch:' . ${NORE_ROOT}/auto/cc/cpu
-
-
 # stage
 nm_stage_pre="-E"
 nm_stage_asm="-c"
 nm_stage_c="-c"
+
+# optimize: -Og -Oi -Ot -Oy -Ob2 -Gs -GF -Gy
+case ".$NM_OPTIMIZE" in
+	.NO)  nm_optimize_opt="-Od" ;;
+	.YES) nm_optimize_opt="-O2" ;;
+esac
+
+# arch
+case "$NM_ARCH" in
+	NO) ;;
+	YES) ;;
+	*) nm_arch_opt="${NM_ARCH:+-arch:$NM_ARCH}" ;;
+esac
 
 
 # link option

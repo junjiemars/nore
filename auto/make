@@ -57,12 +57,12 @@ fi
 INC = $INC
 
 nm_symbol_opt = $nm_symbol_opt
-nm_optimize_opt = $nm_optimize_opt
 nm_warn_opt = $nm_warn_opt
 nm_error_opt = $nm_error_opt
 nm_debug_opt = $nm_debug_opt
 nm_std_opt = $nm_std_opt
-nm_cpu_opt = $nm_cpu_opt
+nm_optimize_opt = $nm_optimize_opt
+nm_arch_opt = $nm_arch_opt
 nm_trigraph_opt = $nm_trigraph_opt
 nm_verbose_opt = $nm_verbose_opt
 
@@ -91,7 +91,7 @@ NM_ERROR = $NM_ERROR
 NM_DEBUG = $NM_DEBUG
 NM_VERBOSE = $NM_VERBOSE
 NM_STD = $NM_STD
-NM_CPU = $NM_CPU
+NM_ARCH = $NM_ARCH
 
 # platform
 `symbol_value NM_SYSTEM` = $NM_SYSTEM

@@ -33,15 +33,6 @@ have=CLANG value=$CC_VER . ${NORE_ROOT}/auto/define
 [ "." = ".$AR" ] && AR="ar"
 
 
-# std
-std_opt='-std=' . ${NORE_ROOT}/auto/cc/std
-
-# optimizations
-case ".$NM_OPTIMIZE" in
-	.NO)  nm_optimize_opt="-O0" ;;
-	.YES) nm_optimize_opt="-O2" ;;
-esac
-
 # symbol 
 nm_symbol_opt=${nm_symbol_opt:-"-g"}
 
@@ -63,9 +54,21 @@ nm_stage_chk="-fsyntax-only"
 nm_stage_asm="-S"
 nm_stage_c="-c"
 
+# std
+std_opt='-std=' . ${NORE_ROOT}/auto/cc/std
 
-# cpu
-cpu_opt='-march=' . ${NORE_ROOT}/auto/cc/cpu
+# optimizations
+case ".$NM_OPTIMIZE" in
+	.NO)  nm_optimize_opt="-O0" ;;
+	.YES) nm_optimize_opt="-O2" ;;
+esac
+
+# arch
+case "$NM_ARCH" in
+	NO) ;;
+	YES) nm_arch_opt="-march=native" ;;
+	*) nm_arch_opt="${NM_ARCH:+-march=$NM_ARCH}" ;;
+esac
 
 # link option
 LDFLAGS="-L${NM_OUT}/lib${LDFLAGS:+ $LDFLAGS}"

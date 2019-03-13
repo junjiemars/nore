@@ -52,7 +52,7 @@ nm_warn_opt=
 nm_error_opt=
 nm_optimize_opt=
 nm_std_opt=
-nm_cpu_opt=
+nm_arch_opt=
 nm_utf_opt=
 nm_trigraph_opt=
 nm_verbose_opt=
@@ -108,6 +108,16 @@ case ".$NM_OPTIMIZE" in
 		fi
 		;;
 	*) CFLAGS=${CFLAGS:+$CFLAGS }${NM_OPTIMIZE} ;;
+esac
+
+case "$NM_ARCH" in
+	NO) ;;
+	YES)
+		if [ -n "$nm_arch_opt" ]; then
+			CFLAGS="${CFLAGS:+$CFLAGS }${nm_arch_opt}"
+		fi
+		;;
+	*) CFLAGS="${CFLAGS:+$CFLAGS }${NM_ARCH}" ;;
 esac
 
 # warn option
