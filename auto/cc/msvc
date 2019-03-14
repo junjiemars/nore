@@ -54,18 +54,15 @@ nm_utf_opt="-utf-8"
 nm_trigraph_opt="-Zc:trigraphs"
 
 # verbose
-# cl has no verbose option
 case "$NM_VERBOSE" in
-	NO) nm_verbose_opt="" ;;
-	YES) 
-		if [ "$NM_VERBOSE" = "NO" ]; then
-			CC="${CC:+$CC }-nologo"
-			if [ ".$CXX" = ".$CC" ]; then
-				CXX="${CXX:+$CXX }-nologo"
-			fi
-			AR="${AR:+$AR }-nologo"
-			AS="${AS:+$AS }-nologo"
+	NO) ;;
+	YES)
+		CC="${CC:+$CC }-nologo"
+		if [ ".$CXX" = ".$CC" ]; then
+			CXX="${CXX:+$CXX }-nologo"
 		fi
+		AR="${AR:+$AR }-nologo"
+		AS="${AS:+$AS }-nologo"
 		;;
 esac
 

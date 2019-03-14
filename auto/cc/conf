@@ -112,10 +112,13 @@ case ".$NM_WARN" in
 esac
 
 # debug option
-if [ "$NM_DEBUG" = "NO" ]; then
-	nm_debug_opt='-DNDEBUG=1'
-	CFLAGS=${CFLAGS:+$CFLAGS }${nm_debug_opt}
-fi
+case "$NM_DEBUG" in
+	NO)
+		nm_debug_opt='-DNDEBUG=1'
+		CFLAGS=${CFLAGS:+$CFLAGS }${nm_debug_opt}
+		;;
+	YES) nm_debug_opt="" ;;
+esac
 
 # verbose option
 if [ -n "$nm_verbose_opt" ]; then
