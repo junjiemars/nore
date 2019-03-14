@@ -51,7 +51,10 @@ nm_warn_opt=${nm_warn_opt:-"-Wall -Wextra"}
 nm_trigraph_opt="-Wno-trigraphs"
 
 # verbose
-nm_verbose_opt=${nm_verbose_opt:-"-v"}
+case "$NM_VERBOSE" in
+	NO) nm_verbose_opt="" ;;
+	YES) nm_verbose_opt="-v" ;;
+esac
 
 # stage
 nm_stage_pre="-E"

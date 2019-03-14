@@ -95,6 +95,33 @@ case "$CC_NAME" in
 esac
 
 
+# error option
+if [ -n "$nm_error_opt" ]; then
+	CFLAGS=${CFLAGS:+$CFLAGS }${nm_error_opt}
+fi
+
+# warn option
+case ".$NM_WARN" in
+	.NO|.YES)
+		if [ -n "$nm_warn_opt" ]; then
+			CFLAGS=${CFLAGS:+$CFLAGS }${nm_warn_opt}
+		fi
+		;;
+
+	*) CFLAGS=${CFLAGS:+$CFLAGS }${NM_WARN} ;;
+esac
+
+# debug option
+if [ "$NM_DEBUG" = "NO" ]; then
+	nm_debug_opt='-DNDEBUG=1'
+	CFLAGS=${CFLAGS:+$CFLAGS }${nm_debug_opt}
+fi
+
+# verbose option
+if [ -n "$nm_verbose_opt" ]; then
+	CFLAGS=${CFLAGS:+$CFLAGS }${nm_verbose_opt}
+fi
+
 # symbol option
 case "$NM_SYMBOL" in
 	NO) ;;
@@ -141,37 +168,11 @@ case "$NM_ARCH" in
 	*) CFLAGS="${CFLAGS:+$CFLAGS }${NM_ARCH}" ;;
 esac
 
-# warn option
-case ".$NM_WARN" in
-	.NO|.YES)
-		if [ -n "$nm_warn_opt" ]; then
-			CFLAGS=${CFLAGS:+$CFLAGS }${nm_warn_opt}
-		fi
-		;;
-
-	*) CFLAGS=${CFLAGS:+$CFLAGS }${NM_WARN} ;;
-esac
-
-# error option
-if [ -n "$nm_error_opt" ]; then
-	CFLAGS=${CFLAGS:+$CFLAGS }${nm_error_opt}
-fi
-
-# debug option
-if [ "$NM_DEBUG" = "NO" ]; then
-	nm_debug_opt='-DNDEBUG=1'
-	CFLAGS=${CFLAGS:+$CFLAGS }${nm_debug_opt}
-fi
 
 # unicode option
 if [ -n "$nm_utf_opt" ]; then
 	CFLAGS=${CFLAGS:+$CFLAGS }${nm_utf_opt}
 	CPPFLAGS=${CPPFLAGS:+$CPPFLAGS }${nm_utf_opt}
-fi
-
-# verbose option
-if [ "$NM_VERBOSE" = "YES" -a -n "$nm_verbose_opt" ]; then
-	CFLAGS=${CFLAGS:+$CFLAGS }${nm_verbose_opt}
 fi
 
 # flag option

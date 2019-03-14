@@ -114,7 +114,7 @@ do
 		--with-std=*)            NM_STD="$value"            	;;
 		--with-optimize=*)       NM_OPTIMIZE="$value"        	;;
     --with-arch=*)           NM_ARCH="$value"             ;;
-		--with-verbose)          NM_VERBOSE=YES             	;;
+		--with-verbose=*)        NM_VERBOSE="$value"         	;;
 
 		--has-*)
 			if `legal_has_opt "$option"`; then
@@ -169,7 +169,7 @@ options:
   --with-std=[YES|NO|*]              language standard option
   --with-optimize=[NO|YES|*]         optimize level option
   --with-arch=[NO|YES|*]             arch option
-  --with-verbose                     verbose output
+  --with-verbose=[NO|YES]            verbose output
 
   --has-*                            has [*] to do
 
@@ -205,6 +205,7 @@ fi
 
 NM_ERROR="`yes_no_opt YES $NM_ERROR`"
 NM_WARN="`yes_no_opt YES $NM_WARN`"
+NM_VERBOSE="`yes_no_opt NO $NM_VERBOSE`"
 NM_SYMBOL="`yes_no_opt YES $NM_SYMBOL`"
 NM_STD="`yes_no_opt YES $NM_STD`"
 NM_ARCH="`yes_no_opt NO $NM_ARCH`"
@@ -215,3 +216,6 @@ NM_LIB_PATH="${NM_LIB_PATH:-lib}"
 NM_ETC_PATH="${NM_ETC_PATH:-etc}"
 NM_INC_PATH="${NM_INC_PATH:-include}"
 NM_VAR_PATH="${NM_VAR_PATH:-var}"
+
+
+# eof
