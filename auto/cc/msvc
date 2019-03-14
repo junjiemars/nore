@@ -94,16 +94,12 @@ nm_stage_c="-c"
 case "$NM_STD" in
 	NO) ;;
 	YES)
-		if [ ".$CXX" = ".$CC" ]; then
-			nm_std_opt="-std:c++14"
-		fi
-		;;
+		#https://herbsutter.com/2012/05/03/reader-qa-what-about-vc-and-c99/
+  	;; 
 	*)
-		if [ "c90" = "$NM_STD" ]; then
-			nm_std_opt="-Za"
-		else
-			nm_std_opt="${NM_STD}"
-		fi
+		# for c90: -Za
+		# for c++14 or later: -std:c++14, -std:latest
+		nm_std_opt="${NM_STD}"
 		;;
 esac
 
