@@ -101,15 +101,19 @@ if [ -n "$nm_error_opt" ]; then
 fi
 
 # warn option
-case ".$NM_WARN" in
-	.NO|.YES)
+case "$NM_WARN" in
+	NO|YES)
 		if [ -n "$nm_warn_opt" ]; then
 			CFLAGS=${CFLAGS:+$CFLAGS }${nm_warn_opt}
 		fi
 		;;
-
 	*) CFLAGS=${CFLAGS:+$CFLAGS }${NM_WARN} ;;
 esac
+
+# verbose option
+if [ -n "$nm_verbose_opt" ]; then
+	CFLAGS=${CFLAGS:+$CFLAGS }${nm_verbose_opt}
+fi
 
 # debug option
 case "$NM_DEBUG" in
@@ -120,11 +124,6 @@ case "$NM_DEBUG" in
 	YES) nm_debug_opt="" ;;
 esac
 
-# verbose option
-if [ -n "$nm_verbose_opt" ]; then
-	CFLAGS=${CFLAGS:+$CFLAGS }${nm_verbose_opt}
-fi
-
 # symbol option
 case "$NM_SYMBOL" in
 	NO) ;;
@@ -134,6 +133,17 @@ case "$NM_SYMBOL" in
 		fi
 		;;
 	*) CFLAGS=${CFLAGS:+$CFLAGS }${NM_SYMBOL_OPT} ;;
+esac
+
+# arch option
+case "$NM_ARCH" in
+	NO) ;;
+	YES)
+		if [ -n "$nm_arch_opt" ]; then
+			CFLAGS="${CFLAGS:+$CFLAGS }${nm_arch_opt}"
+		fi
+		;;
+	*) CFLAGS="${CFLAGS:+$CFLAGS }${NM_ARCH}" ;;
 esac
 
 # std option
@@ -160,17 +170,6 @@ case "$NM_OPTIMIZE" in
 		;;
 	*) CFLAGS=${CFLAGS:+$CFLAGS }${NM_OPTIMIZE} ;;
 esac
-
-case "$NM_ARCH" in
-	NO) ;;
-	YES)
-		if [ -n "$nm_arch_opt" ]; then
-			CFLAGS="${CFLAGS:+$CFLAGS }${nm_arch_opt}"
-		fi
-		;;
-	*) CFLAGS="${CFLAGS:+$CFLAGS }${NM_ARCH}" ;;
-esac
-
 
 # unicode option
 if [ -n "$nm_utf_opt" ]; then
@@ -202,5 +201,5 @@ INC="-I${NM_OUT} -I${NM_OUT}/inc${INC:+ $INC}"
 # link option
 
 
-# end of file
+# eof
 

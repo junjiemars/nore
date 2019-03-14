@@ -33,46 +33,6 @@ have=MSVC value=$CC_VER . ${NORE_ROOT}/auto/define
 [ "." = ".$AR" ] && AR="lib"
 
 
-# symbol
-if [ "YES" = "$NM_SYMBOL" ]; then
-	nm_symbol_opt=${nm_symbol_opt:-"-Z7"}
-fi
-
-# warnings (-Wall)
-nm_warn_opt=${nm_warn_opt:-"-W4"}
-
-# error
-case "$NM_ERROR" in
-	NO) nm_error_opt="" ;;
-	YES) nm_error_opt="-WX" ;;
-esac
-
-# unicode
-nm_utf_opt="-utf-8"
-
-# trigraph
-nm_trigraph_opt="-Zc:trigraphs"
-
-# verbose
-case "$NM_VERBOSE" in
-	NO)
-		CC="${CC:+$CC }-nologo"
-		if [ ".$CXX" = ".$CC" ]; then
-			CXX="${CXX:+$CXX }-nologo"
-		fi
-		AR="${AR:+$AR }-nologo"
-		AS="${AS:+$AS }-nologo"
-		;;
-	YES) ;;
-esac
-
-# flag
-nm_flag_opt=
-
-# model
-nm_model_opt="-EHsc"
-
-
 # output options
 cpp_out=">"
 asm_out="-FAu -Fa"
@@ -95,6 +55,41 @@ nm_stage_pre="-E"
 nm_stage_asm="-c"
 nm_stage_c="-c"
 
+
+# error
+case "$NM_ERROR" in
+	NO) nm_error_opt="" ;;
+	YES) nm_error_opt="-WX" ;;
+esac
+
+# warnings (-Wall)
+nm_warn_opt=${nm_warn_opt:-"-W4"}
+
+# verbose
+case "$NM_VERBOSE" in
+	NO)
+		CC="${CC:+$CC }-nologo"
+		if [ ".$CXX" = ".$CC" ]; then
+			CXX="${CXX:+$CXX }-nologo"
+		fi
+		AR="${AR:+$AR }-nologo"
+		AS="${AS:+$AS }-nologo"
+		;;
+	YES) ;;
+esac
+
+# symbol
+if [ "YES" = "$NM_SYMBOL" ]; then
+	nm_symbol_opt=${nm_symbol_opt:-"-Z7"}
+fi
+
+# arch
+case "$NM_ARCH" in
+	NO) ;;
+	YES) ;; # -arch:xxx
+	*) nm_arch_opt="$NM_ARCH" ;;
+esac
+
 # std
 case "$NM_STD" in
 	NO) ;;
@@ -115,13 +110,17 @@ case ".$NM_OPTIMIZE" in
 	.YES) nm_optimize_opt="-O2" ;;
 esac
 
-# arch
-case "$NM_ARCH" in
-	NO) ;;
-	YES) ;; # -arch:xxx
-	*) nm_arch_opt="$NM_ARCH" ;;
-esac
+# unicode
+nm_utf_opt="-utf-8"
 
+# trigraph
+nm_trigraph_opt="-Zc:trigraphs"
+
+# flag
+nm_flag_opt=
+
+# model
+nm_model_opt="-EHsc"
 
 # link option
 LDFLAGS="-link -libpath:${NM_OUT}/lib${LDFLAGS:+ $LDFLAGS}"

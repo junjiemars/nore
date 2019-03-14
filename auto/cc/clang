@@ -33,10 +33,12 @@ have=CLANG value=$CC_VER . ${NORE_ROOT}/auto/define
 [ "." = ".$AR" ] && AR="ar"
 
 
-# symbol
-if [ "YES" = "$NM_SYMBOL" ]; then
-	nm_symbol_opt=${nm_symbol_opt:-"-g"}
-fi
+# stage
+nm_stage_pre="-E"
+nm_stage_chk="-fsyntax-only"
+nm_stage_asm="-S"
+nm_stage_c="-c"
+
 
 # error
 case "$NM_ERROR" in
@@ -47,20 +49,23 @@ esac
 # warnings (-Weverything)
 nm_warn_opt=${nm_warn_opt:-"-Wall -Wextra"}
 
-# trigraph
-nm_trigraph_opt="-Wno-trigraphs"
-
 # verbose
 case "$NM_VERBOSE" in
 	NO) nm_verbose_opt="" ;;
 	YES) nm_verbose_opt="-v" ;;
 esac
 
-# stage
-nm_stage_pre="-E"
-nm_stage_chk="-fsyntax-only"
-nm_stage_asm="-S"
-nm_stage_c="-c"
+# symbol
+if [ "YES" = "$NM_SYMBOL" ]; then
+	nm_symbol_opt=${nm_symbol_opt:-"-g"}
+fi
+
+# arch
+case "$NM_ARCH" in
+	NO) ;;
+	YES) nm_arch_opt="-march=native" ;;
+	*) nm_arch_opt="$NM_ARCH" ;;
+esac
 
 # std
 case "$NM_STD" in
@@ -75,15 +80,12 @@ case "$NM_OPTIMIZE" in
 	YES) nm_optimize_opt="-O2" ;;
 esac
 
-# arch
-case "$NM_ARCH" in
-	NO) ;;
-	YES) nm_arch_opt="-march=native" ;;
-	*) nm_arch_opt="$NM_ARCH" ;;
-esac
+
+# trigraph
+nm_trigraph_opt="-Wno-trigraphs"
 
 # link option
 LDFLAGS="-L${NM_OUT}/lib${LDFLAGS:+ $LDFLAGS}"
 
 
-# end of file
+# eof
