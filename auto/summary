@@ -32,8 +32,8 @@ cat << END
   warn= `yes_no_any_out "$NM_WARN" "$nm_warn_opt"`
   verbose= `yes_no_any_out "$NM_VERBOSE" "$nm_verbose_opt"`
   debug= `yes_no_any_out "$NM_DEBUG" "$nm_debug_opt"`
-  arch= `yes_no_any_out "$NM_ARCH" "$nm_arch_opt"`
   symbol= `yes_no_any_out "$NM_SYMBOL" "$nm_symbol_opt"`
+  arch= `yes_no_any_out "$NM_ARCH" "$nm_arch_opt"`
   std= `yes_no_any_out "$NM_STD" "$nm_std_opt"`
   optimize= `yes_no_any_out "$NM_OPTIMIZE" "$nm_optimize_opt"`
 END

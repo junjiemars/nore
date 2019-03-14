@@ -60,9 +60,11 @@ case "$NM_VERBOSE" in
 esac
 
 # symbol
-if [ "YES" = "$NM_SYMBOL" ]; then
-	nm_symbol_opt=${nm_symbol_opt:-"-g"}
-fi
+case "$NM_SYMBOL" in
+	NO) nm_symbol_opt="" ;;
+	YES) nm_symbol_opt="-g" ;;
+	*) nm_symbol_opt="$NM_SYMBOL" ;;
+esac
 
 # arch
 case "$NM_ARCH" in

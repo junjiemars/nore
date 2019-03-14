@@ -121,12 +121,12 @@ esac
 
 # symbol option
 if [ -n "$nm_symbol_opt" ]; then
-	CFLAGS="${CFLAGS:+$CFLAGS }${nm_symbol_opt}"
+	CFLAGS=${CFLAGS:+$CFLAGS }${nm_symbol_opt}
 fi
 
 # arch option
 if [ -n "$nm_arch_opt" ]; then
-	CFLAGS="${CFLAGS:+$CFLAGS }${nm_arch_opt}"
+	CFLAGS=${CFLAGS:+$CFLAGS }${nm_arch_opt}
 fi
 
 # std option
