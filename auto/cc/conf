@@ -120,15 +120,9 @@ case "$NM_DEBUG" in
 esac
 
 # symbol option
-case "$NM_SYMBOL" in
-	NO) ;;
-	YES)
-		if [ -n "$nm_symbol_opt" ]; then
-			CFLAGS=${CFLAGS:+$CFLAGS }${nm_symbol_opt}
-		fi
-		;;
-	*) CFLAGS=${CFLAGS:+$CFLAGS }${NM_SYMBOL_OPT} ;;
-esac
+if [ -n "$nm_symbol_opt" ]; then
+	CFLAGS="${CFLAGS:+$CFLAGS }${nm_symbol_opt}"
+fi
 
 # arch option
 case "$NM_ARCH" in
