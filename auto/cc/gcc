@@ -47,9 +47,10 @@ case "$NM_ERROR" in
 esac
 
 # warning
-case ".$NM_WARN" in
-	.NO)  nm_warn_opt="" ;;
-	.YES) nm_warn_opt=${nm_warn_opt:-"-Wall -Wextra"} ;;
+case "$NM_WARN" in
+	NO)  nm_warn_opt="" ;;
+	YES) nm_warn_opt="-Wall -Wextra" ;;
+	*) nm_warn_opt="$NM_WARN" ;;
 esac
 
 # verbose

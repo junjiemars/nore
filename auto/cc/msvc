@@ -63,7 +63,11 @@ case "$NM_ERROR" in
 esac
 
 # warnings (-Wall)
-nm_warn_opt=${nm_warn_opt:-"-W4"}
+case "$NM_WARN" in
+	NO) nm_warn_opt="" ;;
+	YES) nm_warn_opt="-W4" ;;
+	*) nm_warn_opt="$NM_WARN" ;;
+esac
 
 # verbose
 case "$NM_VERBOSE" in

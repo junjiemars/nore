@@ -101,14 +101,9 @@ if [ -n "$nm_error_opt" ]; then
 fi
 
 # warn option
-case "$NM_WARN" in
-	NO|YES)
-		if [ -n "$nm_warn_opt" ]; then
-			CFLAGS=${CFLAGS:+$CFLAGS }${nm_warn_opt}
-		fi
-		;;
-	*) CFLAGS=${CFLAGS:+$CFLAGS }${NM_WARN} ;;
-esac
+if [ -n "$nm_warn_opt" ]; then
+	CFLAGS=${CFLAGS:+$CFLAGS }${nm_warn_opt}
+fi
 
 # verbose option
 if [ -n "$nm_verbose_opt" ]; then
