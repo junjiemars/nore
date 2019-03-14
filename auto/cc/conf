@@ -130,14 +130,9 @@ if [ -n "$nm_arch_opt" ]; then
 fi
 
 # std option
-case "$NM_STD" in
-	NO) ;;
-	YES|*)
-		if [ -n "$nm_std_opt" ]; then
-			CFLAGS=${CFLAGS:+$CFLAGS }${nm_std_opt}
-		fi
-		;;
-esac
+if [ -n "$nm_std_opt" ]; then
+	CFLAGS=${CFLAGS:+$CFLAGS }${nm_std_opt}
+fi
 
 # optimize option
 case "$NM_OPTIMIZE" in

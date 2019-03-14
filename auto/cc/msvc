@@ -101,7 +101,7 @@ esac
 
 # std
 case "$NM_STD" in
-	NO) ;;
+	NO) nm_std_opt="" ;;
 	YES)
 		#https://herbsutter.com/2012/05/03/reader-qa-what-about-vc-and-c99/
   	;; 
