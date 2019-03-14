@@ -91,9 +91,12 @@ esac
 
 # arch
 case "$NM_ARCH" in
-	NO) ;;
-	YES) ;; # -arch:xxx
-	*) nm_arch_opt="$NM_ARCH" ;;
+	NO) nm_arch_opt="" ;;
+	YES) nm_arch_opt="" ;;
+	*)
+		# -arch:xxx
+		nm_arch_opt="$NM_ARCH"
+		;;
 esac
 
 # std

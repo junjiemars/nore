@@ -125,15 +125,9 @@ if [ -n "$nm_symbol_opt" ]; then
 fi
 
 # arch option
-case "$NM_ARCH" in
-	NO) ;;
-	YES)
-		if [ -n "$nm_arch_opt" ]; then
-			CFLAGS="${CFLAGS:+$CFLAGS }${nm_arch_opt}"
-		fi
-		;;
-	*) CFLAGS="${CFLAGS:+$CFLAGS }${NM_ARCH}" ;;
-esac
+if [ -n "$nm_arch_opt" ]; then
+	CFLAGS="${CFLAGS:+$CFLAGS }${nm_arch_opt}"
+fi
 
 # std option
 case "$NM_STD" in
