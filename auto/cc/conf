@@ -135,19 +135,9 @@ if [ -n "$nm_std_opt" ]; then
 fi
 
 # optimize option
-case "$NM_OPTIMIZE" in
-	NO)
-		if [ -n "$nm_optimize_opt" ]; then
-			CFLAGS=${CFLAGS:+$CFLAGS }${nm_optimize_opt}
-		fi
-		;;
-	YES)
-		if [ -n "$nm_optimize_opt" ]; then
-			CFLAGS=${CFLAGS:+$CFLAGS }${nm_optimize_opt}
-		fi
-		;;
-	*) CFLAGS=${CFLAGS:+$CFLAGS }${NM_OPTIMIZE} ;;
-esac
+if [ -n "$nm_optimize_opt" ]; then
+	CFLAGS=${CFLAGS:+$CFLAGS }${nm_optimize_opt}
+fi
 
 # unicode option
 if [ -n "$nm_utf_opt" ]; then

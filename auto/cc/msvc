@@ -114,9 +114,10 @@ esac
 
 # optimize
 # see also: https://docs.microsoft.com/en-us/cpp/build/reference/compiler-options-listed-by-category?view=vs-2017
-case ".$NM_OPTIMIZE" in
-	.NO)  nm_optimize_opt="-Od" ;;
-	.YES) nm_optimize_opt="-O2" ;;
+case "$NM_OPTIMIZE" in
+	NO) nm_optimize_opt="-Od" ;;
+	YES) nm_optimize_opt="-O2" ;;
+	*) nm_optimize_opt="$NM_OPTIMIZE" ;;
 esac
 
 # unicode

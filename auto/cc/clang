@@ -84,6 +84,7 @@ esac
 case "$NM_OPTIMIZE" in
 	NO)  nm_optimize_opt="-O0" ;;
 	YES) nm_optimize_opt="-O2" ;;
+	*) nm_optimize_opt="$NM_OPTIMIZE" ;;
 esac
 
 
