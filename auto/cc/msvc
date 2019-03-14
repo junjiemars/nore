@@ -55,8 +55,7 @@ nm_trigraph_opt="-Zc:trigraphs"
 
 # verbose
 case "$NM_VERBOSE" in
-	NO) ;;
-	YES)
+	NO)
 		CC="${CC:+$CC }-nologo"
 		if [ ".$CXX" = ".$CC" ]; then
 			CXX="${CXX:+$CXX }-nologo"
@@ -64,6 +63,7 @@ case "$NM_VERBOSE" in
 		AR="${AR:+$AR }-nologo"
 		AS="${AS:+$AS }-nologo"
 		;;
+	YES) ;;
 esac
 
 # flag
