@@ -108,7 +108,7 @@ do
     --new)                   NM_NEW=YES                   ;;
 
 		--without-debug)         NM_DEBUG=NO                	;;
-		--without-error)         NM_ERROR=NO         	        ;;
+		--with-error=*)          NM_ERROR="$value"     	      ;;
 		--with-symbol=*)         NM_SYMBOL="$value"          	;;
 		--with-warn=*)           NM_WARN="$value"            	;;
 		--with-std=*)            NM_STD="$value"            	;;
@@ -163,7 +163,7 @@ options:
   --new                              generate Nore script templates
 
   --without-debug                    enable build for release
-  --without-error                    disable warn as error
+  --with-error=[YES|NO]              treat warn as error
   --with-symbol=[YES|NO|*]           generate debug symbols
   --with-warn=[YES|NO|*]             warn level option
   --with-std=[YES|NO|*]              language standard option
@@ -203,8 +203,9 @@ if [ 0 -eq ${#NM_HAS_STICKS} ]; then
   NM_HAS_STICKS+=(".")
 fi
 
-NM_SYMBOL="`yes_no_opt YES $NM_SYMBOL`"
+NM_ERROR="`yes_no_opt YES $NM_ERROR`"
 NM_WARN="`yes_no_opt YES $NM_WARN`"
+NM_SYMBOL="`yes_no_opt YES $NM_SYMBOL`"
 NM_STD="`yes_no_opt YES $NM_STD`"
 NM_ARCH="`yes_no_opt NO $NM_ARCH`"
 NM_OPTIMIZE="`yes_no_opt NO $NM_OPTIMIZE`"

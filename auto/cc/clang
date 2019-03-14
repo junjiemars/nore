@@ -39,7 +39,10 @@ if [ "YES" = "$NM_SYMBOL" ]; then
 fi
 
 # error
-nm_error_opt="-Werror"
+case "$NM_ERROR" in
+	NO) nm_error_opt="" ;;
+	YES) nm_error_opt="-Werror" ;;
+esac
 
 # warnings (-Weverything)
 nm_warn_opt=${nm_warn_opt:-"-Wall -Wextra"}

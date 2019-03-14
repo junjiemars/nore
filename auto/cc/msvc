@@ -42,7 +42,10 @@ fi
 nm_warn_opt=${nm_warn_opt:-"-W4"}
 
 # error
-nm_error_opt="-WX"
+case "$NM_ERROR" in
+	NO) nm_error_opt="" ;;
+	YES) nm_error_opt="-WX" ;;
+esac
 
 # unicode
 nm_utf_opt="-utf-8"

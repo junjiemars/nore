@@ -45,7 +45,10 @@ case ".$NM_WARN" in
 esac
 
 # error
-nm_error_opt="-Werror"
+case "$NM_ERROR" in
+	NO) nm_error_opt="" ;;
+	YES) nm_error_opt="-Werror" ;;
+esac
 
 # trigraph
 nm_trigraph_opt="-trigraphs"
