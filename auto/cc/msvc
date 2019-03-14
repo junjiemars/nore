@@ -127,4 +127,4 @@ esac
 LDFLAGS="-link -libpath:${NM_OUT}/lib${LDFLAGS:+ $LDFLAGS}"
 
 
-# end of file
+# eof

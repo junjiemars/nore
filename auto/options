@@ -25,14 +25,14 @@ NM_SRC=.
 
 NM_NEW=NO
 
-NM_SYMBOL=YES
-NM_OPTIMIZE=NO
-NM_WARN=YES
 NM_ERROR=YES
-NM_DEBUG=YES
+NM_WARN=YES
 NM_VERBOSE=NO
-NM_STD=YES
+NM_DEBUG=YES
+NM_SYMBOL=YES
 NM_ARCH=NO
+NM_STD=YES
+NM_OPTIMIZE=NO
 
 NM_PLATFORM=
 NM_CPU_CACHE_LINE=
@@ -78,26 +78,9 @@ do
     --symbol-table=*) legal_dir "$value" \
 			&& NM_SYMBOL_FILE="${value%/}" || panic_arg "--symbol-table="	"$value"
 			;;
-
     --prefix=*) legal_dir "$value" \
 			&& NM_PREFIX="${value%/}" || panic_arg "--prefix=" "$value"
 			;;
-    --bin-path=*) legal_dir "$value" \
-			&& NM_BIN_PATH="${value%/}" || panic_arg "--bin-path=" "$value"
-			;;
-    --lib-path=*) legal_dir "$value" \
-			&& NM_LIB_PATH="${value%/}" || panic_arg "--lib-path=" "$value"
-			;;
-    --inc-path=*) legal_dir "$value" \
-			&& NM_INC_PATH="${value%/}" || panic_arg "--inc-path=" "$value"
-			;;
-    --etc-path=*) legal_dir "$value" \
-			&& NM_ETC_PATH="${value%/}" || panic_arg "--etc-path=" "$value"
-			;;
-    --var-path=*) legal_dir "$value" \
-			&& NM_VAR_PATH="${value%/}" || panic_arg "--var-path=" "$value"
-			;;
-
     --src-dir=*) legal_dir "$value" \
 			&& NM_SRC="${value%/}" || panic_arg "--src-dir=" "$value"
 			;;
@@ -107,14 +90,14 @@ do
 
     --new)                   NM_NEW=YES                   ;;
 
-		--with-debug=*)          NM_DEBUG="$value"           	;;
 		--with-error=*)          NM_ERROR="$value"     	      ;;
-		--with-symbol=*)         NM_SYMBOL="$value"          	;;
 		--with-warn=*)           NM_WARN="$value"            	;;
+		--with-verbose=*)        NM_VERBOSE="$value"         	;;
+		--with-debug=*)          NM_DEBUG="$value"           	;;
+		--with-symbol=*)         NM_SYMBOL="$value"          	;;
+    --with-arch=*)           NM_ARCH="$value"             ;;
 		--with-std=*)            NM_STD="$value"            	;;
 		--with-optimize=*)       NM_OPTIMIZE="$value"        	;;
-    --with-arch=*)           NM_ARCH="$value"             ;;
-		--with-verbose=*)        NM_VERBOSE="$value"         	;;
 
 		--has-*)
 			if `legal_has_opt "$option"`; then
@@ -149,28 +132,18 @@ commands:
 options:
   --help                             print this message
   --symbol-table=PATH                dump or load symbol table
-
   --prefix=PATH                      installation prefix
-  --bin-path=PATH                    bin pathname of installation
-  --lib-path=PATH                    lib pathname of installation
-  --inc-path=PATH                    include pathname of installation
-  --etc-path=PATH                    etc pathname of installation
-  --var-path=PATH                    var pathname of installation
-
   --src-dir=[.|src|*]                set source directory
   --out-dir=[out|*]                  set build out directory
-
   --new                              generate Nore script templates
-
-  --with-debug=[YES|NO]              build for debug
   --with-error=[YES|NO]              treat warn as error
-  --with-symbol=[YES|NO|*]           generate debug symbols
   --with-warn=[YES|NO|*]             warn level option
+  --with-verbose=[NO|YES]            verbose output
+  --with-debug=[YES|NO]              build for debug
+  --with-symbol=[YES|NO|*]           generate debug symbols
+  --with-arch=[NO|YES|*]             arch option
   --with-std=[YES|NO|*]              language standard option
   --with-optimize=[NO|YES|*]         optimize level option
-  --with-arch=[NO|YES|*]             arch option
-  --with-verbose=[NO|YES]            verbose output
-
   --has-*                            has [*] to do
 
 END
@@ -208,8 +181,8 @@ NM_WARN="`yes_no_opt YES $NM_WARN`"
 NM_VERBOSE="`yes_no_opt NO $NM_VERBOSE`"
 NM_DEBUG="`yes_no_opt YES $NM_DEBUG`"
 NM_SYMBOL="`yes_no_opt YES $NM_SYMBOL`"
-NM_STD="`yes_no_opt YES $NM_STD`"
 NM_ARCH="`yes_no_opt NO $NM_ARCH`"
+NM_STD="`yes_no_opt YES $NM_STD`"
 NM_OPTIMIZE="`yes_no_opt NO $NM_OPTIMIZE`"
 
 NM_BIN_PATH="${NM_BIN_PATH:-bin}"

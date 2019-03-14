@@ -6,31 +6,12 @@
 ## summary
 ####
 
-# yes_no_out() {
-# 	local opt="$1"
-# 	local val="$2"
-# 	case "$opt" in
-# 		YES) echo "$opt: $val" ;;
-# 		NO) echo "$opt" ;;
-# 		*) ;;
-# 	esac
-# }
-
-# no_yes_out() {
-# 	local opt="$1"
-# 	local val="$2"
-# 	case "$opt" in
-# 		NO) echo "$opt: $val" ;;
-# 		YES) echo "$opt" ;;
-# 		*) ;;
-# 	esac
-# }
 
 yes_no_any_out() {
 	local opt="$1"
 	local any="$2"
 	case "$opt" in
-		YES|NO) echo "${opt}${any:+: ${any}}" ;;
+		YES|NO) echo "${opt}${any:+: $any}" ;;
 		*) echo "$opt" ;;
 	esac
 }
@@ -44,15 +25,17 @@ cat << END
   symbol-table= $NM_SYMBOL_FILE
   prefix= $NM_PREFIX
   out= $NM_OUT
+  src= $NM_SRC	
+  has= ${NM_HAS_STICKS[@]}
   new= $NM_NEW
-  std= `yes_no_any_out "$NM_STD" "$nm_std_opt"`
-  symbol= `yes_no_any_out "$NM_SYMBOL" "$nm_symbol_opt"`
-  debug= `yes_no_any_out "$NM_DEBUG" "$nm_debug_opt"`
-  optimize= `yes_no_any_out "$NM_OPTIMIZE" "$nm_optimize_opt"`
-  arch= `yes_no_any_out "$NM_ARCH" "$nm_arch_opt"`
   error= `yes_no_any_out "$NM_ERROR" "$nm_error_opt"`
   warn= `yes_no_any_out "$NM_WARN" "$nm_warn_opt"`
   verbose= `yes_no_any_out "$NM_VERBOSE" "$nm_verbose_opt"`
-  src= $NM_SRC	
-  has= ${NM_HAS_STICKS[@]}
+  debug= `yes_no_any_out "$NM_DEBUG" "$nm_debug_opt"`
+  arch= `yes_no_any_out "$NM_ARCH" "$nm_arch_opt"`
+  symbol= `yes_no_any_out "$NM_SYMBOL" "$nm_symbol_opt"`
+  std= `yes_no_any_out "$NM_STD" "$nm_std_opt"`
+  optimize= `yes_no_any_out "$NM_OPTIMIZE" "$nm_optimize_opt"`
 END
+
+# eof
