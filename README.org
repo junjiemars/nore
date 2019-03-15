@@ -149,8 +149,12 @@ $ curl https://raw.githubusercontent.com/junjiemars/nore/edge/bootstrap.sh | bas
 $ ./configure --help
 #+END_SRC
 
-On Windows, if using *MSVC* environment, we need host *MSVC*
+All Nore's options are orthographic.
+
+On Unix-like operating systems, there are no more thing need to do,
+and . But on Windows, if using *MSVC* environment, we need host *MSVC*
 environment first.
+
 
 In /bash/:
 #+BEGIN_SRC sh
@@ -190,11 +194,11 @@ Windows, Darwin and Linux.
 $ ./configure --new
 
 checking for OS
- + MINGW64_NT-10.0 2.9.0(0.318/5/3) x86_64
+ + MSYS_NT-10.0 2.10.0(0.325/5/3) x86_64
 checking for C compiler ... yes
- + using Microsoft Visual C++ compiler
- + msvc version: 19.13.26129 for x64
-checking for WinNT:10.0:x86_64 specific features
+ + using Microsoft C/C++ compiler
+ + msvc version: 19.16.27025.1 for x64
+checking for WinNT-10.0-x86_64 specific features
 
 creating out/Makefile
  + generating c.c file ... yes
@@ -203,21 +207,22 @@ creating out/Makefile
  + generating Makefile file ... yes
 
 Configuration summary
-  platform: WinNT:10.0:x86_64
-  compiler: msvc 19.13.26129 for x64
-	symbol-table=
-  prefix= D:/opt/run
+  platform: WinNT-10.0-x86_64
+  compiler: msvc 19.16.27025.1 for x64
+  symbol-table= 
+  prefix= dist
   out= out
+  src= .	
+  has= .
   new= YES
-  std= YES:
-  symbol= YES: -Z7
-  debug= YES
-  optimize= NO
-  cpu= NO
   error= YES: -WX
   warn= YES: -W4
   verbose= NO
-  has= .
+  debug= YES
+  symbol= YES: -Z7
+  arch= NO
+  std= YES
+  optimize= NO: -Od
 
 # after --new a skeleton, configure skeleton and make
 $ ./configure
