@@ -91,6 +91,9 @@ esac
 # trigraph
 nm_trigraph_opt="-Wno-trigraphs"
 
+# openmp
+nm_openmp_opt="-fopenmp"
+
 # lib
 nm_libdir_opt="-L"
 nm_lib_opt="-l"
