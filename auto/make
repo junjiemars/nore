@@ -84,6 +84,10 @@ nm_stage_c = $nm_stage_c
 nm_def_opt = $nm_def_opt
 nm_undef_opt = $nm_undef_opt
 
+# lib
+nm_libdir_opt = $nm_libdir_opt
+nm_lib_opt = $nm_lib_opt
+
 # path separator
 nm_p = $nm_p
 

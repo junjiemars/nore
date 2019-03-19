@@ -94,8 +94,12 @@ nm_trigraph_opt="-trigraphs"
 # openmp
 nm_openmp_opt="-fopenmp"
 
+# lib
+nm_libdir_opt="-L"
+nm_lib_opt="-l"
+
 # link option
-LDFLAGS="-L${NM_OUT}/lib${LDFLAGS:+ $LDFLAGS}"
+LDFLAGS="${nm_libdir_opt}${NM_OUT}/lib${LDFLAGS:+ $LDFLAGS}"
 
 
 # eof

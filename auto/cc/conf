@@ -46,7 +46,7 @@ LFLAGS=${LFLAGS}
 # extra flags to give to Yacc
 YFLAGS=${YFLAGS}
 
-
+# command line option
 nm_symbol_opt=
 nm_debug_opt=
 nm_warn_opt=
@@ -60,18 +60,26 @@ nm_flag_opt=
 nm_model_opt=
 nm_shared_opt=
 
+# feature
 nm_utf_opt=
 nm_trigraph_opt=
 nm_openmp_opt=
 
+# stage
 nm_stage_pre=
 nm_stage_chk=
 nm_stage_asm=
 nm_stage_c=
 
+# macro define
 nm_def_opt=-D
 nm_undef_opt=-U
 
+# lib
+nm_libdir_opt=
+nm_lib_opt=
+
+# path separator
 nm_p=":"
 
 obj_out="-o "

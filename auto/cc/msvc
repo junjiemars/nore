@@ -135,8 +135,12 @@ nm_model_opt="-EHsc"
 # openmp
 nm_openmp_opt="-openmp"
 
-# link option
-LDFLAGS="-link -libpath:${NM_OUT}/lib${LDFLAGS:+ $LDFLAGS}"
+# lib
+nm_libdir_opt="-libpath:"
+nm_lib_opt=
+
+# link option @ tail
+LDFLAGS="-link ${nm_libdir_opt}${NM_OUT}/lib${LDFLAGS:+ $LDFLAGS}"
 
 
 # eof
