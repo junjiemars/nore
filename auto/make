@@ -63,12 +63,15 @@ nm_debug_opt = $nm_debug_opt
 nm_std_opt = $nm_std_opt
 nm_optimize_opt = $nm_optimize_opt
 nm_arch_opt = $nm_arch_opt
-nm_trigraph_opt = $nm_trigraph_opt
 nm_verbose_opt = $nm_verbose_opt
 
 nm_flag_opt = $nm_flag_opt
 nm_model_opt = $nm_model_opt
 nm_shared_opt = $nm_shared_opt
+
+# feature
+nm_utf_opt = $nm_utf_opt
+nm_trigraph_opt = $nm_trigraph_opt
 nm_openmp_opt = $nm_openmp_opt
 
 # stage
