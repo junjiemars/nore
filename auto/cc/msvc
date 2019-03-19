@@ -132,6 +132,9 @@ nm_flag_opt=
 # model
 nm_model_opt="-EHsc"
 
+# openmp
+nm_openmp_opt="-openmp"
+
 # link option
 LDFLAGS="-link -libpath:${NM_OUT}/lib${LDFLAGS:+ $LDFLAGS}"
 

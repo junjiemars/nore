@@ -91,6 +91,9 @@ esac
 # trigraph
 nm_trigraph_opt="-trigraphs"
 
+# openmp
+nm_openmp_opt="-fopenmp"
+
 # link option
 LDFLAGS="-L${NM_OUT}/lib${LDFLAGS:+ $LDFLAGS}"
 

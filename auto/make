@@ -68,9 +68,10 @@ nm_verbose_opt = $nm_verbose_opt
 
 nm_flag_opt = $nm_flag_opt
 nm_model_opt = $nm_model_opt
-
 nm_shared_opt = $nm_shared_opt
+nm_openmp_opt = $nm_openmp_opt
 
+# stage
 nm_stage_pre = $nm_stage_pre
 nm_stage_chk = $nm_stage_chk
 nm_stage_asm = $nm_stage_asm
