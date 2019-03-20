@@ -66,10 +66,9 @@ nm_optimize_opt = $nm_optimize_opt
 nm_arch_opt = $nm_arch_opt
 nm_verbose_opt = $nm_verbose_opt
 
-nm_model_opt = $nm_model_opt
-nm_shared_opt = $nm_shared_opt
 
 # feature
+nm_model_opt = $nm_model_opt
 nm_utf_opt = $nm_utf_opt
 nm_trigraph_opt = $nm_trigraph_opt
 nm_openmp_opt = $nm_openmp_opt
@@ -85,6 +84,7 @@ nm_def_opt = $nm_def_opt
 nm_undef_opt = $nm_undef_opt
 
 # lib
+nm_shared_opt = $nm_shared_opt
 nm_libdir_opt = $nm_libdir_opt
 nm_lib_opt = $nm_lib_opt
 

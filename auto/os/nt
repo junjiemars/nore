@@ -6,7 +6,7 @@
 ## os/nt
 ####
 
-
+# lib
 nm_shared_opt="-LD"
 lib_ext=".dll"
 

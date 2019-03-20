@@ -57,10 +57,8 @@ nm_std_opt=
 nm_arch_opt=
 nm_verbose_opt=
 
-nm_model_opt=
-nm_shared_opt=
-
 # feature
+nm_model_opt=
 nm_utf_opt=
 nm_trigraph_opt=
 nm_openmp_opt=
@@ -76,6 +74,7 @@ nm_def_opt=-D
 nm_undef_opt=-U
 
 # lib
+nm_shared_opt=
 nm_libdir_opt=
 nm_lib_opt=
 
@@ -152,15 +151,15 @@ if [ -n "$nm_optimize_opt" ]; then
 	CFLAGS=${CFLAGS:+$CFLAGS }${nm_optimize_opt}
 fi
 
+# model option
+if [ -n "$nm_model_opt" ]; then
+	CFLAGS=${CFLAGS:+$CFLAGS }${nm_model_opt}
+fi
+
 # unicode option
 if [ -n "$nm_utf_opt" ]; then
 	CFLAGS=${CFLAGS:+$CFLAGS }${nm_utf_opt}
 	CPPFLAGS=${CPPFLAGS:+$CPPFLAGS }${nm_utf_opt}
-fi
-
-# model option
-if [ -n "$nm_model_opt" ]; then
-	CFLAGS=${CFLAGS:+$CFLAGS }${nm_model_opt}
 fi
 
 # cxx flags

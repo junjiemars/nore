@@ -125,14 +125,14 @@ case "$NM_OPTIMIZE" in
 	*) nm_optimize_opt="$NM_OPTIMIZE" ;;
 esac
 
+# model
+nm_model_opt="-EHsc"
+
 # unicode
 nm_utf_opt="-utf-8"
 
 # trigraph
 nm_trigraph_opt="-Zc:trigraphs"
-
-# model
-nm_model_opt="-EHsc"
 
 # openmp
 nm_openmp_opt="-openmp"
