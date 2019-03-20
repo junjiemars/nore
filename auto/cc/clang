@@ -76,7 +76,13 @@ esac
 # std
 case "$NM_STD" in
 	NO) nm_std_opt="" ;;
-	YES) nm_std_opt="-std=c99" ;;
+	YES)
+		if [ "$CXX" = "$CC" ]; then
+			nm_std_opt=""
+		else
+			nm_std_opt="-std=c99"
+		fi
+		;;
 	*) nm_std_opt="${NM_STD}" ;;
 esac
 

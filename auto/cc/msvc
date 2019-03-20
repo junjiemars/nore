@@ -108,6 +108,7 @@ case "$NM_STD" in
 	NO) nm_std_opt="" ;;
 	YES)
 		#https://herbsutter.com/2012/05/03/reader-qa-what-about-vc-and-c99/
+		nm_std_opt=""
   	;; 
 	*)
 		# for c90: -Za
