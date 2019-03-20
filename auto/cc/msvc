@@ -82,6 +82,10 @@ case "$NM_VERBOSE" in
 	YES) ;;
 esac
 
+# release option
+# linker option @ tail: verfied checksum
+nm_release_opt="-release"
+
 # symbol
 case "$NM_SYMBOL" in
 	NO) nm_symbol_opt="" ;;
@@ -140,7 +144,9 @@ nm_libdir_opt="-libpath:"
 nm_lib_opt=
 
 # link option @ tail
-LDFLAGS="-link ${nm_libdir_opt}${NM_OUT}/lib${LDFLAGS:+ $LDFLAGS}"
+nm_link_opt="-link"
+
+LDFLAGS="${nm_link_opt} ${nm_libdir_opt}${NM_OUT}/lib${LDFLAGS:+ $LDFLAGS}"
 
 
 # eof

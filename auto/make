@@ -60,6 +60,7 @@ nm_symbol_opt = $nm_symbol_opt
 nm_warn_opt = $nm_warn_opt
 nm_error_opt = $nm_error_opt
 nm_debug_opt = $nm_debug_opt
+nm_release_opt = $nm_release_opt
 nm_std_opt = $nm_std_opt
 nm_optimize_opt = $nm_optimize_opt
 nm_arch_opt = $nm_arch_opt
@@ -87,6 +88,9 @@ nm_undef_opt = $nm_undef_opt
 # lib
 nm_libdir_opt = $nm_libdir_opt
 nm_lib_opt = $nm_lib_opt
+
+# link
+nm_link_opt = $nm_link_opt
 
 # path separator
 nm_p = $nm_p
