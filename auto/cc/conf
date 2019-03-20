@@ -57,7 +57,6 @@ nm_std_opt=
 nm_arch_opt=
 nm_verbose_opt=
 
-nm_flag_opt=
 nm_model_opt=
 nm_shared_opt=
 
@@ -159,22 +158,15 @@ if [ -n "$nm_utf_opt" ]; then
 	CPPFLAGS=${CPPFLAGS:+$CPPFLAGS }${nm_utf_opt}
 fi
 
-# flag option
-if [ -n "$nm_flag_opt" ]; then
-	CFLAGS=${CFLAGS:+$CFLAGS }${nm_flag_opt}
-fi
-
 # model option
 if [ -n "$nm_model_opt" ]; then
 	CFLAGS=${CFLAGS:+$CFLAGS }${nm_model_opt}
 fi
 
-
 # cxx flags
-if [ ".$CXX" = ".$CC" ]; then
+if [ "$CXX" = "$CC" ]; then
 	CXXFLAGS=$CFLAGS
 fi
-
 
 # inc option
 INC="-I${NM_OUT} -I${NM_OUT}/inc${INC:+ $INC}"

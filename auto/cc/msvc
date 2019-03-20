@@ -131,9 +131,6 @@ nm_utf_opt="-utf-8"
 # trigraph
 nm_trigraph_opt="-Zc:trigraphs"
 
-# flag
-nm_flag_opt=
-
 # model
 nm_model_opt="-EHsc"
 
