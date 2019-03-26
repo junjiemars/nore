@@ -73,6 +73,9 @@ nm_stage_c=
 nm_def_opt=-D
 nm_undef_opt=-U
 
+# include
+nm_inc_opt=-I
+
 # lib
 nm_shared_opt=
 nm_libdir_opt=
@@ -168,7 +171,7 @@ if [ "$CXX" = "$CC" ]; then
 fi
 
 # inc option
-INC="-I${NM_OUT} -I${NM_OUT}/inc${INC:+ $INC}"
+INC="${nm_inc_opt}${NM_OUT} ${nm_inc_opt}${NM_OUT}/inc${INC:+ $INC}"
 
 
 # link option

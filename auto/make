@@ -83,6 +83,9 @@ nm_stage_c = $nm_stage_c
 nm_def_opt = $nm_def_opt
 nm_undef_opt = $nm_undef_opt
 
+# inc
+nm_inc_opt = $nm_inc_opt
+
 # lib
 nm_shared_opt = $nm_shared_opt
 nm_libdir_opt = $nm_libdir_opt
