@@ -231,7 +231,7 @@ if [ -f \${NORE_L_CONF} ]; then
   esac
 else
 	echo
-	echo "!nore << no found, to fix >: configure upgrade"
+	echo "!nore << no found, to fix >: configure clone"
 	echo 
 fi
 
