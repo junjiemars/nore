@@ -29,7 +29,6 @@ NORE_WORK="`pwd`"
 PLATFORM="`uname -s 2>/dev/null`"
 GITHUB_R="${GITHUB_R:-https://raw.githubusercontent.com/junjiemars}"
 GITHUB_H="${GITHUB_H:-https://github.com/junjiemars}"
-GITHUB_BASH_ENV="${GITHUB_R}/kit/master/ul/setup-bash.sh"
 
 NORE_UPGRADE=no
 NORE_BRANCH=master
