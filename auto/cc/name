@@ -21,16 +21,17 @@ fi
 
 
 nm_feature="C++ compiler"
-nm_feature_name=
-nm_feature_run=yes
-nm_feature_h='#include <iostream>'
+nm_feature_name="CXX"
+nm_feature_run=dumb
+nm_feature_h="#include <iostream>"
 nm_feature_flags=
-nm_feature_test="std::cout << \"$CC can compile C++ code? yes.\n\";"
-feature_dumb=yes feature_cxx=yes . ${NORE_ROOT}/auto/feature
+nm_feature_value=
+nm_feature_test="std::cout << \"$CC\n\";"
+. ${NORE_ROOT}/auto/feature
 
 cc_or_cxx="C"
 if [ ".yes" = ".$nm_found" ]; then
-  CXX=$CC
+  CXX=$nm_feature_value
 	cc_or_cxx="C/C++"
 fi
 
