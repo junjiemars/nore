@@ -27,7 +27,7 @@ nm_feature_test='
     size_t line = 0;
     size_t size = sizeof(line);
     if (!sysctlbyname("hw.cachelinesize", &line, &size, 0, 0)) {
-       printf("%d\n", line);
+       printf("%d\n", (int)line);
        return 0;
     }
     return 1;
