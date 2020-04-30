@@ -25,7 +25,7 @@ fi
 
 
 autotest_c="$NM_AUTOTEST.c"
-if [ "CXX" = "$nm_feature_name" ]; then
+if [ -n "CXX" ]; then
 	autotest_c="$NM_AUTOTEST.cc"
 fi
 
