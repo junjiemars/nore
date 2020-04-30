@@ -32,7 +32,7 @@ nm_feature_test="std::cout << \"$CC\n\";"
 cc_or_cxx="C"
 if [ ".yes" = ".$nm_found" ]; then
   CXX=$nm_feature_value
-	cc_or_cxx="C/C++"
+  cc_or_cxx="C/C++"
 fi
 
 
