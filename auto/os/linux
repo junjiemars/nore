@@ -15,5 +15,30 @@ have=$NM_SYSTEM . ${NORE_ROOT}/auto/have
 
 # os specifics for Linux
 
+nm_feature="CPU cache line"
+nm_feature_name=
+nm_feature_run=dumb
+nm_feature_h='#include <stdio.h>'
+nm_feature_flags=
+nm_feature_value=
+nm_feature_test='
+    FILE * p = 0;
+    p = fopen("/sys/devices/system/cpu/cpu0/cache/index0/coherency_line_size", "r");
+    int i = 0;
+    if (p) {
+        fscanf(p, "%d", &i);
+        fclose(p);
+        printf("%d\n", i);
+        return 0;
+    }
+    return 1;
+'
+
+. ${NORE_ROOT}/auto/feature
+
+if [ ".yes" = ".$nm_found" ]; then
+    NM_CPU_CACHE_LINE=$nm_feature_value
+fi
+
 
 # end of file

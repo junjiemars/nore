@@ -85,6 +85,13 @@ END
         echo_feature "$nm_found"
       fi
 			;;
+    dumb)
+      nm_feature_value=`$NM_AUTOTEST 2>> "$NM_AUTO_ERR"`
+      if [ 0 -eq $? ]; then
+          nm_found=yes
+      fi
+      echo_feature "$nm_found"
+			;;
 
     bug)
       if `$NM_AUTOTEST >> "$NM_AUTO_ERR" 2>&1`; then

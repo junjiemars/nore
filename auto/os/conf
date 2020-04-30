@@ -16,12 +16,13 @@ case "$NM_SYSTEM" in
 esac
 
 
-case "$NM_MACHINE" in
-  i386|i686|i86pc) NM_CPU_CACHE_LINE=32 ;;
-  amd64|x86_64) NM_CPU_CACHE_LINE=64 ;;
-  ia64) NM_CPU_CACHE_LINE=64 ;;
-  *) NM_CPU_CACHE_LINE=32 ;;
-esac
-
+if [ -z "$NM_CPU_CACHE_LINE" ]; then
+    case "$NM_MACHINE" in
+        i386|i686|i86pc) NM_CPU_CACHE_LINE=32 ;;
+        amd64|x86_64) NM_CPU_CACHE_LINE=64 ;;
+        ia64) NM_CPU_CACHE_LINE=64 ;;
+        *) NM_CPU_CACHE_LINE=32 ;;
+    esac
+fi
 
 have=NM_CPU_CACHE_LINE value=$NM_CPU_CACHE_LINE . ${NORE_ROOT}/auto/define
