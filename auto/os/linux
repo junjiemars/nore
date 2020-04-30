@@ -22,10 +22,9 @@ nm_feature_h='#include <stdio.h>'
 nm_feature_flags=
 nm_feature_value=
 nm_feature_test='
-    FILE * p = 0;
-    p = fopen("/sys/devices/system/cpu/cpu0/cache/index0/coherency_line_size", "r");
-    int i = 0;
+    FILE * p = fopen("/sys/devices/system/cpu/cpu0/cache/index0/coherency_line_size", "r");
     if (p) {
+        int i = 0;
         fscanf(p, "%d", &i);
         fclose(p);
         printf("%d\n", i);
