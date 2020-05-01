@@ -7,7 +7,9 @@
 ####
 
 
-echo $echo_n_opt "checking for $nm_feature ... $echo_c_cap"
+if [ "dumb" != "$nm_feature_run" ]; then
+  echo $echo_n_opt "checking for $nm_feature ... $echo_c_cap"
+fi
 
 
 cat << END >> $NM_AUTO_ERR
@@ -19,14 +21,14 @@ END
 
 
 if [ -n "$nm_feature_name" ]; then
-	nm_have_feature=`echo $nm_feature_name \
-		| tr '[\-: =]' '_' | tr '[:lower:]' '[:upper:]'`
+    nm_have_feature=`echo $nm_feature_name \
+        | tr '[\-: =]' '_' | tr '[:lower:]' '[:upper:]'`
 fi
 
 
 autotest_c="$NM_AUTOTEST.c"
 if [ -n "CXX" ]; then
-	autotest_c="$NM_AUTOTEST.cc"
+    autotest_c="$NM_AUTOTEST.cc"
 fi
 
 cat << END > $autotest_c
@@ -61,7 +63,7 @@ if [ -x $NM_AUTOTEST ]; then
       else
         echo "$nm_found"
       fi
-			;;
+            ;;
 
     value)
       if `$NM_AUTOTEST >> "$NM_AUTO_ERR" 2>&1`; then
@@ -78,14 +80,13 @@ END
       else
         echo "$nm_found"
       fi
-			;;
+            ;;
     dumb)
       nm_feature_value=`$NM_AUTOTEST 2>> "$NM_AUTO_ERR"`
       if [ 0 -eq $? ]; then
           nm_found=yes
       fi
-      echo "$nm_found"
-			;;
+      ;;
 
     bug)
       if `$NM_AUTOTEST >> "$NM_AUTO_ERR" 2>&1`; then
@@ -99,7 +100,7 @@ END
           have=$nm_have_feature . ${NORE_ROOT}/auto/have
         fi
       fi
-			;;
+      ;;
 
     *)
       nm_found=yes
@@ -108,11 +109,13 @@ END
       if [ -n "$nm_feature_name" ]; then
         have=$nm_have_feature . ${NORE_ROOT}/auto/have
       fi
-			;;
+      ;;
   esac
 
 else
-  echo "$nm_found"
+  if [ "dumb" != "$nm_feature_run" ]; then
+    echo "$nm_found"
+  fi
 
   echo "----------"    >> $NM_AUTO_ERR
   cat  $autotest_c     >> $NM_AUTO_ERR
