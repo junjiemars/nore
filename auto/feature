@@ -21,14 +21,14 @@ END
 
 
 if [ -n "$nm_feature_name" ]; then
-    nm_have_feature=`echo $nm_feature_name \
+  nm_have_feature=`echo $nm_feature_name \
         | tr '[\-: =]' '_' | tr '[:lower:]' '[:upper:]'`
 fi
 
 
 autotest_c="$NM_AUTOTEST.c"
 if [ -n "CXX" ]; then
-    autotest_c="$NM_AUTOTEST.cc"
+  autotest_c="$NM_AUTOTEST.cc"
 fi
 
 cat << END > $autotest_c
@@ -84,7 +84,7 @@ END
     dumb)
       nm_feature_value=`$NM_AUTOTEST 2>> "$NM_AUTO_ERR"`
       if [ 0 -eq $? ]; then
-          nm_found=yes
+        nm_found=yes
       fi
       ;;
 

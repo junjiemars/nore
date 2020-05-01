@@ -18,7 +18,7 @@ nm_p="\;"
 # os specifics for Windows
 
 nm_feature="CPU cache line"
-nm_feature_name=
+nm_feature_name='nm_cpu_cache_line'
 nm_feature_run=dumb
 nm_feature_h='#include <stdlib.h>
               #include <windows.h>
@@ -51,7 +51,7 @@ nm_feature_test='
 . ${NORE_ROOT}/auto/feature
 
 if [ ".yes" = ".$nm_found" ]; then
-    NM_CPU_CACHE_LINE=$nm_feature_value
+  NM_CPU_CACHE_LINE=$nm_feature_value
 fi
 
 

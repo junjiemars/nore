@@ -10,19 +10,17 @@
 echo "checking for $NM_PLATFORM specific features"
 
 case "$NM_SYSTEM" in
-	Linux) . ${NORE_ROOT}/auto/os/linux ;;
-	Darwin) . ${NORE_ROOT}/auto/os/darwin ;;
+  Linux) . ${NORE_ROOT}/auto/os/linux ;;
+  Darwin) . ${NORE_ROOT}/auto/os/darwin ;;
   WinNT) . ${NORE_ROOT}/auto/os/nt ;;
 esac
 
 
 if [ -z "$NM_CPU_CACHE_LINE" ]; then
-    case "$NM_MACHINE" in
-        i386|i686|i86pc) NM_CPU_CACHE_LINE=32 ;;
-        amd64|x86_64) NM_CPU_CACHE_LINE=64 ;;
-        ia64) NM_CPU_CACHE_LINE=64 ;;
-        *) NM_CPU_CACHE_LINE=32 ;;
-    esac
+  case "$NM_MACHINE" in
+    x86_64|amd64|ia64) NM_CPU_CACHE_LINE=64 ;;
+    i386|i686|i86pc|*) NM_CPU_CACHE_LINE=32 ;;
+  esac
 fi
 
 have=NM_CPU_CACHE_LINE value=$NM_CPU_CACHE_LINE . ${NORE_ROOT}/auto/define
