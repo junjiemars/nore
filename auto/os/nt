@@ -31,11 +31,11 @@ nm_feature_test='
     SYSTEM_LOGICAL_PROCESSOR_INFORMATION *buf = 0;
     GetLogicalProcessorInformation(0, &size);
     if (!size) {
-    	return 1;
+      return 1;
     }
     buf = (SYSTEM_LOGICAL_PROCESSOR_INFORMATION*)malloc(size);
     if (!buf) {
-    	return 1;
+      return 1;
     }
     if (GetLogicalProcessorInformation(&buf[0], &size)) {
       for (DWORD i = 0; i != size/sizeof(SYSTEM_LOGICAL_PROCESSOR_INFORMATION); i++) {
@@ -56,7 +56,7 @@ nm_feature_test='
 . ${NORE_ROOT}/auto/feature
 
 if [ ".yes" = ".$nm_found" ]; then
- NM_CPU_CACHE_LINE=$nm_feature_value
+  NM_CPU_CACHE_LINE=$nm_feature_value
 fi
 
 
