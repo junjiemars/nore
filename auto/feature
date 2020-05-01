@@ -27,7 +27,7 @@ fi
 
 
 autotest_c="$NM_AUTOTEST.c"
-if [ -n "CXX" ]; then
+if [ "$CXX" = "$CC" ]; then
   autotest_c="$NM_AUTOTEST.cc"
 fi
 
