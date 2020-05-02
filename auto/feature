@@ -54,33 +54,23 @@ if [ -x $NM_AUTOTEST ]; then
     yes)
       if `$NM_AUTOTEST >> "$NM_AUTO_ERR" 2>&1`; then
         nm_found=yes
-        echo "$nm_found"
-
         if [ -n "$nm_feature_name" ]; then
           have=$nm_have_feature . ${NORE_ROOT}/auto/have
         fi
-
-      else
-        echo "$nm_found"
       fi
-            ;;
+      echo "$nm_found"
+      ;;
 
     value)
       if `$NM_AUTOTEST >> "$NM_AUTO_ERR" 2>&1`; then
         nm_found=yes
-        echo "$nm_found"
-
-        cat << END >> $NM_AUTO_H
-
-#ifndef $nm_have_feature
-#define $nm_have_feature  `$NM_AUTOTEST`
-#endif
-
-END
-      else
-        echo "$nm_found"
+        if [ -n "$nm_feature_name" ]; then
+          have=$nm_have_feature . ${NORE_ROOT}/auto/have
+        fi
       fi
-            ;;
+      echo "$nm_found"
+      ;;
+
     dumb)
       nm_feature_value=`$NM_AUTOTEST 2>> "$NM_AUTO_ERR"`
       if [ 0 -eq $? ]; then
@@ -91,11 +81,9 @@ END
     bug)
       if `$NM_AUTOTEST >> "$NM_AUTO_ERR" 2>&1`; then
         echo "$nm_found"
-
       else
         nm_found=yes
         echo "$nm_found"
-
         if [ -n "$nm_feature_name" ]; then
           have=$nm_have_feature . ${NORE_ROOT}/auto/have
         fi
