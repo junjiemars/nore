@@ -19,7 +19,8 @@ nm_p="\;"
 
 nm_feature="CPU cache line"
 nm_feature_name='nm_cpu_cache_line'
-nm_feature_run=dumb
+nm_feature_indent=yes
+nm_feature_run=value
 nm_feature_h='#include <stdlib.h>
               #include <stdio.h>
               #include <windows.h>'
@@ -52,10 +53,10 @@ nm_feature_test='
     }
     return 1;
 '
-
 . ${NORE_ROOT}/auto/feature
 
-if [ ".yes" = ".$nm_found" ]; then
+
+if [ "yes" = "$nm_found" ]; then
   NM_CPU_CACHE_LINE=$nm_feature_value
 fi
 

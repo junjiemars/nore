@@ -8,7 +8,11 @@
 
 
 if [ "dumb" != "$nm_feature_run" ]; then
-  echo $echo_n_opt "checking for $nm_feature ... $echo_c_cap"
+  if [ "no" = "$nm_feature_indent" ]; then
+    echo $echo_n_opt "checking for $nm_feature ... $echo_c_cap"
+  else
+    echo $echo_n_opt " + checking for $nm_feature ... $echo_c_cap"
+  fi
 fi
 
 
@@ -62,11 +66,10 @@ if [ -x $NM_AUTOTEST ]; then
       ;;
 
     value)
-      if `$NM_AUTOTEST >> "$NM_AUTO_ERR" 2>&1`; then
+      nm_feature_value=`$NM_AUTOTEST 2>> "$NM_AUTO_ERR"`
+      if [ 0 -eq $? ]; then
         nm_found=yes
-        if [ -n "$nm_feature_name" ]; then
-          have=$nm_have_feature . ${NORE_ROOT}/auto/have
-        fi
+        have=$nm_have_feature value=$nm_feature_value . ${NORE_ROOT}/auto/define
       fi
       echo "$nm_found"
       ;;
@@ -112,6 +115,8 @@ else
   echo "----------"    >> $NM_AUTO_ERR
 fi
 
+nm_feature_indent=
+nm_feature_value=
 
 [ -f $NM_AUTOTEST ] && rm $NM_AUTOTEST
 [ -f $autotest_c ]  && rm $autotest_c

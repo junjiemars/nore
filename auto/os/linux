@@ -17,7 +17,8 @@ have=$NM_SYSTEM . ${NORE_ROOT}/auto/have
 
 nm_feature="CPU cache line"
 nm_feature_name='nm_cpu_cache_line'
-nm_feature_run=dumb
+nm_feature_indent=yes
+nm_feature_run=value
 nm_feature_h='#include <stdio.h>'
 nm_feature_flags=
 nm_feature_value=
@@ -32,10 +33,10 @@ nm_feature_test='
     }
     return 1;
 '
-
 . ${NORE_ROOT}/auto/feature
 
-if [ ".yes" = ".$nm_found" ]; then
+
+if [ "yes" = "$nm_found" ]; then
   NM_CPU_CACHE_LINE=$nm_feature_value
 fi
 
