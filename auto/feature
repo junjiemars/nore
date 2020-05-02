@@ -8,11 +8,14 @@
 
 
 if [ "dumb" != "$nm_feature_run" ]; then
-  if [ "no" = "$nm_feature_indent" ]; then
-    echo $echo_n_opt "checking for $nm_feature ... $echo_c_cap"
-  else
-    echo $echo_n_opt " + checking for $nm_feature ... $echo_c_cap"
-  fi
+  case $nm_feature_indent in
+    yes|'')
+      echo $echo_n_opt " + checking for $nm_feature ... $echo_c_cap"
+      ;;
+    no|*)
+      echo $echo_n_opt "checking for $nm_feature ... $echo_c_cap"
+      ;;
+  esac
 fi
 
 
@@ -114,9 +117,6 @@ else
   echo $nm_test        >> $NM_AUTO_ERR
   echo "----------"    >> $NM_AUTO_ERR
 fi
-
-nm_feature_indent=no
-nm_feature_value=
 
 [ -f $NM_AUTOTEST ] && rm $NM_AUTOTEST
 [ -f $autotest_c ]  && rm $autotest_c

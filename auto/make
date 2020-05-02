@@ -272,7 +272,7 @@ END
 	fi # end of [ -f $nm_stick_src/version ]
   
 	if [ -f "$nm_stick_src/auto" ]; then
-		echo " + checking for `echo_pretty_path $nm_stick_src/auto` ... yes"
+		echo " * checking for `echo_pretty_path $nm_stick_src/auto` ... yes"
 		. "$nm_stick_src/auto"
     
   elif [ YES = $NM_NEW ]; then
@@ -285,7 +285,7 @@ END
   
 	if [ -f "$nm_stick_src/Makefile" ]; then
 		stick_makefile="$nm_stick_src/Makefile"
-		echo " + checking for `echo_pretty_path $nm_stick_src/Makefile` ... yes"
+		echo " * checking for `echo_pretty_path $nm_stick_src/Makefile` ... yes"
 
   elif [ YES = $NM_NEW ]; then
 		stick_makefile="$nm_stick_src/Makefile"
