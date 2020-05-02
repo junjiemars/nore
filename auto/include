@@ -7,55 +7,14 @@
 ####
 
 
-echo $echo_n_opt "checking for $include ... $echo_c_cap"
+nm_feature="$include"
+nm_feature_name="nm_have_`echo $include | tr . _`"
+nm_feature_run=value
+nm_feature_h="#include <$include>"
+nm_feature_flags=
+nm_feature_test=
 
-cat << END >> $NM_AUTO_ERR
-
-----------------------------------------
-checking for $include
-
-END
-
-
-autotest_c="$NM_AUTOTEST.c"
-if [ "yes" = "$feature_cxx" ]; then
-	autotest_c="$NM_AUTOTEST.cc"
-fi
-
-cat << END > $autotest_c
-
-#include <$include>
-
-int main(void) {
-    return 0;
-}
-
-END
+. ${NORE_ROOT}/auto/feature
 
 
-nm_test="$CC ${bin_out}$NM_AUTOTEST $autotest_c"
-
-`$nm_test >> $NM_AUTO_ERR 2>&1`
-
-nm_found=no
-
-if [ -x $NM_AUTOTEST ]; then
-  nm_found=yes
-  echo "$nm_found"
-
-  have=$include . ${NORE_ROOT}/auto/have_header
-
-else
-  echo "$nm_found"
-
-  echo "----------"  	 >> $NM_AUTO_ERR
-  cat  $autotest_c 	   >> $NM_AUTO_ERR
-  echo "----------"  	 >> $NM_AUTO_ERR
-  echo $nm_test    	   >> $NM_AUTO_ERR
-  echo "----------"    >> $NM_AUTO_ERR
-fi
-
-
-[ -f $NM_AUTOTEST ] && rm $NM_AUTOTEST
-[ -f $autotest_c ]  && rm $autotest_c
-
+# eof

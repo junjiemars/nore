@@ -115,7 +115,7 @@ else
   echo "----------"    >> $NM_AUTO_ERR
 fi
 
-nm_feature_indent=
+nm_feature_indent=no
 nm_feature_value=
 
 [ -f $NM_AUTOTEST ] && rm $NM_AUTOTEST
