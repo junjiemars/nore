@@ -280,7 +280,7 @@ END
     cat ${NORE_ROOT}/auto/check > "$nm_stick_src/auto"
     echo_yes_or_no $?
 	else
-		echo " + checking for `echo_pretty_path $nm_stick_src/auto` ... no"
+		echo " * checking for `echo_pretty_path $nm_stick_src/auto` ... no"
 	fi # end of [ -f $nm_stick_src/auto ]
   
 	if [ -f "$nm_stick_src/Makefile" ]; then
