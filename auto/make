@@ -258,7 +258,7 @@ END
   fi # end of [ ! -f "$nm_stick_src/$nm_stick_norm.c" ]
 
   if [ -f "$nm_stick_src/version" ]; then
-		echo " + checking for `echo_pretty_path $nm_stick_src/version` ... yes"
+		echo " * checking for `echo_pretty_path $nm_stick_src/version` ... yes"
     have=`echo "$nm_stick_norm" | tr '[:lower:]' '[:upper:]'`_VERSION \
     value=`cat "$nm_stick_src/version"` . ${NORE_ROOT}/auto/define
     
