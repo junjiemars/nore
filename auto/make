@@ -50,7 +50,7 @@ YFLAGS = $YFLAGS
 CFLAGS = $CFLAGS
 `
 if [ ".$CXX" = ".$CC" ]; then
-	 echo "CXXFLAGS += \$CFLAGS"
+	 echo "CXXFLAGS = \$CFLAGS"
 fi
 `
 
