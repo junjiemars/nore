@@ -314,7 +314,7 @@ END
 		fi
 	else
 
-		echo " + checking for `echo_pretty_path $nm_stick_src/Makefile` ... no"
+		echo " * checking for `echo_pretty_path $nm_stick_src/Makefile` ... no"
 		cat << END >> $NM_AUTO_ERR
 
 ----------------------------------------
