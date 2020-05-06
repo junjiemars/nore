@@ -6,10 +6,11 @@
 ## cc/name
 ####
 
+echo "checking for C compiler"
 
 nm_feature="C compiler"
 nm_feature_name=
-nm_feature_run=yes
+nm_feature_run=dumb
 nm_feature_h=
 nm_feature_flags=
 nm_feature_test=
