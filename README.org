@@ -385,6 +385,12 @@ nm_feature_test='int i=0x11223344;
 . ${NORE_ROOT}/auto/feature
 #+END_SRC
 
+=nm_feature_run= should be =no=, =yes=, =value= and =dumb=.
+- =no= is the default.
+- =yes= will run the =nm_feature_test=.
+- =value= will run =nm_feature_test= and return =nm_feature_value=.
+- =dumb= will run =nm_feature_test= except does not output to screen.
+
 *** Compiler Switch Testing
 		:PROPERTIES:
 		:CUSTOM_ID: compiler-switch-testing
