@@ -412,7 +412,8 @@ case "$CC_NAME" in
     . ${NORE_ROOT}/auto/feature
 
     if [ yes = $nm_found ]; then
-      flag=LDFLAGS op="+=" value=$nm_feature_flags . ${NORE_ROOT}/auto/make_define
+      flag=LDFLAGS op="+=" value=$nm_feature_flags \
+        . ${NORE_ROOT}/auto/make_define
     fi
     ;;
   msvc)
@@ -421,7 +422,7 @@ esac
 #+END_SRC
 
 *** OS Feature Testing
-		:PROPERTIES:
+    :PROPERTIES:
 		:CUSTOM_ID: os-feature-testing
 		:END:
 
