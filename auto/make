@@ -273,7 +273,7 @@ END
   
 	if [ -f "$nm_stick_src/auto" ]; then
 		echo " * checking for `echo_pretty_path $nm_stick_src/auto` ... yes"
-		. "$nm_stick_src/auto"
+		. "$nm_stick_src/auto" 2>> $NM_AUTO_ERR
     
   elif [ YES = $NM_NEW ]; then
 		echo $echo_n_opt " + generating `echo_pretty_path $nm_stick_src/auto` file ... "

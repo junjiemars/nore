@@ -151,8 +151,8 @@ $ ./configure --help
 
 All Nore's options are orthographic.
 
-On Unix-like operating systems, there are no more thing need to do,
-and . But on Windows, if using *MSVC* environment, we need host *MSVC*
+On Unix-like operating systems, there are no more things need to
+do. But on Windows, if using *MSVC* environment, we need host *MSVC*
 environment first.
 
 
@@ -389,7 +389,7 @@ nm_feature_test='int i=0x11223344;
 - =no= is the default.
 - =yes= will run the =nm_feature_test=.
 - =value= will run =nm_feature_test= and return =nm_feature_value=.
-- =dumb= will run =nm_feature_test= except does not output to screen.
+- =dumb= will run =nm_feature_test= except output to screen.
 
 *** Compiler Switch Testing
 		:PROPERTIES:
@@ -400,23 +400,23 @@ nm_feature_test='int i=0x11223344;
 # check compiler features
 #----------------------------------------
 case "$CC_NAME" in
-	clang)
-		;;
-	gcc)
-		nm_feature="$CC_NAME -Wl,-E|--export-dynamic"
-		nm_feature_name=
-		nm_feature_run=no
-		nm_feature_h=
-		nm_feature_flags='-Wl,-E'
-		nm_feature_test=
-		. ${NORE_ROOT}/auto/feature
+  clang)
+    ;;
+  gcc)
+    nm_feature="$CC_NAME -Wl,-E|--export-dynamic"
+    nm_feature_name=
+    nm_feature_run=no
+    nm_feature_h=
+    nm_feature_flags='-Wl,-E'
+    nm_feature_test=
+    . ${NORE_ROOT}/auto/feature
 
-		if [ yes = $nm_found ]; then
-			flag=LDFLAGS op="+=" value=$nm_feature_flags . ${NORE_ROOT}/auto/make_define
-		fi
-		;;
-	msvc)
-		;;
+    if [ yes = $nm_found ]; then
+      flag=LDFLAGS op="+=" value=$nm_feature_flags . ${NORE_ROOT}/auto/make_define
+    fi
+    ;;
+  msvc)
+    ;;
 esac
 #+END_SRC
 
@@ -427,23 +427,49 @@ esac
 
 #+BEGIN_SRC sh
 # check OS features
-#----------------------------------------
+# ----------------------------------------
+case $NM_SYSTEM in
+  Darwin|Linux)
+    nm_feature="mmap fn"
+    nm_feature_name="nm_have_mmap_fn"
+    nm_feature_run=no
+    nm_feature_h='#include <sys/mman.h>'
+    nm_feature_flags=
+    nm_feature_test='mmap(0, 16, 1, 0, 3, 0);'
+    . ${NORE_ROOT}/auto/feature
+    ;;
+  WinNT)
+    ;;
+  *)
+    ;;
+esac
+#+END_SRC
+
+*** ENV Feature Testing
+		:PROPERTIES:
+		:CUSTOM_ID: env-feature-testing
+		:END:
+
+#+BEGIN_SRC sh
+# check ENV features
+# ----------------------------------------
 case "$NM_SYSTEM" in
-	Darwin)
-		nm_feature="libuv"
-		nm_feature_name="nm_have_uv_h"
-		nm_feature_run=no
-		nm_feature_h="#include <uv.h>"
-		nm_feature_flags='-I/opt/local/include -L/opt/local/lib -luv'
-		nm_feature_test=
-		. ${NORE_ROOT}/auto/feature
-	  ;;
-	Linux)
-	  ;;
-	WinNT)
-	  ;;
-	*)
-	  ;;
+  Darwin)
+    nm_feature="libuv"
+    nm_feature_name="nm_have_libuv"
+    nm_feature_indent=yes
+    nm_feature_run=no
+    nm_feature_h="#include <uv.h>"
+    nm_feature_flags="`pkg-config --cflags --libs libuv`"
+    nm_feature_test=
+    . ${NORE_ROOT}/auto/feature
+    ;;
+  Linux)
+    ;;
+  WinNT)
+    ;;
+  *)
+    ;;
 esac
 #+END_SRC
 
@@ -540,12 +566,22 @@ Clone the existing Nore into current directory.
 
 Trace Nore processing.
 
+** Examples
+	 :PROPERTIES:
+	 :CUSTOM_ID: examples
+	 :END:
+
+*** Make an executable
+*** Make a library
+*** All stages of compiling
+
 * Editor
 	:PROPERTIES:
 	:CUSTOM_ID: editor
 	:END:
 
-This section introduces how Nore interactive with your favor Editors.
+This section introduces how Nore interactive with your favored
+Editors.
 
 **  Vim
 	 :PROPERTIES:
@@ -592,11 +628,17 @@ debuger interactive, and excellent smooth.
 		:CUSTOM_ID: troubleshoting
 		:END:
 
-Troubleshotting is more easier than other ones, because all just
-Makefiles and shell scripts. And Nore provides a command for debugging
+Troubleshotting is more easier than other ones, because merely
+Makefile and shell script. And Nore provides a command for debugging
 purpose.
 
 #+BEGIN_SRC sh
+# review out/auto.err
+$ less out/auto.err
+
+# review out/Makefile
+$ less out/Makefile
+
 # trace Nore processing
 $ ./configure trace
 $ ./configure trace --without-error

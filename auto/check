@@ -7,79 +7,96 @@
 ####
 
 
-## check header file existing
-##----------------------------------------
-#echo " + checking C99 header files ..."
-#include="complex.h" . ${NORE_ROOT}/auto/include
-#include="fenv.h" . ${NORE_ROOT}/auto/include
-#include="inttypes.h" . ${NORE_ROOT}/auto/include
-#include="stdint.h" . ${NORE_ROOT}/auto/include
-#include="tgmath.h" . ${NORE_ROOT}/auto/include
-#
-#echo " + checking C11 header files ..."
-#include="stdalign.h" . ${NORE_ROOT}/auto/include
-#include="stdatomic.h" . ${NORE_ROOT}/auto/include
-#include="stdnoreturn.h" . ${NORE_ROOT}/auto/include
-#include="threads.h" . ${NORE_ROOT}/auto/include
-#include="uchar.h" . ${NORE_ROOT}/auto/include
-#
-#echo " + checking NA1 header files ..."
-#include="iso646.h" . ${NORE_ROOT}/auto/include
-#include="wchar.h" . ${NORE_ROOT}/auto/include
-#include="wctype.h" . ${NORE_ROOT}/auto/include
-#
-#echo " + checking nonstandard posix header files ..."
-#include="unistd.h" . ${NORE_ROOT}/auto/include
-#include="signal.h" . ${NORE_ROOT}/auto/include
-#
+# # check header file existing
+# #----------------------------------------
+# echo " + checking C99 header files ..."
+# include="complex.h" . ${NORE_ROOT}/auto/include
+# include="fenv.h" . ${NORE_ROOT}/auto/include
+# include="inttypes.h" . ${NORE_ROOT}/auto/include
+# include="stdint.h" . ${NORE_ROOT}/auto/include
+# include="tgmath.h" . ${NORE_ROOT}/auto/include
+# 
+# echo " + checking C11 header files ..."
+# include="stdalign.h" . ${NORE_ROOT}/auto/include
+# include="stdatomic.h" . ${NORE_ROOT}/auto/include
+# include="stdnoreturn.h" . ${NORE_ROOT}/auto/include
+# include="threads.h" . ${NORE_ROOT}/auto/include
+# include="uchar.h" . ${NORE_ROOT}/auto/include
+# 
+# echo " + checking NA1 header files ..."
+# include="iso646.h" . ${NORE_ROOT}/auto/include
+# include="wchar.h" . ${NORE_ROOT}/auto/include
+# include="wctype.h" . ${NORE_ROOT}/auto/include
+# 
+# echo " + checking nonstandard posix header files ..."
+# include="unistd.h" . ${NORE_ROOT}/auto/include
+# include="signal.h" . ${NORE_ROOT}/auto/include
+
 
 ## check machine features
 ##----------------------------------------
 
 
-## check compiler features
-##----------------------------------------
-#case "$CC_NAME" in
-#	clang)
-#		;;
-#	gcc)
-#		nm_feature="$CC_NAME -Wl,-E|--export-dynamic"
-#		nm_feature_name=
-#   nm_feature_indent=yes
-#		nm_feature_run=no
-#		nm_feature_h=
-#		nm_feature_flags='-Wl,-E'
-#		nm_feature_test=
-#		. ${NORE_ROOT}/auto/feature
-#
-#		if [ yes = $nm_found ]; then
-#			flag=LDFLAGS op="+=" value=$nm_feature_flags . ${NORE_ROOT}/auto/make_define
-#		fi
-#		;;
-#	msvc)
-#		;;
-#esac
+# # check compiler features
+# #----------------------------------------
+# case "$CC_NAME" in
+#    clang)
+#      ;;
+#    gcc)
+#      nm_feature="$CC_NAME -Wl,-E|--export-dynamic"
+#      nm_feature_name=
+#    nm_feature_indent=yes
+#      nm_feature_run=no
+#      nm_feature_h=
+#      nm_feature_flags='-Wl,-E'
+#      nm_feature_test=
+#      . ${NORE_ROOT}/auto/feature
+# 
+#      if [ yes = $nm_found ]; then
+#        flag=LDFLAGS op="+=" value=$nm_feature_flags . ${NORE_ROOT}/auto/make_define
+#      fi
+#      ;;
+#    msvc)
+#      ;;
+# esac
 
 
-## check OS features
-##----------------------------------------
-#case "$NM_SYSTEM" in
-#	Darwin)
-#		nm_feature="libuv"
-#		nm_feature_name="nm_have_uv_h"
-#   nm_feature_indent=yes
-#		nm_feature_run=no
-#		nm_feature_h="#include <uv.h>"
-#		nm_feature_flags='-I/opt/local/include -L/opt/local/lib -luv'
-#		nm_feature_test=
-#		. ${NORE_ROOT}/auto/feature
-#	  ;;
-#	Linux)
-#	  ;;
-#	WinNT)
-#	  ;;
-#	*)
-#	  ;;
-#esac
+# # check OS features
+# # ----------------------------------------
+# case $NM_SYSTEM in
+#   Darwin|Linux)
+#     nm_feature="mmap fn"
+#     nm_feature_name="nm_have_mmap_fn"
+#     nm_feature_run=no
+#     nm_feature_h='#include <sys/mman.h>'
+#     nm_feature_flags=
+#     nm_feature_test='mmap(0, 16, 1, 0, 3, 0);'
+#     . ${NORE_ROOT}/auto/feature
+#     ;;
+#   WinNT)
+#     ;;
+#   *)
+#     ;;
+# esac
 
 
+# # check OS features
+# # ----------------------------------------
+# case "$NM_SYSTEM" in
+#   Darwin)
+#     nm_feature="libuv"
+#     nm_feature_name="nm_have_libuv"
+#     nm_feature_indent=yes
+#     nm_feature_run=no
+#     nm_feature_h="#include <uv.h>"
+#     nm_feature_flags="`pkg-config --cflags --libs libuv`"
+#     nm_feature_test=
+#     . ${NORE_ROOT}/auto/feature
+#     ;;
+#   Linux)
+#     ;;
+#   WinNT)
+#     ;;
+#   *)
+#     ;;
+# esac
