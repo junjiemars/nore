@@ -65,9 +65,7 @@
 # # check compiler features
 # #----------------------------------------
 # case "$CC_NAME" in
-#    gcc)
-#      ;;
-#    clang)
+#    clang|gcc)
 #      nm_feature="$CC_NAME -fomit-frame-pointer"
 #      nm_feature_name=
 #      nm_feature_indent=yes
@@ -77,6 +75,29 @@
 #      nm_feature_test=
 #      . ${NORE_ROOT}/auto/feature
 #
+#      if [ yes = $nm_found ]; then
+#        flag=CFLAGS op="+=" value=$nm_feature_flags \
+#            . ${NORE_ROOT}/auto/make_define
+#      fi
+#      ;;
+#    msvc)
+#      ;;
+# esac
+
+
+# # check compiler features
+# #----------------------------------------
+# case "$CC_NAME" in
+#    clang|gcc)
+#      nm_feature="$CC_NAME -mno-red-zone"
+#      nm_feature_name=
+#      nm_feature_indent=yes
+#      nm_feature_run=no
+#      nm_feature_h=
+#      nm_feature_flags='-mno-red-zone'
+#      nm_feature_test=
+#      . ${NORE_ROOT}/auto/feature
+
 #      if [ yes = $nm_found ]; then
 #        flag=CFLAGS op="+=" value=$nm_feature_flags \
 #            . ${NORE_ROOT}/auto/make_define
