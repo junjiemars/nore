@@ -17,7 +17,7 @@ nm_p="\;"
 
 # os specifics for Windows
 
-nm_feature="CPU cache line"
+nm_feature="cache line size"
 nm_feature_name='nm_cpu_cache_line'
 nm_feature_indent=yes
 nm_feature_run=value
