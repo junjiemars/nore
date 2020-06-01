@@ -2,9 +2,6 @@
 #+AUTHOR: Junjie Mars
 #+STARTUP: overview
 
-[[https://api.travis-ci.org/junjiemars/nore][https://api.travis-ci.org/junjiemars/nore.svg?branch=master]]
-
-
 No More than a C build system for [[https://clang.llvm.org][clang]], [[https://gcc.gnu.org][gcc]] and [[https://www.visualstudio.com/vs/cplusplus/][msvc]].
 
 Let's start ...
