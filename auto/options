@@ -28,7 +28,7 @@ NM_NEW=NO
 NM_ERROR=YES
 NM_WARN=YES
 NM_VERBOSE=NO
-NM_DEBUG=YES
+NM_BUILD=NO
 NM_SYMBOL=YES
 NM_ARCH=NO
 NM_STD=YES
@@ -93,7 +93,7 @@ do
 		--with-error=*)          NM_ERROR="$value"     	      ;;
 		--with-warn=*)           NM_WARN="$value"            	;;
 		--with-verbose=*)        NM_VERBOSE="$value"         	;;
-		--with-debug=*)          NM_DEBUG="$value"           	;;
+		--with-release=*)        NM_BUILD="$value"           	;;
 		--with-symbol=*)         NM_SYMBOL="$value"          	;;
     --with-arch=*)           NM_ARCH="$value"             ;;
 		--with-std=*)            NM_STD="$value"            	;;
@@ -139,7 +139,7 @@ options:
   --with-error=[YES|NO]              treat warn as error
   --with-warn=[YES|NO|*]             warn level option
   --with-verbose=[NO|YES]            verbose output
-  --with-debug=[YES|NO]              build for debug
+  --with-release=[NO|YES]            build for release
   --with-symbol=[YES|NO|*]           generate debug symbols
   --with-arch=[NO|YES|*]             arch option
   --with-std=[YES|NO|*]              language standard option
@@ -179,7 +179,7 @@ fi
 NM_ERROR="`yes_no_opt YES $NM_ERROR`"
 NM_WARN="`yes_no_opt YES $NM_WARN`"
 NM_VERBOSE="`yes_no_opt NO $NM_VERBOSE`"
-NM_DEBUG="`yes_no_opt YES $NM_DEBUG`"
+NM_BUILD="`yes_no_opt NO $NM_BUILD`"
 NM_SYMBOL="`yes_no_opt YES $NM_SYMBOL`"
 NM_ARCH="`yes_no_opt NO $NM_ARCH`"
 NM_STD="`yes_no_opt YES $NM_STD`"

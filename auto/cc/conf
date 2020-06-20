@@ -48,7 +48,7 @@ YFLAGS=${YFLAGS}
 
 # command line option
 nm_symbol_opt=
-nm_debug_opt=
+nm_build_opt=
 nm_release_opt=
 nm_warn_opt=
 nm_error_opt=
@@ -125,13 +125,13 @@ if [ -n "$nm_verbose_opt" ]; then
 	CFLAGS=${CFLAGS:+$CFLAGS }${nm_verbose_opt}
 fi
 
-# debug option
-case "$NM_DEBUG" in
-	NO)
-		nm_debug_opt='-DNDEBUG=1'
-		CFLAGS=${CFLAGS:+$CFLAGS }${nm_debug_opt}
+# build option
+case "$NM_BUILD" in
+	YES)
+		nm_build_opt='-DNDEBUG=1'
+		CFLAGS=${CFLAGS:+$CFLAGS }${nm_build_opt}
 		;;
-	YES) nm_debug_opt="" ;;
+	NO) nm_build_opt="" ;;
 esac
 
 # symbol option
