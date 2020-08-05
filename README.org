@@ -606,10 +606,10 @@ On any Unix-like platform:
 
 
 On Window:
-- @@html:<kbd>@@shell-command: %userprofile%/.cc-env.bat && bash
+- @@html:<kbd>@@M-x compile cc-env.bat && bash
   <your-c-app-dir>/configure --has-x@@html:</kbd>@@
-- @@html:<kbd>@@compile: cc-env.bat && make -C <your-c-app-dir> clean
-  test@@html:</kbd>@@
+- @@html:<kbd>@@M-x compile cc-env.bat && make -C <your-c-app-dir>
+  clean test@@html:</kbd>@@
 
 
 [[https://github.com/junjiemars/.emacs.d][More Reasonable Emacs]] has awsome C programming experience, including C
