@@ -599,14 +599,16 @@ details see [[#where][where]] command).
 		:END:
 
 On any Unix-like platform:
-- @@html:<kbd>@@M-x shell-command: <your-c-app-dir>/configure
+- @@html:<kbd>@@M-x shell-command <your-c-app-dir>/configure
   --has-x@@html:</kbd>@@
 - @@html:<kbd>@@M-x compile make -C <your-c-app-dir> clean
   test@@html:</kbd>@@
 
 
 On Window:
-- @@html:<kbd>@@M-x compile cc-env.bat && bash
+- @@html:<kbd>@@M-x shell-command cc-env.bat && bash
+  <your-c-app-dir>/configure --has-x@@html:</kbd>@@ or
+  @@html:<kbd>@@M-x compile cc-env.bat && bash
   <your-c-app-dir>/configure --has-x@@html:</kbd>@@
 - @@html:<kbd>@@M-x compile cc-env.bat && make -C <your-c-app-dir>
   clean test@@html:</kbd>@@
