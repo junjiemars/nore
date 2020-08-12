@@ -141,6 +141,7 @@
 # esac
 
 # # check compiler features
+# #----------------------------------------
 # nm_feature="restrict keyword"
 # nm_feature_name="nm_have_restrict_kw"
 # nm_feature_run=
@@ -157,6 +158,30 @@
 # 	nm_feature_test='int x = 0x11; int *__restrict p = &x;'
 # 	. ${NORE_ROOT}/auto/feature
 # fi
+
+# # check compiler features
+# #----------------------------------------
+# case "$CC_NAME" in
+#    gcc|clang)
+#      nm_feature="$CC_NAME -Wl,-rpath"
+#      nm_feature_name=
+#      nm_feature_indent=yes
+#      nm_feature_run=no
+#      nm_feature_h=
+#      nm_feature_flags='-Wl,-rpath=$(lib_path)'
+#      nm_feature_test=
+#      . ${NORE_ROOT}/auto/feature
+#      if [ yes = $nm_found ]; then
+#        flag=nm_link_opt op=":=" value="rpath" \
+#            . ${NORE_ROOT}/auto/make_define
+#        flag=LDFLAGS op="+=" value=$nm_feature_flags \
+#            . ${NORE_ROOT}/auto/make_define
+#      fi
+#      ;;
+#    msvc)
+#      ;;
+# esac
+
 
 # # check OS features
 # # ----------------------------------------
@@ -175,7 +200,6 @@
 #   *)
 #     ;;
 # esac
-
 
 # # check OS features
 # # ----------------------------------------
