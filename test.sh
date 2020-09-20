@@ -28,7 +28,7 @@ make_ci_env() {
   echo "NORE_CI_DIR=$NORE_CI_DIR"
   echo "------------"
   cd "${NORE_CI_DIR}"
-  ../bootstrap.sh
+  ${NORE_ROOT_DIR%/}/bootstrap.sh
 }
 
 echo_ci_what() {
