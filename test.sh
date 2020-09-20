@@ -31,6 +31,9 @@ make_ci_env() {
   if [ ! -f "${_ROOT_DIR_%/}/bootstrap.sh" ]; then
     echo "!panic: ${_ROOT_DIR_%/}/bootstrap.sh no found"
   fi
+  ls "${_ROOT_DIR_}"
+  /usr/bin/git remote -v "${_ROOT_DIR_}"
+  git remote -v "${_ROOT_DIR_}"
   cd "${_CI_DIR_}"
   bash -x ${_ROOT_DIR_%/}/bootstrap.sh
 }
