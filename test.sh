@@ -31,7 +31,7 @@ make_ci_env() {
     echo "!panic: ${NORE_ROOT_DIR%/}/bootstrap.sh no found"
   fi
   cd "${NORE_CI_DIR}"
-  ${NORE_ROOT_DIR%/}/bootstrap.sh
+  bash -x ${NORE_ROOT_DIR%/}/bootstrap.sh
 }
 
 echo_ci_what() {
