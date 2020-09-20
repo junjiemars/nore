@@ -24,7 +24,7 @@ jobs:
       - name: Install Dependencies
         run: |
           sudo apt-get update
-          sudo apt-install clang
+          sudo apt-get install clang
       - name: Test Nore
         run: |
           CC=${{ matrix.CC }}./test.sh
