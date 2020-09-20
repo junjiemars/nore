@@ -83,6 +83,7 @@ nm_lib_opt=
 
 # link
 nm_link_opt=
+nm_entry_opt=
 
 # path separator
 nm_p=":"
