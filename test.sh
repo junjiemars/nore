@@ -27,6 +27,9 @@ make_ci_env() {
   echo "CC=$CC"
   echo "NORE_CI_DIR=$NORE_CI_DIR"
   echo "------------"
+  if [ ! -f "${NORE_ROOT_DIR%/}/bootstrap.sh" ]; then
+    echo "!panic: ${NORE_ROOT_DIR%/}/bootstrap.sh no found"
+  fi
   cd "${NORE_CI_DIR}"
   ${NORE_ROOT_DIR%/}/bootstrap.sh
 }
