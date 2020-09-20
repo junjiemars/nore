@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-NORE_ROOT_DIR="`cd $(dirname ${BASH_SOURCE[0]}); pwd`"
-NORE_CI_DIR="${NORE_ROOT_DIR%/}/ci"
-NORE_OS_NAME="`uname -s 2>/dev/null`"
+_ROOT_DIR_="`cd $(dirname ${BASH_SOURCE[0]}); pwd`"
+_CI_DIR_="${_ROOT_DIR_%/}/ci"
+_OS_NAME_="`uname -s 2>/dev/null`"
 
-case "${NORE_OS_NAME}" in
-  MSYS_NT-*|MINGW??_NT-*) NORE_OS_NAME="WinNT" ;;
+case "${_OS_NAME_}" in
+  MSYS_NT-*|MINGW??_NT-*) _OS_NAME_="WinNT" ;;
 esac
 
 CC="${CC}"
@@ -18,20 +18,21 @@ if [ -z "$CC" ]; then
 fi
 
 make_ci_env() {
-  if [ -d "$NORE_CI_DIR" ]; then
-		rm -r "${NORE_CI_DIR}"
+  if [ -d "$_CI_DIR_" ]; then
+		rm -r "${_CI_DIR_}"
 	fi
-	mkdir -p "$NORE_CI_DIR"
+	mkdir -p "$_CI_DIR_"
 
   echo "------------"
   echo "CC=$CC"
-  echo "NORE_CI_DIR=$NORE_CI_DIR"
+  echo "_ROOT_DIR_=$_ROOT_DIR_"
+  echo "_CI_DIR_=$_CI_DIR_"
   echo "------------"
-  if [ ! -f "${NORE_ROOT_DIR%/}/bootstrap.sh" ]; then
-    echo "!panic: ${NORE_ROOT_DIR%/}/bootstrap.sh no found"
+  if [ ! -f "${_ROOT_DIR_%/}/bootstrap.sh" ]; then
+    echo "!panic: ${_ROOT_DIR_%/}/bootstrap.sh no found"
   fi
-  cd "${NORE_CI_DIR}"
-  bash -x ${NORE_ROOT_DIR%/}/bootstrap.sh
+  cd "${_CI_DIR_}"
+  bash -x ${_ROOT_DIR_%/}/bootstrap.sh
 }
 
 echo_ci_what() {
@@ -42,7 +43,7 @@ echo_ci_what() {
 
 test_nore_new_option() {
   make_ci_env
-	cd "$NORE_CI_DIR"
+	cd "$_CI_DIR_"
 
 	echo_ci_what "CC=$CC ./configure --new"
 	./configure --new
@@ -51,7 +52,7 @@ test_nore_new_option() {
 
 test_nore_optimize_option() {
   make_ci_env
-	cd "$NORE_CI_DIR"
+	cd "$_CI_DIR_"
 
   echo_ci_what "CC=$CC ./configure --new"
   ./configure --new
@@ -73,7 +74,7 @@ test_nore_new_option
 test_nore_optimize_option
 
 # clean CI directory
-[ -d "${NORE_CI_DIR}" ] && rm -r "${NORE_CI_DIR}"
+[ -d "${_CI_DIR_}" ] && rm -r "${_CI_DIR_}"
 
 
 # eof
