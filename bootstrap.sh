@@ -80,7 +80,7 @@ on_linux() {
 }
 
 check_nore() {
-	cd ${ROOT} && git remote -v 2>/dev/null | grep 'nore\.git' &>/dev/null
+	cd ${ROOT} && (git remote -v 2>/dev/null | grep 'nore\.git' &>/dev/null)
 }
 
 check_nore_branch() {
