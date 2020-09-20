@@ -27,4 +27,4 @@ jobs:
           sudo apt-get install clang
       - name: Test Nore
         run: |
-          CC=${{ matrix.CC }}./test.sh
+          CC=${{ matrix.CC }} ./test.sh
