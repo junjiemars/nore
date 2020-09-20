@@ -23,12 +23,11 @@ make_ci_env() {
 	fi
 	mkdir -p "$NORE_CI_DIR"
 
-  cd "${NORE_CI_DIR}"
   echo "------------"
   echo "CC=$CC"
   echo "NORE_CI_DIR=$NORE_CI_DIR"
   echo "------------"
-  echo "`../bootstrap.sh`"
+  cd "${NORE_CI_DIR}" && ../bootstrap.sh
 }
 
 echo_ci_what() {
