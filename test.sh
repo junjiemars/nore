@@ -1,4 +1,4 @@
-#!env bash
+#!/usr/bin/env bash
 
 NORE_ROOT_DIR="`cd $(dirname ${BASH_SOURCE[0]}); pwd`"
 NORE_CI_DIR="${NORE_ROOT_DIR%/}/ci"
