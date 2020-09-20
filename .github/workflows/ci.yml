@@ -11,6 +11,11 @@ on:
 jobs:
   Linux:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - CC: "gcc"
+          - CC: "clang"
     steps:
       - uses: actions/checkout@v2
         with:
@@ -19,6 +24,7 @@ jobs:
       - name: Install Dependencies
         run: |
           sudo apt-get update
-      - name: Test
+          sudo apt-install clang
+      - name: Test Nore
         run: |
-          CC=gcc ./test.sh
+          CC=${{ matrix.CC }}./test.sh
