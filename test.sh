@@ -3,12 +3,12 @@
 _ROOT_DIR_="`cd $(dirname ${BASH_SOURCE[0]}); pwd`"
 _CI_DIR_="${_ROOT_DIR_%/}/ci"
 _OS_NAME_="`uname -s 2>/dev/null`"
-_WIN_PRE_=
+_WIN_ENV_=
 
 case "${_OS_NAME_}" in
   MSYS_NT-*|MINGW??_NT-*)
     _OS_NAME_="WinNT"
-    _WIN_PRE_="${HOME}/.nore/cc-env.bat"
+    _WIN_ENV_="${HOME}/.nore/cc-env.bat"
     ;;
 esac
 
@@ -39,11 +39,15 @@ make_ci_env() {
   cd "${_CI_DIR_}"
   ${_ROOT_DIR_%/}/bootstrap.sh
   if [ "WinNT" = "${_OS_NAME_}" ]; then
-    if [ ! -f "${_WIN_PRE_}" ]; then
-      echo "!panic: ${_WIN_PRE_} no found"
+    if [ ! -f "${HOME}/.nore/.cc-env.sh" ]; then
+      echo "!panic: ${HOME}/.nore/.cc-env.sh no found"
       exit 1
     fi
-    ${_WIN_PRE_}
+    ${HOME}/.nore/.cc-env.sh
+    if [ ! -f "${HOME}/.nore/.cc-env.bat" ]; then
+      echo "!panic: ${HOME}/.nore/.cc-env.bat no found"
+      exit 1
+    fi
   fi
 }
 
