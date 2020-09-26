@@ -73,7 +73,7 @@ test_nore_new_option() {
 	cd "$_CI_DIR_"
 
 	echo_ci_what "CC=$CC ./configure --new"
-  test_do
+  test_do --new
 }
 
 test_nore_optimize_option() {
