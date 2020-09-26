@@ -34,7 +34,7 @@ jobs:
     defaults:
       run:
         shell: msys2 {0}
-        
+
   steps:
     - uses: actions/checkout@v2
       with:
