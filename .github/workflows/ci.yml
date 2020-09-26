@@ -35,7 +35,7 @@ jobs:
       matrix:
         include:
           - CC: "gcc"
-          - CC: "msvc"
+          - CC: "cl"
 
     defaults:
       run:
