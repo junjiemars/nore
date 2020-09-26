@@ -4,6 +4,7 @@ _ROOT_DIR_="`cd $(dirname ${BASH_SOURCE[0]}); pwd`"
 _CI_DIR_="${_ROOT_DIR_%/}/ci"
 _OS_NAME_="`uname -s 2>/dev/null`"
 _WIN_ENV_=
+_TRACE_="${_TRACE_}"
 
 case "${_OS_NAME_}" in
   MSYS_NT-*|MINGW??_NT-*) _OS_NAME_="WinNT" ;;
@@ -61,17 +62,17 @@ echo_ci_what() {
 test_do() {
   cd "$_CI_DIR_"
   if [ -z "${_WIN_ENV_}" ]; then
-    ./configure $@
+    ./configure ${_TRACE_} $@
     make clean test
   else
-    ${_WIN_ENV_} && bash ./configure $@
+    ${_WIN_ENV_} && bash ./configure ${_TRACE_} $@
     ${_WIN_ENV_} && make clean test
   fi
 }
 
 test_nore_new_option() {
   make_ci_env
-	echo_ci_what "CC=$CC ./configure trace --new"
+	echo_ci_what "CC=$CC ./configure --new"
 
   test_do --new
 }
