@@ -27,7 +27,7 @@ jobs:
           sudo apt-get install clang
       - name: Test Nore via CC=${{ matrix.CC }}
         run: |
-          CC=${{ matrix.CC }} ./test.sh
+          CC=${{ matrix.CC }} bash -x ./test.sh
 
   Windows:
     runs-on: windows-latest
@@ -50,9 +50,9 @@ jobs:
       uses: msys2/setup-msys2@v2
       with:
         update: true
-        install: make mingw-w64-x86_64
+        install: git make mingw-w64-x86_64
 
-    - name: Test Nore via CC=gcc
+    - name: Test Nore via CC=${{ matrix.CC }}
       run: |
-        CC=gcc bash -x ./test.sh
+        CC=${{ matrix.CC }} bash -x ./test.sh
 
