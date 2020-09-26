@@ -50,7 +50,7 @@ jobs:
       uses: msys2/setup-msys2@v2
       with:
         update: true
-        install: git make mingw-w64-x86_64
+        install: git make mingw-w64-x86_64 mingw-w64-${{ matrix.arch }}-make
 
     - name: Test Nore via CC=${{ matrix.CC }}
       run: |
