@@ -6,9 +6,7 @@ _OS_NAME_="`uname -s 2>/dev/null`"
 _WIN_ENV_=
 
 case "${_OS_NAME_}" in
-  MSYS_NT-*|MINGW??_NT-*)
-    _OS_NAME_="WinNT"
-    ;;
+  MSYS_NT-*|MINGW??_NT-*) _OS_NAME_="WinNT" ;;
 esac
 
 CC="${CC}"
@@ -46,11 +44,11 @@ make_ci_env() {
     fi
     ${HOME}/.nore/cc-env.sh
 
-    if [ ! -f "${HOME}/.nore/cc-env.bat" ]; then
-      echo "!panic: ${HOME}/.nore/cc-env.bat no found"
+    if [ ! -f "${_WIN_ENV_}" ]; then
+      echo "!panic: ${_WIN_ENV_} no found"
       exit 1
     fi
-    _WIN_ENV_="${HOME}/.nore/cc-env.bat &&"
+    _WIN_ENV_="${HOME}/.nore/cc-env.bat"
   fi
 }
 
@@ -60,13 +58,22 @@ echo_ci_what() {
 	echo "------------"
 }
 
+test_do() {
+  if [ -z "${_WIN_ENV_}" ]; then
+    ./configure $@
+    make clean test
+  else
+    ${_WIN_ENV_} && bash ./configure $@
+    ${_WIN_ENV_} && make clean test
+  fi
+}
+
 test_nore_new_option() {
   make_ci_env
 	cd "$_CI_DIR_"
 
 	echo_ci_what "CC=$CC ./configure --new"
-	${_WIN_ENV_} ./configure --new
-	${_WIN_ENV_} make clean test
+  test_do
 }
 
 test_nore_optimize_option() {
