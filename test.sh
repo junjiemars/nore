@@ -55,7 +55,7 @@ make_ci_env() {
 
 echo_ci_what() {
 	echo "------------"
-	echo "# ${_TRACE_} $@ ..."
+	echo "# $@ ..."
 	echo "------------"
 }
 
@@ -65,7 +65,7 @@ test_do() {
     ./configure ${_TRACE_} $@
     make clean test
   else
-    ${_WIN_ENV_} && bash ./configure ${_TRACE_} $@
+    ${_WIN_ENV_} && bash configure ${_TRACE_} $@
     # ${_WIN_ENV_} && make clean test
     ls -lh out/
     cat out/auto.err
@@ -81,22 +81,18 @@ test_nore_new_option() {
 
 test_nore_optimize_option() {
   make_ci_env
-	cd "$_CI_DIR_"
-
   echo_ci_what "CC=$CC ./configure --new"
-  ./configure --new
+
+  test_do --new
 
 	echo_ci_what "CC=$CC ./configure --with-optimize=no"
-  ./configure --with-optimize=no
-	make clean test
+  test_do --with-optimize=no
 
 	echo_ci_what "CC=$CC ./configure --with-optimize=yes"
-  ./configure --with-optimize=yes
-	make clean test
+  test_do --with-optimize=yes
 
   echo_ci_what "CC=$CC ./configure --with-optimize="
-  ./configure --with-optimize=no
-	make clean test
+  test_do --with-optimize=no
 }
 
 test_nore_new_option
