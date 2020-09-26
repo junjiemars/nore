@@ -67,7 +67,7 @@ test_do() {
   else
     ${_WIN_ENV_} && bash ./configure ${_TRACE_} $@
     ${_WIN_ENV_} && make clean test
-    cat ./out/auto.err
+    ls -lh out/
   fi
 }
 
