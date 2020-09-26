@@ -17,7 +17,7 @@ if [ -z "$CC" ]; then
   case `uname -s 2>/dev/null` in
     Darwin)                 CC="clang" ;;
     Linux)                  CC="gcc"   ;;
-    WinNT)                  CC="msvc"  ;;
+    WinNT)                  CC="cl"    ;;
   esac
 fi
 
@@ -38,16 +38,12 @@ make_ci_env() {
   fi
   cd "${_CI_DIR_}"
   ${_ROOT_DIR_%/}/bootstrap.sh
-  if [ "WinNT" = "${_OS_NAME_}" ]; then
-    if [ ! -f "${HOME}/.nore/.cc-env.sh" ]; then
-      echo "!panic: ${HOME}/.nore/.cc-env.sh no found"
+  if [ "WinNT" = "${_OS_NAME_}" -a "cl" = "${CC}" ]; then
+    if [ ! -f "${_WIN_ENV_}" ]; then
+      echo "!panic: ${_WIN_ENV_} no found"
       exit 1
     fi
-    ${HOME}/.nore/.cc-env.sh
-    if [ ! -f "${HOME}/.nore/.cc-env.bat" ]; then
-      echo "!panic: ${HOME}/.nore/.cc-env.bat no found"
-      exit 1
-    fi
+    ${HOME}/.nore/.cc-env.bat
   fi
 }
 
