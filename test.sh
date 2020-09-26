@@ -39,11 +39,15 @@ make_ci_env() {
   cd "${_CI_DIR_}"
   ${_ROOT_DIR_%/}/bootstrap.sh
   if [ "WinNT" = "${_OS_NAME_}" -a "cl" = "${CC}" ]; then
+    if [ ! -f "" ]; then
+      echo "!panic: ${HOME}/.nore/.cc-env.sh no found"
+      exit 1
+    fi
     if [ ! -f "${_WIN_ENV_}" ]; then
       echo "!panic: ${_WIN_ENV_} no found"
       exit 1
     fi
-    ${HOME}/.nore/.cc-env.bat
+    ${_WIN_ENV_}
   fi
 }
 
