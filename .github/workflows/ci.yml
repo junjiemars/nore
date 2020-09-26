@@ -31,21 +31,22 @@ jobs:
 
   Windows:
     runs-on: windows-latest
+
     defaults:
       run:
         shell: msys2 {0}
 
-  steps:
+    steps:
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0 # checkout history and tags
 
-  - name: Install Dependencies
-    uses: msys2/setup-msys2@v2
-    with:
-      update: true
-      install: make mingw-w64-x86_64
+    - name: Install Dependencies
+      uses: msys2/setup-msys2@v2
+      with:
+        update: true
+        install: make mingw-w64-x86_64
 
-  - name: Test Nore via CC=CL
-    run: |
-      CC=CL ./test.sh
+    - name: Test Nore via CC=CL
+      run: |
+        CC=CL ./test.sh
