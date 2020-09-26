@@ -44,8 +44,8 @@ make_ci_env() {
     fi
     ${HOME}/.nore/cc-env.sh
 
-    if [ ! -f "${_WIN_ENV_}" ]; then
-      echo "!panic: ${_WIN_ENV_} no found"
+    if [ ! -f "${HOME}/.nore/cc-env.bat" ]; then
+      echo "!panic: ${HOME}/.nore/cc-env.bat no found"
       exit 1
     fi
     _WIN_ENV_="${HOME}/.nore/cc-env.bat"
