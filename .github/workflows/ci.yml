@@ -31,6 +31,11 @@ jobs:
 
   Windows:
     runs-on: windows-latest
+    strategy:
+      matrix:
+        include:
+          - CC: "gcc"
+          - CC: "msvc"
 
     defaults:
       run:
@@ -47,6 +52,7 @@ jobs:
         update: true
         install: make mingw-w64-x86_64
 
-    - name: Test Nore via CC=CL
+    - name: Test Nore via CC=gcc
       run: |
-        CC=CL ./test.sh
+        CC=gcc bash -x ./test.sh
+
