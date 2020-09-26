@@ -55,7 +55,7 @@ make_ci_env() {
 
 echo_ci_what() {
 	echo "------------"
-	echo "# $@ ..."
+	echo "# ${_TRACE_} $@ ..."
 	echo "------------"
 }
 
@@ -67,6 +67,7 @@ test_do() {
   else
     ${_WIN_ENV_} && bash ./configure ${_TRACE_} $@
     ${_WIN_ENV_} && make clean test
+    cat ./out/auto.err
   fi
 }
 
