@@ -30,9 +30,17 @@ make_ci_env() {
   echo "------------"
   if [ ! -f "${_ROOT_DIR_%/}/bootstrap.sh" ]; then
     echo "!panic: ${_ROOT_DIR_%/}/bootstrap.sh no found"
+    exit 1
   fi
   cd "${_CI_DIR_}"
   ${_ROOT_DIR_%/}/bootstrap.sh
+  if [ "WinNT" = "${_OS_NAME_}" ]; then
+    if [ ! -f "~/.nore/cc-env.sh" ]; then
+      echo "!panic: ~/.nore/cc-env.sh no found"
+      exit 1
+    fi
+    ~/.nore/cc-env.sh
+  fi
 }
 
 echo_ci_what() {
