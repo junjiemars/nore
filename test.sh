@@ -59,6 +59,7 @@ echo_ci_what() {
 }
 
 test_do() {
+  cd "$_CI_DIR_"
   if [ -z "${_WIN_ENV_}" ]; then
     ./configure $@
     make clean test
@@ -70,9 +71,8 @@ test_do() {
 
 test_nore_new_option() {
   make_ci_env
-	cd "$_CI_DIR_"
-
 	echo_ci_what "CC=$CC ./configure --new"
+
   test_do --new
 }
 
