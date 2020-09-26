@@ -71,7 +71,7 @@ test_do() {
 
 test_nore_new_option() {
   make_ci_env
-	echo_ci_what "CC=$CC ./configure --new"
+	echo_ci_what "CC=$CC ./configure trace --new"
 
   test_do --new
 }
