@@ -58,12 +58,16 @@ jobs:
 
   MacOS:
     runs-on: macos-latest
+    strategy:
+      matrix:
+        include:
+          - CC: "clang"
     steps:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0 # checkout history and tags
       - name: Test Nore
         run: |
-          CC=clang ./test.sh
+          CC=${{ matrix.CC }} ./test.sh
 
 # eof
