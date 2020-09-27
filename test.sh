@@ -75,7 +75,7 @@ bash "%2"
 "%3"
 END
 		if [ ! -f "${msvc_bat}" ]; then
-			echo "!panic: cannot generate msvc.bat"
+			echo "!panic: generate msvc.bat failed"
 			exit 1
 		fi
 		chmod u+x ${msvc_bat}
