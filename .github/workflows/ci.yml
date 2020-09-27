@@ -54,5 +54,5 @@ jobs:
 
     - name: Test Nore via CC=${{ matrix.CC }}
       run: |
-        CC=${{ matrix.CC }} _TRACE_=trace bash -x ./test.sh
+        CC=${{ matrix.CC }} ./test.sh
 
