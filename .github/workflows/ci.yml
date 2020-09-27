@@ -56,3 +56,14 @@ jobs:
       run: |
         CC=${{ matrix.CC }} ./test.sh
 
+  MacOS:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # checkout history and tags
+      - name: Test Nore
+        run: |
+          ./test.sh
+
+# eof
