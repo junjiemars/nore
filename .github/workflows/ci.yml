@@ -29,12 +29,25 @@ jobs:
         run: |
           CC=${{ matrix.CC }} ./test.sh
 
+  MacOS:
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        include:
+          - CC: "clang"
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # checkout history and tags
+      - name: Test Nore
+        run: |
+          CC=${{ matrix.CC }} ./test.sh
+
   Windows:
     runs-on: windows-latest
     strategy:
       matrix:
         include:
-          - CC: "gcc"
           - CC: "cl"
 
     defaults:
@@ -56,18 +69,5 @@ jobs:
       run: |
         CC=${{ matrix.CC }} ./test.sh
 
-  MacOS:
-    runs-on: macos-latest
-    strategy:
-      matrix:
-        include:
-          - CC: "clang"
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0 # checkout history and tags
-      - name: Test Nore
-        run: |
-          CC=${{ matrix.CC }} ./test.sh
 
 # eof
