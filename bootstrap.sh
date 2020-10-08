@@ -80,9 +80,7 @@ on_linux() {
 }
 
 check_nore() {
-  if `cd ${ROOT}`; then
-    git remote -v 2>/dev/null | grep 'junjiemars/nore' &>/dev/null
-  fi
+	git -C "${ROOT}" remote -v 2>/dev/null | grep 'junjiemars/nore' &>/dev/null
 }
 
 check_nore_branch() {
