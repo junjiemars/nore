@@ -130,7 +130,7 @@ fi
 case "$NM_BUILD" in
 	YES)
 		nm_build_opt='-DNDEBUG=1'
-		CFLAGS=${CFLAGS:+$CFLAGS }${nm_build_opt}
+		CPPFLAGS=${CPPFLAGS:+$CPPFLAGS }${nm_build_opt}
 		;;
 	NO) nm_build_opt="" ;;
 esac
