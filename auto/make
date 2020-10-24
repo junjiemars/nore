@@ -157,7 +157,7 @@ nm_stick_norm=
 nm_stick_make=
 
 
-make_stick_path() {
+make_stick_path () {
 	local src="$1"
 	local stick="$2"
 	if [ "." = "$stick" ]; then
@@ -167,7 +167,7 @@ make_stick_path() {
 	fi
 }
 
-make_stick_norm() {
+make_stick_norm () {
 	local src="$1"
 	local stick="$2"
 	if [ "." = "$stick" ]; then
@@ -181,7 +181,7 @@ make_stick_norm() {
 	fi
 }
 
-echo_yes_or_no() {
+echo_yes_or_no () {
   if [ 0 -eq $1 ]; then
     echo "yes"
   else
@@ -189,7 +189,7 @@ echo_yes_or_no() {
   fi
 }
 
-echo_pretty_path() {
+echo_pretty_path () {
 	echo "$@" | sed -e 's#^./\(.*\)#\1#'
 }
 
@@ -217,7 +217,7 @@ for stick in ${NM_HAS_STICKS[@]}; do
 	
 	if [ ! -d "$nm_stick_src" ]; then
 		if [ YES = $NM_NEW ]; then
-			echo $echo_n_opt " + generating $nm_stick_src directory ... "
+			echo $echo_n " + generating $nm_stick_src directory ... $echo_c"
 			mkdir -p "$nm_stick_src"
 			echo_yes_or_no $?
 		else
@@ -233,7 +233,7 @@ END
 	fi # end of [ ! -d $nm_stick_src ]
 
   if [ YES = $NM_NEW -a ! -f "$nm_stick_src/$nm_stick_norm.c" ]; then
-		echo $echo_n_opt " + generating `echo_pretty_path $nm_stick_src/$nm_stick_norm.c` file ... "
+		echo $echo_n " + generating `echo_pretty_path $nm_stick_src/$nm_stick_norm.c` file ... $echo_c"
 		cat <<END > "$nm_stick_src/$nm_stick_norm.c"
 /*
  * ${gen_by_nore}
@@ -264,7 +264,7 @@ END
     value=`cat "$nm_stick_src/version"` . ${NORE_ROOT}/auto/define
     
   elif [ YES = $NM_NEW ]; then
-    echo $echo_n_opt " + generating `echo_pretty_path $nm_stick_src/version` file ... "
+    echo $echo_n " + generating `echo_pretty_path $nm_stick_src/version` file ... $echo_c"
     cat << END > "$nm_stick_src/version"
 0x030614
 
@@ -277,7 +277,7 @@ END
 		. "$nm_stick_src/auto" 2>> $NM_AUTO_ERR
     
   elif [ YES = $NM_NEW ]; then
-		echo $echo_n_opt " + generating `echo_pretty_path $nm_stick_src/auto` file ... "
+		echo $echo_n " + generating `echo_pretty_path $nm_stick_src/auto` file ... $echo_c"
     cat ${NORE_ROOT}/auto/check > "$nm_stick_src/auto"
     echo_yes_or_no $?
 	else
@@ -293,7 +293,7 @@ END
 		if [ $nm_stick_src = . ]; then
 			stick_makefile="$nm_stick_src/Makefile.NEW"
 		else
-			echo $echo_n_opt " + generating `echo_pretty_path $nm_stick_src/Makefile` ... "
+			echo $echo_n " + generating `echo_pretty_path $nm_stick_src/Makefile` ... $echo_c"
 		fi
 		cat << END > "$stick_makefile"
 #---------------------------------------
@@ -360,7 +360,7 @@ fi
 
 # create root Makefile
 if [ ! -f Makefile ]; then
-	echo $echo_n_opt " + generating Makefile file ... "
+	echo $echo_n " + generating Makefile file ... $echo_c"
 	cat << END > Makefile
 # Makefile
 #

@@ -46,7 +46,7 @@ else
 	declare -a NM_SYMBOL_TABLE_VAL=($NM_SYMBOL_TABLE_NAME)
 fi
 
-load_symbol_table() {
+load_symbol_table () {
 	local sf="$1"
 	local line=
 
@@ -68,9 +68,9 @@ load_symbol_table() {
 	done < "$sf"
 }
 
-dump_symbol_table() {
+dump_symbol_table () {
 	local df="$1"
-	echo $echo_n_opt > "$df"
+	echo $echo_n > "$df$echo_c"
 
 	if [ 0 -lt $NM_ASSOCIATED_ARRAY_P ]; then
 		for k in "${!NM_SYMBOL_TABLE[@]}"; do
@@ -83,7 +83,7 @@ dump_symbol_table() {
 	fi
 }
 
-symbol_value() {
+symbol_value () {
 	local n="$1"
 	local v=
 

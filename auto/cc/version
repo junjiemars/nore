@@ -7,7 +7,7 @@
 ####
 
 
-version_n() {
+version_n () {
 	local s="$1"
 	local v=( ${s//\./ } )
 	local r=1000

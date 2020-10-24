@@ -18,18 +18,17 @@ test -d $NM_OUT || mkdir -p $NM_OUT
 echo > $NM_AUTO_ERR
 
 
-# check the echo's "\c" capability
-if echo "test\c" | grep c >/dev/null; then
-	echo_c_cap=
+# check the echo's "-n" option and "\c" capability
+if echo "test\c" | grep -q c; then
+  echo_c=
+  if echo -n test | tr '\n' _ | grep -q _; then
+    echo_n=
+  else
+    echo_n=-n
+  fi
 else
-	echo_c_cap='\c'
+  echo_n=
+  echo_c='\c'
 fi
 
-# check the echo's "-n" option
-if echo -n test | grep n >/dev/null; then
-  echo_n_opt=
-else
-  echo_n_opt=-n
-fi
-
-
+# eof

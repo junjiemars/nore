@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 #------------------------------------------------
 # target: configuration script of Nore	
 # url: https://github.com/junjiemars/nore.git
