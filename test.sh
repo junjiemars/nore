@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 _ROOT_DIR_="`cd $(dirname ${BASH_SOURCE[0]}); pwd`"
 _CI_DIR_="${_ROOT_DIR_%/}/ci"
@@ -19,7 +19,7 @@ if [ -z "$CC" ]; then
   esac
 fi
 
-make_ci_env() {
+make_ci_env () {
   if [ -d "$_CI_DIR_" ]; then
 		rm -r "${_CI_DIR_}"
 	fi
@@ -53,13 +53,13 @@ make_ci_env() {
   fi
 }
 
-echo_ci_what() {
+echo_ci_what () {
 	echo "------------"
 	echo "# $@ ..."
 	echo "------------"
 }
 
-test_do() {
+test_do () {
 	local msvc_bat="msvc.bat"
 
   cd "$_CI_DIR_"
@@ -83,14 +83,14 @@ END
   fi
 }
 
-test_nore_new_option() {
+test_nore_new_option () {
   make_ci_env
 	echo_ci_what "CC=$CC ./configure --new"
 
   test_do --new
 }
 
-test_nore_optimize_option() {
+test_nore_optimize_option () {
   make_ci_env
   echo_ci_what "CC=$CC ./configure --new"
 

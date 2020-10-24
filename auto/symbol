@@ -50,7 +50,7 @@ load_symbol_table () {
 	local sf="$1"
 	local line=
 
-	while IFS='' read -r line || [[ -n "$line" ]]; do
+	while IFS='' read -r line || [ -n "$line" ]; do
 		IFS=':'; local kv=(${line//; }); unset IFS
 
 		if [ 0 -lt $NM_ASSOCIATED_ARRAY_P ]; then
