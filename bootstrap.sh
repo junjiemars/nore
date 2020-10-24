@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 #------------------------------------------------
 # target: bootstrap script of Nore	
 # url: https://github.com/junjiemars/nore.git
@@ -123,7 +123,7 @@ cat_configure () {
   local new_conf="${conf}.n"
 
 	cat << END > "$new_conf"
-#!/bin/sh
+#!/usr/bin/env sh
 #------------------------------------------------
 # target: configure
 # author: junjiemars@gmail.com

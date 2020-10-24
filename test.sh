@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 _ROOT_DIR_="`cd $(dirname ${BASH_SOURCE[0]}); pwd`"
 _CI_DIR_="${_ROOT_DIR_%/}/ci"
