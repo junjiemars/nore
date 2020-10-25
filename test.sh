@@ -122,13 +122,13 @@ END
 
   case "$_OS_NAME_" in
     Darwin)
-      sed "s/DARWIN:DARWIN/DARWIN:__DARWIN__/g" sym > sym1
+      sed "s/DARWIN:DARWIN/DARWIN:__DARWIN__/g" sym > sym1 2>/dev/null
       ;;
     Linux)
-      sed "s/LINUX:LINUX/__LINUX__/g" sym
+      sed "s/LINUX:LINUX/LINUX:__LINUX__/g" sym > sym1 2>/dev/null
       ;;
     WinNT)
-      sed "s/WINNT:WINNT/__WINNT__/g" sym
+      sed "s/WINNT:WINNT/WINNT:__WINNT__/g" sym > sym1 2>/dev/null
       ;;
   esac
   
