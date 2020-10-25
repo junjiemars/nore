@@ -90,6 +90,51 @@ test_nore_new_option () {
   test_do --new
 }
 
+test_nore_symbol_option () {
+  local c="`basename $_CI_DIR_`.c"
+  make_ci_env
+  echo_ci_what "CC=$CC ./configure --symbol-table=sym --new"
+
+  test_do --symbol-table=sym --new
+
+  cat <<END > "$c"
+#include <nore.h>
+#include <stdio.h>
+
+#define _unused_(x) ((void)(x))
+
+int main(int argc, char **argv) {
+    _unused_(argc);
+    _unused_(argv);
+#if __DARWIN__
+    printf("Hello, Darwin!\n");
+#elif __LINUX__
+    printf("Hello, Linux!\n");
+#elif __WINNT__
+    printf("Hello, WinNT!\n");
+#else
+    printf("!panic, unknown OS\n");
+#endif
+    return 0;
+}
+
+END
+
+  case "$_OS_NAME_" in
+    Darwin)
+      sed "s/DARWIN:DARWIN/DARWIN:__DARWIN__/g" sym > sym1
+      ;;
+    Linux)
+      sed "s/LINUX:LINUX/__LINUX__/g" sym
+      ;;
+    WinNT)
+      sed "s/WINNT:WINNT/__WINNT__/g" sym
+      ;;
+  esac
+  
+  test_do --symbol-table=sym1
+}
+
 test_nore_optimize_option () {
   make_ci_env
   echo_ci_what "CC=$CC ./configure --new"
@@ -108,6 +153,7 @@ test_nore_optimize_option () {
 
 # test
 test_nore_new_option
+test_nore_symbol_option
 test_nore_optimize_option
 
 # clean CI directory
