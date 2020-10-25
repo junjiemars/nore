@@ -106,6 +106,7 @@ test_nore_optimize_option () {
   test_do --with-optimize=no
 }
 
+# test
 test_nore_new_option
 test_nore_optimize_option
 

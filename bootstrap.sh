@@ -190,9 +190,9 @@ case "\`echo \${NORE_L_CONF_COMMAND} | tr '[:upper:]' '[:lower:]'\`" in
     echo "configure=@\${BASH_SOURCE[0]}"
     echo "make=@\$(command -v make)"
     `if on_darwin; then
-       echo "echo \"shell=@\\$(ps -p\\$\\$ -ocommand | tr ' ' '\\n' | sed -n 2p)\""
+       echo "echo \\"shell=@\\\$(ps -p\\\$\\\$ -ocommand | tr ' ' '\\\\\n' | sed -n 2p)\\""
      else
-       echo "echo \"shell=@\\$(ls -l /proc/\\$\\$/exe | tr ' ' '\\n' | tail -n1)\""
+       echo "echo \\"shell=@\\\$(ls -l /proc/\\\$\\\$/exe | tr ' ' '\\\\\n' | tail -n1)\\""
      fi`
     echo \$echo_n "cc-env.sh=@\$echo_c"
     if [ -f "\${HOME%/}/.nore/cc-env.sh" ]; then
@@ -207,11 +207,11 @@ case "\`echo \${NORE_L_CONF_COMMAND} | tr '[:upper:]' '[:lower:]'\`" in
       echo ""
     fi
 		`if on_windows_nt; then
-       echo "echo \\$echo_n \"cc-env.bat=@\\$echo_c\""
-       echo "    if [ -f \"\\${HOME%/}/.nore/cc-env.bat\" ]; then"
-       echo "      echo \"\\${HOME%/}/.nore/cc-env.bat\""
+       echo "echo \\\$echo_n \\"cc-env.bat=@\\\$echo_c\\""
+       echo "    if [ -f \"\\\${HOME%/}/.nore/cc-env.bat\\" ]; then"
+       echo "      echo \"\\\${HOME%/}/.nore/cc-env.bat\\""
        echo "    else"
-       echo "      echo \"\""
+       echo "      echo \\"\\""
        echo "    fi"
     fi`
     echo \$echo_n "cc-inc.lst=@\$echo_c"
