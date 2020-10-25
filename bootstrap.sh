@@ -395,11 +395,11 @@ fi
 	
 `
 if on_windows_nt; then
-  echo "  cc_inc=\\$(echo \\$cc_inc | sed 's#\\"##g')"
-  echo "  cc_inc=\"\\$(posix_path \\$cc_inc)\""
-  echo "  echo \"\\${cc_inc}\" | tr ';' '\n' > \"\\${CC_INC_LST}\""
+  echo "  cc_inc=\\\$(echo \\\$cc_inc | sed 's#\\"##g')"
+  echo "  cc_inc=\\"\\\$(posix_path \\\$cc_inc)\\""
+  echo "  echo \\"\\\${cc_inc}\\" | tr ';' '\\\n' > \\"\\\${CC_INC_LST}\\""
 elif on_darwin; then
-  echo "  sed -i .pre 's/ (framework directory)//g' \"\\${CC_INC_LST}\""
+  echo "  sed -i .pre 's/ (framework directory)//g' \\"\\\${CC_INC_LST}\\""
 fi
 `
 }
