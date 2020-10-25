@@ -150,7 +150,7 @@ NORE_BRANCH="${b}"
 NORE_L_BOOT="\${NORE_ROOT}/bootstrap.sh"
 NORE_R_BOOT="${GITHUB_R}/nore/\${NORE_BRANCH}/bootstrap.sh"
 NORE_L_CONF="\${NORE_ROOT}/auto/configure"
-NORE_L_CONF_OPTS=()
+NORE_L_CONF_OPTS=
 NORE_L_CONF_TRACE="no"
 NORE_L_CONF_COMMAND=
 
@@ -159,11 +159,11 @@ for option
 do
   case "\$option" in
     -*=*)
-			NORE_L_CONF_OPTS+=("\$option")
+			NORE_L_CONF_OPTS="\$NORE_L_CONF_OPTS \$option"
 			;;
 
     -*)
-			 NORE_L_CONF_OPTS+=("\$option")
+			 NORE_L_CONF_OPTS="\$NORE_L_CONF_OPTS \$option"
 			 ;;
 
     *) 
@@ -246,7 +246,8 @@ case "\`echo \${NORE_L_CONF_COMMAND} | tr '[:upper:]' '[:lower:]'\`" in
   	;;
 esac
 
-cd "\`dirname \${BASH_SOURCE}\`"
+
+cd "\$(CDPATH= cd -- \$(dirname -- \$0) && pwd)"
 
 if [ -f \${NORE_L_CONF} ]; then
   case "\${NORE_L_CONF_TRACE}" in
@@ -255,7 +256,7 @@ if [ -f \${NORE_L_CONF} ]; then
     	;;
 
     yes)  
-      bash -x \$NORE_L_CONF "\${NORE_L_CONF_OPTS[@]}"
+      bash -x \$NORE_L_CONF "\${NORE_L_CONF_OPTS}"
     	;;
   esac
 else
@@ -263,6 +264,8 @@ else
 	echo "!nore << no found, to fix >: configure clone"
 	echo 
 fi
+
+# eof
 
 END
 

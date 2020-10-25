@@ -26,7 +26,7 @@ cat << END
   prefix= $NM_PREFIX
   out= $NM_OUT
   src= $NM_SRC	
-  has= ${NM_HAS_STICKS[@]}
+  has= ${NM_HAS_STICKS}
   new= $NM_NEW
   error= `yes_no_any_out "$NM_ERROR" "$nm_error_opt"`
   warn= `yes_no_any_out "$NM_WARN" "$nm_warn_opt"`

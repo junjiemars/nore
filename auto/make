@@ -149,9 +149,9 @@ END
 . ${NORE_ROOT}/auto/install
 
 
-nm_sticks=()
-nm_sticks_build=()
-nm_sticks_test=()
+nm_sticks=
+nm_sticks_build=
+nm_sticks_test=
 nm_stick_src=
 nm_stick_norm=
 nm_stick_make=
@@ -210,7 +210,7 @@ bin_path=$NM_OUT/bin/
 END
 
 
-for stick in ${NM_HAS_STICKS[@]}; do
+for stick in ${NM_HAS_STICKS}; do
 
 	nm_stick_src="`make_stick_path $NM_SRC $stick`"
 	nm_stick_norm="`make_stick_norm $nm_stick_src $stick`"
@@ -325,9 +325,9 @@ END
 		continue	
 	fi # end of [ -f $nm_stick_src/Makefile ]
 
-  nm_sticks+=("$stick")
-	nm_sticks_build+=("$nm_stick_norm")
-	nm_sticks_test+=("${nm_stick_norm}_test")
+  nm_sticks="$nm_stick $stick"
+	nm_sticks_build="$nm_sticks_build $nm_stick_norm"
+	nm_sticks_test="$nm_sticks_test ${nm_stick_norm}_test"
 
 	if [ $nm_stick_src != . -a -n "$stick_makefile" ]; then
 		cat << END >> $NM_MAKEFILE
@@ -347,12 +347,12 @@ if [ 0 -lt ${#nm_sticks} ]; then
 
 	cat << END >> $NM_MAKEFILE
 
-all: ${nm_sticks_build[@]}
-test: ${nm_sticks_test[@]}
+all: ${nm_sticks_build}
+test: ${nm_sticks_test}
 
 
 .PHONY: default all clean test task install \\
-        ${nm_sticks_build[@]} ${nm_sticks_test[@]}
+        ${nm_sticks_build} ${nm_sticks_test}
 END
   
 fi

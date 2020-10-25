@@ -36,14 +36,14 @@ NM_OPTIMIZE=NO
 
 NM_PLATFORM=
 NM_CPU_CACHE_LINE=
-NM_HAS_STICKS=()
+NM_HAS_STICKS=
 
 
 legal_dir_reg='^[a-zA-Z_/][a-zA-Z_0-9/]*$'
-legal_has_opt='[a-zA-Z_][a-zA-Z_0-9]*$'
+legal_opt_reg='[a-zA-Z_][a-zA-Z_0-9]*$'
 
 legal_dir () {
-	echo "$@" | grep "${legal_dir_reg}" &>/dev/null
+	echo "$@" | grep -q "${legal_dir_reg}"
 }
 
 panic_arg () {
@@ -52,13 +52,13 @@ panic_arg () {
 	exit 1
 }
 
-legal_has_opt () {
-	echo "$@" | grep "\-\-has-${legal_has_opt}" &>/dev/null
+legal_opt () {
+	echo "$@" | grep -q "\-\-has-${legal_opt_reg}"
 }
 
 panic_has_opt () {
   echo "! panic: invalid option '$@'"
-	echo "  --has-* where * should be '${legal_has_opt}'"
+	echo "  --has-* where * should be '${legal_opt_reg}'"
 	exit 1
 }
 
@@ -100,11 +100,8 @@ do
 		--with-optimize=*)       NM_OPTIMIZE="$value"        	;;
 
 		--has-*)
-			if `legal_has_opt "$option"`; then
-				NM_HAS_STICKS+=(`echo "$option" \
-					| sed -e "s/\ *--has-\(${legal_has_opt}\)/\1/" \
-					| tr '[:upper:]' '[:lower:]'`
-				)
+			if `legal_opt "$option"`; then
+				NM_HAS_STICKS="${NM_HAS_STICKS:+$NM_HAS_STICKS }`echo $option|sed -e s/\ *--has-\(${legal_opt_reg}\)/\1/|tr '[:upper:]' '[:lower:]'`"
 			else
 				panic_has_opt "$option"
 			fi
@@ -173,7 +170,7 @@ if [ . = "$NM_SRC" -a -d src ]; then
 fi
 
 if [ 0 -eq ${#NM_HAS_STICKS} ]; then
-  NM_HAS_STICKS+=(".")
+  NM_HAS_STICKS="."
 fi
 
 NM_ERROR="`yes_no_opt YES $NM_ERROR`"

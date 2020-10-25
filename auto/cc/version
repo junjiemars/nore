@@ -9,18 +9,18 @@
 
 version_n () {
 	local s="$1"
-	local v=( ${s//\./ } )
+	local v="${s//\./ }"
 	local r=1000
 	local v2=2 # major.minor
 	local b=$(( r**v2 ))
 	local n=0
 
-	if [ 0 -eq ${#v[@]} ]; then
+	if [ 0 -eq ${#v} ]; then
 		echo $n
 		return 1
 	fi
 
-	for i in ${v[@]}; do
+	for i in ${v}; do
 		[ 0 -eq $v2 ] && break;
 		n=$(( n+b*i ))
 		b=$(( b/r ))
