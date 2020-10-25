@@ -105,9 +105,9 @@ ar_ext=".a"
 
 
 case "$CC_NAME" in
-  gcc) . ${NORE_ROOT}/auto/cc/gcc ;;
+  gcc)   . ${NORE_ROOT}/auto/cc/gcc ;;
   clang) . ${NORE_ROOT}/auto/cc/clang ;;
-  msvc) . ${NORE_ROOT}/auto/cc/msvc ;;
+  msvc)  . ${NORE_ROOT}/auto/cc/msvc ;;
 esac
 
 

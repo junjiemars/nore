@@ -159,11 +159,11 @@ for option
 do
   case "\$option" in
     -*=*)
-			NORE_L_CONF_OPTS="\$NORE_L_CONF_OPTS \$option"
+			NORE_L_CONF_OPTS="\${NORE_L_CONF_OPTS:+\$NORE_L_CONF_OPTS }\$option"
 			;;
 
     -*)
-			 NORE_L_CONF_OPTS="\$NORE_L_CONF_OPTS \$option"
+			 NORE_L_CONF_OPTS="\${NORE_L_CONF_OPTS:+\$NORE_L_CONF_OPTS }\$option"
 			 ;;
 
     *) 
@@ -256,7 +256,7 @@ if [ -f \${NORE_L_CONF} ]; then
     	;;
 
     yes)  
-      bash -x \$NORE_L_CONF "\${NORE_L_CONF_OPTS}"
+      sh -x \$NORE_L_CONF \${NORE_L_CONF_OPTS}
     	;;
   esac
 else

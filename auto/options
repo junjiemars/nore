@@ -101,7 +101,7 @@ do
 
 		--has-*)
 			if `legal_opt "$option"`; then
-				NM_HAS_STICKS="${NM_HAS_STICKS:+$NM_HAS_STICKS }`echo $option|sed -e s/\ *--has-\(${legal_opt_reg}\)/\1/|tr '[:upper:]' '[:lower:]'`"
+				NM_HAS_STICKS=${NM_HAS_STICKS:+$NM_HAS_STICKS }`echo $option|sed -e "s/\ *--has-\(${legal_opt_reg}\)/\1/"|tr '[:upper:]' '[:lower:]'`
 			else
 				panic_has_opt "$option"
 			fi
@@ -113,7 +113,6 @@ do
 			;;
   esac
 done
-
 
 if [ $help = yes ]; then
 	cat << END
@@ -150,7 +149,8 @@ fi
 
 yes_no_opt () {
   local d="$1"
-  local v="${@:2}"
+  shift 1
+  local v="$@"
   local u="`echo $v | tr [:lower:] [:upper:]`"
 
   if [ -z "$v" ]; then

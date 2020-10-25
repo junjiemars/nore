@@ -8,25 +8,20 @@
 
 
 version_n () {
-	local s="$1"
-	local v="${s//\./ }"
-	local r=1000
-	local v2=2 # major.minor
-	local b=$(( r**v2 ))
-	local n=0
-
-	if [ 0 -eq ${#v} ]; then
-		echo $n
-		return 1
-	fi
-
-	for i in ${v}; do
-		[ 0 -eq $v2 ] && break;
-		n=$(( n+b*i ))
-		b=$(( b/r ))
-		v2=$(( v2-1 ))
-	done
-
+	local v1="`echo $1 | cut -d'.' -f1 2>/dev/null`"
+  local v2="`echo $1 | cut -d'.' -f2 2>/dev/null`"
+  local v3="`echo $1 | cut -d'.' -f3 2>/dev/null`"
+  local n=0
+  if [ -n "$v1" ]; then
+    n=$(( v1*10000 ))
+  fi
+  if [ -n "$v2" ]; then
+    n=$(( n+v2*100 ))
+  fi
+  if [ -n "$v3" ]; then
+    n=$(( n+v3 ))
+  fi
 	echo $n
 }
 
+# eof

@@ -52,3 +52,5 @@ elif `$CC 2>&1 | grep 'Microsoft .* C\/C++' >/dev/null 2>&1`; then
 else
   CC_NAME=unknown
 fi
+
+# eof

@@ -36,3 +36,6 @@ nm_feature_test='int i=0x11223344;
             		 int le = (0x44 == *p);
                  printf("%d", le);'
 . ${NORE_ROOT}/auto/feature
+
+
+# eof
