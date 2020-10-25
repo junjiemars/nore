@@ -18,6 +18,8 @@ CC_VER:CC_VER
 NM_SYSTEM:NM_SYSTEM
 NM_RELEASE:NM_RELEASE
 NM_MACHINE:NM_MACHINE
+NM_PREFIX:NM_PREFIX
+NM_COMPILER:NM_COMPILER
 NM_CPU_CACHE_LINE:NM_CPU_CACHE_LINE
 NM_CPU_LITTLE_ENDIAN:NM_CPU_LITTLE_ENDIAN"
 
@@ -31,7 +33,12 @@ dump_symbol_table () {
 }
 
 symbol_value () {
-  echo `echo "$symbol_table" | sed -n "s/$1:\(.*\)$/\1/p"`
+  local v=`echo "$symbol_table" | sed -n "s/$1:\(.*\)$/\1/p"`
+  if [ -n "$v" ]; then
+    echo "$v"
+  else
+    echo "$1"
+  fi
 }
 
 # # bash support associated array
