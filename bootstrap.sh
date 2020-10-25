@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 #------------------------------------------------
 # target: bootstrap script of Nore	
 # url: https://github.com/junjiemars/nore.git

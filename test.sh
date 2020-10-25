@@ -1,6 +1,6 @@
-#!/usr/bin/env sh
+#!/bin/sh
 
-_ROOT_DIR_="`cd $(dirname ${BASH_SOURCE[0]}); pwd`"
+_ROOT_DIR_="`cd -- $(dirname -- $0) && pwd`"
 _CI_DIR_="${_ROOT_DIR_%/}/ci"
 _OS_NAME_="`uname -s 2>/dev/null`"
 _WIN_ENV_=
