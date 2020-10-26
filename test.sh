@@ -12,7 +12,7 @@ esac
 
 CC="${CC}"
 if [ -z "$CC" ]; then
-  case `uname -s 2>/dev/null` in
+  case "$_OS_NAME_" in
     Darwin)                 CC="clang" ;;
     Linux)                  CC="gcc"   ;;
     WinNT)                  CC="cl"    ;;
