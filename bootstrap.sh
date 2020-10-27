@@ -23,7 +23,7 @@ check_echo_opt
 
 bootstrap_path () {
 	local p="`dirname $0`"
-	local n="`pwd`/.nore"
+	local n="${PWD}/.nore"
 
 	if [ -d "${p}" ]; then
 		p="`( cd \"${p}\" && pwd )`"
@@ -40,7 +40,7 @@ bootstrap_path () {
 }
 
 ROOT="${ROOT:-`bootstrap_path`}"
-NORE_WORK="`pwd`"
+NORE_WORK="$PWD"
 
 PLATFORM="`uname -s 2>/dev/null`"
 GITHUB_R="${GITHUB_R:-https://raw.githubusercontent.com/junjiemars}"
@@ -186,12 +186,12 @@ case "\`echo \${NORE_L_CONF_COMMAND} | tr '[:upper:]' '[:lower:]'\`" in
 
   clone)
 		if [ -f \${NORE_L_BOOT} ]; then
-			\$NORE_L_BOOT --branch=\${NORE_BRANCH} --work=\`pwd\`
+			\$NORE_L_BOOT --branch=\${NORE_BRANCH} --work=\$PWD
 		else
 			curl -sqL \${NORE_R_BOOT} \\
 				| ROOT=\${NORE_ROOT} bash -s -- \\
         --branch=\${NORE_BRANCH} \\
-        --work=\`pwd\`
+        --work=\$PWD
 		fi
     exit \$?
   	;;
@@ -247,7 +247,7 @@ case "\`echo \${NORE_L_CONF_COMMAND} | tr '[:upper:]' '[:lower:]'\`" in
 esac
 
 
-cd "\$(CDPATH= cd -- \$(dirname -- \$0) && pwd)"
+cd "\$(CDPATH= cd -- \$(dirname -- \$0) && echo \$PWD)"
 
 if [ -f \${NORE_L_CONF} ]; then
   case "\${NORE_L_CONF_TRACE}" in
