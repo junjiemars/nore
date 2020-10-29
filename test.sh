@@ -161,11 +161,11 @@ test_nore_optimize_option () {
 #include <stdio.h>
 
 int
-fibonaci(int n, int p, int acc) {
+fibonacci(int n, int p, int acc) {
   if (0 == n) {
     return acc;
   }
-  return fibonaci(n-1, acc, p+acc);
+  return fibonacci(n-1, acc, p+acc);
 }
 
 int main(int argc, char **argv) {
@@ -174,8 +174,8 @@ int main(int argc, char **argv) {
   }
   int n;
   sscanf(argv[1], "%i", &n);
-  int retval = fibonaci(n, 0, 0);
-  printf("fabo(%i)=%i\n", n, retval);
+  int retval = fibonacci(n, 1, 0);
+  printf("fibonacci(%i)=%i\n", n, retval);
   return 0;
 }
 END
@@ -188,7 +188,7 @@ ci_binout := \$(bin_path)ci\$(bin_ext)
 
 ci: \$(ci_binout)
 ci_test: ci
-	\$(ci_binout) 10
+	\$(ci_binout) 5
 
 \$(ci_binout): \$(ci_root)ci.c
 	\$(CC) \$(CFLAGS) \$(INC) \$^ \$(bin_out)\$@
