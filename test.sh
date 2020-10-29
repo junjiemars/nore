@@ -153,7 +153,6 @@ test_nore_optimize_option () {
   local c="`basename $_CI_DIR_`.c"
   local m="Makefile"
 
-  test_what "CC=$CC ./configure --new"
   test_configure --new
 
   cat <<END > "$c"
