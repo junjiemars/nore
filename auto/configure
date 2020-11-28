@@ -1,6 +1,6 @@
 #!/bin/sh
 #------------------------------------------------
-# target: configuration script of Nore	
+# target: configuration script of Nore
 # url: https://github.com/junjiemars/nore.git
 # author: junjiemars@gmail.com
 #------------------------------------------------
@@ -31,36 +31,36 @@ END
 
 . ${NORE_ROOT}/auto/symbol
 if [ -n "$NM_SYMBOL_FILE" ]; then
-	if [ -f "$NM_SYMBOL_FILE" ]; then
-		load_symbol_table "$NM_SYMBOL_FILE"
-	else
-		dump_symbol_table "$NM_SYMBOL_FILE"
-	fi
+  if [ -f "$NM_SYMBOL_FILE" ]; then
+    load_symbol_table "$NM_SYMBOL_FILE"
+  else
+    dump_symbol_table "$NM_SYMBOL_FILE"
+  fi
 fi
 
 
 if [ -z "$NM_PLATFORM" ]; then
   echo "checking for OS"
-  
+
   NM_SYSTEM=`uname -s 2>/dev/null`
   NM_RELEASE=`uname -r 2>/dev/null`
   NM_MACHINE=`uname -m 2>/dev/null`
-  
+
   echo " + $NM_SYSTEM $NM_RELEASE $NM_MACHINE"
-  
-	case $NM_SYSTEM in
-		MSYS_NT-*)
-			NM_RELEASE=${NM_SYSTEM:8}
-			NM_SYSTEM=WinNT
-			;;
-		MINGW??_NT-*)
-			NM_RELEASE=${NM_SYSTEM:11}
-			NM_SYSTEM=WinNT
-			;;
-	esac
-		
+
+  case $NM_SYSTEM in
+    MSYS_NT-*)
+      NM_RELEASE=${NM_SYSTEM:8}
+      NM_SYSTEM=WinNT
+      ;;
+    MINGW??_NT-*)
+      NM_RELEASE=${NM_SYSTEM:11}
+      NM_SYSTEM=WinNT
+      ;;
+  esac
+
   NM_PLATFORM="$NM_SYSTEM-$NM_RELEASE-$NM_MACHINE";
-  
+
 else
   echo "building for $NM_PLATFORM"
   NM_SYSTEM=$NM_PLATFORM
@@ -72,11 +72,11 @@ fi
 
 
 if [ -z "$NM_PREFIX" ]; then
-	case "$NM_SYSTEM" in
-		Linux)    NM_PREFIX="/usr/local"  ;;
-		Darwin)   NM_PREFIX="/opt/local"  ;;
-		WinNT|*)  NM_PREFIX="dist"        ;;
-	esac
+  case "$NM_SYSTEM" in
+    Linux)    NM_PREFIX="/usr/local"  ;;
+    Darwin)   NM_PREFIX="/opt/local"  ;;
+    WinNT|*)  NM_PREFIX="dist"        ;;
+  esac
 fi
 have=NM_PREFIX value="$NM_PREFIX/" . ${NORE_ROOT}/auto/define
 
@@ -84,7 +84,7 @@ have=NM_PREFIX value="$NM_PREFIX/" . ${NORE_ROOT}/auto/define
 . ${NORE_ROOT}/auto/make
 
 if [ -f "$NM_AUTO_H" ]; then
-	cat << END >> $NM_AUTO_H
+  cat << END >> $NM_AUTO_H
 #endif /* end of NORE_H */
 END
 fi

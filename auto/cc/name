@@ -1,10 +1,9 @@
 #### -*- mode:sh -*- vim:ft=sh
-####
-## No More than a C build system for clang, gcc and msvc.
-## https://github.com/junjiemars/nore
-####
-## cc/name
-####
+#------------------------------------------------
+# target: cc/name for compiler's name
+# url: https://github.com/junjiemars/nore.git
+# author: junjiemars@gmail.com
+#------------------------------------------------
 
 echo "checking for C compiler"
 
@@ -46,7 +45,7 @@ elif `$CC -v 2>&1 | grep '\(clang\|LLVM\) version' >/dev/null 2>&1`; then
   echo " + using Clang ${cc_or_cxx} compiler"
 
 elif `$CC 2>&1 | grep 'Microsoft .* C\/C++' >/dev/null 2>&1`; then
-	CC_NAME=msvc
+  CC_NAME=msvc
   echo " + using Microsoft ${cc_or_cxx} compiler"
 
 else

@@ -1,11 +1,9 @@
 #### -*- mode:sh -*- vim:ft=sh
-####
-## No More than a C build system for clang, gcc and msvc.
-## https://github.com/junjiemars/nore
-####
-## cc/msvc
-####
-
+#------------------------------------------------
+# target: cc/msvc for msvc compiler
+# url: https://github.com/junjiemars/nore.git
+# author: junjiemars@gmail.com
+#------------------------------------------------
 
 nm_msvc_ver=`$CC 2>&1 | grep 'Compiler Version' 2>&1 \
                       | sed -e 's/^.* Version \(.*\)/\1/'`
@@ -20,7 +18,7 @@ CC_VER=`version_n $(echo $nm_msvc_ver | cut -d' ' -f1)`
 have=MSVC value=$CC_VER . ${NORE_ROOT}/auto/define
 
 
-# compiler 
+# compiler
 [ "." = ".$CC" ] && CC="cl"
 
 # preprocess
@@ -58,28 +56,28 @@ nm_stage_c="-c"
 
 # error
 case "$NM_ERROR" in
-	NO) nm_error_opt="" ;;
-	YES) nm_error_opt="-WX" ;;
+  NO) nm_error_opt="" ;;
+  YES) nm_error_opt="-WX" ;;
 esac
 
 # warnings (-Wall)
 case "$NM_WARN" in
-	NO) nm_warn_opt="" ;;
-	YES) nm_warn_opt="-W4" ;;
-	*) nm_warn_opt="$NM_WARN" ;;
+  NO) nm_warn_opt="" ;;
+  YES) nm_warn_opt="-W4" ;;
+  *) nm_warn_opt="$NM_WARN" ;;
 esac
 
 # verbose
 case "$NM_VERBOSE" in
-	NO)
-		CC="${CC:+$CC }-nologo"
-		if [ "$CXX" = "$CC" ]; then
-			CXX="${CXX:+$CXX }-nologo"
-		fi
-		AR="${AR:+$AR }-nologo"
-		AS="${AS:+$AS }-nologo"
-		;;
-	YES) ;;
+  NO)
+    CC="${CC:+$CC }-nologo"
+    if [ "$CXX" = "$CC" ]; then
+      CXX="${CXX:+$CXX }-nologo"
+    fi
+    AR="${AR:+$AR }-nologo"
+    AS="${AS:+$AS }-nologo"
+    ;;
+  YES) ;;
 esac
 
 # release option
@@ -88,41 +86,41 @@ nm_release_opt="-release"
 
 # symbol
 case "$NM_SYMBOL" in
-	NO) nm_symbol_opt="" ;;
-	YES) nm_symbol_opt="-Z7" ;;
-	*) nm_symbol_opt="$NM_SYMBOL" ;;
+  NO) nm_symbol_opt="" ;;
+  YES) nm_symbol_opt="-Z7" ;;
+  *) nm_symbol_opt="$NM_SYMBOL" ;;
 esac
 
 # arch
 case "$NM_ARCH" in
-	NO) nm_arch_opt="" ;;
-	YES) nm_arch_opt="" ;;
-	*)
-		# -arch:xxx
-		nm_arch_opt="$NM_ARCH"
-		;;
+  NO) nm_arch_opt="" ;;
+  YES) nm_arch_opt="" ;;
+  *)
+    # -arch:xxx
+    nm_arch_opt="$NM_ARCH"
+    ;;
 esac
 
 # std
 case "$NM_STD" in
-	NO) nm_std_opt="" ;;
-	YES)
-		#https://herbsutter.com/2012/05/03/reader-qa-what-about-vc-and-c99/
-		nm_std_opt=""
-  	;; 
-	*)
-		# for c90: -Za
-		# for c++14 or later: -std:c++14, -std:latest
-		nm_std_opt="${NM_STD}"
-		;;
+  NO) nm_std_opt="" ;;
+  YES)
+    #https://herbsutter.com/2012/05/03/reader-qa-what-about-vc-and-c99/
+    nm_std_opt=""
+    ;; 
+  *)
+    # for c90: -Za
+    # for c++14 or later: -std:c++14, -std:latest
+    nm_std_opt="${NM_STD}"
+    ;;
 esac
 
 # optimize
 # see also: https://docs.microsoft.com/en-us/cpp/build/reference/compiler-options-listed-by-category?view=vs-2017
 case "$NM_OPTIMIZE" in
-	NO) nm_optimize_opt="-Od" ;;
-	YES) nm_optimize_opt="-O2" ;;
-	*) nm_optimize_opt="$NM_OPTIMIZE" ;;
+  NO) nm_optimize_opt="-Od" ;;
+  YES) nm_optimize_opt="-O2" ;;
+  *) nm_optimize_opt="$NM_OPTIMIZE" ;;
 esac
 
 # model

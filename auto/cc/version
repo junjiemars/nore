@@ -1,14 +1,12 @@
 #### -*- mode:sh -*- vim:ft=sh
-####
-## No More than a C build system for clang, gcc and msvc.
-## https://github.com/junjiemars/nore
-####
-## cc/version
-####
-
+#------------------------------------------------
+# target: cc/version for compiler's version
+# url: https://github.com/junjiemars/nore.git
+# author: junjiemars@gmail.com
+#------------------------------------------------
 
 version_n () {
-	local v1="`echo $1 | cut -d'.' -f1 2>/dev/null`"
+  local v1="`echo $1 | cut -d'.' -f1 2>/dev/null`"
   local v2="`echo $1 | cut -d'.' -f2 2>/dev/null`"
   local v3="`echo $1 | cut -d'.' -f3 2>/dev/null`"
   local n=0
@@ -21,7 +19,7 @@ version_n () {
   if [ -n "$v3" ]; then
     n=$(( n+v3 ))
   fi
-	echo $n
+  echo $n
 }
 
 # eof

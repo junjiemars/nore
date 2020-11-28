@@ -8,12 +8,12 @@
 
 
 yes_no_any_out () {
-	local opt="$1"
-	local any="$2"
-	case "$opt" in
-		YES|NO) echo "${opt}${any:+: $any}" ;;
-		*) echo "$opt" ;;
-	esac
+  local opt="$1"
+  local any="$2"
+  case "$opt" in
+    YES|NO) echo "${opt}${any:+: $any}" ;;
+    *) echo "$opt" ;;
+  esac
 }
 
 echo
@@ -25,7 +25,7 @@ cat << END
   symbol-table= $NM_SYMBOL_FILE
   prefix= $NM_PREFIX
   out= $NM_OUT
-  src= $NM_SRC	
+  src= $NM_SRC
   has= ${NM_HAS_STICKS}
   new= $NM_NEW
   error= `yes_no_any_out "$NM_ERROR" "$nm_error_opt"`

@@ -43,79 +43,79 @@ legal_dir_reg='^[a-zA-Z_/][a-zA-Z_0-9/]*$'
 legal_opt_reg='[a-zA-Z_][a-zA-Z_0-9]*$'
 
 legal_dir () {
-	echo "$@" | grep -q "${legal_dir_reg}"
+  echo "$@" | grep -q "${legal_dir_reg}"
 }
 
 panic_arg () {
-	echo "! panic: invalid argument ${1}'${@:2}'"
-	echo "  ${1} should be '${legal_dir_reg}'"
-	exit 1
+  echo "! panic: invalid argument ${1}'${@:2}'"
+  echo "  ${1} should be '${legal_dir_reg}'"
+  exit 1
 }
 
 legal_opt () {
-	echo "$@" | grep -q "\-\-has-${legal_opt_reg}"
+  echo "$@" | grep -q "\-\-has-${legal_opt_reg}"
 }
 
 panic_has_opt () {
   echo "! panic: invalid option '$@'"
-	echo "  --has-* where * should be '${legal_opt_reg}'"
-	exit 1
+  echo "  --has-* where * should be '${legal_opt_reg}'"
+  exit 1
 }
 
 
 for option
 do
   opt="$opt `echo $option | sed -e \"s/\(--[^=]*=\)\(.* .*\)/\1'\2'/\"`"
-  
+
   case "$option" in
     -*=*) value=`echo "$option" | sed -e 's/[-_a-zA-Z0-9]*=//'` ;;
     *) value="" ;;
   esac
-  
+
   case "$option" in
     --help) help=yes ;;
-		
+
     --symbol-table=*) legal_dir "$value" \
-			&& NM_SYMBOL_FILE="${value%/}" || panic_arg "--symbol-table="	"$value"
-			;;
+      && NM_SYMBOL_FILE="${value%/}" || panic_arg "--symbol-table="   "$value"
+      ;;
     --prefix=*) legal_dir "$value" \
-			&& NM_PREFIX="${value%/}" || panic_arg "--prefix=" "$value"
-			;;
+      && NM_PREFIX="${value%/}" || panic_arg "--prefix=" "$value"
+      ;;
     --src-dir=*) legal_dir "$value" \
-			&& NM_SRC="${value%/}" || panic_arg "--src-dir=" "$value"
-			;;
+      && NM_SRC="${value%/}" || panic_arg "--src-dir=" "$value"
+      ;;
     --out-dir=*) legal_dir "$value" \
-			&& NM_OUT="${value%/}" || panic_arg "--out-dir=" "$value"
-			;;
+      && NM_OUT="${value%/}" || panic_arg "--out-dir=" "$value"
+      ;;
 
     --new)                   NM_NEW=YES                   ;;
 
-		--with-error=*)          NM_ERROR="$value"     	      ;;
-		--with-warn=*)           NM_WARN="$value"            	;;
-		--with-verbose=*)        NM_VERBOSE="$value"         	;;
-		--with-release=*)        NM_BUILD="$value"           	;;
-		--with-symbol=*)         NM_SYMBOL="$value"          	;;
+    --with-error=*)          NM_ERROR="$value"              ;;
+    --with-warn=*)           NM_WARN="$value"               ;;
+    --with-verbose=*)        NM_VERBOSE="$value"            ;;
+    --with-release=*)        NM_BUILD="$value"              ;;
+    --with-symbol=*)         NM_SYMBOL="$value"             ;;
     --with-arch=*)           NM_ARCH="$value"             ;;
-		--with-std=*)            NM_STD="$value"            	;;
-		--with-optimize=*)       NM_OPTIMIZE="$value"        	;;
+    --with-std=*)            NM_STD="$value"              ;;
+    --with-optimize=*)       NM_OPTIMIZE="$value"           ;;
 
-		--has-*)
-			if `legal_opt "$option"`; then
-				NM_HAS_STICKS=${NM_HAS_STICKS:+$NM_HAS_STICKS }`echo $option|sed -e "s/\ *--has-\(${legal_opt_reg}\)/\1/"|tr '[:upper:]' '[:lower:]'`
-			else
-				panic_has_opt "$option"
-			fi
-			;;
-    
+    --has-*)
+      if `legal_opt "$option"`; then
+        NM_HAS_STICKS=${NM_HAS_STICKS:+$NM_HAS_STICKS }`echo $option|sed -e "s/\ *--has-\(${legal_opt_reg}\)/\1/"|tr '[:upper:]' '[:lower:]'`
+      else
+        panic_has_opt "$option"
+      fi
+      ;;
+
     *)
-			echo "! panic: unkown option '$option'"
-			exit 1
-			;;
+      echo "! panic: unkown option '$option'"
+      exit 1
+      ;;
   esac
 done
 
 if [ $help = yes ]; then
-	cat << END
+  cat << END
 usage: configure [command]
        configure [options...]
 
@@ -166,7 +166,7 @@ yes_no_opt () {
 NM_CONFIGURE="$opt"
 
 if [ . = "$NM_SRC" -a -d src ]; then
-	NM_SRC=src
+  NM_SRC=src
 fi
 
 if [ 0 -eq ${#NM_HAS_STICKS} ]; then

@@ -1,11 +1,9 @@
 #### -*- mode:sh -*- vim:ft=sh
-####
-## No More than a C build system for clang, gcc and msvc.
-## https://github.com/junjiemars/nore
-####
-## cc/gcc
-####
-
+#------------------------------------------------
+# target: cc/gcc for gcc compiler
+# url: https://github.com/junjiemars/nore.git
+# author: junjiemars@gmail.com
+#------------------------------------------------
 
 nm_gcc_ver=`$CC -v 2>&1 | grep 'gcc version' 2>&1 \
                         | sed -e 's/^.* version \(.*\)/\1/'`
@@ -20,7 +18,7 @@ CC_VER=`version_n $(echo $nm_gcc_ver | cut -d' ' -f1)`
 have=GCC value=$CC_VER . ${NORE_ROOT}/auto/define
 
 
-# compiler 
+# compiler
 [ "." = ".$CC" ] && CC="cc"
 
 # preprocessor
@@ -42,55 +40,55 @@ nm_stage_c="-c"
 
 # error
 case "$NM_ERROR" in
-	NO) nm_error_opt="" ;;
-	YES) nm_error_opt="-Werror" ;;
+  NO) nm_error_opt="" ;;
+  YES) nm_error_opt="-Werror" ;;
 esac
 
 # warning
 case "$NM_WARN" in
-	NO)  nm_warn_opt="" ;;
-	YES) nm_warn_opt="-Wall -Wextra" ;;
-	*) nm_warn_opt="$NM_WARN" ;;
+  NO)  nm_warn_opt="" ;;
+  YES) nm_warn_opt="-Wall -Wextra" ;;
+  *) nm_warn_opt="$NM_WARN" ;;
 esac
 
 # verbose
 case "$NM_VERBOSE" in
-	NO) nm_verbose_opt="" ;;
-	YES) nm_verbose_opt="-v" ;;
+  NO) nm_verbose_opt="" ;;
+  YES) nm_verbose_opt="-v" ;;
 esac
 
 # symbol
 case "$NM_SYMBOL" in
-	NO) nm_symbol_opt="" ;;
-	YES) nm_symbol_opt="-g" ;;
-	*) nm_symbol_opt="$NM_SYMBOL" ;;
+  NO) nm_symbol_opt="" ;;
+  YES) nm_symbol_opt="-g" ;;
+  *) nm_symbol_opt="$NM_SYMBOL" ;;
 esac
 
 # arch
 case "$NM_ARCH" in
-	NO) ;;
-	YES) nm_arch_opt="-march=native" ;;
-	*) nm_arch_opt="$NM_ARCH" ;;
+  NO) ;;
+  YES) nm_arch_opt="-march=native" ;;
+  *) nm_arch_opt="$NM_ARCH" ;;
 esac
 
 # std
 case "$NM_STD" in
-	NO) nm_std_opt="" ;;
-	YES)
-		if [ "$CXX" = "$CC" ]; then
-			nm_std_opt=""
-		else
-			nm_std_opt="-std=c99"
-		fi
-		;;
-	*) nm_std_opt="${NM_STD}" ;;
+  NO) nm_std_opt="" ;;
+  YES)
+    if [ "$CXX" = "$CC" ]; then
+      nm_std_opt=""
+    else
+      nm_std_opt="-std=c99"
+    fi
+    ;;
+  *) nm_std_opt="${NM_STD}" ;;
 esac
 
 # optimization
 case "$NM_OPTIMIZE" in
-	NO)  nm_optimize_opt="-O0" ;;
-	YES) nm_optimize_opt="-O2" ;;
-	*) nm_optimize_opt="$NM_OPTIMIZE" ;;
+  NO)  nm_optimize_opt="-O0" ;;
+  YES) nm_optimize_opt="-O2" ;;
+  *) nm_optimize_opt="$NM_OPTIMIZE" ;;
 esac
 
 # trigraph

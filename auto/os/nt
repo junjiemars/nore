@@ -1,10 +1,9 @@
 #### -*- mode:sh -*- vim:ft=sh
-####
-## No More than a C build system for clang, gcc and msvc.
-## https://github.com/junjiemars/nore
-####
-## os/nt
-####
+#------------------------------------------------
+# target: os/nt for WinNT OS
+# url: https://github.com/junjiemars/nore.git
+# author: junjiemars@gmail.com
+#------------------------------------------------
 
 # lib
 nm_shared_opt="-LD"

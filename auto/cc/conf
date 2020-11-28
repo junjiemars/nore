@@ -1,11 +1,9 @@
 #### -*- mode:sh -*- vim:ft=sh
-####
-## No More than a C build system for clang, gcc and msvc.
-## https://github.com/junjiemars/nore
-####
-## cc/conf
-####
-
+#------------------------------------------------
+# target: cc/conf for C compiler
+# url: https://github.com/junjiemars/nore.git
+# author: junjiemars@gmail.com
+#------------------------------------------------
 
 CC=${CC:-cc}
 CXX=
@@ -113,62 +111,62 @@ esac
 
 # error option
 if [ -n "$nm_error_opt" ]; then
-	CFLAGS=${CFLAGS:+$CFLAGS }${nm_error_opt}
+  CFLAGS=${CFLAGS:+$CFLAGS }${nm_error_opt}
 fi
 
 # warn option
 if [ -n "$nm_warn_opt" ]; then
-	CFLAGS=${CFLAGS:+$CFLAGS }${nm_warn_opt}
+  CFLAGS=${CFLAGS:+$CFLAGS }${nm_warn_opt}
 fi
 
 # verbose option
 if [ -n "$nm_verbose_opt" ]; then
-	CFLAGS=${CFLAGS:+$CFLAGS }${nm_verbose_opt}
+  CFLAGS=${CFLAGS:+$CFLAGS }${nm_verbose_opt}
 fi
 
 # build option
 case "$NM_BUILD" in
-	YES)
-		nm_build_opt='-DNDEBUG=1'
-		CPPFLAGS=${CPPFLAGS:+$CPPFLAGS }${nm_build_opt}
-		;;
-	NO) nm_build_opt="" ;;
+  YES)
+    nm_build_opt='-DNDEBUG=1'
+    CPPFLAGS=${CPPFLAGS:+$CPPFLAGS }${nm_build_opt}
+    ;;
+  NO) nm_build_opt="" ;;
 esac
 
 # symbol option
 if [ -n "$nm_symbol_opt" ]; then
-	CFLAGS=${CFLAGS:+$CFLAGS }${nm_symbol_opt}
+  CFLAGS=${CFLAGS:+$CFLAGS }${nm_symbol_opt}
 fi
 
 # arch option
 if [ -n "$nm_arch_opt" ]; then
-	CFLAGS=${CFLAGS:+$CFLAGS }${nm_arch_opt}
+  CFLAGS=${CFLAGS:+$CFLAGS }${nm_arch_opt}
 fi
 
 # std option
 if [ -n "$nm_std_opt" ]; then
-	CFLAGS=${CFLAGS:+$CFLAGS }${nm_std_opt}
+  CFLAGS=${CFLAGS:+$CFLAGS }${nm_std_opt}
 fi
 
 # optimize option
 if [ -n "$nm_optimize_opt" ]; then
-	CFLAGS=${CFLAGS:+$CFLAGS }${nm_optimize_opt}
+  CFLAGS=${CFLAGS:+$CFLAGS }${nm_optimize_opt}
 fi
 
 # model option
 if [ -n "$nm_model_opt" ]; then
-	CFLAGS=${CFLAGS:+$CFLAGS }${nm_model_opt}
+  CFLAGS=${CFLAGS:+$CFLAGS }${nm_model_opt}
 fi
 
 # unicode option
 if [ -n "$nm_utf_opt" ]; then
-	CFLAGS=${CFLAGS:+$CFLAGS }${nm_utf_opt}
-	CPPFLAGS=${CPPFLAGS:+$CPPFLAGS }${nm_utf_opt}
+  CFLAGS=${CFLAGS:+$CFLAGS }${nm_utf_opt}
+  CPPFLAGS=${CPPFLAGS:+$CPPFLAGS }${nm_utf_opt}
 fi
 
 # cxx flags
 if [ "$CXX" = "$CC" ]; then
-	CXXFLAGS=$CFLAGS
+  CXXFLAGS=$CFLAGS
 fi
 
 # inc option
