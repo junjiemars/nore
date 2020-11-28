@@ -110,8 +110,8 @@ test_nore_new_option () {
 test_nore_symbol_option () {
   local c="`basename $_CI_DIR_`.c"
 
-  test_what "CC=$CC ./configure --symbol-table=sym --new"
-  test_configure --symbol-table=sym --new
+  test_what "CC=$CC ./configure --symbol-table=sym"
+  test_configure --symbol-table=sym
   test_make clean test
 
   cat <<END > "$c"
@@ -152,8 +152,6 @@ END
 test_nore_optimize_option () {
   local c="`basename $_CI_DIR_`.c"
   local m="Makefile"
-
-  test_configure --new
 
   cat <<END > "$c"
 #include <nore.h>
@@ -207,7 +205,6 @@ END
 
 test_nore_std_option () {
   local a="auto"
-  test_configure --new
 
   cat <<END > "$a"
 echo "checking ISO/IEC 9899:2011 (C11) new header files ..."
