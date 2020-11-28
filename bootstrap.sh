@@ -22,21 +22,21 @@ check_echo_opt () {
 check_echo_opt
 
 bootstrap_path () {
-	local p="`dirname $0`"
-	local n="${PWD}/.nore"
+  local p="`dirname $0`"
+  local n="${PWD}/.nore"
 
-	if [ -d "${p}" ]; then
-		p="`( cd \"${p}\" && pwd )`"
-		if [ -z "$p" -o "/dev/fd" = "$p" ]; then
-			echo "$n"
-		elif [ ! -f "${p}/auto/configure" ]; then
-			echo "${p}/.nore"
-		else
-			echo "$p"
-		fi
-	else
-		echo "$n"
-	fi
+  if [ -d "${p}" ]; then
+    p="`( cd \"${p}\" && pwd )`"
+    if [ -z "$p" -o "/dev/fd" = "$p" ]; then
+      echo "$n"
+    elif [ ! -f "${p}/auto/configure" ]; then
+      echo "${p}/.nore"
+    else
+      echo "$p"
+    fi
+  else
+    echo "$n"
+  fi
 }
 
 ROOT="${ROOT:-`bootstrap_path`}"
@@ -55,22 +55,22 @@ do
     -*=*) value=`echo "$option" | sed -e 's/[-_a-zA-Z0-9]*=//'` ;;
     *) value="" ;;
   esac
-  
+
   case "$option" in
     --help)                  help=yes                   ;;
     --branch=*)              NORE_BRANCH="$value"       ;;
     --work=*)                NORE_WORK="$value"         ;;
 
     *)
-			command="`echo $option | tr '[:upper:]' '[:lower:]'`"
+      command="`echo $option | tr '[:upper:]' '[:lower:]'`"
     ;;
   esac
 done
 
 case ".$command" in
-	.u|.upgrade)
-		NORE_UPGRADE=yes
-		;;
+  .u|.upgrade)
+    NORE_UPGRADE=yes
+    ;;
 esac
 
 on_windows_nt () {
@@ -95,7 +95,7 @@ on_linux () {
 }
 
 check_nore () {
-	git -C "${ROOT}" remote -v 2>/dev/null | grep -q 'junjiemars/nore'
+  git -C "${ROOT}" remote -v 2>/dev/null | grep -q 'junjiemars/nore'
 }
 
 check_nore_branch () {
@@ -107,13 +107,13 @@ upgrade_nore () {
   [ -n "${b}" ] || return 1
 
   git -C "${ROOT}" reset --hard 1>/dev/null 2>&1 || return $?
-  
-	[ ${NORE_BRANCH} = ${b} ] || return $?
+
+  [ ${NORE_BRANCH} = ${b} ] || return $?
   git -C "${ROOT}" pull --rebase origin ${b} 1>/dev/null 2>&1
 }
 
 clone_nore () {
-	git clone --depth=1 --branch=${NORE_BRANCH} ${GITHUB_H}/nore.git "${ROOT}" 1>/dev/null 2>&1
+  git clone --depth=1 --branch=${NORE_BRANCH} ${GITHUB_H}/nore.git "${ROOT}" 1>/dev/null 2>&1
 }
 
 cat_configure () {
@@ -121,8 +121,8 @@ cat_configure () {
   local conf="${NORE_WORK%/}/configure"
   local new_conf="${conf}.n"
 
-	cat << END > "$new_conf"
-#!/usr/bin/env sh
+  cat << END > "$new_conf"
+#!/bin/sh
 #------------------------------------------------
 # target: configure
 # author: junjiemars@gmail.com
@@ -159,42 +159,42 @@ for option
 do
   case "\$option" in
     -*=*)
-			NORE_L_CONF_OPTS="\${NORE_L_CONF_OPTS:+\$NORE_L_CONF_OPTS }\$option"
-			;;
+      NORE_L_CONF_OPTS="\${NORE_L_CONF_OPTS:+\$NORE_L_CONF_OPTS }\$option"
+      ;;
 
     -*)
-			 NORE_L_CONF_OPTS="\${NORE_L_CONF_OPTS:+\$NORE_L_CONF_OPTS }\$option"
-			 ;;
+      NORE_L_CONF_OPTS="\${NORE_L_CONF_OPTS:+\$NORE_L_CONF_OPTS }\$option"
+      ;;
 
-    *) 
-			 NORE_L_CONF_COMMAND="\$option"  
-			 ;;
+    *)
+       NORE_L_CONF_COMMAND="\$option"
+       ;;
   esac
 done
 
 case "\`echo \${NORE_L_CONF_COMMAND} | tr '[:upper:]' '[:lower:]'\`" in
-	upgrade)
-		if [ -f \${NORE_L_BOOT} ]; then
-			\$NORE_L_BOOT --branch=\${NORE_BRANCH} upgrade
-		else
-			curl -sqL \${NORE_R_BOOT} \\
-				| ROOT=\${NORE_ROOT} bash -s -- \\
+  upgrade)
+    if [ -f \${NORE_L_BOOT} ]; then
+      \$NORE_L_BOOT --branch=\${NORE_BRANCH} upgrade
+    else
+      curl -sqL \${NORE_R_BOOT} \\
+        | ROOT=\${NORE_ROOT} bash -s -- \\
         --branch=\${NORE_BRANCH} upgrade
-		fi
+    fi
     exit \$?
-		;;
+    ;;
 
   clone)
-		if [ -f \${NORE_L_BOOT} ]; then
-			\$NORE_L_BOOT --branch=\${NORE_BRANCH} --work=\$PWD
-		else
-			curl -sqL \${NORE_R_BOOT} \\
-				| ROOT=\${NORE_ROOT} bash -s -- \\
+    if [ -f \${NORE_L_BOOT} ]; then
+      \$NORE_L_BOOT --branch=\${NORE_BRANCH} --work=\$PWD
+    else
+      curl -sqL \${NORE_R_BOOT} \\
+        | ROOT=\${NORE_ROOT} bash -s -- \\
         --branch=\${NORE_BRANCH} \\
         --work=\$PWD
-		fi
+    fi
     exit \$?
-  	;;
+    ;;
 
   where)
     echo "NORE_ROOT=\${NORE_ROOT}"
@@ -218,7 +218,7 @@ case "\`echo \${NORE_L_CONF_COMMAND} | tr '[:upper:]' '[:lower:]'\`" in
     else
       echo ""
     fi
-		`if on_windows_nt; then
+    `if on_windows_nt; then
        echo "echo \\\$echo_n \\"cc-env.bat=@\\\$echo_c\\""
        echo "    if [ -f \"\\\${HOME%/}/.nore/cc-env.bat\\" ]; then"
        echo "      echo \"\\\${HOME%/}/.nore/cc-env.bat\\""
@@ -239,11 +239,11 @@ case "\`echo \${NORE_L_CONF_COMMAND} | tr '[:upper:]' '[:lower:]'\`" in
       echo ""
     fi
     exit \$?
-  	;;
+    ;;
 
   trace)
     NORE_L_CONF_TRACE="yes"
-  	;;
+    ;;
 esac
 
 
@@ -251,36 +251,36 @@ cd "\$(CDPATH= cd -- \$(dirname -- \$0) && echo \$PWD)"
 
 if [ -f \${NORE_L_CONF} ]; then
   case "\${NORE_L_CONF_TRACE}" in
-	  no)
+    no)
       \$NORE_L_CONF "\$@"
-    	;;
+      ;;
 
-    yes)  
+    yes)
       sh -x \$NORE_L_CONF \${NORE_L_CONF_OPTS}
-    	;;
+      ;;
   esac
 else
-	echo
-	echo "!nore << no found, to fix >: configure clone"
-	echo 
+  echo
+  echo "!nore << no found, to fix >: configure clone"
+  echo
 fi
 
 # eof
 
 END
 
-	chmod u+x "$new_conf"
-	mv "$new_conf" "$conf"
+  chmod u+x "$new_conf"
+  mv "$new_conf" "$conf"
 }
 
 
 cat_cc_env () {
-	local cc_env_sh="${1:-${HOME%/}/.nore/cc-env.sh}"
-	local env_dir="`dirname $cc_env_sh`"
-	[ -d "$env_dir" ] || mkdir -p "$env_dir"
-	
-	cat << END > "$cc_env_sh"
-#!/bin/bash
+  local cc_env_sh="${1:-${HOME%/}/.nore/cc-env.sh}"
+  local env_dir="`dirname $cc_env_sh`"
+  [ -d "$env_dir" ] || mkdir -p "$env_dir"
+
+  cat << END > "$cc_env_sh"
+#!/bin/sh
 #------------------------------------------------
 # target: .cc-env.sh
 # author: junjiemars@gmail.com
@@ -303,7 +303,7 @@ delete_vimrc_src () {
   local lines="\$2"
   local f="\$3"
 `if on_darwin; then
-	 echo "  local sed_opt_i=\\"-i .pre\\""
+   echo "  local sed_opt_i=\\"-i .pre\\""
  else
    echo "  local sed_opt_i=\\"-i.pre\\""
  fi
@@ -317,7 +317,7 @@ delete_vimrc_src () {
   if [ 0 -lt \$line_no ]; then
     if [ "yes" = "\$lines" ]; then
       sed \$sed_opt_i -e "\$line_no,\\\$d" "\$f"
-    else  
+    else
       sed \$sed_opt_i -e "\${line_no}d" "\$f"
     fi
   fi
@@ -363,7 +363,7 @@ if on_windows_nt; then
   echo "	local cc_env_bat=\\"\\\${CC_ENV_BAT}\\""
   echo ""
   echo "	cat << END > \\"\\\$cc_env_bat\\""
-	echo "@if not \\"%VSCMD_DEBUG%\\" GEQ \\"3\\" echo off"
+  echo "@if not \\"%VSCMD_DEBUG%\\" GEQ \\"3\\" echo off"
   echo "REM generated by Nore (${GITHUB_H}/nore)"
   echo "REM"
   echo ""
@@ -407,7 +407,7 @@ else
   echo "  [ 0 -eq \\\$? ] || return 1"
 fi
 `
-	
+
 `
 if on_windows_nt; then
   echo "  cc_inc=\\\$(echo \\\$cc_inc | sed 's#\\"##g')"
@@ -471,60 +471,60 @@ echo_yes_or_no () {
 }
 
 echo_elapsed_seconds () {
-	local begin=$1
-	local end="`date +%s`"
-	echo 
-	echo "... elpased $(( ${end}-${begin} )) seconds."
+  local begin=$1
+  local end="`date +%s`"
+  echo
+  echo "... elpased $(( ${end}-${begin} )) seconds."
 }
 
 exit_checking () {
-	local c="$1"
+  local c="$1"
   local b="$2"
-	if [ 0 -ne $c ]; then
+  if [ 0 -ne $c ]; then
     echo_elapsed_seconds "$b"
-		exit $c
-	fi
+    exit $c
+  fi
 }
 
 download_gmake () {
-	local env_dir="${1:-${HOME%/}/.nore}"
-	local ver="4.2.90"
-	local tgz="gnumake-${ver}-`uname -m`.tar.gz"
+  local env_dir="${1:-${HOME%/}/.nore}"
+  local ver="4.2.90"
+  local tgz="gnumake-${ver}-`uname -m`.tar.gz"
   local url="${GITHUB_H}/make/releases/download/${ver}/${tgz}"
-	local bin="${env_dir}/make.exe"
-	local t=0
+  local bin="${env_dir}/make.exe"
+  local t=0
 
-	[ -f "$env_dir" ] || mkdir -p "$env_dir"
-	[ -f "$bin" -a "GNU Make 4.2.90" = "`$bin -v &> /dev/null | head -n1`" ] && return 0
-	
-	curl -f -s -L -o "${env_dir}/${tgz}" -C - "${url}" &> /dev/null
+  [ -f "$env_dir" ] || mkdir -p "$env_dir"
+  [ -f "$bin" -a "GNU Make 4.2.90" = "`$bin -v &> /dev/null | head -n1`" ] && return 0
+
+  curl -fsL -o "${env_dir}/${tgz}" -C - "${url}" &> /dev/null
   t=$?
   if [ 33 -eq $t ]; then
-    curl -f -s -L -o "${env_dir}/${tgz}" "${url}" &> /dev/null
+    curl -fsL -o "${env_dir}/${tgz}" "${url}" &> /dev/null
   elif [ 60 -eq $t -o 22 -eq $t ]; then
     [ -f "${env_dir}/${tgz}" ] && rm "${env_dir}/${tgz}"
-    curl -f -s -k -L -o "${env_dir}" "${url}" &> /dev/null
+    curl -fskL -o "${env_dir}" "${url}" &> /dev/null
   fi
-	[ 0 -eq $t ] || return $t
+  [ 0 -eq $t ] || return $t
 
-	tar xf "${env_dir}/${tgz}" -C "${env_dir}" --strip-components=1 &> /dev/null
+  tar xf "${env_dir}/${tgz}" -C "${env_dir}" --strip-components=1 &> /dev/null
 }
 
 
 BEGIN=`date +%s`
-echo 
+echo
 echo "configure Nore on $PLATFORM ..."
 echo
 
 echo $echo_n " + checking make ... $echo_c"
 if `make -v 1>/dev/null 2>&1`; then
-	echo_yes_or_no $?
+  echo_yes_or_no $?
 else
   echo_yes_or_no $?
-	if `on_windows_nt`; then
-		echo $echo_n " + downloading make ... $echo_c"
-		echo_yes_or_no `download_gmake "${HOME%/}/.nore"; echo $?`
-	fi
+  if `on_windows_nt`; then
+    echo $echo_n " + downloading make ... $echo_c"
+    echo_yes_or_no `download_gmake "${HOME%/}/.nore"; echo $?`
+  fi
 fi
 
 [ -d "${ROOT}" ] || mkdir -p "${ROOT}"
@@ -534,8 +534,8 @@ if `check_nore`; then
  echo_yes_or_no $?
  if [ "yes" = "$NORE_UPGRADE" ]; then
    echo $echo_n " + upgrading nore ... $echo_c"
-	 echo_yes_or_no `upgrade_nore ; echo $?`
-	 exit_checking $? $BEGIN
+   echo_yes_or_no `upgrade_nore ; echo $?`
+   exit_checking $? $BEGIN
  fi
 else
  echo_yes_or_no $?
