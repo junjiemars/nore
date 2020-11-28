@@ -278,9 +278,9 @@ END
 
 # test
 env_ci_build
-# test_nore_new_option
-# test_nore_symbol_option
-# test_nore_optimize_option
+test_nore_new_option
+test_nore_symbol_option
+test_nore_optimize_option
 test_nore_std_option
 
 # clean CI directory
