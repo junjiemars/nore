@@ -201,11 +201,11 @@ case "\`echo \${NORE_L_CONF_COMMAND} | tr '[:upper:]' '[:lower:]'\`" in
     echo "NORE_BRANCH=\${NORE_BRANCH}"
     echo "configure=@\${BASH_SOURCE[0]}"
     echo "make=@\$(command -v make)"
-    `if on_darwin; then
-       echo "echo \\"shell=@\\\$(ps -p\\\$\\\$ -ocommand | tr ' ' '\\\\\n' | sed -n 2p)\\""
-     else
-       echo "echo \\"shell=@\\\$(ls -l /proc/\\\$\\\$/exe | sed 's#^.*/proc/[0-9]*/exe[ ]*->[ ]*\(.*\)\\\$#\1#g')\\""
-     fi`
+`if on_darwin; then
+    echo "echo \\"shell=@\\\$(ps -p\\\$\\\$ -ocommand | tr ' ' '\\\\\n' | sed -n 2p)\\""
+else
+    echo "echo \\"shell=@\\\$(ls -l /proc/\\\$\\\$/exe | sed 's#^.*/proc/[0-9]*/exe[ ]*->[ ]*\(.*\)\\\$#\\1#g')\\""
+fi`
     echo \$echo_n "cc-env.sh=@\$echo_c"
     if [ -f "\${HOME%/}/.nore/cc-env.sh" ]; then
       echo "\${HOME%/}/.nore/cc-env.sh"
