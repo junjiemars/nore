@@ -491,7 +491,6 @@ you setup your C programming environment and you can find those
 auxiliary files via *where* command.
 
 The =cc-env.sh= will generates the following files:
-- =cc-env.id= file: indicates =cc-env.bat= file, =cc-inc.lst= file and
   =cc-inc.vimrc= file whether had been generated. =0= indicates those
   files had been generated, othwise is not.
 - =cc-env.bat= file: only for /msvc/ on Windows
@@ -510,7 +509,6 @@ configure=@./configure
 make=@/usr/bin/make
 bash=@/bin/bash
 cc-env.sh=@/home/ubuntu/cc-env.sh
-cc-env.id=@/home/ubuntu/cc-env.id[0]
 cc-inc.lst=@/home/ubuntu/cc-inc.lst
 cc-inc.vimrc=@/home/ubuntu/cc-inc.vimrc
 #+END_SRC
@@ -526,7 +524,6 @@ configure=@./configure
 make=@/c/opt/open/gmake/4.2.90/make
 bash=@/usr/bin/bash
 cc-env.sh=@/c/Users/junjie/cc-env.sh
-cc-env.id=@/c/Users/junjie/cc-env.id[0]
 cc-env.bat=@/c/Users/junjie/cc-env.bat
 cc-inc.lst=@/c/Users/junjie/cc-inc.lst
 cc-inc.vimrc=@/c/Users/junjie/cc-inc.vimrc
