@@ -1,6 +1,6 @@
 #!/bin/sh
 #------------------------------------------------
-# target: bootstrap script of Nore	
+# target: bootstrap script of Nore
 # url: https://github.com/junjiemars/nore.git
 # author: junjiemars@gmail.com
 #------------------------------------------------
@@ -547,3 +547,4 @@ exit_checking $? $BEGIN
 
 echo_elapsed_seconds $BEGIN
 
+# eof
