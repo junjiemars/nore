@@ -10,7 +10,7 @@ Let's start ...
 
 #+BEGIN_SRC sh
 # run bootstrap from github, it will generate a configure file in current directory
-$ bash <(curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.sh)
+$ sh <(curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.sh)
 
 # generate a C application skeleton
 $ ./configure --new
@@ -71,14 +71,14 @@ This section describes how to use Nore in details.
 		:CUSTOM_ID: on-unix-like-platform
 		:END:
 
-There are no installation process just configure *bash* and *make*
+There are no installation process just configure *sh* and *make*
 environment.
 
 The most simplest way to configure is go into your *C* application
 directory and run:
 
 #+BEGIN_SRC sh
-$ bash <(curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.sh)
+$ sh <(curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.sh)
 
 configure Nore on Linux ...
 
@@ -96,20 +96,19 @@ configure Nore on Linux ...
 		:END:
 
 Requirements on Windows:
-- Bash, because there are no *bash* by default, so we need to install
+- Shell, because there are no *sh* by default, so we need to install
   one, [[https://git-scm.com/downloads][Git Bash]] easy to install and use. When installating /Git Bash/,
   select =unix compatible tools= option box.
 - MSVC environment, [[https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2017][C/C++ Build Tools]] installer is enough, and select
   [[https://developer.microsoft.com/en-US/windows/downloads/windows-10-sdk][Windows SDK]].
 
-Start =bash= in any =CMD= or =Git Bash=, then run:
+Start =sh= in any =CMD= or =Git Bash=, then run:
 #+BEGIN_SRC sh
-$ bash <(curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.sh)
+$ sh <(curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.sh)
 
 configure Nore on MINGW64_NT-10.0 ...
 
  + checking make ... no
- + checking bash environment ... yes
  + downloading make ... yes
  + checking nore ... yes
  + generating configure ... yes
@@ -136,7 +135,7 @@ easier.
 If you want to try new features of Nore, try the =edge= branch.
 
 #+BEGIN_SRC sh
-$ curl https://raw.githubusercontent.com/junjiemars/nore/edge/bootstrap.sh | bash -s -- --branch=edge
+$ curl https://raw.githubusercontent.com/junjiemars/nore/edge/bootstrap.sh | sh -s -- --branch=edge
 #+END_SRC
 
 ** Getting Started
@@ -155,7 +154,7 @@ do. But on Windows, if using *MSVC* environment, we need host *MSVC*
 environment first.
 
 
-In /bash/:
+In /sh/:
 #+BEGIN_SRC sh
 # switch to cmd
 $ cmd
@@ -163,8 +162,8 @@ $ cmd
 REM host msvc environment
 > %userprofile%/.nore/cc-env.bat
 
-REM switch to bash
-> bash -i
+REM switch to sh
+> sh -i
 #+END_SRC
 
 In /cmd/:
@@ -172,8 +171,8 @@ In /cmd/:
 REM host msvc environment
 > %userprofile%/.nore/cc-env.bat
 
-REM switch to bash
-> bash -i
+REM switch to sh
+> sh -i
 #+END_SRC
 
 /screenshots/:
@@ -344,7 +343,7 @@ $ make clean test
 	 :CUSTOM_ID: feature-testing
 	 :END:
 
-Write a /bash/ script named /auto/ and put it into =--src-dir=
+Write a /sh/ script named /auto/ and put it into =--src-dir=
 directory. The errors of /auto/ will be recorded into the /auto.err/
 file in your =--out-dir= directory.
 
@@ -507,7 +506,7 @@ NORE_ROOT=/opt/apps/c/.nore
 NORE_BRANCH=master
 configure=@./configure
 make=@/usr/bin/make
-bash=@/bin/bash
+shell=@/bin/sh
 cc-env.sh=@/home/ubuntu/cc-env.sh
 cc-inc.lst=@/home/ubuntu/cc-inc.lst
 cc-inc.vimrc=@/home/ubuntu/cc-inc.vimrc
@@ -522,7 +521,7 @@ NORE_ROOT=/c/opt/apps/nore
 NORE_BRANCH=edge
 configure=@./configure
 make=@/c/opt/open/gmake/4.2.90/make
-bash=@/usr/bin/bash
+shell=@/usr/bin/sh
 cc-env.sh=@/c/Users/junjie/cc-env.sh
 cc-env.bat=@/c/Users/junjie/cc-env.bat
 cc-inc.lst=@/c/Users/junjie/cc-inc.lst
@@ -605,9 +604,9 @@ On any Unix-like platform:
 
 
 On Window:
-- @@html:<kbd>@@M-x shell-command cc-env.bat && bash
+- @@html:<kbd>@@M-x shell-command cc-env.bat && sh
   <your-c-app-dir>/configure --has-x@@html:</kbd>@@ or
-  @@html:<kbd>@@M-x compile cc-env.bat && bash
+  @@html:<kbd>@@M-x compile cc-env.bat && sh
   <your-c-app-dir>/configure --has-x@@html:</kbd>@@
 - @@html:<kbd>@@M-x compile cc-env.bat && make -C <your-c-app-dir>
   clean test@@html:</kbd>@@

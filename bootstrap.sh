@@ -178,7 +178,7 @@ case "\`echo \${NORE_L_CONF_COMMAND} | tr '[:upper:]' '[:lower:]'\`" in
       \$NORE_L_BOOT --branch=\${NORE_BRANCH} upgrade
     else
       curl -sqL \${NORE_R_BOOT} \\
-        | ROOT=\${NORE_ROOT} bash -s -- \\
+        | ROOT=\${NORE_ROOT} sh -s -- \\
         --branch=\${NORE_BRANCH} upgrade
     fi
     exit \$?
@@ -189,7 +189,7 @@ case "\`echo \${NORE_L_CONF_COMMAND} | tr '[:upper:]' '[:lower:]'\`" in
       \$NORE_L_BOOT --branch=\${NORE_BRANCH} --work=\$PWD
     else
       curl -sqL \${NORE_R_BOOT} \\
-        | ROOT=\${NORE_ROOT} bash -s -- \\
+        | ROOT=\${NORE_ROOT} sh -s -- \\
         --branch=\${NORE_BRANCH} \\
         --work=\$PWD
     fi
