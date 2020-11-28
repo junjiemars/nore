@@ -206,6 +206,7 @@ case "\`echo \${NORE_L_CONF_COMMAND} | tr '[:upper:]' '[:lower:]'\`" in
 else
     echo "    echo \\"shell=@\\\$(ls -l /proc/\\\$\\\$/exe | sed 's#^.*/proc/[0-9]*/exe[ ]*->[ ]*\(.*\)\\\$#\\\\\1#g')\\""
 fi`
+
     echo \$echo_n "cc-env.sh=@\$echo_c"
     if [ -f "\${HOME%/}/.nore/cc-env.sh" ]; then
       echo "\${HOME%/}/.nore/cc-env.sh"
