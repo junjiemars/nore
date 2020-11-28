@@ -101,6 +101,11 @@ END
   fi
 }
 
+test_nore_where_command () {
+  test_what "./configure where"
+  test_configure where
+}
+
 test_nore_new_option () {
 	test_what "CC=$CC ./configure --new"
   test_configure --new
@@ -278,6 +283,7 @@ END
 
 # test
 env_ci_build
+test_nore_where_command
 test_nore_new_option
 test_nore_symbol_option
 test_nore_optimize_option
