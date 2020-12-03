@@ -10,7 +10,7 @@ Let's start ...
 
 #+BEGIN_SRC sh
 # run bootstrap from github, it will generate a configure file in current directory
-$ sh <(curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.sh)
+$ curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.sh -sSfL | sh
 
 # generate a C application skeleton
 $ ./configure --new
