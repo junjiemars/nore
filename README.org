@@ -78,7 +78,7 @@ The most simplest way to configure is go into your *C* application
 directory and run:
 
 #+BEGIN_SRC sh
-$ sh <(curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.sh)
+$ curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.sh -sSfL | sh
 
 configure Nore on Linux ...
 
@@ -104,7 +104,7 @@ Requirements on Windows:
 
 Start =sh= in any =CMD= or =Git Bash=, then run:
 #+BEGIN_SRC sh
-$ sh <(curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.sh)
+$ curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.sh -sSfL | sh
 
 configure Nore on MINGW64_NT-10.0 ...
 
@@ -135,7 +135,7 @@ easier.
 If you want to try new features of Nore, try the =edge= branch.
 
 #+BEGIN_SRC sh
-$ curl https://raw.githubusercontent.com/junjiemars/nore/edge/bootstrap.sh | sh -s -- --branch=edge
+$ curl https://raw.githubusercontent.com/junjiemars/nore/edge/bootstrap.sh -sSfL | sh -s -- --branch=edge
 #+END_SRC
 
 ** Getting Started
