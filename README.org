@@ -102,7 +102,7 @@ Requirements on Windows:
 - MSVC environment, [[https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2017][C/C++ Build Tools]] installer is enough, and select
   [[https://developer.microsoft.com/en-US/windows/downloads/windows-10-sdk][Windows SDK]].
 
-Start =sh= in any =CMD= or =Git Bash=, then run:
+In any =CMD= or =Git Bash=, run:
 #+BEGIN_SRC sh
 $ curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.sh -sSfL | sh
 
