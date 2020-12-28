@@ -5,7 +5,7 @@
 # author: junjiemars@gmail.com
 #------------------------------------------------
 
-echo "checking for C compiler"
+echo $echo_n "checking for C compiler ... $echo_c"
 
 nm_feature="C compiler"
 nm_feature_name=
@@ -16,7 +16,10 @@ nm_feature_test=
 . ${NORE_ROOT}/auto/feature
 
 if [ ".no" = ".$nm_found" ]; then
+  echo "$nm_found"
   exit 1
+else
+  echo "$nm_found"
 fi
 
 
