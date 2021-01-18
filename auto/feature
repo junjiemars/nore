@@ -49,7 +49,7 @@ int main(void) {
 END
 
 
-nm_test="$CC $nm_feature_flags ${bin_out}${NM_AUTOTEST} $autotest_c"
+nm_test="$CC $nm_feature_flags ${bin_out}${NM_AUTOTEST} $autotest_c $nm_feature_tails"
 
 `$nm_test >> "$NM_AUTO_ERR" 2>&1`
 
