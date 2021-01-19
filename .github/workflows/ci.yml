@@ -39,7 +39,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0 # checkout history and tags
-      - name: Test Nore
+      - name:  Test Nore via CC=${{ matrix.CC }}
         run: |
           CC=${{ matrix.CC }} ./test.sh
 
