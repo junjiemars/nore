@@ -14,30 +14,5 @@ have=$NM_SYSTEM . ${NORE_ROOT}/auto/have
 
 # os specifics for Darwin
 
-nm_feature="cache line size"
-nm_feature_name='nm_cpu_cache_line'
-nm_feature_indent=yes
-nm_feature_run=value
-nm_feature_h='#include <stdio.h>
-              #include<sys/sysctl.h>'
-nm_feature_flags=
-nm_feature_value=
-nm_feature_test='
-    size_t line = 0;
-    size_t size = sizeof(line);
-    if (!sysctlbyname("hw.cachelinesize", &line, &size, 0, 0)) {
-       printf("%d\n", (int)line);
-       return 0;
-    }
-    return 1;
-'
-. ${NORE_ROOT}/auto/feature
 
-
-if [ "yes" = "$nm_found" ]; then
-  NM_CPU_CACHE_LINE=$nm_feature_value
-fi
-
-
-
-# end of file
+# eof

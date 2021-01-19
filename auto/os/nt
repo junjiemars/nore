@@ -16,48 +16,6 @@ nm_p="\;"
 
 # os specifics for Windows
 
-nm_feature="cache line size"
-nm_feature_name='nm_cpu_cache_line'
-nm_feature_indent=yes
-nm_feature_run=value
-nm_feature_h='#include <stdlib.h>
-              #include <stdio.h>
-              #include <windows.h>'
-nm_feature_flags=
-nm_feature_value=
-nm_feature_test='
-    size_t line = 0;
-    DWORD size = 0;
-    SYSTEM_LOGICAL_PROCESSOR_INFORMATION *buf = 0;
-    GetLogicalProcessorInformation(0, &size);
-    if (!size) {
-      return 1;
-    }
-    buf = (SYSTEM_LOGICAL_PROCESSOR_INFORMATION*)malloc(size);
-    if (!buf) {
-      return 1;
-    }
-    if (GetLogicalProcessorInformation(&buf[0], &size)) {
-      for (DWORD i = 0; i != size/sizeof(SYSTEM_LOGICAL_PROCESSOR_INFORMATION); i++) {
-        if (buf[i].Relationship == RelationCache && 1 == buf[i].Cache.Level) {
-          line = buf[i].Cache.LineSize;
-          break;
-        }
-      }
-    }
-    free(buf);
-    if (line) {
-      printf("%d\n", (int)line);
-      return 0;
-    }
-    return 1;
-'
-. ${NORE_ROOT}/auto/feature
 
 
-if [ "yes" = "$nm_found" ]; then
-  NM_CPU_CACHE_LINE=$nm_feature_value
-fi
-
-
-# end of file
+# eof
