@@ -63,7 +63,7 @@ do
 
     *)
       command="`echo $option | tr '[:upper:]' '[:lower:]'`"
-    ;;
+      ;;
   esac
 done
 
@@ -74,10 +74,10 @@ case ".$command" in
 esac
 
 on_windows_nt () {
- case "$PLATFORM" in
-   MSYS_NT*|MINGW*) return 0 ;;
-   *) return 1 ;;
- esac
+  case "$PLATFORM" in
+    MSYS_NT*|MINGW*) return 0 ;;
+    *) return 1 ;;
+  esac
 }
 
 on_darwin () {
@@ -94,8 +94,13 @@ on_linux () {
   esac
 }
 
+
 check_nore () {
-  git -C "${ROOT}" remote -v 2>/dev/null | grep -q 'junjiemars/nore'
+  git -C "${ROOT}" remote -v 2>/dev/null | grep -q 'junjiemars/nore' || return 1
+  if [ "${ROOT}" = "`$PWD`" ]; then
+    test -d "${ROOT}./nore" && rm -r "${ROOT}/.nore"
+    return 1
+  fi
 }
 
 check_nore_branch () {
@@ -115,6 +120,7 @@ upgrade_nore () {
 clone_nore () {
   git clone --depth=1 --branch=${NORE_BRANCH} ${GITHUB_H}/nore.git "${ROOT}" 1>/dev/null 2>&1
 }
+
 
 cat_configure () {
   local b="`check_nore_branch`"
@@ -525,17 +531,17 @@ fi
 
 echo $echo_n " + checking nore ... $echo_c"
 if `check_nore`; then
- echo_yes_or_no $?
- if [ "yes" = "$NORE_UPGRADE" ]; then
-   echo $echo_n " + upgrading nore ... $echo_c"
-   echo_yes_or_no `upgrade_nore ; echo $?`
-   exit_checking $? $BEGIN
- fi
+  echo_yes_or_no $?
+  if [ "yes" = "$NORE_UPGRADE" ]; then
+    echo $echo_n " + upgrading nore ... $echo_c"
+    echo_yes_or_no `upgrade_nore ; echo $?`
+    exit_checking $? $BEGIN
+  fi
 else
- echo_yes_or_no $?
- echo $echo_n " + cloning nore ... $echo_c"
- echo_yes_or_no `clone_nore ; echo $?`
- exit_checking $? $BEGIN
+  echo_yes_or_no $?
+  echo $echo_n " + cloning nore ... $echo_c"
+  echo_yes_or_no `clone_nore ; echo $?`
+  exit_checking $? $BEGIN
 fi
 
 echo $echo_n " + generating configure ... $echo_c"
