@@ -98,7 +98,7 @@ on_linux () {
 check_nore () {
   git -C "${ROOT}" remote -v 2>/dev/null | grep -q 'junjiemars/nore' || return 1
   if [ "${ROOT}" = "`$PWD`" ]; then
-    test -d "${ROOT}./nore" && rm -r "${ROOT}/.nore"
+    test -d "${ROOT}./nore" && rm -rf "${ROOT}/.nore"
     return 1
   fi
 }
