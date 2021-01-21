@@ -29,45 +29,45 @@ jobs:
         run: |
           CC=${{ matrix.CC }} ./test.sh
 
-  # MacOS:
-  #   runs-on: macos-latest
-  #   strategy:
-  #     matrix:
-  #       include:
-  #         - CC: "clang"
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #       with:
-  #         fetch-depth: 0 # checkout history and tags
-  #     - name:  Test Nore via CC=${{ matrix.CC }}
-  #       run: |
-  #         CC=${{ matrix.CC }} ./test.sh
+  MacOS:
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        include:
+          - CC: "clang"
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # checkout history and tags
+      - name:  Test Nore via CC=${{ matrix.CC }}
+        run: |
+          CC=${{ matrix.CC }} ./test.sh
 
-  # Windows:
-  #   runs-on: windows-latest
-  #   strategy:
-  #     matrix:
-  #       include:
-  #         - CC: "cl"
+  Windows:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        include:
+          - CC: "cl"
 
-  #   defaults:
-  #     run:
-  #       shell: msys2 {0}
+    defaults:
+      run:
+        shell: msys2 {0}
 
-  #   steps:
-  #   - uses: actions/checkout@v2
-  #     with:
-  #       fetch-depth: 0 # checkout history and tags
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0 # checkout history and tags
 
-  #   - name: Install Dependencies
-  #     uses: msys2/setup-msys2@v2
-  #     with:
-  #       update: true
-  #       install: git make mingw-w64-x86_64-gcc mingw-w64-x86_64
+    - name: Install Dependencies
+      uses: msys2/setup-msys2@v2
+      with:
+        update: true
+        install: git make mingw-w64-x86_64-gcc mingw-w64-x86_64
 
-  #   - name: Test Nore via CC=${{ matrix.CC }}
-  #     run: |
-  #       CC=${{ matrix.CC }} ./test.sh
+    - name: Test Nore via CC=${{ matrix.CC }}
+      run: |
+        CC=${{ matrix.CC }} ./test.sh
 
 
 # eof
