@@ -96,11 +96,14 @@ on_linux () {
 
 
 check_nore () {
-  git -C "${ROOT}" remote -v 2>/dev/null | grep -q 'junjiemars/nore'
-  if [ 0 -eq $? ]; then
-    if [ "${ROOT}" = "${PWD}/.nore" ]; then
+  if `git -C "${ROOT}" remote -v 2>/dev/null | grep -q 'junjiemars/nore'`; then
+    if [ "`check_nore_branch`" != "${NORE_BRANCH}" -a "${ROOT}" != "${PWD}/.nore" ]; then
+      ROOT="${PWD}/.nore"
       test -d "${ROOT}" && rm -rf "${ROOT}"
       return 1
+    else
+      # ignore unmatched branch
+      return 0
     fi
   else
     return 1
@@ -534,7 +537,7 @@ fi
 [ -d "${ROOT}" ] || mkdir -p "${ROOT}"
 
 echo $echo_n " + checking nore ... $echo_c"
-if `check_nore`; then
+if check_nore; then
   echo_yes_or_no $?
   if [ "yes" = "$NORE_UPGRADE" ]; then
     echo $echo_n " + upgrading nore ... $echo_c"
