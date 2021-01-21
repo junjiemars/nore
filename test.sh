@@ -284,7 +284,7 @@ END
 
 test_nore_auto_check () {
   local a="auto"
-  cp "${_ROOT_DIR_}/auto/check" "${a}"
+  sed -e 's/^#//g' "${_ROOT_DIR_}/auto/check" > "${a}"
   test_what "CC=$CC ./configure #auto"
   test_configure
 }
