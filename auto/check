@@ -259,7 +259,7 @@
 #
 ## check compiler features
 ##----------------------------------------
-#nm_feature="gcc restrict keyword"
+#nm_feature="$CC_NAME restrict keyword"
 #nm_feature_name="nm_have_restrict_kw"
 #nm_feature_run=
 #nm_feature_h=
