@@ -8,7 +8,7 @@ _WIN_ENV_=
 _TRACE_="${_TRACE_}"
 
 case "${_OS_NAME_}" in
-  MSYS_NT-*|MINGW??_NT-*) _OS_NAME_="WinNT" ;;
+  MSYS_NT-*|MINGW??*) _OS_NAME_="WinNT" ;;
 esac
 
 CC="${CC}"
