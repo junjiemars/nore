@@ -2,6 +2,7 @@
 
 _ROOT_DIR_="`cd -- $(dirname -- $0) && pwd`"
 _CI_DIR_="${_ROOT_DIR_%/}/ci"
+_BRANCH_="${_BRANCH_:-edge}"
 _OS_NAME_="`uname -s 2>/dev/null`"
 _WIN_ENV_=
 _TRACE_="${_TRACE_}"
@@ -36,7 +37,7 @@ env_ci_build () {
     exit 1
   fi
   cd "${_CI_DIR_}"
-  ${_ROOT_DIR_%/}/bootstrap.sh
+  ${_ROOT_DIR_%/}/bootstrap.sh --branch=${_BRANCH_}
 
   if [ "WinNT" = "${_OS_NAME_}" -a "cl" = "${CC}" ]; then
     if [ ! -f "${HOME}/.nore/cc-env.sh" ]; then

@@ -27,7 +27,7 @@ jobs:
           sudo apt-get install clang
       - name: Test Nore via CC=${{ matrix.CC }}
         run: |
-          CC=${{ matrix.CC }} ./test.sh --branch=edge
+          CC=${{ matrix.CC }} ./test.sh
 
   # MacOS:
   #   runs-on: macos-latest
