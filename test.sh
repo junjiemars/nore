@@ -276,10 +276,17 @@ END
 
   test_what "CC=$CC ./configure --with-std=c11"
   case "$_OS_NAME_" in
-    Darwin) test_configure "--with-std=c11"   ;;
-    Linux)  test_configure "--with-std=c11"   ;;
+    Darwin)   test_configure "--with-std=c11" ;;
+    Linux)    test_configure "--with-std=c11" ;;
     WinNT|*)  test_configure "--with-std=yes" ;;
   esac
+}
+
+test_nore_auto_check () {
+  local a="auto"
+  cp "${_ROOT_DIR_}/auto/check" "${a}"
+  test_what "CC=$CC ./configure #auto"
+  test_configure
 }
 
 # test
@@ -289,6 +296,7 @@ test_nore_new_option
 test_nore_symbol_option
 test_nore_optimize_option
 test_nore_std_option
+test_nore_auto_check
 
 # clean CI directory
 [ -d "${_CI_DIR_}" ] && rm -r "${_CI_DIR_}"
