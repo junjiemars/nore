@@ -1,4 +1,4 @@
-#### -*- mode:sh -*- vim:ft=sh
+##### -*- mode:sh -*- vim:ft=sh
 ####
 ## No More than a C build system for clang, gcc and msvc.
 ## https://github.com/junjiemars/nore
@@ -318,7 +318,7 @@
 #
 #
 #echo "checking OS features ..."
-## check OS features
+## check OS features: mmap
 ## ----------------------------------------
 #case $NM_SYSTEM in
 #  Darwin|Linux)
@@ -335,6 +335,44 @@
 #  *)
 #    ;;
 #esac
+#
+#
+## check OS features: openmp
+##----------------------------------------
+#nm_feature="openmp"
+#nm_feature_name="nm_have_openmp"
+#nm_feature_run=no
+#nm_feature_h='#include <omp.h>'
+#nm_feature_flags="$nm_openmp_opt"
+#nm_feature_test='#pragma omp parallel
+#                {};'
+#. ${NORE_ROOT}/auto/feature
+#if [ yes = $nm_found ]; then
+#	flag=CFLAGS op="+=" value=$nm_feature_flags . ${NORE_ROOT}/auto/make_define
+#	nm_feature="omp_get_num_procs fn"
+#	nm_feature_name="nm_have_omp_get_num_procs_fn"
+#	nm_feature_run=no
+#	nm_feature_h='#include <omp.h>'
+#	nm_feature_flags="$nm_openmp_opt"
+#	nm_feature_test='omp_get_num_procs();'
+#	. ${NORE_ROOT}/auto/feature
+#fi
+#
+#
+#echo "checking Libraries ..."
+## check libraries
+## ----------------------------------------
+#nm_feature="pthread"
+#nm_feature_name="nm_have_pthread_h"
+#nm_feature_run=no
+#nm_feature_h="#include <pthread.h>"
+#nm_feature_flags=
+#nm_feature_test='pthread_t t[4];'
+#. ${NORE_ROOT}/auto/feature
+#if [ yes = $nm_found ]; then
+#  flag=has_pthread op="=" value="YES" \
+#      . ${NORE_ROOT}/auto/make_define
+#fi
 #
 #
 ## eof
