@@ -5,8 +5,8 @@
 ####
 ## check
 ####
-
-
+#
+#
 ## check header file existing
 ##----------------------------------------
 #echo "checking C99 header files ..."
@@ -33,7 +33,7 @@
 #include="signal.h" . ${NORE_ROOT}/auto/include
 #
 #
-# echo "checking Machine features ..."
+#echo "checking Machine features ..."
 ## check machine features
 ##----------------------------------------
 #nm_feature="endian"
@@ -153,7 +153,7 @@
 #fi # end of check cache line size
 #
 #
-# echo "checking Compiler features ..."
+#echo "checking Compiler features ..."
 ## check compiler features
 ##----------------------------------------
 #case "$CC_NAME" in
@@ -317,7 +317,7 @@
 #esac
 #
 #
-# echo "checking OS features ..."
+#echo "checking OS features ..."
 ## check OS features
 ## ----------------------------------------
 #case $NM_SYSTEM in
