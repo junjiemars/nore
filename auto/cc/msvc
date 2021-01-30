@@ -129,8 +129,8 @@ nm_model_opt="-EHsc"
 # unicode
 nm_utf_opt="-utf-8"
 
-# trigraph
-nm_trigraph_opt="-Zc:trigraphs"
+# trigraphs
+nm_trigraphs_opt="-Zc:trigraphs"
 
 # openmp
 nm_openmp_opt="-openmp"
