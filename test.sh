@@ -274,11 +274,18 @@ nm_feature_test='atomic_is_lock_free(&a);'
 
 END
 
+  test_what "CC=$CC ./configure --with-std=no"
+  test_configure "--with-std=no"
+
   test_what "CC=$CC ./configure --with-std=c11"
   case "$_OS_NAME_" in
     Darwin)   test_configure "--with-std=c11" ;;
     Linux)    test_configure "--with-std=c11" ;;
-    WinNT|*)  test_configure "--with-std=yes" ;;
+    WinNT|*)
+      case "$CC" in
+        cl)  test_configure "--with-std=yes" ;;
+        *)   test_configure "--with-std=c11" ;;
+      esac
   esac
 }
 
