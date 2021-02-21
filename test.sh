@@ -277,14 +277,14 @@ END
   test_what "CC=$CC ./configure --with-std=no"
   test_configure "--with-std=no"
 
-  test_what "CC=$CC ./configure --with-std=c11"
+  test_what "CC=$CC ./configure --with-std=-std=c11"
   case "$_OS_NAME_" in
-    Darwin)   test_configure "--with-std=c11" ;;
-    Linux)    test_configure "--with-std=c11" ;;
+    Darwin)   test_configure "--with-std=-std=c11" ;;
+    Linux)    test_configure "--with-std=-std=c11" ;;
     WinNT|*)
       case "$CC" in
-        cl)  test_configure "--with-std=yes" ;;
-        *)   test_configure "--with-std=c11" ;;
+        cl)      test_configure "--with-std=yes" ;;
+        gcc|*)   test_configure "--with-std=-std=c11" ;;
       esac
   esac
 }
