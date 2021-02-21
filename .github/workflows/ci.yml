@@ -35,6 +35,7 @@ jobs:
       matrix:
         include:
           - CC: "clang"
+          - CC: "gcc"
     steps:
       - uses: actions/checkout@v2
         with:
