@@ -265,15 +265,15 @@ test_nore_auto_check () {
 
 # test
 env_ci_build
-# test_nore_where_command
-# test_nore_new_option
-# test_nore_symbol_option
-# test_nore_optimize_option
+test_nore_where_command
+test_nore_new_option
+test_nore_symbol_option
+test_nore_optimize_option
 test_nore_std_option
-# test_nore_auto_check
+test_nore_auto_check
 
 # clean CI directory
-# [ -d "${_CI_DIR_}" ] && rm -r "${_CI_DIR_}"
+[ -d "${_CI_DIR_}" ] && rm -r "${_CI_DIR_}"
 
 echo "!completed"
 
