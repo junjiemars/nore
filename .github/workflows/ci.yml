@@ -64,7 +64,6 @@ jobs:
         install: >-
           git
           make
-          mingw-w64-x86_64
           mingw-w64-x86_64-gcc
     - name: Test Nore via CC=${{ matrix.CC }}
       run: |
