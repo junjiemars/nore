@@ -4,7 +4,7 @@ _ROOT_DIR_="`cd -- $(dirname -- $0) && pwd`"
 _CI_DIR_="${_ROOT_DIR_%/}/ci"
 _BRANCH_="${_BRANCH_:-edge}"
 _OS_NAME_="`uname -s 2>/dev/null`"
-_WIN_ENV_=
+_MSVC_ENV_=
 _TRACE_="${_TRACE_}"
 
 case "${_OS_NAME_}" in
@@ -50,7 +50,7 @@ env_ci_build () {
       echo "!panic: ${HOME}/.nore/cc-env.bat no found"
       exit 1
     fi
-    _WIN_ENV_="${HOME}/.nore/cc-env.bat"
+    _MSVC_ENV_="${HOME}/.nore/cc-env.bat"
   fi
 }
 
@@ -63,7 +63,7 @@ test_what () {
 test_configure () {
   local msvc_bat="msvc.bat"
   cd "$_CI_DIR_"
-  if [ -z "${_WIN_ENV_}" ]; then
+  if [ -z "${_MSVC_ENV_}" ]; then
     ./configure ${_TRACE_} $@
   else
     cat << END > "${msvc_bat}"
@@ -77,14 +77,14 @@ END
       exit 1
     fi
     chmod u+x ${msvc_bat}
-    ./${msvc_bat} "${_WIN_ENV_}"
+    ./${msvc_bat} "${_MSVC_ENV_}"
   fi
 }
 
 test_make () {
   local msvc_bat="msvc.bat"
   cd "$_CI_DIR_"
-  if [ -z "${_WIN_ENV_}" ]; then
+  if [ -z "${_MSVC_ENV_}" ]; then
     make $@
   else
     cat << END > "${msvc_bat}"
@@ -98,7 +98,7 @@ END
       exit 1
     fi
     chmod u+x ${msvc_bat}
-    ./${msvc_bat} "${_WIN_ENV_}" "make $@"
+    ./${msvc_bat} "${_MSVC_ENV_}" "make $@"
   fi
 }
 
@@ -249,7 +249,7 @@ END
     Linux)    test_configure "--with-std=-std=c11" ;;
     WinNT|*)
       case "$CC" in
-        cl)      test_configure "--with-std=yes" ;;
+        cl)      test_configure "--with-std=-std:c11" ;;
         gcc|*)   test_configure "--with-std=-std=c11" ;;
       esac
   esac

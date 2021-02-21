@@ -110,7 +110,7 @@ case "$NM_STD" in
     ;; 
   *)
     # for c90: -Za
-    # for c++14 or later: -std:c++14, -std:latest
+    # for c11 or later: -std:c11, -std:c17, -std:latest
     nm_std_opt="${NM_STD}"
     ;;
 esac
