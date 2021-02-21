@@ -9,39 +9,39 @@ on:
       - edge
 
 jobs:
-  Linux:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        include:
-          - CC: "gcc"
-          - CC: "clang"
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0 # checkout history and tags
 
-      - name: Install Dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install clang
-      - name: Test Nore via CC=${{ matrix.CC }}
-        run: |
-          CC=${{ matrix.CC }} ./test.sh
+  # Linux:
+  #   runs-on: ubuntu-latest
+  #   strategy:
+  #     matrix:
+  #       include:
+  #         - CC: "gcc"
+  #         - CC: "clang"
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #       with:
+  #         fetch-depth: 0 # checkout history and tags
+  #     - name: Install Dependencies
+  #       run: |
+  #         sudo apt-get update
+  #         sudo apt-get install clang
+  #     - name: Test Nore via CC=${{ matrix.CC }}
+  #       run: |
+  #         CC=${{ matrix.CC }} ./test.sh
 
-  MacOS:
-    runs-on: macos-latest
-    strategy:
-      matrix:
-        include:
-          - CC: "clang"
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0 # checkout history and tags
-      - name:  Test Nore via CC=${{ matrix.CC }}
-        run: |
-          CC=${{ matrix.CC }} ./test.sh
+  # MacOS:
+  #   runs-on: macos-latest
+  #   strategy:
+  #     matrix:
+  #       include:
+  #         - CC: "clang"
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #       with:
+  #         fetch-depth: 0 # checkout history and tags
+  #     - name:  Test Nore via CC=${{ matrix.CC }}
+  #       run: |
+  #         CC=${{ matrix.CC }} ./test.sh
 
   Windows:
     runs-on: windows-latest
@@ -49,22 +49,23 @@ jobs:
       matrix:
         include:
           - CC: "cl"
-
+          - CC: "gcc"
     defaults:
       run:
         shell: msys2 {0}
-
     steps:
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0 # checkout history and tags
-
     - name: Install Dependencies
       uses: msys2/setup-msys2@v2
       with:
         update: true
-        install: git make mingw-w64-x86_64-gcc mingw-w64-x86_64
-
+        install: >-
+          git
+          make
+          mingw-w64-x86_64
+          mingw-w64-x86_64-gcc
     - name: Test Nore via CC=${{ matrix.CC }}
       run: |
         CC=${{ matrix.CC }} ./test.sh
