@@ -19,14 +19,6 @@ if [ "dumb" != "$nm_feature_run" ]; then
 fi
 
 
-cat << END >> $NM_AUTO_ERR
-
-----------------------------------------
-checking for $nm_feature
-
-END
-
-
 if [ -n "$nm_feature_name" ]; then
   nm_have_feature=`echo $nm_feature_name \
         | tr '[\-: =]' '_' | tr '[:lower:]' '[:upper:]'`
@@ -50,6 +42,15 @@ END
 
 
 nm_test="$CC $nm_feature_flags ${bin_out}${NM_AUTOTEST} $autotest_c $nm_feature_tails"
+
+
+cat << END >> $NM_AUTO_ERR
+
+----------------------------------------
+checking for $nm_feature: "$nm_test"
+
+END
+
 
 `$nm_test >> "$NM_AUTO_ERR" 2>&1`
 

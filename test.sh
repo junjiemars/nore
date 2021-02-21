@@ -210,72 +210,38 @@ END
 }
 
 test_nore_std_option () {
-  local a="auto"
+  local c="`basename $_CI_DIR_`.c"
+  local m="Makefile"
 
-  cat <<END > "$a"
-echo "checking ISO/IEC 9899:2011 (C11) new header files ..."
-#-----------------------------------
-include="stdalign.h" . \${NORE_ROOT}/auto/include
-include="stdatomic.h" . \${NORE_ROOT}/auto/include
-include="stdnoreturn.h" . \${NORE_ROOT}/auto/include
-include="threads.h" . \${NORE_ROOT}/auto/include
-include="uchar.h" . \${NORE_ROOT}/auto/include
+  cat <<END > "$c"
+#include <nore.h>
+#include <stdio.h>
+#include <assert.h>
 
-echo "checking C11 new features ..."
-#-----------------------------------
-nm_feature="alignof"
-nm_feature_name="nm_have_alignof"
-nm_feature_run=no
-nm_feature_h='#include <stdalign.h>'
-nm_feature_flags=
-nm_feature_test='1 == alignof(char);'
-. \${NORE_ROOT}/auto/feature
-
-nm_feature="alignas"
-nm_feature_name="nm_have_alignas"
-nm_feature_run=no
-nm_feature_h='#include <stdalign.h>'
-nm_feature_flags=
-nm_feature_test='alignas(64) char cache[64];'
-. \${NORE_ROOT}/auto/feature
-
-nm_feature="noreturn"
-nm_feature_name="nm_have_noreturn"
-nm_feature_run=no
-nm_feature_h='#include <stdnoreturn.h>
-              #include <stdlib.h>
-              noreturn void fatal(int x) {
-                exit(x);
-              }
-'
-nm_feature_flags=
-nm_feature_test='fatal(0);'
-. \${NORE_ROOT}/auto/feature
-
-nm_feature="static_assert"
-nm_feature_name="nm_have_static_assert"
-nm_feature_run=no
-nm_feature_h="#include <assert.h>"
-nm_feature_flags=
-nm_feature_flags=
-nm_feature_test="enum {N=5}; static_assert(N==5, \"N is not equal 5\");"
-. \${NORE_ROOT}/auto/feature
-
-nm_feature="atomic"
-nm_feature_name="nm_have_atomic"
-nm_feature_run=no
-nm_feature_h='#include <stdatomic.h>
-_Atomic struct A {
-  int x;
-} a;'
-nm_feature_flags=
-nm_feature_test='atomic_is_lock_free(&a);'
-. \${NORE_ROOT}/auto/feature
-
+int main(void) {
+  enum { N = 5 };
+  static_assert(N == 5, "N is not equal 5");
+  return 0;
+}
 END
 
-  test_what "CC=$CC ./configure --with-std=no"
-  test_configure "--with-std=no"
+  cat <<END > "$m"
+include out/Makefile
+
+ci_root := ./
+ci_binout := \$(bin_path)ci\$(bin_ext)
+
+ci: \$(ci_binout)
+ci_test: ci
+	\$(ci_binout)
+
+\$(ci_binout): \$(ci_root)ci.c
+	\$(CC) \$(CFLAGS) \$(INC) \$^ \$(bin_out)\$@
+END
+
+  test_what "CC=$CC ./configure --with-std=yes"
+  test_configure "--with-std=yes"
+  test_make clean test
 
   test_what "CC=$CC ./configure --with-std=-std=c11"
   case "$_OS_NAME_" in
@@ -287,6 +253,7 @@ END
         gcc|*)   test_configure "--with-std=-std=c11" ;;
       esac
   esac
+  test_make clean test
 }
 
 test_nore_auto_check () {
@@ -298,15 +265,15 @@ test_nore_auto_check () {
 
 # test
 env_ci_build
-test_nore_where_command
-test_nore_new_option
-test_nore_symbol_option
-test_nore_optimize_option
+# test_nore_where_command
+# test_nore_new_option
+# test_nore_symbol_option
+# test_nore_optimize_option
 test_nore_std_option
-test_nore_auto_check
+# test_nore_auto_check
 
 # clean CI directory
-[ -d "${_CI_DIR_}" ] && rm -r "${_CI_DIR_}"
+# [ -d "${_CI_DIR_}" ] && rm -r "${_CI_DIR_}"
 
 echo "!completed"
 
