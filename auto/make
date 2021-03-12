@@ -199,11 +199,12 @@ cat << END >> $NM_MAKEFILE
 #---------------------------------------
 
 root = $NM_SRC/
+out = $NM_OUT/
 
-inc_path=$NM_OUT/inc/
-tmp_path=$NM_OUT/tmp/
-lib_path=$NM_OUT/lib/
-bin_path=$NM_OUT/bin/
+inc_path = $NM_OUT/inc/
+tmp_path = $NM_OUT/tmp/
+lib_path = $NM_OUT/lib/
+bin_path = $NM_OUT/bin/
 
 #---------------------------------------
 END
