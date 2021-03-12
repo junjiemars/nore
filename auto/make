@@ -307,7 +307,7 @@ ${nm_stick_norm}_test: ${nm_stick_norm}
 	\$(${nm_stick_norm}_binout)
 
 \$(${nm_stick_norm}_binout): \$(${nm_stick_norm}_root)/${nm_stick_norm}.c
-	\$(CC) \$(CFLAGS) \$(INC) \$^ \$(bin_out) \$@
+	\$(CC) \$(CFLAGS) \$(INC) \$^ \$(bin_out)\$@
 
 END
     if [ $nm_stick_src != . ]; then
