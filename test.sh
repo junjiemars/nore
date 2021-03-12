@@ -197,7 +197,7 @@ ci_test: ci
 	\$(ci_binout) 5
 
 \$(ci_binout): \$(ci_root)/ci.c
-	\$(CC) \$(CFLAGS) \$(INC) \$^ \$(bin_out) \$@
+	\$(CC) \$(CFLAGS) \$(INC) \$^ \$(bin_out)\$@
 END
 
   test_what "CC=$CC ./configure --with-optimize=no"
@@ -236,7 +236,7 @@ ci_test: ci
 	\$(ci_binout)
 
 \$(ci_binout): \$(ci_root)/ci.c
-	\$(CC) \$(CFLAGS) \$(INC) \$^ \$(bin_out) \$@
+	\$(CC) \$(CFLAGS) \$(INC) \$^ \$(bin_out)\$@
 END
 
   test_what "CC=$CC ./configure --with-std=yes"
