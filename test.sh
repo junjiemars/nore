@@ -190,14 +190,14 @@ END
 include out/Makefile
 
 ci_root := ./
-ci_binout := \$(bin_path)ci\$(bin_ext)
+ci_binout := \$(bin_path)/ci\$(bin_ext)
 
 ci: \$(ci_binout)
 ci_test: ci
 	\$(ci_binout) 5
 
-\$(ci_binout): \$(ci_root)ci.c
-	\$(CC) \$(CFLAGS) \$(INC) \$^ \$(bin_out)\$@
+\$(ci_binout): \$(ci_root)/ci.c
+	\$(CC) \$(CFLAGS) \$(INC) \$^ \$(bin_out) \$@
 END
 
   test_what "CC=$CC ./configure --with-optimize=no"
@@ -229,14 +229,14 @@ END
 include out/Makefile
 
 ci_root := ./
-ci_binout := \$(bin_path)ci\$(bin_ext)
+ci_binout := \$(bin_path)/ci\$(bin_ext)
 
 ci: \$(ci_binout)
 ci_test: ci
 	\$(ci_binout)
 
-\$(ci_binout): \$(ci_root)ci.c
-	\$(CC) \$(CFLAGS) \$(INC) \$^ \$(bin_out)\$@
+\$(ci_binout): \$(ci_root)/ci.c
+	\$(CC) \$(CFLAGS) \$(INC) \$^ \$(bin_out) \$@
 END
 
   test_what "CC=$CC ./configure --with-std=yes"

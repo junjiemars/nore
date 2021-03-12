@@ -86,11 +86,11 @@ nm_entry_opt=
 # path separator
 nm_p=":"
 
-obj_out="-o "
-bin_out="-o "
-cpp_out="-o "
-asm_out="-o "
-ar_out="rcs "
+obj_out="-o"
+bin_out="-o"
+cpp_out="-o"
+asm_out="-o"
+ar_out="rcs"
 
 obj_ext=".o"
 bin_ext=
@@ -177,4 +177,3 @@ INC="${nm_inc_opt}${NM_OUT} ${nm_inc_opt}${NM_OUT}/inc${INC:+ $INC}"
 
 
 # eof
-
