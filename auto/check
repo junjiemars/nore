@@ -297,6 +297,31 @@
 #fi
 #
 #
+### check compiler features
+###----------------------------------------
+#case "$CC_NAME" in
+#  gcc)
+#    nm_feature="$CC_NAME builtin atomic"
+#    nm_feature_name=
+#    nm_feature_indent=yes
+#    nm_feature_run=yes
+#    nm_feature_h=
+#    nm_feature_flags=
+#    nm_feature_test="long  n = 0;
+#                     if (!__sync_bool_compare_and_swap(&n, 0, 1))
+#                       return 1;
+#                     if (__sync_fetch_and_add(&n, 1) != 1)
+#                       return 1;
+#                     if (n != 2)
+#                       return 1;
+#                     __sync_synchronize();"
+#    . ${NORE_ROOT}/auto/feature
+#    ;;
+#  msvc)
+#    ;;
+#esac
+#
+#
 ## check linker's -rpath features
 ##----------------------------------------
 #case "$CC_NAME" in
