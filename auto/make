@@ -25,6 +25,8 @@ cat << END > $NM_MAKEFILE
 #
 # ${gen_by_nore}
 #
+# GNU make Manual: https://www.gnu.org/software/make/manual/make.html
+#
 
 CC = $CC
 `
@@ -355,7 +357,6 @@ test: ${nm_sticks_test}
         ${nm_sticks_build} ${nm_sticks_test}
 
 #---------------------------------------
-# GNU make Manual: https://www.gnu.org/software/make/manual/make.html
 
 #eof
 END
