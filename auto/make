@@ -353,6 +353,11 @@ test: ${nm_sticks_test}
 
 .PHONY: default all clean test task install \\
         ${nm_sticks_build} ${nm_sticks_test}
+
+#---------------------------------------
+# GNU make Manual: https://www.gnu.org/software/make/manual/make.html
+
+#eof
 END
 
 fi
