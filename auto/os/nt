@@ -12,7 +12,7 @@ lib_ext=".dll"
 
 have=$NM_SYSTEM . ${NORE_ROOT}/auto/have
 
-nm_p="\;"
+nm_path_sep="\;"
 
 # os specifics for Windows
 
