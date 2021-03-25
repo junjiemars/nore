@@ -97,7 +97,7 @@ nm_link_opt = $nm_link_opt
 nm_entry_opt = $nm_entry_opt
 
 # path separator
-nm_p = $nm_p
+nm_path_sep = $nm_path_sep
 
 # nore options
 NM_SYMBOL = $NM_SYMBOL

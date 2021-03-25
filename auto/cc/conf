@@ -84,7 +84,7 @@ nm_link_opt=
 nm_entry_opt=
 
 # path separator
-nm_p=":"
+nm_path_sep=":"
 
 obj_out="-o"
 bin_out="-o"
