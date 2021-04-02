@@ -113,6 +113,8 @@ NM_ARCH = $NM_ARCH
 `symbol_value NM_SYSTEM` = $NM_SYSTEM
 `symbol_value NM_RELEASE` = $NM_RELEASE
 `symbol_value NM_MACHINE` = $NM_MACHINE
+
+# compiler
 `symbol_value CC_NAME` = $CC_NAME
 `symbol_value CC_VER` = $CC_VER
 
