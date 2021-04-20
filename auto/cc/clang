@@ -5,8 +5,8 @@
 # author: junjiemars@gmail.com
 #------------------------------------------------
 
-nm_clang_ver="`$CC -v 2>&1 | grep '\(clang\|LLVM\) version' 2>&1 \
-                           | sed -e 's/^.* version \(.*\)/\1/'`"
+nm_clang_ver=`$CC -v 2>&1 | grep '\(clang\|LLVM\) version' 2>&1 \
+                          | sed -e 's/^.* version \(.*\)/\1/'`
 
 echo " + clang version: $nm_clang_ver"
 
@@ -14,8 +14,8 @@ NM_COMPILER="clang $nm_clang_ver"
 have=NM_COMPILER value="\"$NM_COMPILER\"" . ${NORE_ROOT}/auto/define
 
 . ${NORE_ROOT}/auto/cc/version
-CC_VER="`version_n $(echo $nm_clang_ver | cut -d' ' -f1)`"
-have=CLANG value=$CC_VER . ${NORE_ROOT}/auto/define
+CC_VER=`version_n $(echo $nm_clang_ver | cut -d' ' -f1)`
+have=CLANG value="$CC_VER" . ${NORE_ROOT}/auto/define
 
 
 # compiler
