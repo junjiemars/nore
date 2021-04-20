@@ -15,7 +15,7 @@ have=NM_COMPILER value="\"$NM_COMPILER\"" . ${NORE_ROOT}/auto/define
 
 . ${NORE_ROOT}/auto/cc/version
 CC_VER=`version_n $(echo $nm_clang_ver | cut -d' ' -f1)`
-have=CLANG value="$CC_VER" . ${NORE_ROOT}/auto/define
+have=CLANG value=$CC_VER . ${NORE_ROOT}/auto/define
 
 
 # compiler

@@ -16,7 +16,8 @@ version_n () {
   if [ -n "$v2" ]; then
     n=$(( n+v2*100 ))
   fi
-  if [ -n "$v3" ]; then
+  if [ -n "$3" ]; then
+    v3=`echo $v3 | sed -e 's/^\([0-9]*\).*/\1/'`
     n=$(( n+v3 ))
   fi
   echo $n
