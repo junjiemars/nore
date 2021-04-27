@@ -39,6 +39,7 @@ CPP = $CPP
 AS = $AS
 AR = $AR
 LD = $LD
+LINK = $LINK
 
 
 CPPFLAGS = $CPPFLAGS
