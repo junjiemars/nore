@@ -94,7 +94,6 @@ nm_lib_opt = $nm_lib_opt
 
 # link
 nm_link_opt = $nm_link_opt
-nm_entry_opt = $nm_entry_opt
 
 # path separator
 nm_path_sep = $nm_path_sep

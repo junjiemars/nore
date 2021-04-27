@@ -102,10 +102,6 @@ nm_libdir_opt="-L"
 nm_lib_opt="-l"
 
 # link option
-
-# entry
-nm_entry_opt="-Wl,-e"
-
 LDFLAGS="${nm_libdir_opt}${NM_OUT}/lib${LDFLAGS:+ $LDFLAGS}"
 
 

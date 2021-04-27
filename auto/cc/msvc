@@ -142,9 +142,6 @@ nm_lib_opt=
 # link option @ tail
 nm_link_opt="-link"
 
-# entry
-nm_entry_opt="${nm_link_opt} -entry:"
-
 LDFLAGS="${nm_link_opt} ${nm_libdir_opt}${NM_OUT}/lib${LDFLAGS:+ $LDFLAGS}"
 
 
