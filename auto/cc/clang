@@ -27,6 +27,9 @@ have=CLANG value=$CC_VER . ${NORE_ROOT}/auto/define
 # assembler
 [ "." = ".$AS" ] && AS="\$(CC)"
 
+# linker
+[ "." = ".$LD" ] && LD="ld"
+
 # archive
 [ "." = ".$AR" ] && AR="ar"
 

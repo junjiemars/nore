@@ -7,7 +7,6 @@
 
 CC=${CC:-cc}
 CXX=
-LINK="\$(CC)"
 
 # c preprocessor
 CPP=${CPP}

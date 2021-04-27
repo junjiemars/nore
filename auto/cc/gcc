@@ -27,6 +27,9 @@ have=GCC value=$CC_VER . ${NORE_ROOT}/auto/define
 # assembler
 [ "." = ".$AS" ] && AS="\$(CC)"
 
+# linker
+[ "." = ".$LD" ] && LD="ld"
+
 # archiver
 [ "." = ".$AR" ] && AR="ar"
 

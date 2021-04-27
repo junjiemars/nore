@@ -27,6 +27,9 @@ have=MSVC value=$CC_VER . ${NORE_ROOT}/auto/define
 # assembler
 [ "." = ".$AS" ] && AS="ml"
 
+# linker
+[ "." = ".$LD" ] && LD="link"
+
 # archive
 [ "." = ".$AR" ] && AR="lib"
 
