@@ -82,6 +82,7 @@ END
 }
 
 test_make_print_database () {
+  test_what "make: print database"
   make -C "$_CI_DIR_" -p 2>&1 || echo "------------"
 }
 
