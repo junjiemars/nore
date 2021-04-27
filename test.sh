@@ -81,6 +81,10 @@ END
   fi
 }
 
+test_make_print_database () {
+  make -C "$_CI_DIR_" -p 2>&1 || echo "------------"
+}
+
 test_make () {
   local msvc_bat="msvc.bat"
   cd "$_CI_DIR_"
@@ -265,6 +269,7 @@ test_nore_auto_check () {
 
 # test
 env_ci_build
+test_make_print_database
 test_nore_where_command
 test_nore_new_option
 test_nore_symbol_option
