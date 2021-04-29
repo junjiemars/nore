@@ -483,15 +483,12 @@ esac
 		:END:
 
 The *where* command used to review your current Nore's environment.
-And after [[#configuration][configuration]], Nore should generate the =cc-env.sh= shell
-script file at your =$HOME/.nore= or =%UERPROFILE%/.nore=
-directory. Run =cc-env.sh= will generate some auxiliary files to help
-you setup your C programming environment and you can find those
-auxiliary files via *where* command.
+After [[#configuration][configuration]], Nore should generate the =cc-env.sh= shell script
+file at your =$HOME/.nore= or =%UERPROFILE%/.nore= directory. Run
+=cc-env.sh= will generate some auxiliary files to help you setup your
+C programming environment.
 
 The =cc-env.sh= will generates the following files:
-  =cc-inc.vimrc= file whether had been generated. =0= indicates those
-  files had been generated, othwise is not.
 - =cc-env.bat= file: only for /msvc/ on Windows
 - =cc-inc.lst= file: a list of C include path
 - =cc-inc.vimrc= file: =vimrc= file if =vim= already been instaslled
@@ -584,9 +581,6 @@ Editors.
 	 :CUSTOM_ID: vim
 	 :END:
 
-I prefer non plugin Vim settings, so I can easily working on my all
-machines(download [[https://raw.githubusercontent.com/junjiemars/kit/master/ul/.vimrc][non-plugin .vimrc]]).
-
 On any platform, don't warry about C include path, Nore should
 generate a /shell script/ named =~/.nore/cc-env.sh= for you (for
 details see [[#where][where]] command).
@@ -614,7 +608,8 @@ On Window:
 
 [[https://github.com/junjiemars/.emacs.d][More Reasonable Emacs]] has awsome C programming experience, including C
 source code and makefile editing, syntax highlight, auto completion,
-debuger interactive, and excellent smooth.
+interactive debugger(gdb, lldb, cdb), interactive shell, all those
+excellently smooth.
 
 **  Visual Stduio Code
 		:PROPERTIES:
@@ -641,6 +636,6 @@ $ less out/Makefile
 $ ./configure trace
 $ ./configure trace --without-error
 
-# make debugging options: --just-print --print-data-base --warn-undefined-variables
+# make debugging options: --just-print --print-data-base --warn-undefined-variables --debug=b
 $ make --just-print
 #+END_SRC
