@@ -84,7 +84,7 @@ END
 
 test_install_from_github () {
   local b="https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.sh"
-  test_what "install: from github"
+  test_what "install from github.com"
   if [ -d "$_CI_DIR_" ]; then
     rm -r "${_CI_DIR_}"
   fi
@@ -94,7 +94,7 @@ test_install_from_github () {
 }
 
 test_make_print_database () {
-  test_what "make: print database"
+  test_what "print the make's predefined database"
   make -C "$_CI_DIR_" -p 2>&1 || echo "------------"
 }
 
