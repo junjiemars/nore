@@ -20,15 +20,6 @@ if [ -z "$CC" ]; then
   esac
 fi
 
-test_install_from_github () {
-  local b="https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.sh"
-  if [ -d "$_CI_DIR_" ]; then
-    rm -r "${_CI_DIR_}"
-  fi
-  mkdir -p "$_CI_DIR_" && cd "$_CI_DIR_"
-  
-  curl $b -sSfL | sh
-}
 
 env_ci_build () {
   if [ -d "$_CI_DIR_" ]; then
@@ -89,6 +80,17 @@ END
     chmod u+x ${msvc_bat}
     ./${msvc_bat} "${_MSVC_ENV_}"
   fi
+}
+
+test_install_from_github () {
+  local b="https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.sh"
+  test_what "install: from github"
+  if [ -d "$_CI_DIR_" ]; then
+    rm -r "${_CI_DIR_}"
+  fi
+  mkdir -p "$_CI_DIR_" && cd "$_CI_DIR_"
+  
+  curl $b -sSfL | sh --branch=$_BRANCH_
 }
 
 test_make_print_database () {
@@ -281,14 +283,14 @@ test_nore_auto_check () {
 
 # test
 test_install_from_github
-# env_ci_build
-# # test_make_print_database
-# test_nore_where_command
-# test_nore_new_option
-# test_nore_symbol_option
-# test_nore_optimize_option
-# test_nore_std_option
-# test_nore_auto_check
+env_ci_build
+test_make_print_database
+test_nore_where_command
+test_nore_new_option
+test_nore_symbol_option
+test_nore_optimize_option
+test_nore_std_option
+test_nore_auto_check
 
 # clean CI directory
 [ -d "${_CI_DIR_}" ] && rm -r "${_CI_DIR_}"
