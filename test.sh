@@ -274,6 +274,17 @@ END
   test_make clean test
 }
 
+test_nore_prefix_option () {
+  local d="${_CI_DIR_}/xxx"
+	test_what "CC=$CC ./configure --prefix=xxx"
+  test_configure --new
+  test_configure --prefix=xxx
+  test_make clean test install
+  if [ -d "$d" ]; then
+    rm -r "$d"
+  fi
+}
+
 test_nore_auto_check () {
   local a="auto"
   sed -e 's/^#//g' "${_ROOT_DIR_}/auto/check" > "${a}"
@@ -290,6 +301,7 @@ test_nore_new_option
 test_nore_symbol_option
 test_nore_optimize_option
 test_nore_std_option
+test_nore_prefix_option
 test_nore_auto_check
 
 # clean CI directory
