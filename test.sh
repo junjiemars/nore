@@ -275,9 +275,9 @@ test_nore_optimize_option
 test_nore_std_option
 test_nore_auto_check
 
-# # clean CI directory
-# [ -d "${_CI_DIR_}" ] && rm -r "${_CI_DIR_}"
+# clean CI directory
+[ -d "${_CI_DIR_}" ] && rm -r "${_CI_DIR_}"
 
-echo "!completed"
+echo "#!completed"
 
 # eof
