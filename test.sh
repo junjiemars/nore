@@ -90,7 +90,7 @@ test_install_from_github () {
   fi
   mkdir -p "$_CI_DIR_" && cd "$_CI_DIR_"
   
-  curl $b -sSfL | sh --branch=$_BRANCH_
+  curl $b -sSfL | sh -s -- --branch=$_BRANCH_
 }
 
 test_make_print_database () {
