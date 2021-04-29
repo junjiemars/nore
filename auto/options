@@ -88,15 +88,15 @@ do
       && NM_OUT="${value%/}" || panic_arg "--out-dir=" "$value"
       ;;
 
-    --new)                   NM_NEW=YES                   ;;
+    --new)                   NM_NEW=YES                     ;;
 
     --with-error=*)          NM_ERROR="$value"              ;;
     --with-warn=*)           NM_WARN="$value"               ;;
     --with-verbose=*)        NM_VERBOSE="$value"            ;;
     --with-release=*)        NM_BUILD="$value"              ;;
     --with-symbol=*)         NM_SYMBOL="$value"             ;;
-    --with-arch=*)           NM_ARCH="$value"             ;;
-    --with-std=*)            NM_STD="$value"              ;;
+    --with-arch=*)           NM_ARCH="$value"               ;;
+    --with-std=*)            NM_STD="$value"                ;;
     --with-optimize=*)       NM_OPTIMIZE="$value"           ;;
 
     --has-*)
