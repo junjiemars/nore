@@ -168,6 +168,10 @@ test_nore_optimize_option () {
 #include <nore.h>
 #include <stdio.h>
 
+#if (MSVC)
+#  pragma warning(disable : 4996)
+#endif
+
 int
 fibonacci(int n, int p, int acc) {
   if (0 == n) {
