@@ -23,7 +23,7 @@ done.
 
 
 - [[#story][Story]]
-- [[#cooking][Cooking]]
+- [[#recipe][Recipe]]
 - [[#editor][Editor]]
 - [[#troubleshoting][Troubleshoting]]
 
@@ -38,20 +38,19 @@ Frequently, I want to know how things works in machine level, so I
 need to try something in C on popular platforms, but sadly, there are
 no handy weapons to do that.
 
-I known there are already aswsome tools existing, but the key question
+I known there are already aswsome tools exists, but the key question
 is how to easy build C code in varied OS by varied Compilers, among
 those things I just pick the most critical ones: *Make* and *Shell*.
 
 So the story begins ...
 - Keep things simple: classic workflow (configure, make and make
   install).
-- Write, Build, Test and Run on anywhere: Linux, Darwin, Windows or
-  Docker.
+- Write, Build, Test and Run on anywhere: Linux, Darwin, Windows.
 - Easy to try some new ideas but have no more unnecessaries.
 
-* Cooking
+* Recipe
 	:PROPERTIES:
-	:CUSTOM_ID: cooking
+	:CUSTOM_ID: recipe
 	:END:
 
 This section describes how to use Nore in details.
@@ -166,7 +165,7 @@ REM switch to sh
 > sh -i
 #+END_SRC
 
-In /cmd/:
+Or in /cmd/:
 #+BEGIN_SRC bat
 REM host msvc environment
 > %userprofile%/.nore/cc-env.bat
