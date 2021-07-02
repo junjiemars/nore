@@ -2,7 +2,7 @@
 #------------------------------------------------
 # target: cc/conf for C compiler
 # url: https://github.com/junjiemars/nore.git
-# author: junjiemars@gmail.com
+# author: Junjie Mars
 #------------------------------------------------
 
 CC=${CC:-cc}

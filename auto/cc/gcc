@@ -2,7 +2,7 @@
 #------------------------------------------------
 # target: cc/gcc for gcc compiler
 # url: https://github.com/junjiemars/nore.git
-# author: junjiemars@gmail.com
+# author: Junjie Mars
 #------------------------------------------------
 
 nm_gcc_ver=`$CC -v 2>&1 | grep 'gcc version' 2>&1 \

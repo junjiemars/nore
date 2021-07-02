@@ -2,7 +2,7 @@
 #------------------------------------------------
 # target: cc/version for compiler's version
 # url: https://github.com/junjiemars/nore.git
-# author: junjiemars@gmail.com
+# author: Junjie Mars
 #------------------------------------------------
 
 version_n () {

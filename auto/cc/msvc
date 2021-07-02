@@ -2,7 +2,7 @@
 #------------------------------------------------
 # target: cc/msvc for msvc compiler
 # url: https://github.com/junjiemars/nore.git
-# author: junjiemars@gmail.com
+# author: Junjie Mars
 #------------------------------------------------
 
 nm_msvc_ver=`$CC 2>&1 | grep 'Compiler Version' 2>&1 \

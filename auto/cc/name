@@ -2,7 +2,7 @@
 #------------------------------------------------
 # target: cc/name for compiler's name
 # url: https://github.com/junjiemars/nore.git
-# author: junjiemars@gmail.com
+# author: Junjie Mars
 #------------------------------------------------
 
 echo $echo_n "checking for C compiler ... $echo_c"

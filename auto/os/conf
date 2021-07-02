@@ -2,7 +2,7 @@
 #------------------------------------------------
 # target: os/conf for OS
 # url: https://github.com/junjiemars/nore.git
-# author: junjiemars@gmail.com
+# author: Junjie Mars
 #------------------------------------------------
 
 # echo "checking for $NM_PLATFORM specific features"
