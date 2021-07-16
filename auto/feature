@@ -33,7 +33,8 @@ fi
 cat << END > $autotest_c
 $nm_feature_h
 
-int main(void) {
+int main(void)
+{
     $nm_feature_test;
     return 0;
 }

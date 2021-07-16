@@ -244,16 +244,16 @@ END
     cat <<END > "$nm_stick_src/$nm_stick_norm.c"
 /*
  * ${gen_by_nore}
+ *
 */
 
-/*
 #include <nore.h>
-*/
 #include <stdio.h>
 
-#define _unused_(x) ((void)(x))
+#define _unused_(x) ((void) (x))
 
-int main(int argc, char **argv) {
+int main(int argc, char **argv)
+{
     _unused_(argc);
     _unused_(argv);
 
