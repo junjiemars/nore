@@ -26,6 +26,8 @@ jobs:
           sudo apt-get update
           sudo apt-get install clang
       - name: Test Nore via CC=${{ matrix.CC }}
+        env:
+          _INSIDE_CI_: github
         run: |
           CC=${{ matrix.CC }} ./test.sh
 
@@ -41,6 +43,8 @@ jobs:
         with:
           fetch-depth: 0 # checkout history and tags
       - name:  Test Nore via CC=${{ matrix.CC }}
+        env:
+          _INSIDE_CI_: github
         run: |
           CC=${{ matrix.CC }} ./test.sh
 
@@ -67,6 +71,8 @@ jobs:
           make
           mingw-w64-x86_64-gcc
     - name: Test Nore via CC=${{ matrix.CC }}
+      env:
+        _INSIDE_CI_: github
       run: |
         CC=${{ matrix.CC }} ./test.sh
 

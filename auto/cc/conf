@@ -11,37 +11,37 @@ LINK="\$(CC)"
 
 # c preprocessor
 CPP=${CPP}
-# extra flags to give the c preprocessor
+# extra flags to c preprocessor
 CPPFLAGS=${CPPFLAGS}
 
 # assembler
 AS=${AS}
-# extra flags to give to the assembler
+# extra flags to assembler
 ASFLAGS=${ASFLAGS}
 
 # archiver
 AR=${AR}
-# extra flags to give to the archiver
+# extra flags to archiver
 ARFLAGS=${ARFLAGS}
 
-# extra flags to give to the c compiler
+# extra flags to c compiler
 CFLAGS=${CFLAGS}
-# extra flags to give to the c++ compiler
+# extra flags to c++ compiler
 CXXFLAGS=
 
 INC=${INC}
 
-# extra flags to give to compilers when they are supported to invoke
-# the linker, such as -L
+# extra flags to compiler for linker
+# such as -L
 LDFLAGS=${LDFLAGS}
 
-# library flags or names given to compilers when they are supported to
-# invoke the linker, such as -l
+# extra flags to compiler for linker
+# such as -l
 LDLIBS=${LDLIBS}
 
-# extra flags to give to Lex
+# extra flags to Lex
 LFLAGS=${LFLAGS}
-# extra flags to give to Yacc
+# extra flags to Yacc
 YFLAGS=${YFLAGS}
 
 # command line option

@@ -221,6 +221,7 @@ for stick in ${NM_HAS_STICKS}; do
 
   nm_stick_src="`make_stick_path $NM_SRC $stick`"
   nm_stick_norm="`make_stick_norm $nm_stick_src $stick`"
+  nm_stick_norm_c=
 
   if [ ! -d "$nm_stick_src" ]; then
     if [ YES = $NM_NEW ]; then
@@ -239,16 +240,29 @@ END
     fi
   fi # end of [ ! -d $nm_stick_src ]
 
-  if [ YES = $NM_NEW -a ! -f "$nm_stick_src/$nm_stick_norm.c" ]; then
-    echo $echo_n " + generating `echo_pretty_path $nm_stick_src/$nm_stick_norm.c` file ... $echo_c"
-    cat <<END > "$nm_stick_src/$nm_stick_norm.c"
+  if [ "$CXX" != "$CC" ]; then
+    nm_stick_norm_c="${nm_stick_norm}.c"
+  else
+    nm_stick_norm_c="${nm_stick_norm}.cc"
+  fi
+
+  if [ YES = $NM_NEW -a ! -f "$nm_stick_norm_c" ]; then
+    echo $echo_n " + generating `echo_pretty_path $nm_stick_src/$nm_stick_norm_c` file ... $echo_c"
+
+    cat <<END > "$nm_stick_src/$nm_stick_norm_c"
 /*
  * ${gen_by_nore}
  *
 */
 
 #include <nore.h>
-#include <stdio.h>
+`
+if [ "$CXX" != "$CC" ]; then
+  echo "#include <stdio.h>"
+else
+  echo "#include <iostream>"
+fi
+`
 
 #define _unused_(x) ((void) (x))
 
@@ -257,13 +271,19 @@ int main(int argc, char **argv)
     _unused_(argc);
     _unused_(argv);
 
-    printf("Hello, Nore!\n");
+`
+if [ "$CXX" != "$CC" ]; then
+  echo "    printf(\"Hello, Nore!\\\\\n\");"
+else
+  echo "    std::cout << \"Hello, Nore!\" << std::endl;"
+fi
+`
     return 0;
 }
-
 END
+
   echo_yes_or_no $?
-  fi # end of [ ! -f "$nm_stick_src/$nm_stick_norm.c" ]
+  fi # end of [ ! -f "$nm_stick_src/$nm_stick_norm_c" ]
 
   if [ -f "$nm_stick_src/version" ]; then
     echo " * checking for `echo_pretty_path $nm_stick_src/version` ... yes"
@@ -313,7 +333,7 @@ ${nm_stick_norm}: \$(${nm_stick_norm}_binout)
 ${nm_stick_norm}_test: ${nm_stick_norm}
 	\$(${nm_stick_norm}_binout)
 
-\$(${nm_stick_norm}_binout): \$(${nm_stick_norm}_root)/${nm_stick_norm}.c
+\$(${nm_stick_norm}_binout): \$(${nm_stick_norm}_root)/${nm_stick_norm_c}
 	\$(CC) \$(CFLAGS) \$(INC) \$^ \$(bin_out)\$@
 
 END

@@ -293,7 +293,9 @@ test_nore_auto_check () {
 }
 
 # test
-test_install_from_github
+if [ -n "$_INSIDE_CI_" ]; then
+  test_install_from_github
+fi
 env_ci_build
 # test_make_print_database
 test_nore_where_command
