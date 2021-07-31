@@ -4,7 +4,7 @@
 
 No More than a C build system for [[https://clang.llvm.org][clang]], [[https://gcc.gnu.org][gcc]] and [[https://www.visualstudio.com/vs/cplusplus/][msvc]].
 
-@@html:<img src="https://github.com/junjiemars/nore/workflows/Nore/badge.svg" alt="clang, gcc and msvc" />@@
+@@html:<img src="https://github.com/junjiemars/nore/actions/workflows/ci.yml/badge.svg" alt="clang, gcc and msvc" />@@
 
 Let's start ...
 
