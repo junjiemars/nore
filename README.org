@@ -605,7 +605,7 @@ On Window:
   clean test@@html:</kbd>@@
 
 
-[[https://github.com/junjiemars/.emacs.d][More Reasonable Emacs]] has awsome C programming experience, including C
+[[https://github.com/junjiemars/.emacs.d][Nore Emacs]] has awsome C programming experience, including C
 source code and makefile editing, syntax highlight, auto completion,
 interactive debugger(gdb, lldb, cdb), interactive shell, all those
 excellently smooth.
