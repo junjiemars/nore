@@ -20,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          fetch-depth: 0 # checkout history and tags
+          fetch-depth: 1 # checkout history and tags
       - name: Install Dependencies
         run: |
           sudo apt-get update
@@ -41,7 +41,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          fetch-depth: 0 # checkout history and tags
+          fetch-depth: 1 # checkout history and tags
       - name:  Test Nore via CC=${{ matrix.CC }}
         env:
           _INSIDE_CI_: github
@@ -61,7 +61,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       with:
-        fetch-depth: 0 # checkout history and tags
+        fetch-depth: 1 # checkout history and tags
     - name: Install Dependencies
       uses: msys2/setup-msys2@v2
       with:
