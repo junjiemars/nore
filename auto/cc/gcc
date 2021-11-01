@@ -63,7 +63,7 @@ esac
 # symbol
 case "$NM_SYMBOL" in
   NO) nm_symbol_opt="" ;;
-  YES) nm_symbol_opt="-g" ;;
+  YES) nm_symbol_opt="-g3" ;;
   *) nm_symbol_opt="$NM_SYMBOL" ;;
 esac
 
