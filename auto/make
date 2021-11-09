@@ -273,7 +273,7 @@ int main(int argc, char **argv)
 
 `
 if [ "$CXX" != "$CC" ]; then
-  echo "    printf(\\"Hello, Nore!\\\\\\n\\");"
+  echo "    printf(\\"Hello, Nore!\\\\\n\\");"
 else
   echo "    std::cout << \\"Hello, Nore!\\" << std::endl;"
 fi
