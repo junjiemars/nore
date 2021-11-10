@@ -264,7 +264,7 @@ else
 fi
 `
 
-#define _unused_(x) ((void) (x))
+#define _unused_(x) ((void)(x))
 
 int main(int argc, char **argv)
 {
@@ -281,8 +281,6 @@ fi
     return 0;
 }
 END
-
-  cat "$nm_stick_src/$nm_stick_norm_c"
 
   echo_yes_or_no $?
   fi # end of [ ! -f "$nm_stick_src/$nm_stick_norm_c" ]
