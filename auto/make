@@ -282,6 +282,8 @@ fi
 }
 END
 
+  cat "$nm_stick_src/$nm_stick_norm_c"
+
   echo_yes_or_no $?
   fi # end of [ ! -f "$nm_stick_src/$nm_stick_norm_c" ]
 
