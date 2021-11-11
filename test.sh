@@ -285,6 +285,12 @@ test_nore_prefix_option () {
   fi
 }
 
+test_nore_override_option () {
+	test_what "CC=$CC ./configure --new"
+  test_configure --new --with-optimize=yes --with-optimize=-Os
+  test_make clean test
+}
+
 test_nore_auto_check () {
   local a="auto"
   sed -e 's/^#//g' "${_ROOT_DIR_}/auto/check" > "${a}"
@@ -304,7 +310,9 @@ test_nore_symbol_option
 test_nore_optimize_option
 test_nore_std_option
 test_nore_prefix_option
+test_nore_override_option
 test_nore_auto_check
+
 
 # clean CI directory
 [ -d "${_CI_DIR_}" ] && rm -r "${_CI_DIR_}"
