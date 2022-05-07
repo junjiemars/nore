@@ -81,7 +81,7 @@ case "$NM_STD" in
     if [ "$CXX" = "$CC" ]; then
       nm_std_opt=""
     else
-      nm_std_opt="-std=c99"
+      nm_std_opt="-std=c11"
     fi
     ;;
   *) nm_std_opt="${NM_STD}" ;;
