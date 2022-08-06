@@ -110,7 +110,7 @@ case "$NM_STD" in
   YES)
     #https://herbsutter.com/2012/05/03/reader-qa-what-about-vc-and-c99/
     nm_std_opt="-std:c11"
-    ;; 
+    ;;
   *)
     # for c90: -Za
     # for c11 or later: -std:c11, -std:c17, -std:latest
@@ -127,7 +127,7 @@ case "$NM_OPTIMIZE" in
 esac
 
 # model
-nm_model_opt="-EHsc"
+nm_model_opt=""  #"-EHsc"
 
 # unicode
 nm_utf_opt="-utf-8"
