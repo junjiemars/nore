@@ -264,12 +264,8 @@ else
 fi
 `
 
-#define _unused_(x) ((void)(x))
-
-int main(int argc, char **argv)
+int main(void)
 {
-    _unused_(argc);
-    _unused_(argv);
 
 `
 if [ "$CXX" != "$CC" ]; then
