@@ -36,7 +36,6 @@ $nm_feature_h
 int main(void)
 {
     $nm_feature_test;
-    return 0;
 }
 
 END
