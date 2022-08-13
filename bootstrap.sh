@@ -217,7 +217,7 @@ case "\`echo \${NORE_L_CONF_COMMAND} | tr '[:upper:]' '[:lower:]'\`" in
 `if on_darwin; then
     echo "    echo \\"shell=@\\\$(ps -p\\\$\\\$ -ocommand | tr ' ' '\\\\\n' | sed -n 2p)\\""
 else
-    echo "    echo \\"shell=@\\\$(ls -l /proc/\\\$\\\$/exe | sed 's#^.*/proc/[0-9]*/exe[ ]*->[ ]*\(.*\)\\\$#\\\\\1#g')\\""
+    echo "    echo \\"shell=@\\\$(ls -l /proc/\\\$\\\$/exe | sed 's#.*->[ ]*\(.*\)#\\\1#g')\\""
 fi`
 
     echo \$echo_n "cc-env.sh=@\$echo_c"
@@ -226,14 +226,14 @@ fi`
     else
       echo ""
     fi
-    `if on_windows_nt; then
-       echo "echo \\\$echo_n \\"cc-env.bat=@\\\$echo_c\\""
-       echo "    if [ -f \"\\\${HOME%/}/.nore/cc-env.bat\\" ]; then"
-       echo "      echo \"\\\${HOME%/}/.nore/cc-env.bat\\""
-       echo "    else"
-       echo "      echo \\"\\""
-       echo "    fi"
-    fi`
+`if on_windows_nt; then
+  echo "echo \\\$echo_n \\"cc-env.bat=@\\\$echo_c\\""
+  echo "    if [ -f \"\\\${HOME%/}/.nore/cc-env.bat\\" ]; then"
+  echo "      echo \"\\\${HOME%/}/.nore/cc-env.bat\\""
+  echo "    else"
+  echo "      echo \\"\\""
+  echo "    fi"
+fi`
     echo \$echo_n "cc-inc.lst=@\$echo_c"
     if [ -f "\${HOME%/}/.nore/cc-inc.lst" ]; then
       echo "\${HOME%/}/.nore/cc-inc.lst"
