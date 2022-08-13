@@ -94,7 +94,6 @@ on_linux () {
   esac
 }
 
-
 check_nore () {
   if `git -C "${ROOT}" remote -v 2>/dev/null | grep -q 'junjiemars/nore'`; then
     if [ "`check_nore_branch`" != "${NORE_BRANCH}" -a "${ROOT}" != "${PWD}/.nore" ]; then
@@ -216,6 +215,8 @@ case "\`echo \${NORE_L_CONF_COMMAND} | tr '[:upper:]' '[:lower:]'\`" in
     echo "make=@\$(command -v make)"
 `if on_darwin; then
     echo "    echo \\"shell=@\\\$(ps -p\\\$\\\$ -ocommand | tr ' ' '\\\\\n' | sed -n 2p)\\""
+elif $(command -v readlink \&>/dev/null); then
+    echo "    echo \\"shell=@\\\$(readlink /proc/\\\$\\\$/exe)\\""
 else
     echo "    echo \\"shell=@\\\$(ls -l /proc/\\\$\\\$/exe | sed 's#.*->[ ]*\(.*\)#\\\1#g')\\""
 fi`
