@@ -140,25 +140,25 @@ bin_ext = $bin_ext
 
 default: all
 
-clean_bin: $NM_OUT/bin
+clean_bin_dir: $NM_OUT/bin
 	-\$(RM) -r $NM_OUT/bin/*
-clean_lib: $NM_OUT/lib
+clean_lib_dir: $NM_OUT/lib
 	-\$(RM) -r $NM_OUT/lib/*
-clean_inc: $NM_OUT/inc
+clean_inc_dir: $NM_OUT/inc
 	-\$(RM) -r $NM_OUT/inc/*
-clean_etc: $NM_OUT/etc
+clean_etc_dir: $NM_OUT/etc
 	-\$(RM) -r $NM_OUT/etc/*
-clean_var: $NM_OUT/var
+clean_var_dir: $NM_OUT/var
 	-\$(RM) -r $NM_OUT/var/*
-clean_tmp: $NM_OUT/tmp
+clean_tmp_dir: $NM_OUT/tmp
 	-\$(RM) -r $NM_OUT/tmp/*
 
-clean: clean_bin \\
-       clean_lib \\
-       clean_inc \\
-       clean_etc \\
-       clean_var \\
-       clean_tmp
+clean: clean_bin_dir \\
+       clean_lib_dir \\
+       clean_inc_dir \\
+       clean_etc_dir \\
+       clean_var_dir \\
+       clean_tmp_dir
 
 
 END
