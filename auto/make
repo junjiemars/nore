@@ -277,17 +277,17 @@ else
 fi
 `
 
-int main(void)
+int
+main(void)
 {
-
 `
 if [ "$CXX" != "$CC" ]; then
-  echo "    printf(\\"Hello, Nore!\\\\\n\\");"
+  echo "  printf(\\"Hello, Nore!\\\\\n\\");"
 else
-  echo "    std::cout << \\"Hello, Nore!\\" << std::endl;"
+  echo "  std::cout << \\"Hello, Nore!\\" << std::endl;"
 fi
 `
-    return 0;
+  return 0;
 }
 END
 
