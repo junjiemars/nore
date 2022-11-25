@@ -142,7 +142,7 @@
 
 # # #check compiler sanitize features
 # # #----------------------------------------
-
+# echo "checking Compiler features ..."
 # case "$CC_NAME" in
 #   msvc)
 #     nm_feature="-fsanitize=address"
@@ -166,7 +166,7 @@
 #     fi
 #     ;;
 #   *)
-#     nm_feature="$CC_NAME -fsanitize=address"
+#     nm_feature="-fsanitize=address"
 #     nm_feature_name=
 #     nm_feature_indent=yes
 #     nm_feature_run=no
