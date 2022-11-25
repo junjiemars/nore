@@ -127,7 +127,7 @@ case "$NM_OPTIMIZE" in
 esac
 
 # model
-nm_model_opt="-EHsc"
+nm_model_opt="-EHc"
 
 # unicode
 nm_utf_opt="-utf-8"
