@@ -38,6 +38,10 @@ fi
 CPP = $CPP
 AS = $AS
 AR = $AR
+LD = $LD
+
+# override make's predefined AS and LD
+ASM = $ASM
 LINK = $LINK
 
 
@@ -95,9 +99,6 @@ nm_lib_opt = $nm_lib_opt
 
 # link
 nm_link_opt = $nm_link_opt
-
-# override make's predefined LD, using LINK instead
-LD = $LD
 
 # path separator
 nm_path_sep = $nm_path_sep

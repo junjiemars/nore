@@ -7,6 +7,9 @@
 
 CC=${CC:-cc}
 CXX=
+
+# predefined to c compiler
+ASM="\$(CC)"
 LINK="\$(CC)"
 
 # c preprocessor

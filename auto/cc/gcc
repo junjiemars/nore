@@ -25,7 +25,7 @@ have=GCC value=$CC_VER . ${NORE_ROOT}/auto/define
 [ "." = ".$CPP" ] && CPP="\$(CC)"
 
 # assembler
-[ "." = ".$AS" ] && AS="\$(CC)"
+[ "." = ".$AS" ] && AS="as"
 
 # linker
 [ "." = ".$LD" ] && LD="ld"
