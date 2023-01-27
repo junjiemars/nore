@@ -18,7 +18,7 @@ jobs:
           - CC: "gcc"
           - CC: "clang"
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 1 # checkout history and tags
       - name: Install Dependencies
@@ -39,7 +39,7 @@ jobs:
           - CC: "clang"
           - CC: "gcc"
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 1 # checkout history and tags
       - name:  Test Nore via CC=${{ matrix.CC }}
@@ -59,7 +59,7 @@ jobs:
       run:
         shell: msys2 {0}
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         fetch-depth: 1 # checkout history and tags
     - name: Install Dependencies
