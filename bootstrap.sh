@@ -320,17 +320,17 @@ delete_vimrc_src () {
   [ -f "\$f" ] || return 0
   local line_no=\`grep -m1 -n "^\${h}" \$f | cut -d':' -f1\`
   case \$line_no in
-	  [0-9]*)
-			if [ 0 -lt \$line_no ]; then
-				if [ "yes" = "\$lines" ]; then
-					sed \$sed_opt_i -e "\$line_no,\\\$d" "\$f"
-				else
-					sed \$sed_opt_i -e "\${line_no}d" "\$f"
-				fi
-			fi
-			;;
-		*) return 1 ;;
-	esac
+    [0-9]*)
+      if [ 0 -lt \$line_no ]; then
+        if [ "yes" = "\$lines" ]; then
+          sed \$sed_opt_i -e "\$line_no,\\\$d" "\$f"
+        else
+          sed \$sed_opt_i -e "\${line_no}d" "\$f"
+        fi
+      fi
+      ;;
+    *) return 1 ;;
+  esac
 }
 `
 if on_windows_nt; then
