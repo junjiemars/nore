@@ -317,7 +317,7 @@ $(if on_darwin; then
    echo "  local sed_opt_i=\"-i.pre\""
 fi)
   [ -f "\$f" ] || return 0
-  sed \$sed_opt_i "/\$h/,/\$e/d" \$f
+  sed \$sed_opt_i "/\$h/,/\$e/d" "\$f"
 }
 `
 if on_windows_nt; then
@@ -418,23 +418,25 @@ fi
 
 src_cc_inc_vimrc () {
   local cc_h="\\" nore cc inc"
-  local cc_h="\\" eof cc inc"
+  local cc_e="\\" eof cc inc"
   command -v vim &>/dev/null || return 0
   [ -f "\${CC_INC_LST}" ] || return 1
   [ -f "\$VIMRC" ] || touch "\$VIMRC"
   delete_vimrc_src "\$cc_h" "\$cc_e" "\$VIMRC"
   echo "\$cc_h" >> "\$VIMRC"
 
-  cat /dev/null > "\$CC_INC_VIMRC"
-  while IFS= read -r inc; do
-    local ln=\$(echo "\$inc" | sed 's_ _\\\\\\\\\\\ _g');
-`
-if on_windows_nt; then
-  echo "    ln=\\\$(echo \\\$ln | sed 's_\\(^[a-zA-Z]\\):_\\/\\1_g')"
-fi
-`
-    echo "set path+=\${ln}" >> "\$CC_INC_VIMRC"
-  done < "\${CC_INC_LST}"
+  cat "\${CC_INC_LST}" | awk '{print "set path+=" \$0}' >> "\$VIMRC"
+
+#   while IFS= read -r inc; do
+#     echo "abc_\$inc_abc
+#     local ln=\$(echo "\$inc" | sed 's_ _\\\\\\\\\\\ _g');
+# `
+# if on_windows_nt; then
+#   echo "    ln=\\\$(echo \\\$ln | sed 's_\\(^[a-zA-Z]\\):_\\/\\1_g')"
+# fi
+# `
+#     echo "set path+=\${ln}" >> "\$CC_INC_VIMRC"
+#   done < "\${CC_INC_LST}"
   echo "\$cc_e" >> "\$VIMRC"
 }
 
