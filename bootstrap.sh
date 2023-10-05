@@ -309,28 +309,15 @@ VIMRC="\${HOME%/}/.vimrc"
 
 delete_vimrc_src () {
   local h="\$1"
-  local lines="\$2"
+  local e="\$2"
   local f="\$3"
-`if on_darwin; then
-   echo "  local sed_opt_i=\\"-i .pre\\""
+$(if on_darwin; then
+   echo "  local sed_opt_i=\"-i .pre\""
  else
-   echo "  local sed_opt_i=\\"-i.pre\\""
- fi
-`
+   echo "  local sed_opt_i=\"-i.pre\""
+fi)
   [ -f "\$f" ] || return 0
-  local line_no=\`grep -m1 -n "^\${h}" \$f | cut -d':' -f1\`
-  case \$line_no in
-    [0-9]*)
-      if [ 0 -lt \$line_no ]; then
-        if [ "yes" = "\$lines" ]; then
-          sed \$sed_opt_i -e "\$line_no,\\\$d" "\$f"
-        else
-          sed \$sed_opt_i -e "\${line_no}d" "\$f"
-        fi
-      fi
-      ;;
-    *) return 1 ;;
-  esac
+  sed \$sed_opt_i "/\$h/,/\$e/d" \$f
 }
 `
 if on_windows_nt; then
@@ -430,16 +417,13 @@ fi
 }
 
 src_cc_inc_vimrc () {
+  local cc_h="\\" nore cc inc"
+  local cc_h="\\" eof cc inc"
   command -v vim &>/dev/null || return 0
   [ -f "\${CC_INC_LST}" ] || return 1
-  local cc_h="\\" nore cc inc"
-  if [ ! -f "\$VIMRC" ]; then
-    touch "\$VIMRC"
-  else
-    delete_vimrc_src "\$cc_h" "yes" "\$VIMRC"
-    echo "\$cc_h" >> "\$VIMRC"
-    echo "source \$CC_INC_VIMRC" >> "\$VIMRC"
-  fi
+  [ -f "\$VIMRC" ] || touch "\$VIMRC"
+  delete_vimrc_src "\$cc_h" "\$cc_e" "\$VIMRC"
+  echo "\$cc_h" >> "\$VIMRC"
 
   cat /dev/null > "\$CC_INC_VIMRC"
   while IFS= read -r inc; do
@@ -451,16 +435,15 @@ fi
 `
     echo "set path+=\${ln}" >> "\$CC_INC_VIMRC"
   done < "\${CC_INC_LST}"
+  echo "\$cc_e" >> "\$VIMRC"
 }
 
 if test -n "\${CC_ENV_GEN}"; then
-`
-  if on_windows_nt; then
+$(if on_windows_nt; then
     echo "  gen_cc_env_bat && gen_cc_inc_lst && src_cc_inc_vimrc"
   else
     echo "  gen_cc_inc_lst && src_cc_inc_vimrc"
-  fi
-`
+  fi)
 fi
 
 END
