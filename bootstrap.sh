@@ -30,6 +30,7 @@ sed=$(PATH=$PH command -v sed)
 sort=$(PATH=$PH command -v sort)
 tr=$(PATH=$PH command -v tr)
 uname=$(PATH=$PH command -v uname)
+set +e
 
 # check command options
 check_echo_opt () {
@@ -534,8 +535,6 @@ else
     echo_yes_or_no `download_gmake "${HOME}/.nore"; echo $?`
   fi
 fi
-
-# [ -d "${ROOT}" ] || mkdir -p "${ROOT}"
 
 echo $echo_n " + checking nore ... $echo_c"
 if check_nore; then
