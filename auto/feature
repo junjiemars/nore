@@ -10,10 +10,10 @@
 if [ "dumb" != "$nm_feature_run" ]; then
   case $nm_feature_indent in
     yes|'')
-      echo $echo_n " + checking for $nm_feature ... $echo_c"
+      printf " + checking for $nm_feature ... "
       ;;
     no|*)
-      echo $echo_n "checking for $nm_feature ... $echo_c"
+      printf "checking for $nm_feature ... "
       ;;
   esac
 fi
