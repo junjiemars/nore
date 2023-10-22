@@ -7,6 +7,7 @@
 
 HOME="${HOME}"
 PH="/usr/bin:/usr/sbin:/bin:/sbin"
+unset -f command 2>/dev/null
 
 # check basis commands
 set -e
