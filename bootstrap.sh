@@ -6,33 +6,8 @@
 #------------------------------------------------
 
 HOME="${HOME}"
-PH="/usr/bin:/usr/sbin:/bin:/sbin"
+PATH="/usr/bin:/usr/sbin:/bin:/sbin"
 unset -f command 2>/dev/null
-
-# check basis commands
-set -e
-awk=$(PATH=$PH command -v awk)
-basename=$(PATH=$PH command -v basename)
-cat=$(PATH=$PH command -v cat)
-cp=$(PATH=$PH command -v cp)
-cut=$(PATH=$PH command -v cut)
-date=$(PATH=$PH command -v date)
-dd=$(PATH=$PH command -v dd)
-dirname=$(PATH=$PH command -v dirname)
-find=$(PATH=$PH command -v find)
-git=$(PATH=$PH command -v git)
-grep=$(PATH=$PH command -v grep)
-iconv=$(PATH=$PH command -v iconv)
-ls=$(PATH=$PH command -v ls)
-mkdir=$(PATH=$PH command -v mkdir)
-printf=$(PATH=$PH command -v printf)
-ps=$(PATH=$PH command -v ps)
-rm=$(PATH=$PH command -v rm)
-sed=$(PATH=$PH command -v sed)
-sort=$(PATH=$PH command -v sort)
-tr=$(PATH=$PH command -v tr)
-uname=$(PATH=$PH command -v uname)
-set +e
 
 bootstrap_path () {
   local p="`dirname $0`"
@@ -218,31 +193,31 @@ elif $(command -v readlink \&>/dev/null); then
 else
     echo "    echo \"shell=@\$(ls -l /proc/\$\$/exe | sed 's#.*->[ ]*\(.*\)#\1#g')\""
 fi)
-    $printf "cc-env.sh=@"
+    printf "cc-env.sh=@"
     if [ -f "\${HOME}/.nore/cc-env.sh" ]; then
-      $printf "\${HOME}/.nore/cc-env.sh\n"
+      printf "\${HOME}/.nore/cc-env.sh\n"
     else
-      $printf "\n"
+      printf "\n"
     fi
 $(if on_windows_nt; then
-  echo "    $printf \"cc-env.bat=@\""
+  echo "    printf \"cc-env.bat=@\""
   echo "    if [ -f \"\${HOME}/.nore/cc-env.bat\" ]; then"
-  echo "      $printf \"\${HOME}/.nore/cc-env.bat\n\""
+  echo "      printf \"\${HOME}/.nore/cc-env.bat\n\""
   echo "    else"
-  echo "      $printf \"\\n\""
+  echo "      printf \"\\n\""
   echo "    fi"
 fi)
-    $printf "cc-inc.lst=@"
+    printf "cc-inc.lst=@"
     if [ -f "\${HOME}/.nore/cc-inc.lst" ]; then
-      $printf "\${HOME}/.nore/cc-inc.lst\n"
+      printf "\${HOME}/.nore/cc-inc.lst\n"
     else
-      $printf "\n"
+      printf "\n"
     fi
-    $printf "cc-inc.vimrc=@"
+    printf "cc-inc.vimrc=@"
     if [ -f "\${HOME}/.nore/cc-inc.vimrc" ]; then
-      $printf "\${HOME}/.nore/cc-inc.vimrc\n"
+      printf "\${HOME}/.nore/cc-inc.vimrc\n"
     else
-      $printf "\n"
+      printf "\n"
     fi
     exit \$?
     ;;
@@ -258,10 +233,10 @@ cd "\$(CDPATH= cd -- \$(dirname -- \$0) && echo \$PWD)"
 if [ -f \${NORE_L_CONF} ]; then
   case "\${NORE_L_CONF_TRACE}" in
     no)
-      PATH="$PH" \$NORE_L_CONF "\$@"
+      PATH="$PATH" \$NORE_L_CONF "\$@"
       ;;
     yes)
-      PATH="$PH" sh -x \$NORE_L_CONF \${NORE_L_CONF_OPTS}
+      PATH="$PATH" sh -x \$NORE_L_CONF \${NORE_L_CONF_OPTS}
       ;;
   esac
 else
@@ -390,12 +365,12 @@ fi
 gen_cc_inc_lst () {
 $(if on_windows_nt; then
   echo "  [ -f \"\${CC_ENV_BAT}\" ] || return 1"
-  echo "  $cat \"\${CC_ENV_BAT}\" | $sed '\$d'"
+  echo "  cat \"\${CC_ENV_BAT}\" | sed '\$d'"
 else
   echo "  echo '' | cc -v -E 2>&1 >/dev/null - \\\\"
-  echo "    | $sed -n '/#include <...> search starts here:/,/End of search list./p' \\\\"
-  echo "    | $sed '1d;\$d' \\\\"
-  echo "    | $sed -e '/.*(framework directory).*/d' -e 's/^ *//' \\\\"
+  echo "    | sed -n '/#include <...> search starts here:/,/End of search list./p' \\\\"
+  echo "    | sed '1d;\$d' \\\\"
+  echo "    | sed -e '/.*(framework directory).*/d' -e 's/^ *//' \\\\"
   echo "  > \"\${CC_INC_LST}\""
 fi)
 }
@@ -441,9 +416,9 @@ END
 echo_yes_or_no () {
   local c="$1"
   if [ 0 -eq $c ]; then
-    $printf "yes\n"
+    printf "yes\n"
   else
-    $printf "no\n"
+    printf "no\n"
   fi
   return $c
 }
@@ -451,7 +426,7 @@ echo_yes_or_no () {
 echo_elapsed_seconds () {
   local begin=$1
   local end="$(date +%s)"
-  $printf "\n... elpased %d seconds.\n" $(( ${end}-${begin} ))
+  printf "\n... elpased %d seconds.\n" $(( ${end}-${begin} ))
 }
 
 exit_checking () {
@@ -493,37 +468,37 @@ echo
 echo "configure Nore on $PLATFORM ..."
 echo
 
-$printf " + checking make ... "
+printf " + checking make ... "
 if make -v 2>&1 1>/dev/null; then
   echo_yes_or_no $?
 else
   echo_yes_or_no $?
   if `on_windows_nt`; then
-    $printf " + downloading make ... "
+    printf " + downloading make ... "
     echo_yes_or_no `download_gmake "${HOME}/.nore"; echo $?`
   fi
 fi
 
-$printf " + checking nore ... "
+printf " + checking nore ... "
 if check_nore; then
   echo_yes_or_no $?
   if [ "yes" = "$NORE_UPGRADE" ]; then
-    $printf " + upgrading nore ... "
+    printf " + upgrading nore ... "
     echo_yes_or_no $(upgrade_nore ; echo $?)
     exit_checking $? $BEGIN
   fi
 else
   echo_yes_or_no $?
-  $printf " + cloning nore ... "
+  printf " + cloning nore ... "
   echo_yes_or_no $(clone_nore ; echo $?)
   exit_checking $? $BEGIN
 fi
 
-$printf " + generating configure ... "
+printf " + generating configure ... "
 echo_yes_or_no $(cat_configure ; echo $?)
 exit_checking $? $BEGIN
 
-$printf " + generating ~/.nore/cc-env.sh ... "
+printf " + generating ~/.nore/cc-env.sh ... "
 echo_yes_or_no $(cat_cc_env "${HOME}/.nore/cc-env.sh"; echo $?)
 exit_checking $? $BEGIN
 
