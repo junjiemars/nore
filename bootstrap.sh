@@ -14,6 +14,7 @@ set -e
 awk=$(command -v awk)
 chmod=$(command -v chmod)
 curl=$(command -v curl)
+cut=$(command -v cut)
 date=$(command -v date)
 dirname=$(command -v dirname)
 git=$(command -v git)
