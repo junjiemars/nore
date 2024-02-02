@@ -236,9 +236,9 @@ fi)
     else
       $printf "\n"
     fi
-    $printf "cc-inc.vimrc=@"
-    if [ -f "\${HOME}/.nore/cc-inc.vimrc" ]; then
-      $printf "\${HOME}/.nore/cc-inc.vimrc\n"
+    $printf "cc-inc.exrc=@"
+    if [ -f "\${HOME}/.nore/cc-inc.exrc" ]; then
+      $printf "\${HOME}/.nore/cc-inc.exrc\n"
     else
       $printf "\n"
     fi
@@ -297,11 +297,11 @@ if on_windows_nt; then
 fi
 `
 CC_INC_LST="\${HOME}/.nore/cc-inc.lst"
-CC_INC_VIMRC="\${HOME}/.nore/cc-inc.vimrc"
-VIMRC="\${HOME}/.vimrc"
+CC_INC_EXRC="\${HOME}/.nore/cc-inc.exrc"
+EXRC="\${HOME}/.exrc"
 
 
-delete_vimrc_src () {
+delete_exrc_src () {
   local h="\$1"
   local e="\$2"
   local f="\$3"
@@ -398,16 +398,16 @@ else
 fi)
 }
 
-src_cc_inc_vimrc () {
+src_cc_inc_exrc () {
   local cc_h="\\" nore cc inc"
   local cc_e="\\" eof cc inc"
   command -v vim &>/dev/null || return 0
   [ -f "\${CC_INC_LST}" ] || return 1
-  [ -f "\$VIMRC" ] || $touch "\$VIMRC"
-  delete_vimrc_src "\$cc_h" "\$cc_e" "\$VIMRC"
-  echo "\$cc_h" >> "\$VIMRC"
+  [ -f "\$EXRC" ] || $touch "\$EXRC"
+  delete_exrc_src "\$cc_h" "\$cc_e" "\$EXRC"
+  echo "\$cc_h" >> "\$EXRC"
 
-  cat "\${CC_INC_LST}" | awk '{print "set path+=" \$0}' >> "\$VIMRC"
+  cat "\${CC_INC_LST}" | awk '{print "set path+=" \$0}' >> "\$EXRC"
 
 #   while IFS= read -r inc; do
 #     echo "abc_\$inc_abc
@@ -417,16 +417,16 @@ src_cc_inc_vimrc () {
 #   echo "    ln=\\\$(echo \\\$ln | sed 's_\\(^[a-zA-Z]\\):_\\/\\1_g')"
 # fi
 # `
-#     echo "set path+=\${ln}" >> "\$CC_INC_VIMRC"
+#     echo "set path+=\${ln}" >> "\$CC_INC_EXRC"
 #   done < "\${CC_INC_LST}"
-  echo "\$cc_e" >> "\$VIMRC"
+  echo "\$cc_e" >> "\$EXRC"
 }
 
 if test -n "\${CC_ENV_GEN}"; then
 $(if on_windows_nt; then
-    echo "  gen_cc_env_bat && gen_cc_inc_lst && src_cc_inc_vimrc"
+    echo "  gen_cc_env_bat && gen_cc_inc_lst && src_cc_inc_exrc"
   else
-    echo "  gen_cc_inc_lst && src_cc_inc_vimrc"
+    echo "  gen_cc_inc_lst && src_cc_inc_exrc"
   fi)
 fi
 
