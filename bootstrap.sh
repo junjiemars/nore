@@ -401,7 +401,7 @@ fi)
 src_cc_inc_exrc () {
   local cc_h="\\" nore cc inc"
   local cc_e="\\" eof cc inc"
-  command -v vim &>/dev/null || return 0
+  command -v vim >/dev/null 2>/dev/null || return 0
   [ -f "\${CC_INC_LST}" ] || return 1
   [ -f "\$EXRC" ] || $touch "\$EXRC"
   delete_exrc_src "\$cc_h" "\$cc_e" "\$EXRC"
