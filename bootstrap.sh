@@ -422,11 +422,18 @@ src_cc_inc_exrc () {
   echo "\$cc_e" >> "\$EXRC"
 }
 
+gen_cc_tags () {
+  [ -f "\${CC_INC_LST}" ] || return 1
+  command -v ctags &>/dev/null || return 1
+  ctags -a -oTAGS --langmap=c:.h.c --c-kinds=+px -R -L "\${CC_INC_LST}"
+}
+
 if test -n "\${CC_ENV_GEN}"; then
 $(if on_windows_nt; then
     echo "  gen_cc_env_bat && gen_cc_inc_lst && src_cc_inc_exrc"
   else
     echo "  gen_cc_inc_lst && src_cc_inc_exrc"
+    echo "  gen_cc_tags"
   fi)
 fi
 
