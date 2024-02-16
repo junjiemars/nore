@@ -236,11 +236,15 @@ fi)
     else
       $printf "\n"
     fi
-    $printf "cc-inc.exrc=@"
-    if [ -f "\${HOME}/.nore/cc-inc.exrc" ]; then
-      $printf "\${HOME}/.nore/cc-inc.exrc\n"
+    $printf ".exrc=@"
+    if [ -f "\${HOME}/.exrc" ]; then
+      $printf "\${HOME}/.exrc\n"
     else
       $printf "\n"
+    fi
+    $printf "init.vim=@"
+    if [ -f "\${HOME}/.config/nvim/init.vim" ]; then
+      $printf "\${HOME}/.config/nvim/init.vim"
     fi
     exit \$?
     ;;
@@ -422,6 +426,15 @@ src_cc_inc_exrc () {
   echo "\$cc_e" >> "\$EXRC"
 }
 
+gen_nvim_init () {
+  local d="\${HOME}/.config/nvim"
+  command -v nvim &>/dev/null || return 1
+	[ -f "\$EXRC" ] || return 1
+	[ ! -f "\${d}/init.vim" ] || return 1
+	[ ! -d "\$d" ] || mkdir -p "\$d"
+	ln -s "\$EXRC" "\${d}/init.vim"
+}
+
 gen_cc_tags () {
   [ -f "\${CC_INC_LST}" ] || return 1
   command -v ctags &>/dev/null || return 1
@@ -433,6 +446,7 @@ $(if on_windows_nt; then
     echo "  gen_cc_env_bat && gen_cc_inc_lst && src_cc_inc_exrc"
   else
     echo "  gen_cc_inc_lst && src_cc_inc_exrc"
+		echo "  gen_nvim_init"
     echo "  gen_cc_tags"
   fi)
 fi
