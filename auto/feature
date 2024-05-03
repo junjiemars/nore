@@ -73,7 +73,8 @@ if [ -x $NM_AUTOTEST ]; then
       nm_feature_value=`$NM_AUTOTEST 2>> "$NM_AUTO_ERR"`
       if [ 0 -eq $? ]; then
         nm_found=yes
-        have=$nm_have_feature value=$nm_feature_value . ${NORE_ROOT}/auto/define
+        have=$nm_have_feature value=$nm_feature_value \
+          . ${NORE_ROOT}/auto/define
       fi
       echo "$nm_found"
       ;;
