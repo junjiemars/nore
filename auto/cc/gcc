@@ -101,11 +101,16 @@ nm_trigraphs_opt="-Wno-trigraphs"
 nm_openmp_opt="-fopenmp"
 
 # lib
-nm_libdir_opt="-L"
 nm_lib_opt="-l"
+nm_libdir_opt="-L"
 
 # link option
 LDFLAGS="${nm_libdir_opt}${NM_OUT}/lib${LDFLAGS:+ $LDFLAGS}"
 
+# ld option
+ld_entry_opt="-e"
+ld_lib_opt="-l"
+ld_libdir_opt="-L"
+ld_out_opt="-o"
 
 # eof
