@@ -291,6 +291,13 @@ test_nore_override_option () {
   test_make clean test
 }
 
+test_nore_auto_check () {
+  local a="auto"
+  sed -e 's/^#//g' "${_ROOT_DIR_}/auto/check" > "${a}"
+  test_what "CC=$CC ./configure #auto"
+  test_configure
+}
+
 test_nore_ld_option () {
   local c="`basename $_CI_DIR_`.c"
   local m="Makefile"
@@ -317,18 +324,11 @@ ci_test: ci
 	\$(LD) \$(nm_ld_out_opt) \$@ \$^ \$(nm_ld_lib_opt)c
 
 \$(ci_objout): \$(ci_root)/ci.c
-	\$(CC) \$(CFLAGS) \$(INC) \$(obj_out)\$@ \$(nm_stage_c) \$^
+	\$(CC) \$(INC) \$(obj_out) \$@ \$(nm_stage_c) \$^
 END
   test_what "CC=$CC ./configure #ld"
-  test_configure
+  test_configure --with-std=no
   test_make clean test
-}
-
-test_nore_auto_check () {
-  local a="auto"
-  sed -e 's/^#//g' "${_ROOT_DIR_}/auto/check" > "${a}"
-  test_what "CC=$CC ./configure #auto"
-  test_configure
 }
 
 # test
