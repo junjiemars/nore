@@ -314,10 +314,10 @@ ci_test: ci
 	\$(ci_binout)
 
 \$(ci_binout): \$(ci_objout)
-	\$(LD) \$^ \$(nm_ld_out_opt) \$@ \$(nm_ld_lib_opt)c
+	\$(LD) \$(nm_ld_out_opt) \$@ \$^ \$(nm_ld_lib_opt)c
 
 \$(ci_objout): \$(ci_root)/ci.c
-	\$(CC) \$(CFLAGS) \$(INC) \$^ \$(nm_stage_c) \$(obj_out)\$@
+	\$(CC) \$(CFLAGS) \$(INC) \$(obj_out)\$@ \$(nm_stage_c) \$^
 END
   test_what "CC=$CC ./configure #ld"
   test_configure
