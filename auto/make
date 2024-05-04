@@ -101,10 +101,10 @@ nm_lib_opt = $nm_lib_opt
 nm_link_opt = $nm_link_opt
 
 # ld
-ld_entry_opt=$ld_entry_opt
-ld_lib_opt=$ld_lib_opt
-ld_libdir_opt=$ld_libdir_opt
-ld_out_opt=$ld_out_opt
+nm_ld_entry_opt=$nm_ld_entry_opt
+nm_ld_lib_opt=$nm_ld_lib_opt
+nm_ld_libdir_opt=$nm_ld_libdir_opt
+nm_ld_out_opt=$nm_ld_out_opt
 
 # path separator
 nm_path_sep = $nm_path_sep

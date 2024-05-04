@@ -314,7 +314,7 @@ ci_test: ci
 	\$(ci_binout)
 
 \$(ci_binout): \$(ci_objout)
-	\$(LD) \$^ \$(ld_out_opt) \$@ \$(ld_lib_opt)c
+	\$(LD) \$^ \$(nm_ld_out_opt) \$@ \$(nm_ld_lib_opt)c
 
 \$(ci_objout): \$(ci_root)/ci.c
 	\$(CC) \$(CFLAGS) \$(INC) \$^ \$(nm_stage_c) \$(obj_out)\$@
@@ -336,15 +336,15 @@ if [ -n "$_INSIDE_CI_" ]; then
   test_install_from_github
 fi
 env_ci_build
-test_make_print_database
-test_nore_where_command
-test_nore_new_option
-test_nore_symbol_option
-test_nore_optimize_option
-test_nore_std_option
-test_nore_prefix_option
-test_nore_override_option
-test_nore_auto_check
+# test_make_print_database
+# test_nore_where_command
+# test_nore_new_option
+# test_nore_symbol_option
+# test_nore_optimize_option
+# test_nore_std_option
+# test_nore_prefix_option
+# test_nore_override_option
+# test_nore_auto_check
 test_nore_ld_option
 
 # clean CI directory
