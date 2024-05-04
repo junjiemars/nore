@@ -298,54 +298,20 @@ test_nore_auto_check () {
   test_configure
 }
 
-test_nore_ld_option () {
-  local c="`basename $_CI_DIR_`.c"
-  local m="Makefile"
-
-  cat <<END > "$c"
-#include <nore.h>
-int main(void) {
-  return 0;
-}
-END
-
-  cat <<END > "$m"
-include out/Makefile
-
-ci_root := ./
-ci_binout := \$(bin_path)/ci\$(bin_ext)
-ci_objout := \$(tmp_path)/ci\$(obj_ext)
-
-ci: \$(ci_binout)
-ci_test: ci
-	\$(ci_binout)
-
-\$(ci_binout): \$(ci_objout)
-	\$(LD) \$(nm_ld_out_opt) \$@ \$^ \$(nm_ld_lib_opt)c
-
-\$(ci_objout): \$(ci_root)/ci.c
-	\$(CC) \$(INC) \$(obj_out) \$@ \$(nm_stage_c) \$^
-END
-  test_what "CC=$CC ./configure #ld"
-  test_configure --with-std=no
-  test_make clean test
-}
-
 # test
 if [ -n "$_INSIDE_CI_" ]; then
   test_install_from_github
 fi
 env_ci_build
-# test_make_print_database
-# test_nore_where_command
-# test_nore_new_option
-# test_nore_symbol_option
-# test_nore_optimize_option
-# test_nore_std_option
-# test_nore_prefix_option
-# test_nore_override_option
-# test_nore_auto_check
-test_nore_ld_option
+test_make_print_database
+test_nore_where_command
+test_nore_new_option
+test_nore_symbol_option
+test_nore_optimize_option
+test_nore_std_option
+test_nore_prefix_option
+test_nore_override_option
+test_nore_auto_check
 
 # clean CI directory
 [ -d "${_CI_DIR_}" ] && rm -r "${_CI_DIR_}"

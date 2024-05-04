@@ -147,10 +147,4 @@ nm_link_opt="-link"
 
 LDFLAGS="${nm_link_opt} ${nm_libdir_opt}${NM_OUT}/lib${LDFLAGS:+ $LDFLAGS}"
 
-# ld option
-nm_ld_entry_opt="-entry"
-nm_ld_lib_opt=
-nm_ld_libdir_opt="-libpath:"
-nm_ld_out_opt="-out"
-
 # eof
