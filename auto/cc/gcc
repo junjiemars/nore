@@ -103,6 +103,7 @@ nm_openmp_opt="-fopenmp"
 # lib
 nm_lib_opt="-l"
 nm_libdir_opt="-L"
+nm_static_opt="-static"
 
 # link option
 LDFLAGS="${nm_libdir_opt}${NM_OUT}/lib${LDFLAGS:+ $LDFLAGS}"
