@@ -141,6 +141,7 @@ nm_openmp_opt="-openmp"
 # lib
 nm_libdir_opt="-libpath:"
 nm_lib_opt=
+nm_static_opt="-MT"
 
 # link option @ tail
 nm_link_opt="-link"
