@@ -10,11 +10,11 @@
 echo "creating $NM_MAKEFILE"
 
 mkdir -p $NM_OUT/bin \
-         $NM_OUT/lib \
-         $NM_OUT/inc \
          $NM_OUT/etc \
-         $NM_OUT/var \
-         $NM_OUT/tmp
+         $NM_OUT/inc \
+         $NM_OUT/lib \
+         $NM_OUT/tmp \
+         $NM_OUT/var
 
 asm_out="${auto_out:+${auto_out}${NM_OUT}/tmp/ }$asm_out"
 bin_out="${auto_out:+${auto_out}${NM_OUT}/tmp/ }$bin_out"
@@ -222,10 +222,12 @@ cat << END >> $NM_MAKEFILE
 root = $NM_SRC
 out = $NM_OUT
 
-inc_path = $NM_OUT/inc
-tmp_path = $NM_OUT/tmp
-lib_path = $NM_OUT/lib
 bin_path = $NM_OUT/bin
+etc_path = $NM_OUT/etc
+inc_path = $NM_OUT/inc
+lib_path = $NM_OUT/lib
+tmp_path = $NM_OUT/tmp
+var_path = $NM_OUT/var
 
 #---------------------------------------
 END
