@@ -391,14 +391,15 @@ fi
 
 gen_cc_inc_lst () {
 $(if on_windows_nt; then
-  echo "  [ -f \"\${CC_ENV_BAT}\" ] || return 1"
-  echo "  cat \"\${CC_ENV_BAT}\" | sed '\$d'"
+  $printf "  [ -f \"\${CC_ENV_BAT}\" ] || return 1\n"
+  $printf "  cat \"\${CC_ENV_BAT}\" | sed '\$d'\n"
 else
-  echo "  echo '' | cc -v -E 2>&1 >/dev/null - \\\\"
-  echo "    | $sed -n '/#include <...> search starts here:/,/End of search list./p' \\\\"
-  echo "    | $sed '1d;\$d' \\\\"
-  echo "    | $sed -e '/.*(framework directory).*/d' -e 's/^ *//' \\\\"
-  echo "  > \"\${CC_INC_LST}\""
+  $printf "  local r='/#include <...> search starts here:/,/End of search list./p'\n"
+  $printf "  $printf '' | cc -v -E 2>&1 >/dev/null - %s\n" "\\"
+  $printf "     | $sed -n \"\$r\" %s\n" "\\"
+  $printf "     | $sed '1d;\$d' %s\n" "\\"
+  $printf "     | $sed -e '/.*(framework directory).*/d' -e 's/^ *//' %s\n" "\\"
+  $printf "  > \"\${CC_INC_LST}\"\n"
 fi)
 }
 
@@ -409,10 +410,8 @@ src_cc_inc_exrc () {
   [ -f "\${CC_INC_LST}" ] || return 1
   [ -f "\$EXRC" ] || $touch "\$EXRC"
   delete_exrc_src "\$cc_h" "\$cc_e" "\$EXRC"
-  echo "\$cc_h" >> "\$EXRC"
-
+  $printf "\${cc_h}\n" >> "\$EXRC"
   cat "\${CC_INC_LST}" | awk '{print "set path+=" \$0}' >> "\$EXRC"
-
 #   while IFS= read -r inc; do
 #     echo "abc_\$inc_abc
 #     local ln=\$(echo "\$inc" | sed 's_ _\\\\\\\\\\\ _g');
@@ -429,10 +428,10 @@ src_cc_inc_exrc () {
 gen_nvim_init () {
   local d="\${HOME}/.config/nvim"
   command -v nvim &>/dev/null || return 1
-	[ -f "\$EXRC" ] || return 1
-	[ ! -f "\${d}/init.vim" ] || return 1
-	[ ! -d "\$d" ] || mkdir -p "\$d"
-	ln -s "\$EXRC" "\${d}/init.vim"
+  [ -f "\$EXRC" ] || return 1
+  [ ! -f "\${d}/init.vim" ] || return 1
+  [ ! -d "\$d" ] || mkdir -p "\$d"
+  ln -s "\$EXRC" "\${d}/init.vim"
 }
 
 gen_cc_tags () {
@@ -443,11 +442,11 @@ gen_cc_tags () {
 
 if test -n "\${CC_ENV_GEN}"; then
 $(if on_windows_nt; then
-    echo "  gen_cc_env_bat && gen_cc_inc_lst && src_cc_inc_exrc"
+    $printf "  gen_cc_env_bat && gen_cc_inc_lst && src_cc_inc_exrc\n"
   else
-    echo "  gen_cc_inc_lst && src_cc_inc_exrc"
-		echo "  gen_nvim_init"
-    echo "  gen_cc_tags"
+    $printf "  gen_cc_inc_lst && src_cc_inc_exrc\n"
+    $printf "  # gen_nvim_init\n"
+    $printf "  # gen_cc_tags\n"
   fi)
 fi
 
