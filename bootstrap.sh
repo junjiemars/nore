@@ -429,7 +429,7 @@ gen_nvim_init () {
   local d="\${HOME}/.config/nvim"
   command -v nvim &>/dev/null || return 1
   [ -f "\$EXRC" ] || return 1
-  [ -f "\${d}/init.vim" ] || return 1
+  [ ! -f "\${d}/init.vim" ] || return 0
   [ -d "\$d" ] || mkdir -p "\$d"
   ln -s "\$EXRC" "\${d}/init.vim"
 }
