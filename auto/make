@@ -29,11 +29,6 @@ cat << END > $NM_MAKEFILE
 #
 
 CC = $CC
-`
-if [ ".$CXX" = ".$CC" ]; then
-  echo "CXX = \$CXX"
-fi
-`
 
 CPP = $CPP
 AS = $AS
@@ -54,11 +49,6 @@ LFLAGS = $LFLAGS
 YFLAGS = $YFLAGS
 
 CFLAGS = $CFLAGS
-`
-if [ ".$CXX" = ".$CC" ]; then
-   echo "CXXFLAGS = \$CFLAGS"
-fi
-`
 
 INC = $INC
 
@@ -256,11 +246,7 @@ END
     fi
   fi # end of [ ! -d $nm_stick_src ]
 
-  if [ "$CXX" != "$CC" ]; then
-    nm_stick_norm_c="${nm_stick_norm}.c"
-  else
-    nm_stick_norm_c="${nm_stick_norm}.cc"
-  fi
+  nm_stick_norm_c="${nm_stick_norm}.c"
 
   if [ YES = $NM_NEW -a ! -f "$nm_stick_norm_c" ]; then
     printf " + generating `echo_pretty_path $nm_stick_src/$nm_stick_norm_c` file ... "
@@ -272,24 +258,12 @@ END
 */
 
 #include <nore.h>
-`
-if [ "$CXX" != "$CC" ]; then
-  echo "#include <stdio.h>"
-else
-  echo "#include <iostream>"
-fi
-`
+#include <stdio.h>
 
 int
-main(void)
+main (void)
 {
-`
-if [ "$CXX" != "$CC" ]; then
-  echo "  printf(\\"Hello, Nore!\\\\\n\\");"
-else
-  echo "  std::cout << \\"Hello, Nore!\\" << std::endl;"
-fi
-`
+  printf ("Hello, Nore!\\n");
   return 0;
 }
 END

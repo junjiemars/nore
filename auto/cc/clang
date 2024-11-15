@@ -5,16 +5,16 @@
 # author: Junjie Mars
 #------------------------------------------------
 
-nm_clang_ver=`$CC -v 2>&1 | grep '\(clang\|LLVM\) version' 2>&1 \
-                          | sed -e 's/^.* version \(.*\)/\1/'`
+nm_clang_ver=$($CC -v 2>&1 | grep '\(clang\|LLVM\) version' 2>&1 \
+                 | sed -e 's/^.* version \(.*\)/\1/')
 
-echo " + clang version: $nm_clang_ver"
+printf " + clang version: $nm_clang_ver\n"
 
 NM_COMPILER="clang $nm_clang_ver"
 have=NM_COMPILER value="\"$NM_COMPILER\"" . ${NORE_ROOT}/auto/define
 
 . ${NORE_ROOT}/auto/cc/version
-CC_VER=`version_n $(echo $nm_clang_ver | cut -d' ' -f1)`
+CC_VER=$(version_n $(printf $nm_clang_ver | cut -d' ' -f1))
 have=CLANG value=$CC_VER . ${NORE_ROOT}/auto/define
 
 
@@ -78,11 +78,7 @@ esac
 case "$NM_STD" in
   NO) nm_std_opt="" ;;
   YES)
-    if [ "$CXX" = "$CC" ]; then
-      nm_std_opt=""
-    else
-      nm_std_opt="-std=c11"
-    fi
+    nm_std_opt="-std=c11"
     ;;
   *) nm_std_opt="${NM_STD}" ;;
 esac

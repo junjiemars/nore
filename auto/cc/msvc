@@ -5,16 +5,16 @@
 # author: Junjie Mars
 #------------------------------------------------
 
-nm_msvc_ver=`$CC 2>&1 | grep 'Compiler Version' 2>&1 \
-                      | sed -e 's/^.* Version \(.*\)/\1/'`
+nm_msvc_ver=$($CC 2>&1 | grep 'Compiler Version' 2>&1 \
+                | sed -e 's/^.* Version \(.*\)/\1/')
 
-echo " + msvc version: $nm_msvc_ver"
+printf " + msvc version: $nm_msvc_ver\n"
 
 NM_COMPILER="msvc $nm_msvc_ver"
 have=NM_COMPILER value="\"$NM_COMPILER\"" . ${NORE_ROOT}/auto/define
 
 . ${NORE_ROOT}/auto/cc/version
-CC_VER=`version_n $(echo $nm_msvc_ver | cut -d' ' -f1)`
+CC_VER=$(version_n $(printf $nm_msvc_ver | cut -d' ' -f1))
 have=MSVC value=$CC_VER . ${NORE_ROOT}/auto/define
 
 
@@ -74,9 +74,6 @@ esac
 case "$NM_VERBOSE" in
   NO)
     CC="${CC:+$CC }-nologo"
-    if [ "$CXX" = "$CC" ]; then
-      CXX="${CXX:+$CXX }-nologo"
-    fi
     AR="${AR:+$AR }-nologo"
     AS="${AS:+$AS }-nologo"
     ;;

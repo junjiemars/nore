@@ -25,16 +25,13 @@ fi
 
 
 autotest_c="$NM_AUTOTEST.c"
-if [ "$CXX" = "$CC" ]; then
-  autotest_c="$NM_AUTOTEST.cc"
-fi
 
 cat << END > $autotest_c
 $nm_feature_h
 
-int main(void)
+int main (void)
 {
-    $nm_feature_test
+  $nm_feature_test
 }
 
 END

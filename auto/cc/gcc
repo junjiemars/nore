@@ -5,16 +5,16 @@
 # author: Junjie Mars
 #------------------------------------------------
 
-nm_gcc_ver=`$CC -v 2>&1 | grep 'gcc version' 2>&1 \
-                        | sed -e 's/^.* version \(.*\)/\1/'`
+nm_gcc_ver=$($CC -v 2>&1 | grep 'gcc version' 2>&1 \
+               | sed -e 's/^.* version \(.*\)/\1/')
 
-echo " + gcc version: $nm_gcc_ver"
+printf " + gcc version: $nm_gcc_ver\n"
 
 NM_COMPILER="gcc $nm_gcc_ver"
 have=NM_COMPILER value="\"$NM_COMPILER\"" . ${NORE_ROOT}/auto/define
 
 . ${NORE_ROOT}/auto/cc/version
-CC_VER=`version_n $(echo $nm_gcc_ver | cut -d' ' -f1)`
+CC_VER=$(version_n $(printf $nm_gcc_ver | cut -d' ' -f1))
 have=GCC value=$CC_VER . ${NORE_ROOT}/auto/define
 
 
@@ -78,11 +78,7 @@ esac
 case "$NM_STD" in
   NO) nm_std_opt="" ;;
   YES)
-    if [ "$CXX" = "$CC" ]; then
-      nm_std_opt=""
-    else
-      nm_std_opt="-std=c11"
-    fi
+    nm_std_opt="-std=c11"
     ;;
   *) nm_std_opt="${NM_STD}" ;;
 esac

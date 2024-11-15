@@ -12,6 +12,7 @@ unset -f command 2>/dev/null
 # check commands
 set -e
 awk=$(command -v awk)
+basename=$(command -v basename)
 chmod=$(command -v chmod)
 curl=$(command -v curl)
 cut=$(command -v cut)

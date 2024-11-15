@@ -22,37 +22,18 @@ else
   printf "${nm_found}\n"
 fi
 
+CC_NAME=$(basename $CC)
+if $($CC -v 2>&1 | grep -q 'gcc version'); then
+  printf " + using GNU ${CC_NAME} compiler\n"
 
-nm_feature="C++ compiler"
-nm_feature_name="CXX"
-nm_feature_run=dumb
-nm_feature_h="#include <iostream>"
-nm_feature_flags=
-nm_feature_value=
-nm_feature_test="std::cout << \"$CC\n\";"
-. ${NORE_ROOT}/auto/feature
+elif $($CC -v 2>&1 | grep -q '\(clang\|LLVM\) version'); then
+  printf " + using ${CC_NAME} compiler\n"
 
-cc_or_cxx="C"
-if [ ".yes" = ".$nm_found" ]; then
-  CXX=$nm_feature_value
-  cc_or_cxx="C/C++"
-fi
-
-
-if $($CC -v 2>&1 | grep 'gcc version' >/dev/null 2>&1); then
-  CC_NAME=gcc
-  printf " + using GNU ${cc_or_cxx} compiler\n"
-
-elif $($CC -v 2>&1 | grep '\(clang\|LLVM\) version' >/dev/null 2>&1); then
-  CC_NAME=clang
-  printf " + using Clang ${cc_or_cxx} compiler\n"
-
-elif $($CC 2>&1 | grep 'Microsoft .* C\/C++' >/dev/null 2>&1); then
-  CC_NAME=msvc
-  printf " + using Microsoft ${cc_or_cxx} compiler\n"
+elif $($CC 2>&1 | grep -q 'Microsoft .* C\/C++'); then
+  printf " + using Microsoft ${CC_NAME} compiler\n"
 
 else
-  CC_NAME=unknown
+  printf " + using ${CC_NAME} compiler\n"
 fi
 
 # eof
