@@ -22,17 +22,20 @@ else
   printf "${nm_found}\n"
 fi
 
-CC_NAME=$(basename $CC)
 if $($CC -v 2>&1 | grep -q 'gcc version'); then
+  CC_NAME=gcc
   printf " + using GNU ${CC_NAME} compiler\n"
 
 elif $($CC -v 2>&1 | grep -q '\(clang\|LLVM\) version'); then
+  CC_NAME=clang
   printf " + using ${CC_NAME} compiler\n"
 
 elif $($CC 2>&1 | grep -q 'Microsoft .* C\/C++'); then
+  CC_NAME=msvc
   printf " + using Microsoft ${CC_NAME} compiler\n"
 
 else
+  CC_NAME=unknown
   printf " + using ${CC_NAME} compiler\n"
 fi
 

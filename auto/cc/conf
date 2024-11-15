@@ -11,8 +11,8 @@ CC=${CC:-cc}
 CFLAGS=${CFLAGS}
 
 # predefined to c compiler
-ASM="\${ASM}"
-LINK="\${LINK}"
+ASM="\$(CC)"
+LINK="\$(CC)"
 
 # c preprocessor
 CPP=${CPP}
@@ -20,12 +20,12 @@ CPP=${CPP}
 CPPFLAGS=${CPPFLAGS}
 
 # assembler
-AS=${AS:-as}
+AS=${AS}
 # extra flags to assembler
 ASFLAGS=${ASFLAGS}
 
 # archiver
-AR=${AR:-ar}
+AR=${AR}
 # extra flags to archiver
 ARFLAGS=${ARFLAGS}
 
@@ -33,7 +33,7 @@ ARFLAGS=${ARFLAGS}
 INC=${INC}
 
 # linker
-LD=${LD:-$CC}
+# LD=${LD:-$CC}
 
 # extra flags to compiler for linker
 # such as -L
