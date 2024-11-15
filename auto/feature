@@ -18,10 +18,9 @@ if [ "dumb" != "$nm_feature_run" ]; then
   esac
 fi
 
-
 if [ -n "$nm_feature_name" ]; then
-  nm_have_feature=`echo $nm_feature_name \
-        | tr '[\-: =]' '_' | tr '[:lower:]' '[:upper:]'`
+  nm_have_feature=$(printf $nm_feature_name \
+    |tr '[\-: =]' '_' | tr '[:lower:]' '[:upper:]')
 fi
 
 

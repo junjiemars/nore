@@ -6,9 +6,9 @@
 #------------------------------------------------
 
 version_n () {
-  local v1="`echo $1 | cut -d'.' -f1 2>/dev/null`"
-  local v2="`echo $1 | cut -d'.' -f2 2>/dev/null`"
-  local v3="`echo $1 | cut -d'.' -f3 2>/dev/null`"
+  local v1="$(echo $1 | cut -d'.' -f1 2>/dev/null)"
+  local v2="$(echo $1 | cut -d'.' -f2 2>/dev/null)"
+  local v3="$(echo $1 | cut -d'.' -f3 2>/dev/null)"
   local n=0
   if [ -n "$v1" ]; then
     n=$(( v1*10000 ))
@@ -17,7 +17,7 @@ version_n () {
     n=$(( n+v2*100 ))
   fi
   if [ -n "$3" ]; then
-    v3=`echo $v3 | sed -e 's/^\([0-9]*\).*/\1/'`
+    v3=$(echo $v3 | sed -e 's/^\([0-9]*\).*/\1/')
     n=$(( n+v3 ))
   fi
   echo $n

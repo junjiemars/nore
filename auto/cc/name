@@ -39,17 +39,17 @@ if [ ".yes" = ".$nm_found" ]; then
 fi
 
 
-if `$CC -v 2>&1 | grep 'gcc version' >/dev/null 2>&1`; then
+if $($CC -v 2>&1 | grep 'gcc version' >/dev/null 2>&1); then
   CC_NAME=gcc
-  echo " + using GNU ${cc_or_cxx} compiler"
+  printf " + using GNU ${cc_or_cxx} compiler\n"
 
-elif `$CC -v 2>&1 | grep '\(clang\|LLVM\) version' >/dev/null 2>&1`; then
+elif $($CC -v 2>&1 | grep '\(clang\|LLVM\) version' >/dev/null 2>&1); then
   CC_NAME=clang
-  echo " + using Clang ${cc_or_cxx} compiler"
+  printf " + using Clang ${cc_or_cxx} compiler\n"
 
-elif `$CC 2>&1 | grep 'Microsoft .* C\/C++' >/dev/null 2>&1`; then
+elif $($CC 2>&1 | grep 'Microsoft .* C\/C++' >/dev/null 2>&1); then
   CC_NAME=msvc
-  echo " + using Microsoft ${cc_or_cxx} compiler"
+  printf " + using Microsoft ${cc_or_cxx} compiler\n"
 
 else
   CC_NAME=unknown
