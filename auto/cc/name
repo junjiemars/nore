@@ -34,9 +34,14 @@ elif $($CC 2>&1 | grep -q 'Microsoft .* C\/C++'); then
   CC_NAME=msvc
   printf " + using Microsoft ${CC_NAME} compiler\n"
 
+elif $($CC -v 2>&1 | grep -q 'tcc version'); then
+  CC_NAME=tcc
+  printf " + using Tiny ${CC_NAME} compiler\n"
+
 else
   CC_NAME=unknown
-  printf " + using ${CC_NAME} compiler\n"
+  printf " ! unsupport ${CC} compiler\n"
+  exit 1
 fi
 
 # eof

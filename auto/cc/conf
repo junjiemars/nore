@@ -109,6 +109,7 @@ case "$CC_NAME" in
   gcc)   . ${NORE_ROOT}/auto/cc/gcc ;;
   clang) . ${NORE_ROOT}/auto/cc/clang ;;
   msvc)  . ${NORE_ROOT}/auto/cc/msvc ;;
+  tcc)  . ${NORE_ROOT}/auto/cc/tcc ;;
 esac
 
 

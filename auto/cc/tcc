@@ -1,0 +1,107 @@
+#### -*- mode:sh -*- vim:ft=sh
+#------------------------------------------------
+# target: cc/tcc for tcc compiler
+# url: https://github.com/junjiemars/nore.git
+# author: Junjie Mars
+#------------------------------------------------
+
+nm_tcc_ver=$($CC -v 2>&1 | grep 'tcc version' 2>&1 \
+               | sed -e 's/^.* version \(.*\)/\1/')
+
+printf " + tcc version: $nm_tcc_ver\n"
+
+NM_COMPILER="tcc $nm_tcc_ver"
+have=NM_COMPILER value="\"$NM_COMPILER\"" . ${NORE_ROOT}/auto/define
+
+. ${NORE_ROOT}/auto/cc/version
+CC_VER=$(version_n $(printf $nm_tcc_ver | cut -d' ' -f1))
+have=TCC value=$CC_VER . ${NORE_ROOT}/auto/define
+
+
+# compiler
+[ "." = ".$CC" ] && CC="cc"
+
+# preprocessor
+[ "." = ".$CPP" ] && CPP="\$(CC)"
+
+# assembler
+[ "." = ".$AS" ] && AS="as"
+
+# linker
+[ "." = ".$LD" ] && LD="ld"
+
+# archiver
+[ "." = ".$AR" ] && AR="ar"
+
+
+# stage
+nm_stage_pre="-E"
+nm_stage_chk=
+nm_stage_asm="-S"
+nm_stage_c="-c"
+
+
+# error
+case "$NM_ERROR" in
+  NO) nm_error_opt="" ;;
+  YES) nm_error_opt="-Werror" ;;
+esac
+
+# warning
+case "$NM_WARN" in
+  NO)  nm_warn_opt="" ;;
+  YES) nm_warn_opt="-Wall -Wextra" ;;
+  *) nm_warn_opt="$NM_WARN" ;;
+esac
+
+# verbose
+case "$NM_VERBOSE" in
+  NO) nm_verbose_opt="" ;;
+  YES) nm_verbose_opt="-v" ;;
+esac
+
+# symbol
+case "$NM_SYMBOL" in
+  NO) nm_symbol_opt="" ;;
+  YES) nm_symbol_opt="-g3" ;;
+  *) nm_symbol_opt="$NM_SYMBOL" ;;
+esac
+
+# arch
+case "$NM_ARCH" in
+  NO) ;;
+  YES) nm_arch_opt="-march=native" ;;
+  *) nm_arch_opt="$NM_ARCH" ;;
+esac
+
+# std
+case "$NM_STD" in
+  NO) nm_std_opt="" ;;
+  YES)
+    nm_std_opt="-std=c11"
+    ;;
+  *) nm_std_opt="${NM_STD}" ;;
+esac
+
+# optimization
+case "$NM_OPTIMIZE" in
+  NO)  nm_optimize_opt="-O0" ;;
+  YES) nm_optimize_opt="-O2" ;;
+  *) nm_optimize_opt="$NM_OPTIMIZE" ;;
+esac
+
+# trigraphs
+nm_trigraphs_opt="-Wno-trigraphs"
+
+# openmp
+nm_openmp_opt="-fopenmp"
+
+# lib
+nm_lib_opt="-l"
+nm_libdir_opt="-L"
+nm_static_opt="-static"
+
+# link option
+LDFLAGS="${nm_libdir_opt}${NM_OUT}/lib${LDFLAGS:+ $LDFLAGS}"
+
+# eof
