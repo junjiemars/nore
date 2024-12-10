@@ -76,7 +76,7 @@ do
     --help) help=yes ;;
 
     --symbol-table=*) legal_dir "$value" \
-      && NM_SYMBOL_FILE="${value%/}" || panic_arg "--symbol-table="   "$value"
+      && NM_SYMBOL_FILE="${value%/}" || panic_arg "--symbol-table=" "$value"
       ;;
     --prefix=*) legal_dir "$value" \
       && NM_PREFIX="${value%/}" || panic_arg "--prefix=" "$value"
