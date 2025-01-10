@@ -40,13 +40,13 @@ fi
 
 
 if [ -z "$NM_PLATFORM" ]; then
-  echo "checking for OS"
+  printf "checking for OS\n"
 
-  NM_SYSTEM=`uname -s 2>/dev/null`
-  NM_RELEASE=`uname -r 2>/dev/null`
-  NM_MACHINE=`uname -m 2>/dev/null`
+  NM_SYSTEM=$(uname -s 2>/dev/null)
+  NM_RELEASE=$(uname -r 2>/dev/null)
+  NM_MACHINE=$(uname -m 2>/dev/null)
 
-  echo " + $NM_SYSTEM $NM_RELEASE $NM_MACHINE"
+  printf " + ${NM_SYSTEM} ${NM_RELEASE} ${NM_MACHINE}\n"
 
   case $NM_SYSTEM in
     MSYS_NT-*)
@@ -59,10 +59,10 @@ if [ -z "$NM_PLATFORM" ]; then
       ;;
   esac
 
-  NM_PLATFORM="$NM_SYSTEM-$NM_RELEASE-$NM_MACHINE";
+  NM_PLATFORM="${NM_SYSTEM}-${NM_RELEASE}-${NM_MACHINE}";
 
 else
-  echo "building for $NM_PLATFORM"
+  printf "building for ${NM_PLATFORM}\n"
   NM_SYSTEM=$NM_PLATFORM
 fi
 
