@@ -25,14 +25,15 @@ NM_SRC=.
 
 NM_NEW=NO
 
-NM_ERROR=YES
-NM_WARN=YES
-NM_VERBOSE=NO
-NM_BUILD=NO
-NM_SYMBOL=YES
 NM_ARCH=NO
-NM_STD=YES
+NM_BUILD=NO
+NM_ERROR=YES
 NM_OPTIMIZE=NO
+NM_STD=YES
+NM_SYMBOL=YES
+NM_SUMMARY=NO
+NM_VERBOSE=NO
+NM_WARN=YES
 
 NM_PLATFORM=
 NM_CPU_CACHE_LINE=
@@ -98,6 +99,7 @@ do
     --with-arch=*)           NM_ARCH="$value"               ;;
     --with-std=*)            NM_STD="$value"                ;;
     --with-optimize=*)       NM_OPTIMIZE="$value"           ;;
+    --with-summary=*)        NM_SUMMARY="$value"            ;;
 
     --has-*)
       if `legal_opt "$option"`; then
@@ -140,6 +142,7 @@ options:
   --with-arch=[NO|YES|*]             arch option
   --with-std=[YES|NO|*]              language standard option
   --with-optimize=[NO|YES|*]         optimize level option
+  --with-summary=[NO|YES]            summarize configuration
   --has-*                            has [*] to do
 
 END
@@ -181,6 +184,7 @@ NM_SYMBOL="`yes_no_opt YES $NM_SYMBOL`"
 NM_ARCH="`yes_no_opt NO $NM_ARCH`"
 NM_STD="`yes_no_opt YES $NM_STD`"
 NM_OPTIMIZE="`yes_no_opt NO $NM_OPTIMIZE`"
+NM_SUMMARY="$(yes_no_opt NO $NM_SUMMARY)"
 
 NM_BIN_PATH="${NM_BIN_PATH:-bin}"
 NM_LIB_PATH="${NM_LIB_PATH:-lib}"

@@ -16,7 +16,6 @@ yes_no_any_out () {
   esac
 }
 
-
 echo "Configuration summary"
 
 cat << END

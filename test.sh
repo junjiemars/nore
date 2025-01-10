@@ -291,6 +291,12 @@ test_nore_override_option () {
   test_make clean test
 }
 
+test_nore_summary_option () {
+	test_what "CC=$CC ./configure --with-summary=yes"
+  test_configure --with-summary=yes
+  test_make clean test
+}
+
 test_nore_auto_check () {
   local a="auto"
   sed -e 's/^#//g' "${_ROOT_DIR_}/auto/check" > "${a}"
@@ -311,7 +317,9 @@ test_nore_optimize_option
 test_nore_std_option
 test_nore_prefix_option
 test_nore_override_option
+test_nore_summary_option
 test_nore_auto_check
+
 
 # clean CI directory
 [ -d "${_CI_DIR_}" ] && rm -r "${_CI_DIR_}"

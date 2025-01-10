@@ -89,6 +89,8 @@ if [ -f "$NM_AUTO_H" ]; then
 END
 fi
 
-. ${NORE_ROOT}/auto/summary
+if [ "$NM_SUMMARY" = "YES" ]; then
+  source ${NORE_ROOT}/auto/summary
+fi
 
 # eof
