@@ -134,7 +134,7 @@ test_nore_symbol_option () {
   local c="`basename $_CI_DIR_`.c"
 
   test_what "CC=$CC ./configure --symbol-table=sym"
-  test_configure --symbol-table=sym
+  test_configure --symbol-table=sym --with-summary=yes
   test_make clean test
 
   cat <<END > "$c"
@@ -168,7 +168,7 @@ END
   esac
 
   test_what "CC=$CC ./configure --symbol-table=sym1"
-  test_configure --symbol-table=sym1
+  test_configure --symbol-table=sym1 --with-summary=yes
   test_make clean test
 }
 
@@ -219,11 +219,11 @@ ci_test: ci
 END
 
   test_what "CC=$CC ./configure --with-optimize=no"
-  test_configure --with-optimize=no
+  test_configure --with-optimize=no --with-summary=yes
   test_make clean test
 
   test_what "CC=$CC ./configure --with-optimize=yes"
-  test_configure --with-optimize=yes
+  test_configure --with-optimize=yes --with-summary=yes
   test_make clean test
 }
 
@@ -258,17 +258,17 @@ ci_test: ci
 END
 
   test_what "CC=$CC ./configure --with-std=yes"
-  test_configure "--with-std=yes"
+  test_configure "--with-std=yes --with-summary=yes"
   test_make clean test
 
   test_what "CC=$CC ./configure --with-std=-std=c11"
   case "$_OS_NAME_" in
-    Darwin)   test_configure "--with-std=-std=c11" ;;
-    Linux)    test_configure "--with-std=-std=c11" ;;
+    Darwin)   test_configure "--with-std=-std=c11 --with-summary=yes" ;;
+    Linux)    test_configure "--with-std=-std=c11 --with-summary=yes" ;;
     WinNT|*)
       case "$CC" in
-        cl)      test_configure "--with-std=-std:c11" ;;
-        gcc|*)   test_configure "--with-std=-std=c11" ;;
+        cl)      test_configure "--with-std=-std:c11 --with-summary=yes" ;;
+        gcc|*)   test_configure "--with-std=-std=c11 --with-summary=yes" ;;
       esac
   esac
   test_make clean test
