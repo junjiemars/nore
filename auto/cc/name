@@ -13,7 +13,7 @@ nm_feature_run=dumb
 nm_feature_h=
 nm_feature_flags=
 nm_feature_test=
-. ${NORE_ROOT}/auto/feature
+source ${NORE_ROOT}/auto/feature
 
 if [ ".no" = ".$nm_found" ]; then
   printf "${nm_found}\n"
@@ -24,23 +24,23 @@ fi
 
 if $($CC -v 2>&1 | grep -q 'gcc version'); then
   CC_NAME=gcc
-  printf " + using GNU ${CC_NAME} compiler\n"
+  CC_BAND="GNU"
 
 elif $($CC -v 2>&1 | grep -q '\(clang\|LLVM\) version'); then
   CC_NAME=clang
-  printf " + using ${CC_NAME} compiler\n"
+  CC_BAND=""
 
 elif $($CC 2>&1 | grep -q 'Microsoft .* C\/C++'); then
   CC_NAME=msvc
-  printf " + using Microsoft ${CC_NAME} compiler\n"
+  CC_BAND="Microsoft"
 
 elif $($CC -v 2>&1 | grep -q 'tcc version'); then
   CC_NAME=tcc
-  printf " + using Tiny ${CC_NAME} compiler\n"
+  CC_BAND="Tiny"
 
 else
   CC_NAME=unknown
-  printf " ! unsupport ${CC} compiler\n"
+  CC_BAND=unknown
   exit 1
 fi
 

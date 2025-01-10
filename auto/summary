@@ -20,7 +20,7 @@ echo "Configuration summary"
 
 cat << END
   platform: $NM_PLATFORM
-  compiler: $NM_COMPILER
+  compiler: ${CC_BAND:+ }${NM_COMPILER}
   symbol-table= $NM_SYMBOL_FILE
   prefix= $NM_PREFIX
   out= $NM_OUT
