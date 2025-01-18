@@ -161,7 +161,6 @@ NORE_L_BOOT="\${NORE_ROOT}/bootstrap.sh"
 NORE_R_BOOT="${GITHUB_R}/nore/\${NORE_BRANCH}/bootstrap.sh"
 NORE_L_CONF="\${NORE_ROOT}/auto/configure"
 NORE_L_CONF_OPTS=
-NORE_L_CONF_TRACE="no"
 NORE_L_CONF_COMMAND=
 
 for option
@@ -176,12 +175,16 @@ do
       ;;
 
     *)
-       NORE_L_CONF_COMMAND="\$option"
-       ;;
+      if [ -z "\$NORE_L_CONF_COMMAND" ]; then
+        NORE_L_CONF_COMMAND="\$($printf \$option|$tr '[:upper:]' '[:lower:]')"
+      fi
+      ;;
   esac
 done
 
-case "\`echo \${NORE_L_CONF_COMMAND} | $tr '[:upper:]' '[:lower:]'\`" in
+cd "\$(CDPATH= cd -- \$($dirname -- \$0) && echo \$PWD)"
+
+case "\${NORE_L_CONF_COMMAND}" in
   upgrade)
     if [ -f \${NORE_L_BOOT} ]; then
       \$NORE_L_BOOT --branch=\${NORE_BRANCH} upgrade
@@ -250,28 +253,36 @@ fi)
     exit \$?
     ;;
 
+  help|new)
+    if [ -f \${NORE_L_CONF} ]; then
+      \$NORE_L_CONF \$NORE_L_CONF_COMMAND "\$@"
+      exit \$?
+    else
+      $printf "\n!nore << no found, to fix >: configure clone\n"
+      exit 1
+    fi
+    ;;
+
   trace)
-    NORE_L_CONF_TRACE="yes"
+    if [ -f \${NORE_L_CONF} ]; then
+      sh -x \$NORE_L_CONF "\$@"
+      exit \$?
+    else
+      $printf "\n!nore << no found, to fix >: configure clone\n"
+      exit 1
+    fi
+    ;;
+
+  *)
+    if [ -f \${NORE_L_CONF} ]; then
+      \$NORE_L_CONF "\$@"
+      exit \$?
+    else
+      printf "\n!nore << no found, to fix >: configure clone\n"
+      exit 1
+    fi
     ;;
 esac
-
-
-cd "\$(CDPATH= cd -- \$($dirname -- \$0) && echo \$PWD)"
-
-if [ -f \${NORE_L_CONF} ]; then
-  case "\${NORE_L_CONF_TRACE}" in
-    no)
-      \$NORE_L_CONF "\$@"
-      ;;
-    yes)
-      sh -x \$NORE_L_CONF \${NORE_L_CONF_OPTS}
-      ;;
-  esac
-else
-  echo
-  echo "!nore << no found, to fix >: configure clone"
-  echo
-fi
 
 # eof
 

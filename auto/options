@@ -74,7 +74,9 @@ do
   esac
 
   case "$option" in
-    --help) help=yes ;;
+    help) help=yes ;;
+    new)  NM_NEW=YES ;;
+    trace) : ;;
 
     --symbol-table=*) legal_dir "$value" \
       && NM_SYMBOL_FILE="${value%/}" || panic_arg "--symbol-table=" "$value"
@@ -88,8 +90,6 @@ do
     --out-dir=*) legal_dir "$value" \
       && NM_OUT="${value%/}" || panic_arg "--out-dir=" "$value"
       ;;
-
-    --new)                   NM_NEW=YES                     ;;
 
     --with-error=*)          NM_ERROR="$value"              ;;
     --with-warn=*)           NM_WARN="$value"               ;;
@@ -118,22 +118,22 @@ done
 
 if [ $help = yes ]; then
   cat << END
-usage: configure [command]
-       configure [options...]
+usage: configure [command:help|clone|upgrade|where]
+       configure [command:new|trace] [options...]
 
 commands:
+  help                               print this message
+  new                                generate Nore script templates
   clone                              clone Nore to current directory
   upgrade                            upgrade Nore
   where                              where Nore located
   trace                              trace Nore
 
 options:
-  --help                             print this message
   --symbol-table=PATH                dump or load symbol table
   --prefix=PATH                      installation prefix
   --src-dir=[.|src|*]                set source directory
   --out-dir=[out|*]                  set build out directory
-  --new                              generate Nore script templates
   --with-error=[YES|NO]              treat warn as error
   --with-warn=[YES|NO|*]             warn level option
   --with-verbose=[NO|YES]            verbose output

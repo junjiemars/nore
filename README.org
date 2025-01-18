@@ -13,7 +13,7 @@ Let's start ...
 $ curl https://raw.githubusercontent.com/junjiemars/nore/master/bootstrap.sh -sSfL | sh
 
 # generate a C application skeleton
-$ ./configure --new
+$ ./configure new
 
 # build and test
 $ make test
@@ -143,7 +143,7 @@ $ curl https://raw.githubusercontent.com/junjiemars/nore/edge/bootstrap.sh -sSfL
 	 :END:
 
 #+BEGIN_SRC sh
-$ ./configure --help
+$ ./configure help
 #+END_SRC
 
 All Nore's options are orthographic.
@@ -182,13 +182,13 @@ REM switch to sh
 		:CUSTOM_ID: new-a-skeleton
 		:END:
 
-Using *--new* option to make a testable skeleton, you can easy to try
+Using *new* command to make a testable skeleton, you can easy to try
 some new idea from scratch. Don't warry, it is the same processing on
 Windows, Darwin and Linux.
 
 #+BEGIN_SRC sh
 # generate a new project's skeleton
-$ ./configure --new
+$ ./configure new
 
 checking for OS
  + MSYS_NT-10.0 2.10.0(0.325/5/3) x86_64
@@ -221,7 +221,7 @@ Configuration summary
   std= YES
   optimize= NO: -Od
 
-# after --new a skeleton, configure skeleton and make
+# after *new* a skeleton, configure skeleton and make
 $ ./configure
 $ make clean test
 #+END_SRC

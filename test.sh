@@ -124,9 +124,9 @@ test_nore_where_command () {
   test_configure where
 }
 
-test_nore_new_option () {
-	test_what "CC=$CC ./configure --new"
-  test_configure --new
+test_nore_new_command () {
+	test_what "CC=$CC ./configure new"
+  test_configure new
   test_make clean test
 }
 
@@ -277,7 +277,7 @@ END
 test_nore_prefix_option () {
   local d="${_CI_DIR_}/xxx"
 	test_what "CC=$CC ./configure --prefix=xxx"
-  test_configure --new
+  test_configure new
   test_configure --prefix=xxx
   test_make clean test install
   if [ -d "$d" ]; then
@@ -286,8 +286,8 @@ test_nore_prefix_option () {
 }
 
 test_nore_override_option () {
-	test_what "CC=$CC ./configure --new"
-  test_configure --new --with-optimize=yes --with-optimize=-Os
+	test_what "CC=$CC ./configure new"
+  test_configure new --with-optimize=yes --with-optimize=-Os
   test_make clean test
 }
 
@@ -311,7 +311,7 @@ fi
 env_ci_build
 test_make_print_database
 test_nore_where_command
-test_nore_new_option
+test_nore_new_command
 test_nore_symbol_option
 test_nore_optimize_option
 test_nore_std_option
