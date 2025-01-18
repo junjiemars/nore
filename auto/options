@@ -118,8 +118,7 @@ done
 
 if [ $help = yes ]; then
   cat << END
-usage: configure [command:help|clone|upgrade|where]
-       configure [command:new|trace] [options...]
+usage: configure [command] [options...]
 
 commands:
   help                               print this message
