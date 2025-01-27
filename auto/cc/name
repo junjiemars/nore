@@ -13,7 +13,7 @@ nm_feature_run=dumb
 nm_feature_h=
 nm_feature_flags=
 nm_feature_test=
-source ${NORE_ROOT}/auto/feature
+. ${NORE_ROOT}/auto/feature
 
 if [ ".no" = ".$nm_found" ]; then
   printf "${nm_found}\n"
