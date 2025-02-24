@@ -109,6 +109,7 @@ do
       fi
       ;;
 
+    "") : ;;
     *)
       echo "! panic: unkown option '$option'"
       exit 1
