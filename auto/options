@@ -66,10 +66,10 @@ panic_has_opt () {
 
 for option
 do
-  opt="$opt `echo $option | sed -e \"s/\(--[^=]*=\)\(.* .*\)/\1'\2'/\"`"
+  opt="${opt:+$opt }$(echo $option | sed -e "s/\(--[^=]*=\)\(.* .*\)/\1'\2'/")"
 
   case "$option" in
-    -*=*) value=`echo "$option" | sed -e 's/[-_a-zA-Z0-9]*=//'` ;;
+    -*=*) value=$(echo "$option" | sed -e 's/[-_a-zA-Z0-9]*=//') ;;
     *) value="" ;;
   esac
 
@@ -109,7 +109,6 @@ do
       fi
       ;;
 
-    "") : ;;
     *)
       echo "! panic: unkown option '$option'"
       exit 1
