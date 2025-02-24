@@ -167,6 +167,10 @@ yes_no_opt () {
 
 NM_CONFIGURE="$opt"
 
+if [ . = "$NM_SRC" -a -d src ]; then
+  NM_SRC=src
+fi
+
 if [ 0 -eq ${#NM_HAS_STICKS} ]; then
   NM_HAS_STICKS="."
 fi
