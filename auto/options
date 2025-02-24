@@ -66,17 +66,17 @@ panic_has_opt () {
 
 for option
 do
-  opt="${opt:+$opt }$(echo "$option" | sed -e "s/\(--[^=]*=\)\(.* .*\)/\1'\2'/")"
+  opt="${opt:+$opt }$(echo $option | sed -e "s/\(--[^=]*=\)\(.* .*\)/\1'\2'/")"
 
   case "$option" in
-    -*=*) value=$(echo "$option" | sed -e 's/[-_a-zA-Z0-9]*=//') ;;
+    -*=*) value=$(echo $option | sed -e 's/[-_a-zA-Z0-9]*=//') ;;
     *) value="" ;;
   esac
 
   case "$option" in
     help) help=yes ;;
     new)  NM_NEW=YES ;;
-    trace|" "*) : ;;
+    trace| *) : ;;
 
     --symbol-table=*) legal_dir "$value" \
       && NM_SYMBOL_FILE="${value%/}" || panic_arg "--symbol-table=" "$value"
@@ -102,8 +102,10 @@ do
     --with-summary=*)        NM_SUMMARY="$value"            ;;
 
     --has-*)
-      if `legal_opt "$option"`; then
-        NM_HAS_STICKS=${NM_HAS_STICKS:+$NM_HAS_STICKS }`echo $option|sed -e "s/\ *--has-\(${legal_opt_reg}\)/\1/"|tr '[:upper:]' '[:lower:]'`
+      if $(legal_opt "$option"); then
+        NM_HAS_STICKS=${NM_HAS_STICKS:+$NM_HAS_STICKS }                 \
+          $(echo $option | sed -e "s/\ *--has-\(${legal_opt_reg}\)/\1/" \
+              | tr '[:upper:]' '[:lower:]')
       else
         panic_has_opt "$option"
       fi
