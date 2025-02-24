@@ -66,7 +66,7 @@ panic_has_opt () {
 
 for option
 do
-  opt="${opt:+$opt }$(echo $option | sed -e "s/\(--[^=]*=\)\(.* .*\)/\1'\2'/")"
+  opt="${opt:+$opt }$(echo "$option" | sed -e "s/\(--[^=]*=\)\(.* .*\)/\1'\2'/")"
 
   case "$option" in
     -*=*) value=$(echo "$option" | sed -e 's/[-_a-zA-Z0-9]*=//') ;;
@@ -76,7 +76,7 @@ do
   case "$option" in
     help) help=yes ;;
     new)  NM_NEW=YES ;;
-    trace) : ;;
+    trace|" "*) : ;;
 
     --symbol-table=*) legal_dir "$value" \
       && NM_SYMBOL_FILE="${value%/}" || panic_arg "--symbol-table=" "$value"
