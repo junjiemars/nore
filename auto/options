@@ -66,13 +66,14 @@ panic_has_opt () {
 
 for option
 do
-  opt="${opt:+$opt }$(echo $option | sed -e "s/\(--[^=]*=\)\(.* .*\)/\1'\2'/")"
+  opt="${opt:+$opt }$(echo "$option"|sed -e "s/\(--[^=]*=\)\(.* .*\)/\1'\2'/")"
 
   case "$option" in
-    -*=*) value=$(echo $option | sed -e 's/[-_a-zA-Z0-9]*=//') ;;
+    -*=*) value=$(echo "$option"|sed -e 's/[-_a-zA-Z0-9]*=//') ;;
     *) value="" ;;
   esac
 
+  printf "|%s|\n" "$option"
   case "$option" in
     help) help=yes ;;
     new)  NM_NEW=YES ;;
