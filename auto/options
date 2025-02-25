@@ -74,10 +74,10 @@ do
   esac
 
   printf "|%s|\n" "$option"
-  case "$option" in
+  case $option in
     help) help=yes ;;
     new)  NM_NEW=YES ;;
-    trace|" "*) : ;;
+    trace) : ;;
 
     --symbol-table=*) legal_dir "$value" \
       && NM_SYMBOL_FILE="${value%/}" || panic_arg "--symbol-table=" "$value"
@@ -111,8 +111,12 @@ do
       ;;
 
     *)
-      echo "! panic: unkown option '$option'"
-      exit 1
+      if [ -z $option ]; then
+        :
+      else
+        echo "! panic: unkown option '$option'"
+        exit 1
+      fi
       ;;
   esac
 done
