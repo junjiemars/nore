@@ -90,7 +90,7 @@ END
 fi
 
 if [ "$NM_SUMMARY" = "YES" ]; then
-  source ${NORE_ROOT}/auto/summary
+  . ${NORE_ROOT}/auto/summary
 fi
 
 # eof
