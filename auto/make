@@ -28,6 +28,8 @@ cat << END > $NM_MAKEFILE
 # GNU make Manual: https://www.gnu.org/software/make/manual/make.html
 #
 
+NM_MAKEFILE_DEF := 1
+
 CC = $CC
 
 CPP = $CPP
@@ -385,7 +387,9 @@ if [ ! -f Makefile ]; then
 #
 # check ${NM_MAKEFILE} for details
 
+ifeq (\$(flavor NM_MAKEFILE_DEF),undefined)
 include $NM_MAKEFILE
+endif
 
 END
 
