@@ -73,7 +73,6 @@ do
     *) value="" ;;
   esac
 
-  printf "|%s|\n" "$option"
   case $option in
     help) help=yes ;;
     new)  NM_NEW=YES ;;
