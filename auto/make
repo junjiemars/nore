@@ -202,10 +202,6 @@ echo_yes_or_no () {
   fi
 }
 
-echo_pretty_path () {
-  echo "$@" | sed -e 's#^./\(.*\)#\1#'
-}
-
 
 # basic paths
 cat << END >> $NM_MAKEFILE
@@ -226,8 +222,8 @@ var_path = $NM_OUT/var
 END
 
 
-if [ -f "./auto" ]; then
-  echo " * checking for $(echo_pretty_path ./auto) ... yes"
+if [ -f "auto" ]; then
+  echo " * checking for auto ... yes"
   . "./auto" 2>> $NM_AUTO_ERR
 fi
 
@@ -257,7 +253,7 @@ END
   nm_stick_norm_c="${nm_stick_norm}.c"
 
   if [ YES = $NM_NEW -a ! -f "$nm_stick_norm_c" ]; then
-    printf " + generating `echo_pretty_path $nm_stick_src/$nm_stick_norm_c` file ... "
+    printf " + generating $nm_stick_src/$nm_stick_norm_c file ... "
 
     cat <<END > "$nm_stick_src/$nm_stick_norm_c"
 /*
@@ -280,12 +276,12 @@ END
   fi # end of [ ! -f "$nm_stick_src/$nm_stick_norm_c" ]
 
   if [ -f "$nm_stick_src/version" ]; then
-    echo " * checking for `echo_pretty_path $nm_stick_src/version` ... yes"
+    echo " * checking for $nm_stick_src/version ... yes"
     have=`echo "$nm_stick_norm" | tr '[:lower:]' '[:upper:]'`_VERSION \
     value=`cat "$nm_stick_src/version"` . ${NORE_ROOT}/auto/define
 
   elif [ YES = $NM_NEW ]; then
-    printf " + generating `echo_pretty_path $nm_stick_src/version` file ... "
+    printf " + generating $nm_stick_src/version file ... "
     cat << END > "$nm_stick_src/version"
 0x030614
 
@@ -294,27 +290,27 @@ END
   fi # end of [ -f $nm_stick_src/version ]
 
   if [ -f "$nm_stick_src/auto" ]; then
-    echo " * checking for `echo_pretty_path $nm_stick_src/auto` ... yes"
+    echo " * checking for $nm_stick_src/auto ... yes"
     . "$nm_stick_src/auto" 2>> $NM_AUTO_ERR
 
   elif [ YES = $NM_NEW ]; then
-    printf " + generating `echo_pretty_path $nm_stick_src/auto` file ... "
+    printf " + generating $nm_stick_src/auto file ... "
     cat ${NORE_ROOT}/auto/check > "$nm_stick_src/auto"
     echo_yes_or_no $?
   else
-    echo " * checking for `echo_pretty_path $nm_stick_src/auto` ... no"
+    echo " * checking for $nm_stick_src/auto ... no"
   fi # end of [ -f $nm_stick_src/auto ]
 
   if [ -f "$nm_stick_src/Makefile" ]; then
     stick_makefile="$nm_stick_src/Makefile"
-    echo " * checking for `echo_pretty_path $nm_stick_src/Makefile` ... yes"
+    echo " * checking for $nm_stick_src/Makefile ... yes"
 
   elif [ YES = $NM_NEW ]; then
     stick_makefile="$nm_stick_src/Makefile"
     if [ $nm_stick_src = . ]; then
       stick_makefile="$nm_stick_src/Makefile.NEW"
     else
-      printf " + generating `echo_pretty_path $nm_stick_src/Makefile` ... "
+      printf " + generating $nm_stick_src/Makefile ... "
     fi
     cat << END > "$stick_makefile"
 #---------------------------------------
@@ -336,7 +332,7 @@ END
     fi
   else
 
-    echo " * checking for `echo_pretty_path $nm_stick_src/Makefile` ... no"
+    echo " * checking for $nm_stick_src/Makefile ... no"
     cat << END >> $NM_AUTO_ERR
 
 ----------------------------------------
