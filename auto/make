@@ -70,6 +70,7 @@ nm_model_opt = $nm_model_opt
 nm_utf_opt = $nm_utf_opt
 nm_trigraphs_opt = $nm_trigraphs_opt
 nm_openmp_opt = $nm_openmp_opt
+nm_c11_atomic_opt = $nm_c11_atomic_opt
 
 # stage
 nm_stage_pre = $nm_stage_pre
