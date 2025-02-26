@@ -176,7 +176,7 @@ do
 
     *)
       if [ -z "\$NORE_L_CONF_COMMAND" ]; then
-        NORE_L_CONF_COMMAND="\$($printf \$option|$tr '[:upper:]' '[:lower:]')"
+        NORE_L_CONF_COMMAND="\$($printf "\$option"|$tr '[:upper:]' '[:lower:]')"
       fi
       ;;
   esac
