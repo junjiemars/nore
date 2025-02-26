@@ -135,8 +135,8 @@ nm_trigraphs_opt="-Zc:trigraphs"
 # openmp
 nm_openmp_opt="-openmp"
 
-# c11 experimental:c11atomics
-nm_c11_atomic_opt="-experimental:c11atomics"
+# atomic
+nm_atomic_opt="-experimental:c11atomics"
 
 # lib
 nm_libdir_opt="-libpath:"
