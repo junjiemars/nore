@@ -222,11 +222,6 @@ var_path = $NM_OUT/var
 END
 
 
-if [ -f "auto" ]; then
-  echo " * checking for auto ... yes"
-  . "./auto" 2>> $NM_AUTO_ERR
-fi
-
 for stick in ${NM_HAS_STICKS}; do
 
   nm_stick_src="`make_stick_path $NM_SRC $stick`"
