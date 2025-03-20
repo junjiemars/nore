@@ -21,37 +21,35 @@ $ make test
 
 done.
 
-
 - [[#story][Story]]
 - [[#recipe][Recipe]]
 - [[#editor][Editor]]
 - [[#troubleshoting][Troubleshoting]]
 
 * Story
-	:PROPERTIES:
-	:CUSTOM_ID: story
-	:END:
+  :PROPERTIES:
+  :CUSTOM_ID: story
+  :END:
 
-Why we need another C build system?
+*Why another C build system?*
 
-Frequently, I want to know how things works in machine level, so I
-need to try something in C on popular platforms, but sadly, there are
-no handy weapons to do that.
+I often need to experiment with low-level C code across platforms, yet lack
+simple tools for this purpose. While existing solutions like /Make/ and /Shell/
+address core needs, the critical challenge remains: /how to simplify *multi-OS*
+and *multi-compiler* workflows without sacrificing flexibility./
 
-I known there are already aswsome tools exists, but the key question
-is how to easy build C code in varied OS by varied Compilers, among
-those things I just pick the most critical ones: *Make* and *Shell*.
-
-So the story begins ...
-- Keep things simple: classic workflow (configure, make and make
-  install).
-- Write, Build, Test and Run on anywhere: Linux, Darwin, Windows.
-- Easy to try some new ideas but have no more unnecessaries.
+*Nore's approach*:
+- Preserve Unix simplicity:
+  maintain the classic *configure-make* workflow.
+- Unify development cycles:
+  *write*, *build*, *test*, and *run* seamlessly on Linux, Darwin, and Windows.
+- Enable rapid experimentation:
+  support *prototyping* without imposing unnecessary abstractions.
 
 * Recipe
-	:PROPERTIES:
-	:CUSTOM_ID: recipe
-	:END:
+  :PROPERTIES:
+  :CUSTOM_ID: recipe
+  :END:
 
 This section describes how to use Nore in details.
 
@@ -61,14 +59,14 @@ This section describes how to use Nore in details.
 -  [[#commands][Commands]]
 
 ** Configuration
-	 :PROPERTIES:
-	 :CUSTOM_ID: configuration
-	 :END:
+   :PROPERTIES:
+   :CUSTOM_ID: configuration
+   :END:
 
 *** On Unix-like Platform
-		:PROPERTIES:
-		:CUSTOM_ID: on-unix-like-platform
-		:END:
+    :PROPERTIES:
+    :CUSTOM_ID: on-unix-like-platform
+    :END:
 
 There are no installation process just configure *sh* and *make*
 environment.
@@ -90,9 +88,9 @@ configure Nore on Linux ...
 #+END_SRC
 
 *** On Windows Platform
-		:PROPERTIES:
-		:CUSTOM_ID: on-windows-platform
-		:END:
+    :PROPERTIES:
+    :CUSTOM_ID: on-windows-platform
+    :END:
 
 Requirements on Windows:
 - Shell, because there are no *sh* by default, so we need to install
@@ -127,9 +125,9 @@ easier.
 - [[https://github.com/junjiemars/images/blob/master/nore/visual-studio-build-tools-2017.png][visual studio build tools 2017]]
 
 *** From Edge Branch
-		:PROPERTIES:
-		:CUSTOM_ID: from-edge-branch
-		:END:
+    :PROPERTIES:
+    :CUSTOM_ID: from-edge-branch
+    :END:
 
 If you want to try new features of Nore, try the =edge= branch.
 
@@ -138,9 +136,9 @@ $ curl https://raw.githubusercontent.com/junjiemars/nore/edge/bootstrap.sh -sSfL
 #+END_SRC
 
 ** Getting Started
-	 :PROPERTIES:
-	 :CUSTOM_ID: getting-started
-	 :END:
+   :PROPERTIES:
+   :CUSTOM_ID: getting-started
+   :END:
 
 #+BEGIN_SRC sh
 $ ./configure help
@@ -178,9 +176,9 @@ REM switch to sh
 - [[https://github.com/junjiemars/images/blob/master/nore/host-msvc-env-on-windows.png][host msvc environment]]
 
 *** New a Skeleton
-		:PROPERTIES:
-		:CUSTOM_ID: new-a-skeleton
-		:END:
+    :PROPERTIES:
+    :CUSTOM_ID: new-a-skeleton
+    :END:
 
 Using *new* command to make a testable skeleton, you can easy to try
 some new idea from scratch. Don't warry, it is the same processing on
@@ -206,10 +204,10 @@ creating out/Makefile
 Configuration summary
   platform: WinNT-10.0-x86_64
   compiler: msvc 19.16.27025.1 for x64
-  symbol-table= 
+  symbol-table=
   prefix= dist
   out= out
-  src= .	
+  src= .
   has= .
   new= YES
   error= YES: -WX
@@ -232,9 +230,9 @@ $ make clean test
 - [[https://github.com/junjiemars/images/blob/master/nore/new-skeleton-gcc.png][new skeleton gcc]]
 
 *** Configure existing one
-		:PROPERTIES:
-		:CUSTOM_ID: configure-existing-one
-		:END:
+    :PROPERTIES:
+    :CUSTOM_ID: configure-existing-one
+    :END:
 
 For existing C project
 
@@ -245,9 +243,9 @@ $ ./configure --src-dir=<source-directory>
 #+END_SRC
 
 *** Build and Test
-		:PROPERTIES:
-		:CUSTOM_ID: build-and-test
-		:END:
+    :PROPERTIES:
+    :CUSTOM_ID: build-and-test
+    :END:
 
 #+BEGIN_SRC sh
 $ ./configure
@@ -261,9 +259,9 @@ Following the prompt of *configure* and *make*, change the /options/
 of *configure* or modify /src/Makefile/.
 
 *** Multiple Targets
-		:PROPERTIES:
-		:CUSTOM_ID: multiple-targets
-		:END:
+    :PROPERTIES:
+    :CUSTOM_ID: multiple-targets
+    :END:
 
 Suppose project /P/ has /A/, /B/ and /C/ three individual
 subprojects. And /A/, /B/ and /C/ has individual /Makefile/. The
@@ -289,9 +287,9 @@ $ ./configure --has-A --has-B --has-C
 #+END_SRC
 
 *** Multiple Projects
-		:PROPERTIES:
-		:CUSTOM_ID: multiple-projects
-		:END:
+    :PROPERTIES:
+    :CUSTOM_ID: multiple-projects
+    :END:
 
 All projects can share only one Nore clone.
 
@@ -315,9 +313,9 @@ $ <Nore>/bootstrap.sh
 #+END_SRC
 
 *** Symbol Table
-		:PROPERTIES:
-		:CUSTOM_ID: symbol-table
-		:END:
+    :PROPERTIES:
+    :CUSTOM_ID: symbol-table
+    :END:
 
 Nore's builtin exportable symbols can be replaced via *--symbol-table*
 option, which let Nore easy port to existing C projects.
@@ -338,18 +336,18 @@ $ make clean test
 #+END_SRC
 
 ** Feature Testing
-	 :PROPERTIES:
-	 :CUSTOM_ID: feature-testing
-	 :END:
+   :PROPERTIES:
+   :CUSTOM_ID: feature-testing
+   :END:
 
 Write a /sh/ script named /auto/ and put it into =--src-dir=
 directory. The errors of /auto/ will be recorded into the /auto.err/
 file in your =--out-dir= directory.
 
 *** Header File Exists Testing
-		:PROPERTIES:
-		:CUSTOM_ID: header-file-exists-testing
-		:END:
+    :PROPERTIES:
+    :CUSTOM_ID: header-file-exists-testing
+    :END:
 
 #+BEGIN_SRC sh
 # check header file exiting
@@ -363,9 +361,9 @@ include="tgmath.h" . ${NORE_ROOT}/auto/include
 #+END_SRC
 
 *** Machine Feature Testing
-		:PROPERTIES:
-		:CUSTOM_ID: machine-feature-testing
-		:END:
+    :PROPERTIES:
+    :CUSTOM_ID: machine-feature-testing
+    :END:
 
 #+BEGIN_SRC sh
 # check machine features
@@ -389,9 +387,9 @@ nm_feature_test='int i=0x11223344;
 - =dumb= will run =nm_feature_test= except output to screen.
 
 *** Compiler Switch Testing
-		:PROPERTIES:
-		:CUSTOM_ID: compiler-switch-testing
-		:END:
+    :PROPERTIES:
+    :CUSTOM_ID: compiler-switch-testing
+    :END:
 
 #+BEGIN_SRC sh
 # check compiler features
@@ -420,8 +418,8 @@ esac
 
 *** OS Feature Testing
     :PROPERTIES:
-		:CUSTOM_ID: os-feature-testing
-		:END:
+    :CUSTOM_ID: os-feature-testing
+    :END:
 
 #+BEGIN_SRC sh
 # check OS features
@@ -444,9 +442,9 @@ esac
 #+END_SRC
 
 *** ENV Feature Testing
-		:PROPERTIES:
-		:CUSTOM_ID: env-feature-testing
-		:END:
+    :PROPERTIES:
+    :CUSTOM_ID: env-feature-testing
+    :END:
 
 #+BEGIN_SRC sh
 # check ENV features
@@ -472,14 +470,14 @@ esac
 #+END_SRC
 
 ** Commands
-	 :PROPERTIES:
-	 :CUSTOM_ID: commands
-	 :END:
+   :PROPERTIES:
+   :CUSTOM_ID: commands
+   :END:
 
 *** where
-		:PROPERTIES:
-		:CUSTOM_ID: where
-		:END:
+    :PROPERTIES:
+    :CUSTOM_ID: where
+    :END:
 
 The *where* command used to review your current Nore's environment.
 After [[#configuration][configuration]], Nore should generate the =cc-env.sh= shell script
@@ -525,9 +523,9 @@ cc-inc.vimrc=@/c/Users/junjie/cc-inc.vimrc
 #+END_SRC
 
 *** upgrade
-		:PROPERTIES:
-		:CUSTOM_ID: upgrade
-		:END:
+    :PROPERTIES:
+    :CUSTOM_ID: upgrade
+    :END:
 
 Upgrade current Nore via *upgrade* command.
 
@@ -545,49 +543,49 @@ configure Nore on MSYS_NT-10.0 ...
 #+END_SRC
 
 *** clone
-		:PROPERTIES:
-		:CUSTOM_ID: clone
-		:END:
+    :PROPERTIES:
+    :CUSTOM_ID: clone
+    :END:
 
 Clone the existing Nore into current directory.
 
 *** trace
-		:PROPERTIES:
-		:CUSTOM_ID: trace
-		:END:
+    :PROPERTIES:
+    :CUSTOM_ID: trace
+    :END:
 
 Trace Nore processing.
 
 ** Examples
-	 :PROPERTIES:
-	 :CUSTOM_ID: examples
-	 :END:
+   :PROPERTIES:
+   :CUSTOM_ID: examples
+   :END:
 
 *** Make an executable
 *** Make a library
 *** All stages of compiling
 
 * Editor
-	:PROPERTIES:
-	:CUSTOM_ID: editor
-	:END:
+  :PROPERTIES:
+  :CUSTOM_ID: editor
+  :END:
 
 This section introduces how Nore interactive with your favored
 Editors.
 
 **  Vim
-	 :PROPERTIES:
-	 :CUSTOM_ID: vim
-	 :END:
+    :PROPERTIES:
+    :CUSTOM_ID: vim
+    :END:
 
 On any platform, don't warry about C include path, Nore should
 generate a /shell script/ named =~/.nore/cc-env.sh= for you (for
 details see [[#where][where]] command).
 
 **  Emacs
-		:PROPERTIES:
-		:CUSTOM_ID: emacs
-		:END:
+    :PROPERTIES:
+    :CUSTOM_ID: emacs
+    :END:
 
 On any Unix-like platform:
 - @@html:<kbd>@@M-x shell-command <your-c-app-dir>/configure
@@ -611,14 +609,14 @@ interactive debugger(gdb, lldb, cdb), interactive shell, all those
 excellently smooth.
 
 **  Visual Stduio Code
-		:PROPERTIES:
-		:CUSTOM_ID: visual-studio-code
-		:END:
+    :PROPERTIES:
+    :CUSTOM_ID: visual-studio-code
+    :END:
 
 * Troubleshoting
-		:PROPERTIES:
-		:CUSTOM_ID: troubleshoting
-		:END:
+  :PROPERTIES:
+  :CUSTOM_ID: troubleshoting
+  :END:
 
 Troubleshotting is more easier than other ones, because merely
 Makefile and shell script. And Nore provides a command for debugging
